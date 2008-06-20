@@ -45,7 +45,7 @@ namespace CommonUI
         public FileList ( )
         {
             InitializeComponent ( );
-            
+            fileListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
         }
         Font _defaultFnt = new Font ( "arial" , 9 );
         /// <summary>
@@ -72,6 +72,7 @@ namespace CommonUI
             fileListView.Columns [ 1 ].Type = ListViewColumnType.Text ;
             fileListView.Font = _defaultFnt;
             */
+            /*
             ColumnHeader nameHeader = new ColumnHeader();
             nameHeader.Text = "ÎÄ¼þÃû";
             nameHeader.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -85,6 +86,7 @@ namespace CommonUI
             extHeader.Type = ListViewColumnType.Text;
             extHeader.Visible = true;
             fileListView.Columns.Add(extHeader);
+            */
 
             foreach (File f in fileList)
             {
