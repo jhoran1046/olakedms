@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Framework.Patterns.CNamedClass" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CNamedClass.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.DB.CDBEntity&lt;T&gt;">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CDBEntity.cs</FileName>
+      <HashCode>gAwAgEAAAAAAAAAAkAQAAAiAAAEAABAAAAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="Framework.DB.CNullData">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CNullData.cs</FileName>
+      <HashCode>gAQAgEAAAAAAAAAAkAQAAASAAAEAAAAAAAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Framework.DB.IPersistableData" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IPersistableData.cs</FileName>
+      <HashCode>gAQAgEAAAAAAAAAAkAQAAASAAAEAAAAAAAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>
