@@ -133,5 +133,28 @@ namespace UI
                 dirTree.FileListUI.Dock = DockStyle.Fill;
             }
         }
+
+        private void menuUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog objFile = new OpenFileDialog();
+            objFile.FileOk += new CancelEventHandler(objFile_FileOk);
+            objFile.MaxFileSize = 1000000;
+            //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
+            //objFile.Multiselect = true;
+            objFile.ShowDialog();
+        }
+
+        private void objFile_FileOk(object sender, CancelEventArgs e)
+        {
+            OpenFileDialog objFileDialog = (OpenFileDialog)sender;
+            StringBuilder objText = new StringBuilder();
+            foreach (string strFile in objFileDialog.FileNames)
+            {
+                objText.Append(strFile);
+                objText.Append("\n");
+            }
+            objText.AppendFormat(" \nTotal number of files:{0}", objFileDialog.FileNames.Length);
+            //this.mobjLabelFile.Text = objText.ToString();
+        }
     }
 }

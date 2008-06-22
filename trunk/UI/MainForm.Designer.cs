@@ -31,8 +31,8 @@ namespace UI
         {
             this.mainMenu1 = new Gizmox.WebGUI.Forms.MainMenu();
             this.menuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
-            this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
-            this.menuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuUpload = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuDeleteFile = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
@@ -71,20 +71,21 @@ namespace UI
             // 
             this.menuItem1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuItem1.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
-            this.menuItem4,
-            this.menuItem5});
+            this.menuUpload,
+            this.menuDeleteFile});
             this.menuItem1.RadioCheck = true;
             this.menuItem1.Text = "File";
             // 
-            // menuItem4
+            // menuUpload
             // 
-            this.menuItem4.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem4.Text = "open";
+            this.menuUpload.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuUpload.Text = "Upload File";
+            this.menuUpload.Click += new System.EventHandler(this.menuUpload_Click);
             // 
             // menuItem5
             // 
-            this.menuItem5.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem5.Text = "close";
+            this.menuDeleteFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuDeleteFile.Text = "Delete File";
             // 
             // menuItem2
             // 
@@ -317,8 +318,8 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuItem2;
         private Gizmox.WebGUI.Forms.MenuItem menuItem3;
         private Gizmox.WebGUI.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Gizmox.WebGUI.Forms.MenuItem menuItem4;
-        private Gizmox.WebGUI.Forms.MenuItem menuItem5;
+        private Gizmox.WebGUI.Forms.MenuItem menuUpload;
+        private Gizmox.WebGUI.Forms.MenuItem menuDeleteFile;
         private Gizmox.WebGUI.Forms.MenuItem menuItem6;
         private Gizmox.WebGUI.Forms.MenuItem menuItem7;
         private Gizmox.WebGUI.Forms.MenuItem menuItem8;
