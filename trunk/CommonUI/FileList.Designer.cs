@@ -82,7 +82,9 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.ColumnHeader columnFilleName;
         private Gizmox.WebGUI.Forms.ColumnHeader columnExt;
 
-
-
+        public Gizmox.WebGUI.Forms.ListView FileListView
+        {
+            get { return fileListView; }
+        }
     }
 }

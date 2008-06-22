@@ -47,6 +47,8 @@ namespace CommonUI
             InitializeComponent ( );
             fileListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
         }
+
+        public 
         Font _defaultFnt = new Font ( "arial" , 9 );
         /// <summary>
         /// RootDir must be set before this is called
