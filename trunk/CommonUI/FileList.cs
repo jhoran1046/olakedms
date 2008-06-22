@@ -53,6 +53,7 @@ namespace CommonUI
         /// </summary>
         public void LoadFiles()
         {
+            fileListView.Items.Clear();
             //List<File> fileList =  HelpClass.GetFiles( RootDir );
             List<File> fileList = HelpClass.GetFiles(_currentUser, _parentResourceId);
             if ( fileList.Count == 0 )
