@@ -105,6 +105,7 @@ namespace CommonUI
             if ( !e.Node.Loaded )
             {
                 //HelpClass.LoadDirectory ( e.Node.Nodes , e.Node.Tag.ToString ( ) );
+                e.Node.Nodes.Clear();
                 HelpClass.LoadDirectory(e.Node.Nodes, _currentUser, (int)e.Node.Tag);
                 foreach ( TreeNode aNode in e.Node.Nodes )
                 {
