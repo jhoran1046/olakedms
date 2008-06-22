@@ -356,6 +356,16 @@ namespace MidLayer
 
         }
 
+        public CUserEntity Login(String member, String password)
+        {
+            String filter = "this.Usr_Member='" + member + "' and Usr_Password='" + password + "'";
+            List<CUserEntity> users = GetObjectList(filter);
+            if (users.Count > 0)
+                return users[0];
+            else
+                throw new Exception("错误的用户名和密码");
+        }
+
         // List all children that current user can read
         public List<CResourceEntity> ListResources(int parentId)
         {
