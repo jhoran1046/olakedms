@@ -575,7 +575,7 @@ namespace MidLayer
             acl.Acl_Resource = parentId;
             acl.Acl_Operation = (int)ACLOPERATION.WRITE;
             if (!CheckPrivilege(acl))
-                throw new Exception("没有写权限"); ;
+                throw new Exception("没有写权限"); 
 
             // create folder
             CResourceEntity parent = new CResourceEntity(MidLayerSettings.ConnectionString).Load(parentId);
@@ -598,6 +598,21 @@ namespace MidLayer
             parent.CreateChildResource(res);
             return res;
         }
+
+        public void DeleteResource(int resourceId)
+        {
+            CACLEntity acl = new CACLEntity(ConnString);
+            acl.Acl_Resource = resourceId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限");
+
+            CResourceEntity res = new CResourceEntity(ConnString).Load(resourceId);
+
+            res.Remove();
+        }
+
+        
 
         public void Permit(int userId, USERTYPE userType, int resourceId, ACLOPERATION operation)
         {

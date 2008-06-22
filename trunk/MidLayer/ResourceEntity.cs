@@ -116,10 +116,33 @@ namespace MidLayer
             return children;
         }
 
-        public  void CreateChildResource(CResourceEntity child)
+        public void Remove()
+        {
+            DeleteChildResource();
+            DeleteACLs();
+            Delete();
+        }
+
+        public void CreateChildResource(CResourceEntity child)
         {
             child.Res_Parent = Res_Id;
             child.Res_Id = child.Insert();
+        }
+
+        public void DeleteChildResource()
+        {
+            List<CResourceEntity> children = ListChildResources();
+            foreach (CResourceEntity child in children)
+            {
+                child.Remove();
+            }
+        }
+
+        public void DeleteACLs()
+        {
+            String filter = "this.Acl_Resource=" + Res_Id;
+            CACLEntity en = new CACLEntity(ConnString);
+            en.Delete(filter);
         }
     }
 }
