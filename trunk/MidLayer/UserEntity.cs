@@ -107,6 +107,7 @@ namespace MidLayer
             List<CUserGroupEntity> userGroups = userGroup.GetObjectList(filter);
 
             // if resource is file or folder, check if user has right on it or its parent
+            acl.ConnString = ConnString;
             int resId = acl.Acl_Resource;
             while (resId != 0)
             {
@@ -568,13 +569,13 @@ namespace MidLayer
         }
 
         // return new resource id
-        public CResourceEntity CreateFile(int parentId, String fileName)
+        public CResourceEntity CreateFile(int parentId, String fileName, out String filePath)
         {
             CACLEntity acl = new CACLEntity();
             acl.Acl_Resource = parentId;
             acl.Acl_Operation = (int)ACLOPERATION.WRITE;
             if (!CheckPrivilege(acl))
-                return null;
+                throw new Exception("没有写权限"); ;
 
             // create folder
             CResourceEntity parent = new CResourceEntity(MidLayerSettings.ConnectionString).Load(parentId);
@@ -587,7 +588,8 @@ namespace MidLayer
             path = Path.Combine(path, fileName);
             if (Directory.Exists(path) || File.Exists(path))
                 throw new Exception("名称冲突: " + path);
-            File.Create(path);
+
+            filePath = path;
 
             // create resource
             CResourceEntity res = new CResourceEntity(ConnString);
