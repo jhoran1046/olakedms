@@ -82,10 +82,11 @@ namespace UI
             this.menuUpload.Text = "Upload File";
             this.menuUpload.Click += new System.EventHandler(this.menuUpload_Click);
             // 
-            // menuItem5
+            // menuDeleteFile
             // 
             this.menuDeleteFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuDeleteFile.Text = "Delete File";
+            this.menuDeleteFile.Click += new System.EventHandler(this.menuDeleteFile_Click);
             // 
             // menuItem2
             // 

@@ -134,7 +134,7 @@ namespace UI
             }
         }
 
-        private int GetSelectedResource()
+        private int GetSelectedTreeResource()
         {
             int selectedResource;
             DirTree selectedTree = null;
@@ -156,9 +156,23 @@ namespace UI
             return selectedResource;
         }
 
+        private FileList GetActiveFileList()
+        {
+            if (leftNavigationTabs.SelectedItem == archiveTab)
+            {
+                return _archiveFileLst;
+            }
+            else if (leftNavigationTabs.SelectedItem == myDocPage)
+            {
+                return _myFileList;
+            }
+
+            return null;
+        }
+
         private void menuUpload_Click(object sender, EventArgs e)
         {
-            int selectedResource = GetSelectedResource();
+            int selectedResource = GetSelectedTreeResource();
             if (selectedResource < 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -184,7 +198,7 @@ namespace UI
 
         private void objFile_FileOk(object sender, CancelEventArgs e)
         {
-            int selectedResource = GetSelectedResource();
+            int selectedResource = GetSelectedTreeResource();
             if (selectedResource < 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -205,6 +219,52 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("创建文件失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuDeleteFile_Click(object sender, EventArgs e)
+        {
+            FileList currentList = GetActiveFileList();
+            if (currentList == null)
+            {
+                MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("确定要删除文件吗？", "文档管理系统", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question, new EventHandler(DeleteFileHandler));
+        }
+
+        private void DeleteFileHandler(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            FileList currentList = GetActiveFileList();
+            if (currentList == null)
+            {
+                MessageBox.Show("请选择文件", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                foreach (ListViewItem item in currentList.FileListView.Items)
+                {
+                    if (item.Checked)
+                    {
+                        CResourceEntity res = new CResourceEntity(MidLayerSettings.ConnectionString).Load((int)item.Tag);
+                        String filePath = res.MakeFullPath();
+                        _currentUser.DeleteResource((int)item.Tag);
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
