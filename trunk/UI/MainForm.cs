@@ -134,27 +134,78 @@ namespace UI
             }
         }
 
+        private int GetSelectedResource()
+        {
+            int selectedResource;
+            DirTree selectedTree = null;
+
+            if (leftNavigationTabs.SelectedItem == archiveTab)
+            {
+                selectedTree = archiveDirTree;
+            }
+            else if (leftNavigationTabs.SelectedItem == myDocPage)
+            {
+                selectedTree = myDirTree;
+            }
+
+            if (selectedTree == null || selectedTree.MainTreeView.SelectedNode == null)
+            {
+                return -1;
+            }
+            selectedResource = (int)selectedTree.MainTreeView.SelectedNode.Tag;
+            return selectedResource;
+        }
+
         private void menuUpload_Click(object sender, EventArgs e)
         {
+            int selectedResource = GetSelectedResource();
+            if (selectedResource < 0)
+            {
+                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
+            acl.Acl_Resource = selectedResource;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!_currentUser.CheckPrivilege(acl))
+            {
+                MessageBox.Show("没有写权限！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             OpenFileDialog objFile = new OpenFileDialog();
             objFile.FileOk += new CancelEventHandler(objFile_FileOk);
             objFile.MaxFileSize = 1000000;
             //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
-            //objFile.Multiselect = true;
+            objFile.Multiselect = true;
             objFile.ShowDialog();
         }
 
         private void objFile_FileOk(object sender, CancelEventArgs e)
         {
-            OpenFileDialog objFileDialog = (OpenFileDialog)sender;
-            StringBuilder objText = new StringBuilder();
-            foreach (string strFile in objFileDialog.FileNames)
+            int selectedResource = GetSelectedResource();
+            if (selectedResource < 0)
             {
-                objText.Append(strFile);
-                objText.Append("\n");
+                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            objText.AppendFormat(" \nTotal number of files:{0}", objFileDialog.FileNames.Length);
-            //this.mobjLabelFile.Text = objText.ToString();
+
+            try
+            {
+                OpenFileDialog objFileDialog = (OpenFileDialog)sender;
+                for (int i = 0; i < objFileDialog.Files.Count; i++)
+                {
+                    String filePath;
+                    HttpPostedFileHandle hfh = (HttpPostedFileHandle)objFileDialog.Files[i]; ;
+                    _currentUser.CreateFile(selectedResource, hfh.PostedFileName, out filePath);
+                    hfh.SaveAs(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("创建文件失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
