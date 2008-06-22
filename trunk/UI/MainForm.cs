@@ -23,18 +23,35 @@ namespace UI
         FileList _archiveFileLst = new FileList ( );
 
         CUserEntity _currentUser;
+        public CUserEntity CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
         
-        public MainForm ( )
+        public MainForm ()
         {
             InitializeComponent ( );
 
             MidLayerSettings.ConnectionString = "Provider=SQLOLEDB.1;Data Source=home;Initial Catalog=DMS;User ID=sa;password=a;connect timeout = 300";
             MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
+        }
+
+        private void button1_Click ( object sender , EventArgs e )
+        {
+            SearchForm aFrm = new SearchForm ( );
+            aFrm.ShowDialog ( );
+        }
+
+        private void MainForm_Load ( object sender , EventArgs e )
+        {
+            this.Menu = mainMenu1;
+            _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
             try
             {
-                _currentUser = new CUserEntity(MidLayerSettings.ConnectionString);
-                _currentUser = _currentUser.Load(1); //olake
+                //_currentUser = new CUserEntity(MidLayerSettings.ConnectionString);
+                //_currentUser = _currentUser.Load(1); //olake
 
                 myDirTree.CurrentUser = _currentUser;
                 myDirTree.RootResourceId = _currentUser.Usr_Resource;
@@ -102,19 +119,8 @@ namespace UI
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void button1_Click ( object sender , EventArgs e )
-        {
-            SearchForm aFrm = new SearchForm ( );
-            aFrm.ShowDialog ( );
-        }
-
-        private void MainForm_Load ( object sender , EventArgs e )
-        {
-            this.Menu = mainMenu1;
         }
 
         private void leftNavigationTabs_SelectedIndexChanged ( object sender , EventArgs e )
@@ -125,9 +131,7 @@ namespace UI
                 DirTree dirTree =(DirTree) leftNavigationTabs.SelectedItem.Controls [ 0 ];
                 this.mainSplit.Panel2.Controls.Add(dirTree.FileListUI);
                 dirTree.FileListUI.Dock = DockStyle.Fill;
-                
             }
-           
         }
     }
 }
