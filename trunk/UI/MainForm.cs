@@ -267,5 +267,116 @@ namespace UI
                 MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void menuCreateFolder_Click(object sender, EventArgs e)
+        {
+            int selectedResource = GetSelectedTreeResource();
+            if (selectedResource < 0)
+            {
+                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
+                acl.Acl_Resource = selectedResource;
+                acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+                if (!_currentUser.CheckPrivilege(acl))
+                {
+                    MessageBox.Show("没有写权限！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                NameForm nameForm = new NameForm();
+                nameForm.Text = "创建目录";
+                nameForm.Closed += new EventHandler(CreateFolder_Closed);
+                nameForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("创建目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CreateFolder_Closed(object sender, EventArgs e)
+        {
+            NameForm nameForm = (NameForm)sender;
+            if (nameForm.DialogResult != DialogResult.OK)
+                return;
+
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource < 0)
+                {
+                    MessageBox.Show("选择的父目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _currentUser.CreateFolder(selectedResource, nameForm.NewName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("创建目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuDeleteFolder_Click(object sender, EventArgs e)
+        {
+            int selectedResource = GetSelectedTreeResource();
+            if (selectedResource < 0)
+            {
+                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
+                acl.Acl_Resource = selectedResource;
+                acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+                if (!_currentUser.CheckPrivilege(acl))
+                {
+                    MessageBox.Show("没有写权限！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                CResourceEntity res = new CResourceEntity(MidLayerSettings.ConnectionString).Load(selectedResource);
+                MessageBox.Show("确定要删除" + res.Res_Name + "目录吗？", "文档管理系统", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question, new EventHandler(DeleteFolder_Closed));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("删除目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DeleteFolder_Closed(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource < 0)
+                {
+                    MessageBox.Show("选择的目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                CResourceEntity res = new CResourceEntity(MidLayerSettings.ConnectionString).Load(selectedResource);
+                String dirPath = res.MakeFullPath();
+                _currentUser.DeleteResource(selectedResource);
+                System.IO.Directory.Delete(dirPath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("创建目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

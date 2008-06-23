@@ -33,10 +33,15 @@ namespace UI
             this.menuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuUpload = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuDeleteFile = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuCreateFolder = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuDeleteFolder = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuShareFile = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuShareFolder = new Gizmox.WebGUI.Forms.MenuItem();
             this.tableLayoutPanel1 = new Gizmox.WebGUI.Forms.TableLayoutPanel();
             this.mainSplit = new Gizmox.WebGUI.Forms.SplitContainer();
             this.leftNavigationTabs = new Gizmox.WebGUI.Forms.NavigationTabs();
@@ -62,7 +67,8 @@ namespace UI
             this.mainMenu1.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
             this.menuItem1,
             this.menuItem2,
-            this.menuItem3});
+            this.menuItem3,
+            this.menuItem4});
             this.mainMenu1.Name = "mainMenu1";
             this.mainMenu1.Size = new System.Drawing.Size(100, 22);
             this.mainMenu1.Text = "Ö÷²Ëµ¥";
@@ -70,9 +76,12 @@ namespace UI
             // menuItem1
             // 
             this.menuItem1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuItem1.Index = 0;
             this.menuItem1.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
             this.menuUpload,
-            this.menuDeleteFile});
+            this.menuDeleteFile,
+            this.menuCreateFolder,
+            this.menuDeleteFolder});
             this.menuItem1.RadioCheck = true;
             this.menuItem1.Text = "File";
             // 
@@ -87,6 +96,18 @@ namespace UI
             this.menuDeleteFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuDeleteFile.Text = "Delete File";
             this.menuDeleteFile.Click += new System.EventHandler(this.menuDeleteFile_Click);
+            // 
+            // menuCreateFolder
+            // 
+            this.menuCreateFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuCreateFolder.Text = "Create Folder";
+            this.menuCreateFolder.Click += new System.EventHandler(this.menuCreateFolder_Click);
+            // 
+            // menuDeleteFolder
+            // 
+            this.menuDeleteFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuDeleteFolder.Text = "Delete Folder";
+            this.menuDeleteFolder.Click += new System.EventHandler(this.menuDeleteFolder_Click);
             // 
             // menuItem2
             // 
@@ -111,6 +132,25 @@ namespace UI
             // 
             this.menuItem3.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuItem3.Text = "Help";
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuItem4.Index = 3;
+            this.menuItem4.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
+            this.menuShareFile,
+            this.menuShareFolder});
+            this.menuItem4.Text = "Share";
+            // 
+            // menuShareFile
+            // 
+            this.menuShareFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuShareFile.Text = "Share File...";
+            // 
+            // menuShareFolder
+            // 
+            this.menuShareFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuShareFolder.Text = "Share Folder";
             // 
             // tableLayoutPanel1
             // 
@@ -339,7 +379,11 @@ namespace UI
         private FunctionTree shareSpacefunctionTree;
         private DirTree archiveDirTree;
         private Gizmox.WebGUI.Forms.ListView listView1;
- 
+        private Gizmox.WebGUI.Forms.MenuItem menuItem4;
+        private Gizmox.WebGUI.Forms.MenuItem menuShareFile;
+        private Gizmox.WebGUI.Forms.MenuItem menuShareFolder;
+        private Gizmox.WebGUI.Forms.MenuItem menuCreateFolder;
+        private Gizmox.WebGUI.Forms.MenuItem menuDeleteFolder;
 
 
     }
