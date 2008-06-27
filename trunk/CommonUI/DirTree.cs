@@ -73,7 +73,8 @@ namespace CommonUI
             }
   
  */
-            HelpClass.LoadDirectory ( MainTreeView.Nodes , _currentUser, _rootResourceId );
+            //HelpClass.LoadDirectory ( MainTreeView.Nodes , _currentUser, _rootResourceId );
+            HelpClass.InitDirectory(MainTreeView.Nodes, _currentUser, _rootResourceId);
             foreach ( TreeNode aNode in mainTreeView.Nodes )
             {
                 aNode.NodeFont = _defaultFnt;
@@ -104,21 +105,42 @@ namespace CommonUI
         {
             if ( !e.Node.Loaded )
             {
-                //HelpClass.LoadDirectory ( e.Node.Nodes , e.Node.Tag.ToString ( ) );
-                e.Node.Nodes.Clear();
-                HelpClass.LoadDirectory(e.Node.Nodes, _currentUser, (int)e.Node.Tag);
-                foreach ( TreeNode aNode in e.Node.Nodes )
-                {
-                    aNode.NodeFont = _defaultFnt;
-                    aNode.Image = new IconResourceHandle ( "folder.gif" );
-                    if(!aNode.Loaded)
-                    {
-                        aNode.Image = new IconResourceHandle ( "folders.gif" );
-                    }
-                    
-                }
+                LoadNode(e.Node);
                 e.Node.Loaded = true;
             }
+        }
+
+        public void ReloadTreeNode(TreeNode node)
+        {
+            LoadNode(node);
+            node.Loaded = true;
+        }
+
+        protected void LoadNode(TreeNode node)
+        {
+            //HelpClass.LoadDirectory ( e.Node.Nodes , e.Node.Tag.ToString ( ) );
+            node.Nodes.Clear();
+            HelpClass.LoadDirectory(node.Nodes, _currentUser, (int)node.Tag);
+            foreach (TreeNode aNode in node.Nodes)
+            {
+                aNode.NodeFont = _defaultFnt;
+                aNode.Image = new IconResourceHandle("folder.gif");
+                if (!aNode.Loaded)
+                {
+                    aNode.Image = new IconResourceHandle("folders.gif");
+                }
+            }
+            
+        }
+
+        public void ReloadFileList()
+        {
+            if (MainTreeView.SelectedNode == null)
+                return;
+
+            _fileListUI.CurrentUser = _currentUser;
+            _fileListUI.ParentResourceId = (int)MainTreeView.SelectedNode.Tag;
+            _fileListUI.LoadFiles();
         }
     }
 }
