@@ -42,6 +42,11 @@ namespace UI
             this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuShareFile = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuShareFolder = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuAddUser = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuDeleteUser = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuAddGroup = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuDeleteGroup = new Gizmox.WebGUI.Forms.MenuItem();
             this.tableLayoutPanel1 = new Gizmox.WebGUI.Forms.TableLayoutPanel();
             this.mainSplit = new Gizmox.WebGUI.Forms.SplitContainer();
             this.leftNavigationTabs = new Gizmox.WebGUI.Forms.NavigationTabs();
@@ -68,7 +73,8 @@ namespace UI
             this.menuItem1,
             this.menuItem2,
             this.menuItem3,
-            this.menuItem4});
+            this.menuItem4,
+            this.menuItem5});
             this.mainMenu1.Name = "mainMenu1";
             this.mainMenu1.Size = new System.Drawing.Size(100, 22);
             this.mainMenu1.Text = "Ö÷²Ëµ¥";
@@ -131,6 +137,7 @@ namespace UI
             // menuItem3
             // 
             this.menuItem3.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuItem3.Index = 2;
             this.menuItem3.Text = "Help";
             // 
             // menuItem4
@@ -151,6 +158,40 @@ namespace UI
             // 
             this.menuShareFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuShareFolder.Text = "Share Folder";
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuItem5.Index = 4;
+            this.menuItem5.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
+            this.menuAddUser,
+            this.menuDeleteUser,
+            this.menuAddGroup,
+            this.menuDeleteGroup});
+            this.menuItem5.Text = "User";
+            // 
+            // menuAddUser
+            // 
+            this.menuAddUser.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuAddUser.Text = "Add User";
+            this.menuAddUser.Click += new System.EventHandler(this.menuAddUser_Click);
+            // 
+            // menuDeleteUser
+            // 
+            this.menuDeleteUser.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuDeleteUser.Text = "Delete User";
+            this.menuDeleteUser.Click += new System.EventHandler(this.menuDeleteUser_Click);
+            // 
+            // menuAddGroup
+            // 
+            this.menuAddGroup.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuAddGroup.Text = "Add Group";
+            // 
+            // 
+            // menuDeleteGroup
+            // 
+            this.menuDeleteGroup.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuDeleteGroup.Text = "Delete Group";
             // 
             // tableLayoutPanel1
             // 
@@ -385,6 +426,10 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuCreateFolder;
         private Gizmox.WebGUI.Forms.MenuItem menuDeleteFolder;
 
-
+        private Gizmox.WebGUI.Forms.MenuItem menuItem5;
+        private Gizmox.WebGUI.Forms.MenuItem menuAddUser;
+        private Gizmox.WebGUI.Forms.MenuItem menuDeleteUser;
+        private Gizmox.WebGUI.Forms.MenuItem menuAddGroup;
+        private Gizmox.WebGUI.Forms.MenuItem menuDeleteGroup;
     }
 }

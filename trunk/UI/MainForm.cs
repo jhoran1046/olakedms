@@ -406,5 +406,37 @@ namespace UI
                 MessageBox.Show("创建目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void menuAddUser_Click(object sender, EventArgs e)
+        {
+            UserForm userForm = new UserForm();
+            userForm.Closed += new EventHandler(AddUser_Closed);
+            userForm.ShowDialog();
+        }
+
+        private void AddUser_Closed(object sender, EventArgs e)
+        {
+            UserForm userForm = (UserForm)sender;
+            if (userForm.DialogResult != DialogResult.OK)
+                return;
+
+            try
+            {
+                CUserEntity newUser = new CUserEntity(MidLayerSettings.ConnectionString);
+                newUser.Usr_Member = userForm.Member;
+                newUser.Usr_Password = userForm.Password;
+                newUser.Usr_Name = userForm.UserName;
+                newUser.Usr_Organize = _currentUser.Usr_Organize;
+                _currentUser.CreateNormalUser(newUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("创建用户失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuDeleteUser_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
