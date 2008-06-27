@@ -259,7 +259,7 @@ namespace MidLayer
                 acl1.Acl_Resource = user.Usr_Resource;
                 acl1.Acl_Role = user.Usr_Id;
                 acl1.Acl_RType = (int)ACLROLETYPE.USERROLE;
-                acl1.Acl_Id = acl2.Insert();
+                acl1.Acl_Id = acl1.Insert();
 
                 return user;
             }
@@ -346,7 +346,7 @@ namespace MidLayer
 
                 // create user
                 newUser.Usr_Resource = folderRes.Res_Id;
-                newUser.ConnString = "";
+                newUser.ConnString = ConnString;
                 newUser.Usr_Id = newUser.Insert();
                 return newUser;
             }
