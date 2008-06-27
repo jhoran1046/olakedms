@@ -18,8 +18,39 @@ namespace CommonUI
 {
     public class HelpClass
     {
+        static public void InitDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
+        {
+            objNodes.Clear();
+            CResourceEntity rootRes = new CResourceEntity(MidLayerSettings.ConnectionString).Load(resourceId);
+            if (rootRes.Res_Type != (int)RESOURCETYPE.FOLDERRESOURCE)
+                return;
+
+            List<CResourceEntity> children = user.ListDescendants(resourceId);
+
+            bool blnHasNodes = false;
+            foreach (CResourceEntity r in children)
+            {
+                if (r.Res_Type == (int)RESOURCETYPE.FOLDERRESOURCE)
+                {
+                    blnHasNodes = true;
+                    break;
+                }
+            }
+
+            TreeNode objNode = new TreeNode(rootRes.Res_Name);
+            objNode.Tag = resourceId;
+
+            objNode.IsExpanded = !blnHasNodes;
+            objNode.HasNodes = blnHasNodes;
+
+            objNode.Loaded = !blnHasNodes;
+            objNodes.Add(objNode);
+        }
+
         static  public void LoadDirectory ( TreeNodeCollection objNodes , string strPath )
         {
+            objNodes.Clear();
+
             //insert the root node
             DirectoryInfo objDir = new DirectoryInfo ( strPath );
 
@@ -46,8 +77,10 @@ namespace CommonUI
 
         static public void LoadDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
         {
+            objNodes.Clear();
+
             //insert the root node
-            List<CResourceEntity> children = user.ListDescendants(resourceId);//user.ListResources(resourceId);
+            List<CResourceEntity> children = user.ListDescendants(resourceId);
 
             foreach (CResourceEntity res in children)
             {
