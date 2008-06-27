@@ -136,7 +136,25 @@ namespace UI
 
         private int GetSelectedTreeResource()
         {
-            int selectedResource;
+            TreeNode node = GetSelectedTreeNode();
+            if (node == null)
+                throw new Exception("没有选中的目录");
+            return (int)node.Tag;
+        }
+
+        private TreeNode GetSelectedTreeNode()
+        {
+          
+            DirTree selectedTree = GetActiveTree();
+            if (selectedTree == null)
+            {
+                return null;
+            }
+            return selectedTree.MainTreeView.SelectedNode;
+        }
+
+        private DirTree GetActiveTree()
+        {
             DirTree selectedTree = null;
 
             if (leftNavigationTabs.SelectedItem == archiveTab)
@@ -148,12 +166,7 @@ namespace UI
                 selectedTree = myDirTree;
             }
 
-            if (selectedTree == null || selectedTree.MainTreeView.SelectedNode == null)
-            {
-                return -1;
-            }
-            selectedResource = (int)selectedTree.MainTreeView.SelectedNode.Tag;
-            return selectedResource;
+            return selectedTree;
         }
 
         private FileList GetActiveFileList()
@@ -214,6 +227,9 @@ namespace UI
                     HttpPostedFileHandle hfh = (HttpPostedFileHandle)objFileDialog.Files[i]; ;
                     _currentUser.CreateFile(selectedResource, hfh.PostedFileName, out filePath);
                     hfh.SaveAs(filePath);
+
+                    DirTree selTree = GetActiveTree();
+                    selTree.ReloadFileList();
                 }
             }
             catch (Exception ex)
@@ -261,6 +277,8 @@ namespace UI
                         System.IO.File.Delete(filePath);
                     }
                 }
+                DirTree selTree = GetActiveTree();
+                selTree.ReloadFileList();
             }
             catch (Exception ex)
             {
@@ -315,6 +333,8 @@ namespace UI
                 }
 
                 _currentUser.CreateFolder(selectedResource, nameForm.NewName);
+                DirTree selTree = GetActiveTree();
+                selTree.ReloadTreeNode(selTree.MainTreeView.SelectedNode);
             }
             catch (Exception ex)
             {
@@ -361,17 +381,25 @@ namespace UI
 
             try
             {
-                int selectedResource = GetSelectedTreeResource();
-                if (selectedResource < 0)
+                TreeNode node = GetSelectedTreeNode();
+                if (node == null)
                 {
                     MessageBox.Show("选择的目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                CResourceEntity res = new CResourceEntity(MidLayerSettings.ConnectionString).Load(selectedResource);
+                CResourceEntity res = new CResourceEntity(MidLayerSettings.ConnectionString).Load((int)node.Tag);
+
                 String dirPath = res.MakeFullPath();
-                _currentUser.DeleteResource(selectedResource);
+                _currentUser.DeleteResource((int)node.Tag);
                 System.IO.Directory.Delete(dirPath, true);
+
+                node = node.Parent;
+                if (node != null)
+                {
+                    DirTree selTree = GetActiveTree();
+                    selTree.ReloadTreeNode(node);
+                }
             }
             catch (Exception ex)
             {
