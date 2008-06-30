@@ -11,13 +11,15 @@ using System.IO;
 using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 using Gizmox.WebGUI.Common.Resources;
+using Gizmox.WebGUI.Common.Interfaces;
+using Gizmox.WebGUI.Common.Gateways;
 using MidLayer;
 
 #endregion
 
 namespace CommonUI
 {
-    public partial class FileList: UserControl
+    public partial class FileList : UserControl, IGatewayControl
     {
         string _rootDir;
         HelpClass _helper;
@@ -114,6 +116,40 @@ namespace CommonUI
 
             fileListView.Update ( );
             // fileListView.AutoResizeColumn ( 0 , ColumnHeaderAutoResizeStyle.ColumnContent );
+        }
+
+        #region IGatewayControl Members
+
+        IGatewayHandler IGatewayControl.GetGatewayHandler(IContext objContext, string strAction)
+        {
+            if (strAction == "Download")
+            {
+                //objContext.HttpContext.Response.ContentType = "image/jpeg";
+                int res = (int)fileListView.SelectedItem.Tag;
+                CACLEntity acl = new CACLEntity(_currentUser.ConnString);
+                acl.Acl_Operation = (int)ACLOPERATION.READ;
+                acl.Acl_Resource = res;
+                acl.Acl_Role = _currentUser.Usr_Id;
+                acl.Acl_RType = (int)ACLROLETYPE.USERROLE;
+                if (!_currentUser.CheckPrivilege(acl))
+                    return null;
+                CResourceEntity resource = new CResourceEntity(_currentUser.ConnString).Load(res);
+                String fileName = "attachment; filename=" + resource.Res_Name;
+                String fullPath = resource.MakeFullPath();
+                objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
+                objContext.HttpContext.Response.WriteFile(fullPath);
+            }
+            return null;
+        }
+
+        #endregion
+
+        private void fileListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LinkParameters objLinkParameters = new LinkParameters();
+            objLinkParameters.Target = "_self";
+
+            Link.Open(new GatewayReference(this, "Download"), objLinkParameters);
         }
     }
 }
