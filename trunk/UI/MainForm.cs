@@ -19,8 +19,9 @@ namespace UI
 {
     public partial class MainForm: Form
     {
-        FileList _myFileList = new FileList ( );
-        FileList _archiveFileLst = new FileList ( );
+        FileList _myFileList = new FileList();
+        FileList _archiveFileLst = new FileList();
+        FileList _shareFileList = new FileList();
 
         CUserEntity _currentUser;
         public CUserEntity CurrentUser
@@ -59,6 +60,9 @@ namespace UI
                 archiveDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_ArchiveRes;
                 _myFileList.CurrentUser = _currentUser;
                 _archiveFileLst.CurrentUser = _currentUser;
+                shareDirTree.CurrentUser = _currentUser;
+                shareDirTree.Helper = new ShareHelpClass();
+                _shareFileList.CurrentUser = _currentUser;
 
                 //系统管理
                 List<CFunction> systemFunctions = new List<CFunction>();
@@ -101,6 +105,7 @@ namespace UI
                 myDirTree.FileListUI = _myFileList;
 
                 //共享空间
+                /*
                 List<CFunction> shareSpaceFunctionList = new List<CFunction>();
                 function = new CFunction();
                 function.Name = "我共享给他人的文档";
@@ -111,6 +116,9 @@ namespace UI
                 function.Image = new IconResourceHandle("folders.gif");
                 shareSpaceFunctionList.Add(function);
                 shareSpacefunctionTree.FunctionList = shareSpaceFunctionList;
+                */
+                shareDirTree.Init();
+                shareDirTree.FileListUI = _shareFileList;
 
                 //归档区
                 archiveDirTree.RootDir = Context.Server.MapPath("~/app_data");
@@ -126,7 +134,9 @@ namespace UI
         private void leftNavigationTabs_SelectedIndexChanged ( object sender , EventArgs e )
         {
             this.mainSplit.Panel2.Controls.Clear ( );
-            if(leftNavigationTabs.SelectedItem == this.myDocPage||leftNavigationTabs.SelectedItem == this.archiveTab)
+            if (leftNavigationTabs.SelectedItem == this.myDocPage||
+                leftNavigationTabs.SelectedItem == this.archiveTab ||
+                leftNavigationTabs.SelectedItem == this.shareSpaceTab)
             {
                 DirTree dirTree =(DirTree) leftNavigationTabs.SelectedItem.Controls [ 0 ];
                 this.mainSplit.Panel2.Controls.Add(dirTree.FileListUI);
@@ -137,7 +147,7 @@ namespace UI
         private int GetSelectedTreeResource()
         {
             TreeNode node = GetSelectedTreeNode();
-            if (node == null)
+            if (node == null || node.Tag == null)
                 throw new Exception("没有选中的目录");
             return (int)node.Tag;
         }
@@ -165,6 +175,10 @@ namespace UI
             {
                 selectedTree = myDirTree;
             }
+            else if (leftNavigationTabs.SelectedItem == shareSpaceTab)
+            {
+                selectedTree = shareDirTree;
+            }
 
             return selectedTree;
         }
@@ -186,7 +200,7 @@ namespace UI
         private void menuUpload_Click(object sender, EventArgs e)
         {
             int selectedResource = GetSelectedTreeResource();
-            if (selectedResource < 0)
+            if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -212,7 +226,7 @@ namespace UI
         private void objFile_FileOk(object sender, CancelEventArgs e)
         {
             int selectedResource = GetSelectedTreeResource();
-            if (selectedResource < 0)
+            if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -289,7 +303,7 @@ namespace UI
         private void menuCreateFolder_Click(object sender, EventArgs e)
         {
             int selectedResource = GetSelectedTreeResource();
-            if (selectedResource < 0)
+            if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -326,7 +340,7 @@ namespace UI
             try
             {
                 int selectedResource = GetSelectedTreeResource();
-                if (selectedResource < 0)
+                if (selectedResource <= 0)
                 {
                     MessageBox.Show("选择的父目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -345,7 +359,7 @@ namespace UI
         private void menuDeleteFolder_Click(object sender, EventArgs e)
         {
             int selectedResource = GetSelectedTreeResource();
-            if (selectedResource < 0)
+            if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -382,7 +396,7 @@ namespace UI
             try
             {
                 TreeNode node = GetSelectedTreeNode();
-                if (node == null)
+                if (node == null || (int)node.Tag <= 0)
                 {
                     MessageBox.Show("选择的目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

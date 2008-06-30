@@ -57,12 +57,12 @@ namespace UI
             this.myDocPage = new Gizmox.WebGUI.Forms.TabPage();
             this.myDirTree = new CommonUI.DirTree();
             this.shareSpaceTab = new Gizmox.WebGUI.Forms.TabPage();
-            this.shareSpacefunctionTree = new CommonUI.FunctionTree();
             this.archiveTab = new Gizmox.WebGUI.Forms.TabPage();
             this.archiveDirTree = new CommonUI.DirTree();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
+            this.shareDirTree = new CommonUI.DirTree();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -186,7 +186,6 @@ namespace UI
             // 
             this.menuAddGroup.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuAddGroup.Text = "Add Group";
-            // 
             // 
             // menuDeleteGroup
             // 
@@ -322,23 +321,13 @@ namespace UI
             // 
             // shareSpaceTab
             // 
-            this.shareSpaceTab.Controls.Add(this.shareSpacefunctionTree);
+            this.shareSpaceTab.Controls.Add(this.shareDirTree);
             this.shareSpaceTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.shareSpaceTab.Location = new System.Drawing.Point(4, 22);
             this.shareSpaceTab.Name = "shareSpaceTab";
             this.shareSpaceTab.Size = new System.Drawing.Size(203, 433);
             this.shareSpaceTab.TabIndex = 0;
             this.shareSpaceTab.Text = "共享空间";
-            // 
-            // shareSpacefunctionTree
-            // 
-            this.shareSpacefunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.shareSpacefunctionTree.FunctionList = null;
-            this.shareSpacefunctionTree.Location = new System.Drawing.Point(0, 0);
-            this.shareSpacefunctionTree.Name = "shareSpacefunctionTree";
-            this.shareSpacefunctionTree.Size = new System.Drawing.Size(391, 306);
-            this.shareSpacefunctionTree.TabIndex = 0;
-            this.shareSpacefunctionTree.Text = "FunctionTree";
             // 
             // archiveTab
             // 
@@ -382,10 +371,25 @@ namespace UI
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(100, 100);
             // 
+            // shareDirTree
+            // 
+            this.shareDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.shareDirTree.CurrentUser = null;
+            this.shareDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.shareDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.shareDirTree.FileListUI = null;
+            this.shareDirTree.Location = new System.Drawing.Point(0, 0);
+            this.shareDirTree.Name = "shareDirTree";
+            this.shareDirTree.RootDir = null;
+            this.shareDirTree.RootResourceId = 0;
+            this.shareDirTree.Size = new System.Drawing.Size(203, 433);
+            this.shareDirTree.TabIndex = 0;
+            this.shareDirTree.Text = "DirTree";
+            // 
             // MainForm
             // 
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Location = new System.Drawing.Point(15, 15);
+            this.Location = new System.Drawing.Point(15, -15);
             this.Size = new System.Drawing.Size(641, 496);
             this.Text = "文档管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -417,7 +421,6 @@ namespace UI
         private FunctionTree sysFunctionTree;
         private FunctionTree myinfofunctionTree;
         private DirTree myDirTree;
-        private FunctionTree shareSpacefunctionTree;
         private DirTree archiveDirTree;
         private Gizmox.WebGUI.Forms.ListView listView1;
         private Gizmox.WebGUI.Forms.MenuItem menuItem4;
@@ -431,5 +434,6 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuDeleteUser;
         private Gizmox.WebGUI.Forms.MenuItem menuAddGroup;
         private Gizmox.WebGUI.Forms.MenuItem menuDeleteGroup;
+        private DirTree shareDirTree;
     }
 }
