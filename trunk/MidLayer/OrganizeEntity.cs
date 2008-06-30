@@ -50,12 +50,12 @@ namespace MidLayer
 
         public CResourceEntity GetOrganizeFolder()
         {
-            return new CResourceEntity().Load(Org_Resource);
+            return new CResourceEntity(ConnString).Load(Org_Resource);
         }
 
         public CResourceEntity GetArchiveFolder()
         {
-            return new CResourceEntity().Load(Org_ArchiveRes);
+            return new CResourceEntity(ConnString).Load(Org_ArchiveRes);
         }
     }
 }

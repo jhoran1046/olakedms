@@ -466,7 +466,7 @@ namespace MidLayer
         public List<CResourceEntity> ListShareResources()
         {
             List<CResourceEntity> resources = new List<CResourceEntity>();
-            COrganizeEntity organize = new COrganizeEntity().Load(this.Usr_Organize);
+            COrganizeEntity organize = new COrganizeEntity(ConnString).Load(this.Usr_Organize);
             CResourceEntity archiveRes = organize.GetArchiveFolder();
 
             if (Usr_Type == (int)USERTYPE.SYSTEMADMIN || Usr_Type == (int)USERTYPE.ORGANIZEADMIN)
@@ -478,6 +478,9 @@ namespace MidLayer
             foreach (CACLEntity acl in acls)
             {
                 if (acl.Acl_Operation != (int)ACLOPERATION.READ && acl.Acl_Operation != (int)ACLOPERATION.WRITE)
+                    continue;
+
+                if (acl.Acl_Resource == organize.Org_Resource)
                     continue;
 
                 CResourceEntity res = new CResourceEntity(ConnString).Load(acl.Acl_Resource);

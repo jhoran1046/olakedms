@@ -96,15 +96,15 @@ namespace MidLayer
 
         public bool IsChild(int parentId)
         {
-            int temp = Res_Parent;
+            int temp = Res_Id;
             while (temp != 0)
             {
                 if (temp == parentId)
                     return true;
-                CResourceEntity parent = Load(temp);
-                if (parent == null)
-                    throw new Exception("无法加载资源. ID=" + temp);
-                temp = parent.Res_Parent;
+                CResourceEntity r = new CResourceEntity(ConnString).Load(temp);
+                if (r == null)
+                    throw new Exception("无法加载资源.");
+                temp = r.Res_Parent;
             }
             return false;
         }
