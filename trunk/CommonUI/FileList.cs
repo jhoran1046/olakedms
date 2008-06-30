@@ -20,11 +20,17 @@ namespace CommonUI
     public partial class FileList: UserControl
     {
         string _rootDir;
+        HelpClass _helper;
 
         public string RootDir
         {
             get { return _rootDir; }
             set { _rootDir = value; }
+        }
+
+        public HelpClass Helper
+        {
+            set { _helper = value; }
         }
 
         CUserEntity _currentUser;
@@ -56,8 +62,8 @@ namespace CommonUI
         public void LoadFiles()
         {
             fileListView.Items.Clear();
-            //List<File> fileList =  HelpClass.GetFiles( RootDir );
-            List<File> fileList = HelpClass.GetFiles(_currentUser, _parentResourceId);
+            //List<File> fileList =  _helper.GetFiles( RootDir );
+            List<File> fileList = _helper.GetFiles(_currentUser, _parentResourceId);
             if ( fileList.Count == 0 )
             {
                 fileListView.DataSource = null;

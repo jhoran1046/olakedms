@@ -48,6 +48,7 @@ namespace CommonUI
             this.fileListView.GridLines = true;
             this.fileListView.ItemsPerPage = 22;
             this.fileListView.Location = new System.Drawing.Point(0, 0);
+            this.fileListView.MultiSelect = false;
             this.fileListView.Name = "fileListView";
             this.fileListView.Size = new System.Drawing.Size(391, 306);
             this.fileListView.TabIndex = 0;
