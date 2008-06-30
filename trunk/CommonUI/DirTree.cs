@@ -19,7 +19,7 @@ namespace CommonUI
     public partial class DirTree:UserControl
     {
         string _rootDir;
-
+        
         public string RootDir
         {
             get { return _rootDir; }
@@ -46,12 +46,25 @@ namespace CommonUI
         public FileList FileListUI
         {
             get { return _fileListUI; }
-            set { _fileListUI = value; }
+            set 
+            { 
+                _fileListUI = value; 
+                if (_fileListUI != null)
+                    _fileListUI.Helper = helper; 
+            }
         }
+
+        HelpClass helper;
+        public HelpClass Helper
+        {
+            set { helper = value; }
+        }
+
         Font _defaultFnt = new Font ( "arial" , 9 );
         public DirTree ( )
         {
             InitializeComponent ( );
+            helper = new HelpClass();
         }
         /// <summary>
         /// before this , the RootDir must be set
@@ -63,7 +76,7 @@ namespace CommonUI
             if ( RootDir == null || RootDir == "" )
                 return false;
 
-            HelpClass.LoadDirectory ( MainTreeView.Nodes , RootDir );
+            helper.LoadDirectory ( MainTreeView.Nodes , RootDir );
             foreach ( TreeNode aNode in mainTreeView.Nodes )
             {
                 aNode.NodeFont = _defaultFnt;
@@ -73,8 +86,7 @@ namespace CommonUI
             }
   
  */
-            //HelpClass.LoadDirectory ( MainTreeView.Nodes , _currentUser, _rootResourceId );
-            HelpClass.InitDirectory(MainTreeView.Nodes, _currentUser, _rootResourceId);
+            helper.InitDirectory(MainTreeView.Nodes, _currentUser, _rootResourceId);
             foreach ( TreeNode aNode in mainTreeView.Nodes )
             {
                 aNode.NodeFont = _defaultFnt;
@@ -83,7 +95,6 @@ namespace CommonUI
                     aNode.Image = new IconResourceHandle ( "folders.gif" );
             }
             return true;
-            
         }
 
         private void mainTreeView_AfterSelect ( object sender , TreeViewEventArgs e )
@@ -118,9 +129,9 @@ namespace CommonUI
 
         protected void LoadNode(TreeNode node)
         {
-            //HelpClass.LoadDirectory ( e.Node.Nodes , e.Node.Tag.ToString ( ) );
+            //helper.LoadDirectory ( e.Node.Nodes , e.Node.Tag.ToString ( ) );
             node.Nodes.Clear();
-            HelpClass.LoadDirectory(node.Nodes, _currentUser, (int)node.Tag);
+            helper.LoadDirectory(node.Nodes, _currentUser, (int)node.Tag);
             foreach (TreeNode aNode in node.Nodes)
             {
                 aNode.NodeFont = _defaultFnt;

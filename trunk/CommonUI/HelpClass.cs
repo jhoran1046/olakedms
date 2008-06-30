@@ -18,7 +18,7 @@ namespace CommonUI
 {
     public class HelpClass
     {
-        static public void InitDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
+        public virtual void InitDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
         {
             objNodes.Clear();
             CResourceEntity rootRes = new CResourceEntity(MidLayerSettings.ConnectionString).Load(resourceId);
@@ -47,7 +47,7 @@ namespace CommonUI
             objNodes.Add(objNode);
         }
 
-        static  public void LoadDirectory ( TreeNodeCollection objNodes , string strPath )
+        public virtual void LoadDirectory(TreeNodeCollection objNodes, string strPath)
         {
             objNodes.Clear();
 
@@ -75,7 +75,7 @@ namespace CommonUI
             }
         }
 
-        static public void LoadDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
+        public virtual void LoadDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
         {
             objNodes.Clear();
 
@@ -109,19 +109,19 @@ namespace CommonUI
             }
         }
 
-        static public List<FileInfo> GetFileInfo(Gizmox.WebGUI.Forms.TreeNode aNode)
+        public virtual List<FileInfo> GetFileInfo(Gizmox.WebGUI.Forms.TreeNode aNode)
         {
 
             return GetFileInfo ( aNode.Tag.ToString ( ) );
         }
-        static public List<FileInfo> GetFileInfo ( string root )
+        public virtual List<FileInfo> GetFileInfo(string root)
         {
             DirectoryInfo objDir = new DirectoryInfo ( root );
             List<FileInfo> ret = new List<FileInfo> ( );
             ret.AddRange ( objDir.GetFiles ( ) );
             return ret;
         }
-        static public List<File> GetFiles ( string root )
+        public virtual List<File> GetFiles(string root)
         {
             List<File> ret = new List<File> ( );
             List<FileInfo> retInfo = new List<FileInfo> ( );
@@ -133,7 +133,7 @@ namespace CommonUI
             return ret;
         }
 
-        static public List<File> GetFiles(CUserEntity user, int parentId)
+        public virtual List<File> GetFiles(CUserEntity user, int parentId)
         {
             //insert the root node
             List<CResourceEntity> children = user.ListResources(parentId);
