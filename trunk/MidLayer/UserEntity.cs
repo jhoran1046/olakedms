@@ -504,12 +504,20 @@ namespace MidLayer
             return resources;
         }
 
-        // list resources I share to other
-        public List<CResourceEntity> ListMyShareResources()
+        // list acls I share to other
+        public List<CACLEntity> ListMyAcls()
         {
-            List<CResourceEntity> resources = new List<CResourceEntity>();
+            String filter = "this.Acl_Creator=" + Usr_Id.ToString();
+            List<CACLEntity> userAcls = new CACLEntity(ConnString).GetObjectList(filter);
+            return userAcls;
+        }
 
-            return resources;
+        public List<CACLEntity> ListMyAcls(int sharedResource)
+        {
+            String filter = "this.Acl_Creator=" + Usr_Id.ToString();
+            filter += " and this.Acl_Resource=" + sharedResource.ToString();
+            List<CACLEntity> userAcls = new CACLEntity(ConnString).GetObjectList(filter);
+            return userAcls;
         }
 
 #if false
@@ -539,6 +547,13 @@ namespace MidLayer
                 userAcls.AddRange(groupAcls);
             }
             return userAcls;
+        }
+
+        public List<CUserEntity> ListAllUsers()
+        {
+            String filter = "this.Usr_Organize=" + Usr_Organize;
+            List<CUserEntity> users = new CUserEntity(ConnString).GetObjectList(filter);
+            return users;
         }
 
         // return new resource id
@@ -616,8 +631,7 @@ namespace MidLayer
         }
 
         
-
-        public void Permit(int userId, USERTYPE userType, int resourceId, ACLOPERATION operation)
+        public void Permit(int userId, ACLROLETYPE roleType, int resourceId, ACLOPERATION operation)
         {
             // user have to have write privilege on resource
             CACLEntity acl = new CACLEntity();
@@ -626,9 +640,11 @@ namespace MidLayer
             if (!CheckPrivilege(acl))
                 throw new Exception("没有写权限") ;
 
+            CUserEntity user = new CUserEntity(ConnString).Load(userId);
+
             // check if this acl conflicts with others
             CResourceEntity resource = new CResourceEntity(ConnString).Load(resourceId);
-            List<CACLEntity> userAcls = GetUserACLs();
+            List<CACLEntity> userAcls = user.GetUserACLs();
             foreach (CACLEntity userAcl in userAcls)
             {
                 if (resource.IsChild(userAcl.Acl_Resource) && userAcl.Acl_Operation == (int)operation)
@@ -639,7 +655,7 @@ namespace MidLayer
             CACLEntity acl1 = new CACLEntity(ConnString);
             acl1.Acl_Resource = resourceId;
             acl1.Acl_Role = userId;
-            acl1.Acl_RType = (int)userType;
+            acl1.Acl_RType = (int)roleType;
             acl1.Acl_Operation = (int)operation;
             acl1.Acl_Creator = this.Usr_Id;
             acl1.Acl_CreateTime = DateTime.Now;
@@ -656,7 +672,7 @@ namespace MidLayer
             }
         }
 
-        public void Deny(int userId, USERTYPE userType, int resourceId, ACLOPERATION operation)
+        public void Deny(int userId, ACLROLETYPE roleType, int resourceId, ACLOPERATION operation)
         {
             // user have to have write privilege on resource
             CACLEntity acl = new CACLEntity();
@@ -665,8 +681,22 @@ namespace MidLayer
             if (!CheckPrivilege(acl))
                 throw new Exception("没有写权限");
 
-            String filter = "this.Acl_Resource=" + resourceId + " this.Acl_Operation=" + (int)operation;
-            filter += " this.Acl_Role" + userId + " this.Acl_RType=" + (int)userType;
+            String filter = "this.Acl_Resource=" + resourceId + " and this.Acl_Operation=" + (int)operation;
+            filter += " and this.Acl_Role=" + userId + " and this.Acl_RType=" + (int)roleType;
+            new CACLEntity(ConnString).Delete(filter);
+        }
+
+        public void Deny(int userId, ACLROLETYPE roleType, int resourceId)
+        {
+            // user have to have write privilege on resource
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Resource = resourceId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限");
+
+            String filter = "this.Acl_Resource=" + resourceId;
+            filter += " and this.Acl_Role=" + userId + " and this.Acl_RType=" + (int)roleType;
             new CACLEntity(ConnString).Delete(filter);
         }
     }
