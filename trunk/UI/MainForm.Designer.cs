@@ -158,6 +158,7 @@ namespace UI
             // 
             this.menuShareFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuShareFolder.Text = "Share Folder";
+            this.menuShareFolder.Click += new System.EventHandler(this.menuShareFolder_Click);
             // 
             // menuItem5
             // 
