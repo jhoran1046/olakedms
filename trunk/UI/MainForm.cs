@@ -452,5 +452,35 @@ namespace UI
         private void menuDeleteUser_Click(object sender, EventArgs e)
         {
         }
+
+        private void menuShareFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DirTree activeTree = GetActiveTree();
+                if (activeTree == myDirTree || (activeTree == archiveDirTree && _currentUser.Usr_Type == (int)USERTYPE.ORGANIZEADMIN))
+                {
+                    int res = GetSelectedTreeResource();
+                    if (res <= 0)
+                    {
+                        MessageBox.Show("无法共享选择的资源！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    ShareForm shareForm = new ShareForm();
+                    shareForm.CurrentUser = _currentUser;
+                    shareForm.ResourceId = res;
+                    shareForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("只能共享个人目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法共享: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
