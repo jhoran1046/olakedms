@@ -144,5 +144,20 @@ namespace MidLayer
             CACLEntity en = new CACLEntity(ConnString);
             en.Delete(filter);
         }
+
+        public void CopyTo(CResourceEntity dest)
+        {
+            CResourceEntity newRes = new CResourceEntity(ConnString);
+            newRes.Res_Name = Res_Name;
+            newRes.Res_Type = Res_Type;
+            newRes.Res_Parent = dest.Res_Id;
+            newRes.Insert();
+
+            List<CResourceEntity> children = ListChildResources();
+            foreach (CResourceEntity child in children)
+            {
+                child.CopyTo(newRes);
+            }
+        }
     }
 }
