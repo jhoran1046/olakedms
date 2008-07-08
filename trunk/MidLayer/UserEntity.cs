@@ -630,7 +630,6 @@ namespace MidLayer
             res.Remove();
         }
 
-        
         public void Permit(int userId, ACLROLETYPE roleType, int resourceId, ACLOPERATION operation)
         {
             // user have to have write privilege on resource
@@ -698,6 +697,57 @@ namespace MidLayer
             String filter = "this.Acl_Resource=" + resourceId;
             filter += " and this.Acl_Role=" + userId + " and this.Acl_RType=" + (int)roleType;
             new CACLEntity(ConnString).Delete(filter);
+        }
+
+        public void CopyResource(int srcResId, int dstResId)
+        {
+            // copy resource
+            CACLEntity acl = new CACLEntity(ConnString);
+            acl.Acl_Resource = srcResId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限!");
+            acl.Acl_Resource = dstResId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限!");
+
+            CResourceEntity srcRes = new CResourceEntity(ConnString).Load(srcResId);
+            CResourceEntity dstRes = new CResourceEntity(ConnString).Load(dstResId);
+            if (dstRes.Res_Type != (int)RESOURCETYPE.FOLDERRESOURCE)
+                throw new Exception("粘贴的目标必须是目录！");
+            srcRes.CopyTo(dstRes);
+
+            // copy folder/file
+            String srcPath = srcRes.MakeFullPath();
+            String dstPath = dstRes.MakeFullPath();
+            dstPath = Path.Combine(dstPath, srcRes.Res_Name);
+            if (Directory.Exists(dstPath) || File.Exists(dstPath))
+                throw new Exception(dstPath + "与现有文件名冲突！");
+            if (srcRes.Res_Type == (int)RESOURCETYPE.FILERESOURCE)
+                File.Copy(srcPath, dstPath);
+            else
+                CopyDirectory(srcPath, dstPath);
+        }
+
+        // Copy directory structure recursively
+        public static void CopyDirectory(string Src, string Dst)
+        {
+            String[] Files;
+
+            if (Dst[Dst.Length - 1] != Path.DirectorySeparatorChar)
+                Dst += Path.DirectorySeparatorChar;
+            if (!Directory.Exists(Dst)) Directory.CreateDirectory(Dst);
+            Files = Directory.GetFileSystemEntries(Src);
+            foreach (string Element in Files)
+            {
+                // Sub directories
+                if (Directory.Exists(Element))
+                    CopyDirectory(Element, Dst + Path.GetFileName(Element));
+                // Files in directory
+                else
+                    File.Copy(Element, Dst + Path.GetFileName(Element), true);
+            }
         }
     }
 }
