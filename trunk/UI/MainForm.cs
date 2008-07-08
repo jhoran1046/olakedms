@@ -24,6 +24,8 @@ namespace UI
         FileList _shareFileList = new FileList();
 
         CUserEntity _currentUser;
+        ResourceClip _clipBoard;
+
         public CUserEntity CurrentUser
         {
             get { return _currentUser; }
@@ -36,6 +38,8 @@ namespace UI
 
             MidLayerSettings.ConnectionString = "Provider=SQLOLEDB.1;Data Source=home;Initial Catalog=DMS;User ID=sa;password=a;connect timeout = 300";
             MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
+
+            _clipBoard = new ResourceClip();
         }
 
         private void button1_Click ( object sender , EventArgs e )
@@ -480,6 +484,71 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("无法共享: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuCopyFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileList currentList = GetActiveFileList();
+                if (currentList == null)
+                {
+                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                List<int> resources = new List<int>();
+                foreach (ListViewItem item in currentList.FileListView.Items)
+                {
+                    if (item.Checked)
+                    {
+                        resources.Add((int)item.Tag);
+                    }
+                }
+                _clipBoard.Copy(_currentUser, resources);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuCopyFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                _clipBoard.Copy(_currentUser, selectedResource);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuPaste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                _clipBoard.Paste(_currentUser, selectedResource);
+                DirTree selTree = GetActiveTree();
+                selTree.ReloadTreeNode(selTree.MainTreeView.SelectedNode);
+                selTree.ReloadFileList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

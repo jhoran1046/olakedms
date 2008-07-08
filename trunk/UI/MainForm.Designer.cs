@@ -38,6 +38,7 @@ namespace UI
             this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuPaste = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuShareFile = new Gizmox.WebGUI.Forms.MenuItem();
@@ -121,18 +122,27 @@ namespace UI
             this.menuItem2.Index = 1;
             this.menuItem2.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
             this.menuItem8,
-            this.menuItem9});
+            this.menuItem9,
+            this.menuPaste});
             this.menuItem2.Text = "Edit";
             // 
             // menuItem8
             // 
             this.menuItem8.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem8.Text = "cut";
+            this.menuItem8.Text = "Copy File";
+            this.menuItem8.Click += new System.EventHandler(menuCopyFile_Click);
             // 
             // menuItem9
             // 
             this.menuItem9.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem9.Text = "copy";
+            this.menuItem9.Text = "Copy Folder";
+            this.menuItem9.Click += new System.EventHandler(menuCopyFolder_Click);
+            // 
+            // menuPaste
+            // 
+            this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuPaste.Text = "Paste";
+            this.menuPaste.Click += new System.EventHandler(menuPaste_Click);
             // 
             // menuItem3
             // 
@@ -411,6 +421,7 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuItem7;
         private Gizmox.WebGUI.Forms.MenuItem menuItem8;
         private Gizmox.WebGUI.Forms.MenuItem menuItem9;
+        private Gizmox.WebGUI.Forms.MenuItem menuPaste;
         private Gizmox.WebGUI.Forms.SplitContainer mainSplit;
         private Gizmox.WebGUI.Forms.NavigationTabs leftNavigationTabs;
 
