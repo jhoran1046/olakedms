@@ -55,7 +55,7 @@ namespace UI
             this.leftNavigationTabs = new Gizmox.WebGUI.Forms.NavigationTabs();
             this.systemPage = new Gizmox.WebGUI.Forms.TabPage();
             this.sysFunctionTree = new CommonUI.FunctionTree();
-            this.contextMenuLeftTree = new Gizmox.WebGUI.Forms.ContextMenu();
+            this.contextMenuLeftDirTree = new Gizmox.WebGUI.Forms.ContextMenu();
             this.myInfoPage = new Gizmox.WebGUI.Forms.TabPage();
             this.myinfofunctionTree = new CommonUI.FunctionTree();
             this.myDocPage = new Gizmox.WebGUI.Forms.TabPage();
@@ -267,6 +267,7 @@ namespace UI
             // leftNavigationTabs
             // 
             this.leftNavigationTabs.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.leftNavigationTabs.ContextMenu = this.contextMenuLeftDirTree;
             this.leftNavigationTabs.Controls.Add(this.systemPage);
             this.leftNavigationTabs.Controls.Add(this.myInfoPage);
             this.leftNavigationTabs.Controls.Add(this.myDocPage);
@@ -295,7 +296,7 @@ namespace UI
             // sysFunctionTree
             // 
             this.sysFunctionTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.sysFunctionTree.ContextMenu = this.contextMenuLeftTree;
+            this.sysFunctionTree.ContextMenu = this.contextMenuLeftDirTree;
             this.sysFunctionTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.sysFunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.sysFunctionTree.FunctionList = null;
@@ -305,9 +306,9 @@ namespace UI
             this.sysFunctionTree.TabIndex = 0;
             this.sysFunctionTree.Text = "FunctionTree";
             // 
-            // contextMenuLeftTree
+            // contextMenuLeftDirTree
             // 
-            this.contextMenuLeftTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.contextMenuLeftDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // myInfoPage
             // 
@@ -321,6 +322,7 @@ namespace UI
             // 
             // myinfofunctionTree
             // 
+            this.myinfofunctionTree.ContextMenu = this.contextMenuLeftDirTree;
             this.myinfofunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.myinfofunctionTree.FunctionList = null;
             this.myinfofunctionTree.Location = new System.Drawing.Point(0, 0);
@@ -342,6 +344,7 @@ namespace UI
             // myDirTree
             // 
             this.myDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.myDirTree.ContextMenu = this.contextMenuLeftDirTree;
             this.myDirTree.CurrentUser = null;
             this.myDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.myDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -367,6 +370,7 @@ namespace UI
             // shareDirTree
             // 
             this.shareDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.shareDirTree.ContextMenu = this.contextMenuLeftDirTree;
             this.shareDirTree.CurrentUser = null;
             this.shareDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.shareDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -455,27 +459,27 @@ namespace UI
             //窗口左侧的目录树中的
             MenuItem1.Text = "创建子目录";
             MenuItem1.Click += new System.EventHandler(this.menuCreateFolder_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem1);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem1);
 
             MenuItem2.Text = "删除目录";
             MenuItem2.Click += new System.EventHandler(this.menuDeleteFolder_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem2);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem2);
 
             MenuItem3.Text = "上传文件";
             MenuItem3.Click += new System.EventHandler(this.menuUpload_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem3);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem3);
 
             MenuItem4.Text = "复制";
             MenuItem4.Click += new System.EventHandler(this.menuCopyFolder_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem4);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem4);
 
             MenuItem5.Text = "粘贴";
             MenuItem5.Click += new System.EventHandler(this.menuPaste_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem5);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem5);
 
             MenuItem6.Text = "共享设置";
             MenuItem6.Click += new System.EventHandler(this.menuShareFolder_Click);
-            contextMenuLeftTree.MenuItems.Add(MenuItem6);
+            contextMenuLeftDirTree.MenuItems.Add(MenuItem6);
 
             //窗口右侧文件列表区域右键快捷菜单 
             MenuItem7.Text = "打开文件";
@@ -539,7 +543,7 @@ namespace UI
         private DirTree shareDirTree;
 
         //声明右键快捷菜单成员变量
-        private Gizmox.WebGUI.Forms.ContextMenu contextMenuLeftTree;
+        private Gizmox.WebGUI.Forms.ContextMenu contextMenuLeftDirTree;
         private Gizmox.WebGUI.Forms.ContextMenu contextMenuRightFile;
         private Gizmox.WebGUI.Forms.MenuItem MenuItem1;
         private Gizmox.WebGUI.Forms.MenuItem MenuItem2;
