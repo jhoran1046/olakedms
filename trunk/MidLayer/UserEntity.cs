@@ -704,9 +704,9 @@ namespace MidLayer
             // copy resource
             CACLEntity acl = new CACLEntity(ConnString);
             acl.Acl_Resource = srcResId;
-            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            acl.Acl_Operation = (int)ACLOPERATION.READ;
             if (!CheckPrivilege(acl))
-                throw new Exception("没有写权限!");
+                throw new Exception("没有读权限!");
             acl.Acl_Resource = dstResId;
             acl.Acl_Operation = (int)ACLOPERATION.WRITE;
             if (!CheckPrivilege(acl))
@@ -748,6 +748,37 @@ namespace MidLayer
                 else
                     File.Copy(Element, Dst + Path.GetFileName(Element), true);
             }
+        }
+
+        public void CutResource(int srcResId, int dstResId)
+        {
+            // copy resource
+            CACLEntity acl = new CACLEntity(ConnString);
+            acl.Acl_Resource = srcResId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限!");
+            acl.Acl_Resource = dstResId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限!");
+
+            CResourceEntity srcRes = new CResourceEntity(ConnString).Load(srcResId);
+            CResourceEntity dstRes = new CResourceEntity(ConnString).Load(dstResId);
+            String srcPath = srcRes.MakeFullPath();
+            if (dstRes.Res_Type != (int)RESOURCETYPE.FOLDERRESOURCE)
+                throw new Exception("粘贴的目标必须是目录！");
+            srcRes.MoveTo(dstRes);
+
+            // cut folder/file
+            String dstPath = dstRes.MakeFullPath();
+            dstPath = Path.Combine(dstPath, srcRes.Res_Name);
+            if (Directory.Exists(dstPath) || File.Exists(dstPath))
+                throw new Exception(dstPath + "与现有文件名冲突！");
+            if (srcRes.Res_Type == (int)RESOURCETYPE.FILERESOURCE)
+                File.Move(srcPath, dstPath);
+            else
+                Directory.Move(srcPath, dstPath);
         }
     }
 }
