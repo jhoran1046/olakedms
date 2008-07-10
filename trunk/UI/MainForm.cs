@@ -36,7 +36,7 @@ namespace UI
         {
             InitializeComponent ( );
 
-            MidLayerSettings.ConnectionString = "Provider=SQLOLEDB.1;Data Source=home;Initial Catalog=DMS;User ID=sa;password=a;connect timeout = 300";
+            MidLayerSettings.ConnectionString = "Provider=SQLOLEDB.1;Data Source=WIN2003;Initial Catalog=DMS;User ID=sa;password=a;connect timeout = 300";
             MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
 
             _clipBoard = new ResourceClip();
@@ -52,6 +52,8 @@ namespace UI
         {
             this.Menu = mainMenu1;
             _currentUser = (CUserEntity)Context.Session["CurrentUser"];
+
+            contextmenuShortcut_Click(sender, e);//加载右键快捷菜单——赵英武
 
             try
             {
@@ -594,6 +596,36 @@ namespace UI
             {
                 MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void mainSplit_Panel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //（右侧文件列表）打开文件——赵英武
+        private void menuOpen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileList selectedfile = GetActiveFileList();
+                ListView filelistview = new ListView();
+                if(selectedfile == null)
+                {
+                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(filelistview.Columns[0].Text);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误:" + ex.Message,"文档管理系统",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+           // throw new Exception("The method or operation is not implemented.");
         }
     }
 }
