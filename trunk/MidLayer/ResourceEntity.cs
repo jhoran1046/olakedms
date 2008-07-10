@@ -159,5 +159,24 @@ namespace MidLayer
                 child.CopyTo(newRes);
             }
         }
+
+        public void MoveTo(CResourceEntity dest)
+        {
+            CleanDescendsACLs();
+
+            this.Res_Parent = dest.Res_Id;
+            this.Update();
+        }
+
+        public void CleanDescendsACLs()
+        {
+            DeleteACLs();
+
+            List<CResourceEntity> children = ListChildResources();
+            foreach (CResourceEntity child in children)
+            {
+                child.CleanDescendsACLs();
+            }
+        }
     }
 }
