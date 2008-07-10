@@ -94,7 +94,10 @@ namespace UI
                 throw new Exception("剪贴板中没有资源。");
             foreach (int res in _resources)
             {
-                _currentUser.CopyResource(res, dstResid);
+                if (_clipMode == ClipMode.COPYMODE)
+                    _currentUser.CopyResource(res, dstResid);
+                else
+                    _currentUser.CutResource(res, dstResid);
             }
         }
     }

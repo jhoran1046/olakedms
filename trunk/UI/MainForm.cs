@@ -531,6 +531,50 @@ namespace UI
             }
         }
 
+        private void menuCutFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileList currentList = GetActiveFileList();
+                if (currentList == null)
+                {
+                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                List<int> resources = new List<int>();
+                foreach (ListViewItem item in currentList.FileListView.Items)
+                {
+                    if (item.Checked)
+                    {
+                        resources.Add((int)item.Tag);
+                    }
+                }
+                _clipBoard.Cut(_currentUser, resources);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuCutFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                _clipBoard.Cut(_currentUser, selectedResource);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void menuPaste_Click(object sender, EventArgs e)
         {
             try

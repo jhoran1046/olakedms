@@ -38,6 +38,8 @@ namespace UI
             this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuCutFile = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuCutFolder = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuPaste = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
@@ -123,6 +125,8 @@ namespace UI
             this.menuItem2.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
             this.menuItem8,
             this.menuItem9,
+            this.menuCutFolder,
+            this.menuCutFile,
             this.menuPaste});
             this.menuItem2.Text = "Edit";
             // 
@@ -137,6 +141,18 @@ namespace UI
             this.menuItem9.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuItem9.Text = "Copy Folder";
             this.menuItem9.Click += new System.EventHandler(menuCopyFolder_Click);
+            // 
+            // menuCutFolder
+            // 
+            this.menuCutFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuCutFolder.Text = "Cut Folder";
+            this.menuCutFolder.Click += new System.EventHandler(menuCutFolder_Click);
+            // 
+            // menuCutFile
+            // 
+            this.menuCutFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuCutFile.Text = "Cut File";
+            this.menuCutFile.Click += new System.EventHandler(menuCutFile_Click);
             // 
             // menuPaste
             // 
@@ -421,6 +437,8 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuItem7;
         private Gizmox.WebGUI.Forms.MenuItem menuItem8;
         private Gizmox.WebGUI.Forms.MenuItem menuItem9;
+        private Gizmox.WebGUI.Forms.MenuItem menuCutFolder;
+        private Gizmox.WebGUI.Forms.MenuItem menuCutFile;
         private Gizmox.WebGUI.Forms.MenuItem menuPaste;
         private Gizmox.WebGUI.Forms.SplitContainer mainSplit;
         private Gizmox.WebGUI.Forms.NavigationTabs leftNavigationTabs;
