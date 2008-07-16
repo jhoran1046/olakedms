@@ -121,6 +121,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageAppForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAppForm.Designer.cs">
+      <DependentUpon>ManageAppForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,12 @@
     </Compile>
     <Compile Include="ShareForm.Designer.cs">
       <DependentUpon>ShareForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SortApplyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SortApplyForm.Designer.cs">
+      <DependentUpon>SortApplyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
@@ -169,6 +181,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageAppForm.resx">
+      <DependentUpon>ManageAppForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="NameForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NameForm.cs</DependentUpon>
@@ -180,6 +196,10 @@
     <EmbeddedResource Include="ShareForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ShareForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SortApplyForm.resx">
+      <DependentUpon>SortApplyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <SubType>Designer</SubType>

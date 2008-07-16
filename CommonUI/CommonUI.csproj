@@ -38,6 +38,7 @@
     <Reference Include="Gizmox.WebGUI.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyInfoClass.cs" />
     <Compile Include="BackupUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
