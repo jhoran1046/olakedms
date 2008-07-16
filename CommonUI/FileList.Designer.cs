@@ -31,6 +31,7 @@ namespace CommonUI
             this.fileListView = new Gizmox.WebGUI.Forms.ListView();
             this.columnFilleName = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnExt = new Gizmox.WebGUI.Forms.ColumnHeader();
+            this.fileContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
             this.SuspendLayout();
             // 
             // fileListView
@@ -41,6 +42,7 @@ namespace CommonUI
             this.fileListView.Columns.AddRange(new Gizmox.WebGUI.Forms.ColumnHeader[] {
             this.columnFilleName,
             this.columnExt});
+            this.fileListView.ContextMenu = this.fileContextMenu;
             this.fileListView.DataMember = null;
             this.fileListView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.fileListView.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -69,6 +71,10 @@ namespace CommonUI
             this.columnExt.Text = "À©Õ¹Ãû";
             this.columnExt.Width = 150;
             // 
+            // fileContextMenu
+            // 
+            this.fileContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            // 
             // FileList
             // 
             this.Controls.Add(this.fileListView);
@@ -83,6 +89,7 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.ListView fileListView;
         private Gizmox.WebGUI.Forms.ColumnHeader columnFilleName;
         private Gizmox.WebGUI.Forms.ColumnHeader columnExt;
+        private Gizmox.WebGUI.Forms.ContextMenu fileContextMenu;
 
         public Gizmox.WebGUI.Forms.ListView FileListView
         {
