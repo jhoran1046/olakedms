@@ -54,10 +54,40 @@ namespace CommonUI
         {
             InitializeComponent ( );
             fileListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            CreateContextMenu();
         }
 
-        public 
-        Font _defaultFnt = new Font ( "arial" , 9 );
+        public Font _defaultFnt = new Font ( "arial" , 9 );
+
+        public void CreateContextMenu()
+        {
+            MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
+/*            MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
+*/
+            MenuItem1.Text = "删除文件";
+            MenuItem1.Click += new System.EventHandler(this.menuDeleteFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem1);
+
+            //MenuItem9.Text = "复制";
+            //MenuItem9.Click += new System.EventHandler(this.menuCopyFile_Click);
+            //contextMenuRightFile.MenuItems.Add(MenuItem9);
+
+            //MenuItem10.Text = "共享设置";
+            //MenuItem10.Click += new System.EventHandler(this.menuShareFolder_Click);
+            //contextMenuRightFile.MenuItems.Add(MenuItem10);
+            
+            //MenuItem11.Text = "剪切";
+            //MenuItem11.Click += new System.EventHandler(this.menuCutFile_Click);
+            //contextMenuRightFile.MenuItems.Add(MenuItem11);
+        }
+
         /// <summary>
         /// RootDir must be set before this is called
         /// </summary>
@@ -150,6 +180,36 @@ namespace CommonUI
             objLinkParameters.Target = "_self";
 
             Link.Open(new GatewayReference(this, "Download"), objLinkParameters);
+        }
+
+        private void menuDeleteFile_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("确定要删除文件吗？", "文档管理系统", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question, new EventHandler(DeleteFileHandler));
+        }
+
+        private void DeleteFileHandler(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                foreach (ListViewItem item in fileListView.Items)
+                {
+                    if (item.Checked)
+                    {
+                        _helper.DeleteFile(_currentUser, (int)item.Tag);
+                    }
+                }
+                LoadFiles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
