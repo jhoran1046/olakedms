@@ -21,7 +21,7 @@ namespace CommonUI
         public virtual void InitDirectory(TreeNodeCollection objNodes, CUserEntity user, int resourceId)
         {
             objNodes.Clear();
-            CResourceEntity rootRes = new CResourceEntity(MidLayerSettings.ConnectionString).Load(resourceId);
+            CResourceEntity rootRes = new CResourceEntity(user.ConnString).Load(resourceId);
             if (rootRes.Res_Type != (int)RESOURCETYPE.FOLDERRESOURCE)
                 return;
 
@@ -148,6 +148,80 @@ namespace CommonUI
             }
 
             return ret;
+        }
+
+        public void CreateFolder(CUserEntity user, int parentResource, String folderName)
+        {
+            CACLEntity acl = new CACLEntity(user.ConnString);
+            acl.Acl_Resource = parentResource;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!user.CheckPrivilege(acl))
+            {
+                throw new Exception("没有写权限！");
+            }
+
+            user.CreateFolder(parentResource, folderName);
+        }
+
+        public void DeleteFolder(CUserEntity user, int resource)
+        {
+            CACLEntity acl = new CACLEntity(user.ConnString);
+            acl.Acl_Resource = resource;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!user.CheckPrivilege(acl))
+            {
+                throw new Exception("没有写权限！");
+            }
+
+            CResourceEntity res = new CResourceEntity(user.ConnString).Load(resource);
+
+            String dirPath = res.MakeFullPath();
+            user.DeleteResource(resource);
+            System.IO.Directory.Delete(dirPath, true);
+        }
+
+        public void UploadFile(CUserEntity user, int parentResource, OpenFileDialog objFileDialog)
+        {
+            CACLEntity acl = new CACLEntity(user.ConnString);
+            acl.Acl_Resource = parentResource;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!user.CheckPrivilege(acl))
+            {
+                throw new Exception("没有写权限！");
+            }
+
+            for (int i = 0; i < objFileDialog.Files.Count; i++)
+            {
+                String filePath;
+                HttpPostedFileHandle hfh = (HttpPostedFileHandle)objFileDialog.Files[i]; ;
+                user.CreateFile(parentResource, hfh.PostedFileName, out filePath);
+                hfh.SaveAs(filePath);
+            }
+        }
+
+        public void ShareResource(CUserEntity user, int resource)
+        {
+            CResourceEntity res = new CResourceEntity(user.ConnString).Load(resource);
+            COrganizeEntity org = new COrganizeEntity(user.ConnString).Load(user.Usr_Organize);
+            if (res.IsChild(user.Usr_Resource) || (user.Usr_Type == (int)USERTYPE.ORGANIZEADMIN && res.IsChild(org.Org_ArchiveRes)))
+            {
+                ShareForm shareForm = new ShareForm();
+                shareForm.CurrentUser = user;
+                shareForm.ResourceId = resource;
+                shareForm.ShowDialog();
+            }
+            else
+            {
+                throw new Exception("不能共享此目录！");
+            }
+        }
+
+        public void DeleteFile(CUserEntity user, int resource)
+        {
+            CResourceEntity res = new CResourceEntity(user.ConnString).Load(resource);
+            String filePath = res.MakeFullPath();
+            user.DeleteResource(resource);
+            System.IO.File.Delete(filePath);
         }
     }
 }
