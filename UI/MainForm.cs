@@ -53,8 +53,6 @@ namespace UI
             this.Menu = mainMenu1;
             _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
-            contextmenuShortcut_Click(sender, e);//加载右键快捷菜单——赵英武
-
             try
             {
                 //_currentUser = new CUserEntity(MidLayerSettings.ConnectionString);
@@ -596,11 +594,6 @@ namespace UI
             {
                 MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void mainSplit_Panel2_Click(object sender, EventArgs e)
-        {
-
         }
 
         //（右侧文件列表）打开文件——赵英武
