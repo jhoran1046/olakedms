@@ -28,32 +28,39 @@ namespace CommonUI
         /// </summary>
         private void InitializeComponent ( )
         {
-            this.mainTreeView = new Gizmox.WebGUI.Forms.TreeView ( );
-            this.SuspendLayout ( );
+            this.mainTreeView = new Gizmox.WebGUI.Forms.TreeView();
+            this.treeContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
+            this.SuspendLayout();
             // 
             // mainTreeView
             // 
             this.mainTreeView.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.mainTreeView.ContextMenu = this.treeContextMenu;
             this.mainTreeView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.mainTreeView.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.mainTreeView.Font = new System.Drawing.Font ( "ËÎÌו" , 9.75F , System.Drawing.FontStyle.Regular , System.Drawing.GraphicsUnit.Point , ( ( byte ) ( 134 ) ) );
-            this.mainTreeView.Location = new System.Drawing.Point ( 0 , 0 );
+            this.mainTreeView.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.mainTreeView.Font = new System.Drawing.Font("SimSun", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mainTreeView.Location = new System.Drawing.Point(0, 0);
             this.mainTreeView.Name = "mainTreeView";
-            this.mainTreeView.Size = new System.Drawing.Size ( 303 , 286 );
+            this.mainTreeView.Size = new System.Drawing.Size(303, 286);
             this.mainTreeView.TabIndex = 0;
-            this.mainTreeView.BeforeExpand += new Gizmox.WebGUI.Forms.TreeViewCancelEventHandler ( this.mainTreeView_BeforeExpand );
-            this.mainTreeView.AfterSelect += new Gizmox.WebGUI.Forms.TreeViewEventHandler ( this.mainTreeView_AfterSelect );
+            this.mainTreeView.BeforeExpand += new Gizmox.WebGUI.Forms.TreeViewCancelEventHandler(this.mainTreeView_BeforeExpand);
+            this.mainTreeView.AfterSelect += new Gizmox.WebGUI.Forms.TreeViewEventHandler(this.mainTreeView_AfterSelect);
+            // 
+            // treeContextMenu
+            // 
+            this.treeContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // DirTree
             // 
-            this.Controls.Add ( this.mainTreeView );
-            this.Location = new System.Drawing.Point ( 15 , 15 );
-            this.Size = new System.Drawing.Size ( 303 , 286 );
+            this.Controls.Add(this.mainTreeView);
+            this.Location = new System.Drawing.Point(15, 15);
+            this.Size = new System.Drawing.Size(303, 306);
             this.Text = "DirTree";
-            this.ResumeLayout ( false );
+            this.ResumeLayout(false);
 
         }
         private Gizmox.WebGUI.Forms.TreeView mainTreeView;
+        private Gizmox.WebGUI.Forms.ContextMenu treeContextMenu;
 
         public Gizmox.WebGUI.Forms.TreeView MainTreeView
         {
