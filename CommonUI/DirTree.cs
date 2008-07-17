@@ -110,6 +110,7 @@ namespace CommonUI
             MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem10 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem1.Text = "创建子目录";
             MenuItem1.Click += new System.EventHandler(this.menuCreateFolder_Click);
@@ -136,16 +137,21 @@ namespace CommonUI
             treeContextMenu.MenuItems.Add(MenuItem6);
 
             MenuItem7.Text = "申请归档";
-            //MenuItem7.Click += new System.EventHandler(this.menuShareFolder_Click);
+            MenuItem7.Click += new System.EventHandler(this.menuApply_Click);
             treeContextMenu.MenuItems.Add(MenuItem7);
 
-            MenuItem8.Text = "处理归档申请";
-            //MenuItem8.Click += new System.EventHandler(this.menuShareFolder_Click);
+            MenuItem8.Text = "我的归档申请";
+            MenuItem8.Click += new System.EventHandler(this.menuMyApplies_Click);
             treeContextMenu.MenuItems.Add(MenuItem8);
-
+            
             //MenuItem9.Text = "剪切";
             //MenuItem9.Click += new System.EventHandler(this.menuCutFolder_Click);
             //treeContextMenu.MenuItems.Add(MenuItem9);
+
+            MenuItem10.Text = "办理归档申请";
+            MenuItem8.Click += new System.EventHandler(this.menuProcessApplies_Click);
+            treeContextMenu.MenuItems.Add(MenuItem10);
+
         }
 
         public void ReloadTreeNode(TreeNode node)
@@ -365,6 +371,21 @@ namespace CommonUI
             {
                 MessageBox.Show("无法共享: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void menuApply_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void menuMyApplies_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuProcessApplies_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
