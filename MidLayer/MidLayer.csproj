@@ -49,7 +49,7 @@
     <Compile Include="OrganizeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceEntity.cs" />
-    <Compile Include="TBL_Apply.cs" />
+    <Compile Include="ApplyEntity.cs" />
     <Compile Include="UserEntity.cs" />
     <Compile Include="UserGroupEntity.cs" />
   </ItemGroup>
