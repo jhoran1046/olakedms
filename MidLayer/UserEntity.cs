@@ -780,5 +780,107 @@ namespace MidLayer
             else
                 Directory.Move(srcPath, dstPath);
         }
+
+        /// <summary>
+        /// 创建新的归档申请，resource代表申请归档的资源id，comment是用户填写的申请说明。——赵英武
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <param name="comment"></param>
+        public void CreateApply(int resource,  String comment)
+        {
+            CApplyEntity aRes = new CApplyEntity();
+            aRes.App_ResId = resource;
+            aRes.App_Applyer = this.Usr_Id;
+            aRes.App_Comment = comment;
+            aRes.Insert();
+        }
+        /// <summary>
+        /// 获取当前用户提交的所有申请——赵英武
+        /// </summary>
+        /// <returns></returns>
+        public List<CApplyInfoEntity> ListMyApplies()
+        {
+            CApplyInfoEntity MyApplies = new CApplyInfoEntity();
+            List<CApplyInfoEntity> MyApplyList = new List<CApplyInfoEntity>();
+            MyApplyList = MyApplies.GetObjectList("this.App_Applyer='" + this.Usr_Id + "'");
+            return MyApplyList;
+        }
+        /// <summary>
+        /// 管理员获取当前本组织用户提交的所有申请——赵英武
+        /// </summary>
+        /// <returns></returns>
+        public List<CApplyInfoEntity> ListOrganizeApplies()
+        {
+            CApplyInfoEntity OrgApply = new CApplyInfoEntity();
+            List<CApplyInfoEntity> OrgApplyList = new List<CApplyInfoEntity>();
+            OrgApplyList = OrgApply.GetObjectList("this.Usr_Organize='" + this.Usr_Organize + "'");
+            return OrgApplyList;
+        }
+        /// <summary>
+        /// 批准归档申请——赵英武
+        /// </summary>
+        /// <param name="apply"></param>
+        /// <param name="archiveResource"></param>
+        public void PermitApply(int apply, int archiveResource)
+        {
+            if(this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
+                throw new Exception("没有管理权限！");
+
+            CApplyEntity aRes=new CApplyEntity();
+            List<CApplyEntity> appList = new List<CApplyEntity>();
+            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+
+            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
+
+            if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
+                throw new Exception("该资源已审核！");
+
+            CUserEntity aUsr = new CUserEntity();
+            aUsr.CopyResource(appList[0].App_ResId,archiveResource);
+
+            aRes.Permit(appList[0].App_ResId);
+        }
+        /// <summary>
+        /// 不批准归档申请——赵英武
+        /// </summary>
+        /// <param name="apply"></param>
+        public void CancelApply(int apply)
+        {
+            if (this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
+                throw new Exception("没有管理权限！");
+
+            CApplyEntity aRes = new CApplyEntity();
+            List<CApplyEntity> appList = new List<CApplyEntity>();
+            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+
+            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
+
+            if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
+                throw new Exception("该资源已审核！");
+
+            aRes.Cancel(appList[0].App_ResId);
+        }
+        /// <summary>
+        /// 删除归档申请,删除成功return true,否则return false——赵英武
+        /// </summary>
+        /// <param name="apply"></param>
+        public bool DeleteApply(int apply)
+        {
+            CApplyEntity aRes = new CApplyEntity();
+            List<CApplyEntity> appList = new List<CApplyEntity>();
+            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+
+            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
+
+            if (appList[0].App_Applyer == this.Usr_Id && appList[0].App_Audited == (int)audite[0])
+            {
+                aRes.Delete(appList[0].App_ResId);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
