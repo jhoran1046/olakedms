@@ -22,6 +22,8 @@ namespace UI
         FileList _myFileList = new FileList();
         FileList _archiveFileLst = new FileList();
         FileList _shareFileList = new FileList();
+        UserList _userList = new UserList();
+        GroupList _groupList = new GroupList();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -55,9 +57,6 @@ namespace UI
 
             try
             {
-                //_currentUser = new CUserEntity(MidLayerSettings.ConnectionString);
-                //_currentUser = _currentUser.Load(1); //olake
-
                 myDirTree.CurrentUser = _currentUser;
                 myDirTree.RootResourceId = _currentUser.Usr_Resource;
                 archiveDirTree.CurrentUser = _currentUser;
@@ -67,6 +66,8 @@ namespace UI
                 shareDirTree.CurrentUser = _currentUser;
                 shareDirTree.Helper = new ShareHelpClass();
                 _shareFileList.CurrentUser = _currentUser;
+                _userList.CurrentUser = _currentUser;
+
 
                 //系统管理
                 List<CFunction> systemFunctions = new List<CFunction>();
@@ -78,6 +79,13 @@ namespace UI
                 function = new CFunction();
                 function.Name = "用户管理";
                 function.Image = new IconResourceHandle("member.png");
+                function.Ui = _userList;
+                systemFunctions.Add(function);
+
+                function = new CFunction();
+                function.Name = "用户组管理";
+                function.Image = new IconResourceHandle("member.png");
+                function.Ui = _groupList;
                 systemFunctions.Add(function);
 
 
@@ -85,8 +93,8 @@ namespace UI
                 function.Name = "系统配置";
                 function.Image = new IconResourceHandle("properties.gif");
                 systemFunctions.Add(function);
-
                 this.sysFunctionTree.FunctionList = systemFunctions;
+                this.sysFunctionTree.TreeEvent += FunctionTreeEventHandler;
 
                 //我的信息
                 List<CFunction> myinfoFunctions = new List<CFunction>();
@@ -128,6 +136,13 @@ namespace UI
                 archiveDirTree.RootDir = Context.Server.MapPath("~/app_data");
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
+
+                // only administrator can see system admin page
+                if (_currentUser.Usr_Type != (int)USERTYPE.ORGANIZEADMIN &&
+                    _currentUser.Usr_Type != (int)USERTYPE.SYSTEMADMIN)
+                {
+                    leftNavigationTabs.Controls.Remove(systemPage);
+                }
             }
             catch (Exception ex)
             {
@@ -143,8 +158,29 @@ namespace UI
                 leftNavigationTabs.SelectedItem == this.shareSpaceTab)
             {
                 DirTree dirTree =(DirTree) leftNavigationTabs.SelectedItem.Controls [ 0 ];
+                this.mainSplit.Panel2.Controls.Clear();
                 this.mainSplit.Panel2.Controls.Add(dirTree.FileListUI);
                 dirTree.FileListUI.Dock = DockStyle.Fill;
+            }
+            else if (leftNavigationTabs.SelectedItem == this.systemPage)
+            {
+                CFunction func = sysFunctionTree.SelectedFunction;
+                if (func != null && func.Ui != null)
+                {
+                    this.mainSplit.Panel2.Controls.Clear();
+                    this.mainSplit.Panel2.Controls.Add(func.Ui);
+                    func.Ui.Dock = DockStyle.Fill;
+                }
+            }
+        }
+
+        public void FunctionTreeEventHandler(object sender, FunctionTreeEventArgs e)
+        {
+            if (e.UI != null)
+            {
+                this.mainSplit.Panel2.Controls.Clear();
+                this.mainSplit.Panel2.Controls.Add(e.UI);
+                e.UI.Dock = DockStyle.Fill;
             }
         }
 
@@ -196,6 +232,10 @@ namespace UI
             else if (leftNavigationTabs.SelectedItem == myDocPage)
             {
                 return _myFileList;
+            }
+            else if (leftNavigationTabs.SelectedItem == shareSpaceTab)
+            {
+                return _shareFileList;
             }
 
             return null;
@@ -421,7 +461,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("创建目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("删除目录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
