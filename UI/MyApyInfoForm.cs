@@ -44,10 +44,9 @@ namespace UI
                 {
                     if(item.Selected == true)
                     {
-                        int id = (int)lsvMyApply.Tag;
                         try
                         {
-                            bool DeleBool = _user.DeleteApply(id);
+                            bool DeleBool = _user.DeleteApply((int)lsvMyApply.Tag);
                             if (DeleBool == true)
                                 MessageBox.Show("撤销成功！", "文档管理系统", MessageBoxButtons.OK);
                             else
