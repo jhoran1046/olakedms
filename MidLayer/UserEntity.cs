@@ -80,6 +80,23 @@ namespace MidLayer
         {
         }
 
+        public override void Delete()
+        {
+            // delete all its acls
+            String filter = "this.Acl_Creator=" + Usr_Id;
+            new CACLEntity(ConnString).Delete(filter);
+
+            filter = "this.Acl_Role=" + Usr_Id + " and this.Acl_RType=" + (int)ACLROLETYPE.USERROLE;
+            new CACLEntity(ConnString).Delete(filter);
+
+            // delete all its resources
+            CResourceEntity userDir = new CResourceEntity(ConnString).Load(Usr_Resource);
+            String path = userDir.MakeFullPath();
+            Directory.Delete(path, true);
+
+            base.Delete();
+        }
+
         public bool CheckPrivilege(CACLEntity acl)
         {
             // system admin has all privileges
@@ -355,6 +372,99 @@ namespace MidLayer
                 throw e;
             }
 
+        }
+
+        public void ModifyUser(CUserEntity user)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无修改用户权限");
+
+            user.ConnString = ConnString;
+            user.Update();
+        }
+
+        public void DeleteUser(int userId)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无删除用户权限");
+
+            CUserEntity user = new CUserEntity(ConnString).Load(userId);
+            user.Delete();
+        }
+
+        public void CreateGroup(CGroupEntity group)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无创建用户组权限");
+
+            group.ConnString = ConnString;
+            group.Insert();
+        }
+
+        public void ModifyGroup(CGroupEntity group)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无修改用户组权限");
+
+            group.ConnString = ConnString;
+            group.Update();
+        }
+
+        public void DeleteGroup(int groupId)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无修改用户组权限");
+
+            CGroupEntity group = new CGroupEntity(ConnString).Load(groupId);
+            group.Delete();
+        }
+
+        public void AddUser2Group(int groupId, int userId)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无修改用户组权限");
+
+            CUserGroupEntity userGroup = new CUserGroupEntity(ConnString);
+            userGroup.Urg_Group = groupId;
+            userGroup.Urg_User = userId;
+            userGroup.Insert();
+        }
+
+        public void RemoveUserFromGroup(int groupId, int userId)
+        {
+            // Check privilege
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Resource = Usr_Organize;
+            if (!CheckPrivilege(acl))
+                throw new Exception("当前用户无修改用户组权限");
+
+            String filter = "this.Usr_Group=" + groupId + " and this.Usr_User=" + userId;
+            new CUserGroupEntity(ConnString).Delete(filter);
         }
 
         public CUserEntity Login(String member, String password)
