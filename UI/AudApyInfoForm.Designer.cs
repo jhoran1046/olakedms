@@ -39,13 +39,14 @@ namespace UI
             this.columnAuDate = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.chkAllSelect = new Gizmox.WebGUI.Forms.CheckBox();
             this.btnBack = new Gizmox.WebGUI.Forms.Button();
+            this.AuditeDirTree = new CommonUI.DirTree();
             this.SuspendLayout();
             // 
             // btnAccept
             // 
             this.btnAccept.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnAccept.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnAccept.Location = new System.Drawing.Point(150, 178);
+            this.btnAccept.Location = new System.Drawing.Point(126, 178);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 3;
@@ -57,7 +58,7 @@ namespace UI
             // 
             this.btnRefuse.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnRefuse.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnRefuse.Location = new System.Drawing.Point(243, 178);
+            this.btnRefuse.Location = new System.Drawing.Point(126, 228);
             this.btnRefuse.Name = "btnRefuse";
             this.btnRefuse.Size = new System.Drawing.Size(75, 23);
             this.btnRefuse.TabIndex = 4;
@@ -134,7 +135,7 @@ namespace UI
             this.chkAllSelect.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.chkAllSelect.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
             this.chkAllSelect.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.chkAllSelect.Location = new System.Drawing.Point(66, 177);
+            this.chkAllSelect.Location = new System.Drawing.Point(31, 177);
             this.chkAllSelect.Name = "chkAllSelect";
             this.chkAllSelect.Size = new System.Drawing.Size(68, 24);
             this.chkAllSelect.TabIndex = 7;
@@ -146,7 +147,7 @@ namespace UI
             // 
             this.btnBack.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnBack.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnBack.Location = new System.Drawing.Point(570, 273);
+            this.btnBack.Location = new System.Drawing.Point(578, 368);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 8;
@@ -154,17 +155,31 @@ namespace UI
             this.btnBack.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // AuditeDirTree
+            // 
+            this.AuditeDirTree.CurrentUser = null;
+            this.AuditeDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.AuditeDirTree.FileListUI = null;
+            this.AuditeDirTree.Location = new System.Drawing.Point(272, 177);
+            this.AuditeDirTree.Name = "AuditeDirTree";
+            this.AuditeDirTree.RootDir = null;
+            this.AuditeDirTree.RootResourceId = 0;
+            this.AuditeDirTree.Size = new System.Drawing.Size(209, 214);
+            this.AuditeDirTree.TabIndex = 9;
+            this.AuditeDirTree.Text = "DirTree";
+            // 
             // AudApyInfoForm
             // 
             this.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.Controls.Add(this.AuditeDirTree);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.chkAllSelect);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.lsvOrgApply);
             this.Controls.Add(this.btnRefuse);
             this.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(675, 308);
+            this.Location = new System.Drawing.Point(15, -42);
+            this.Size = new System.Drawing.Size(675, 403);
             this.Text = "…Û∫ÀπÈµµ…Í«Î";
             this.Load += new System.EventHandler(this.ManageAppForm_Load);
             this.ResumeLayout(false);
@@ -184,6 +199,7 @@ namespace UI
         private Gizmox.WebGUI.Forms.ColumnHeader columnAuDate;
         private Gizmox.WebGUI.Forms.CheckBox chkAllSelect;
         private Gizmox.WebGUI.Forms.Button btnBack;
+        private CommonUI.DirTree AuditeDirTree;
 
     }
 }

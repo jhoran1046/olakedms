@@ -11,13 +11,28 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using CommonUI;
 #endregion
 
 namespace UI
 {
     public partial class AudApyInfoForm : Form
     {
-        public CUserEntity _user;
+        public CUserEntity _currentUser;
+        public FileList _applyFileLst = new FileList();
+        private int _achiveResourceId;
+
+        public int AchiveResourceId
+        {
+            get { return _achiveResourceId; }
+            set { _achiveResourceId = value; }
+        }
+
+        public CUserEntity CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
 
         public AudApyInfoForm()
         {
@@ -26,28 +41,48 @@ namespace UI
 
         private void ManageAppForm_Load(object sender, EventArgs e)
         {
-            LoadOrgApp();//加载ListView
+            LoadOrgApp();//加载ListView     
+            LoadDirTree();//加载归档目标目录DirTree
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            this._currentUser = new CUserEntity();
+            _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
+            foreach(ListViewItem item in lsvOrgApply.Items)
+            {
+                if (item.Checked == true)
+                {
+                    if(AuditeDirTree.MainTreeView.SelectedNode == null)
+                    {
+                        MessageBox.Show("请选择目标路径！", "文档管理系统", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        this._achiveResourceId = (int)AuditeDirTree.MainTreeView.SelectedNode.Tag;
+                        _currentUser.PermitApply((int)item.Tag, _achiveResourceId);
+                    }
+                }
+            }
+            MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK);
         }
 
         private void btnRefuse_Click(object sender, EventArgs e)
         {
-            this._user = new CUserEntity();
-            _user = (CUserEntity)Context.Session["CurrentUser"];
+            this._currentUser = new CUserEntity();
+            _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
             foreach(ListViewItem item in lsvOrgApply.Items)
             {
                 if(item.Selected == true)
                 {
                     int id = (int)item.Tag;
-                    _user.CancelApply(id);
-                    MessageBox.Show("您已拒绝了" + _user.Usr_Name + "用户的归档申请！", "文档管理系统", MessageBoxButtons.OK);
+                    _currentUser.CancelApply(id);
                 }
             }
+            MessageBox.Show("您已拒绝了" + _currentUser.Usr_Name + "用户的归档申请！", "文档管理系统", MessageBoxButtons.OK);
         }
       
         private void chkAllSelect_Click(object sender, EventArgs e)
@@ -73,11 +108,11 @@ namespace UI
 
         private void LoadOrgApp()
         {
-            this._user = new CUserEntity();
-            _user = (CUserEntity)Context.Session["CurrentUser"];
+            this._currentUser = new CUserEntity();
+            _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
             List<CApplyInfoEntity> OrgAppList = new List<CApplyInfoEntity>();
-            OrgAppList = _user.ListOrganizeApplies();
+            OrgAppList = _currentUser.ListOrganizeApplies();
             if(OrgAppList.Count < 0)
             {
                 lsvOrgApply.DataSource = null;
@@ -126,6 +161,16 @@ namespace UI
                 lsvOrgApply.Items.Add(lviName);
             }
             lsvOrgApply.Invalidate();
+        }
+        
+        private void LoadDirTree()
+        {
+            _currentUser = (CUserEntity)Context.Session["CurrentUser"];
+            _applyFileLst.CurrentUser = _currentUser;
+
+            AuditeDirTree.RootDir = Context.Server.MapPath("~\app_data");
+            AuditeDirTree.Init();
+            AuditeDirTree.FileListUI = _applyFileLst;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

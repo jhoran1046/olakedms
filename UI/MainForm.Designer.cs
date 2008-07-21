@@ -53,7 +53,6 @@ namespace UI
             this.tableLayoutPanel1 = new Gizmox.WebGUI.Forms.TableLayoutPanel();
             this.mainSplit = new Gizmox.WebGUI.Forms.SplitContainer();
             this.leftNavigationTabs = new Gizmox.WebGUI.Forms.NavigationTabs();
-            this.contextMenuLeftDirTree = new Gizmox.WebGUI.Forms.ContextMenu();
             this.systemPage = new Gizmox.WebGUI.Forms.TabPage();
             this.sysFunctionTree = new CommonUI.FunctionTree();
             this.myInfoPage = new Gizmox.WebGUI.Forms.TabPage();
@@ -279,10 +278,6 @@ namespace UI
             this.leftNavigationTabs.Size = new System.Drawing.Size(211, 459);
             this.leftNavigationTabs.TabIndex = 0;
             this.leftNavigationTabs.SelectedIndexChanged += new System.EventHandler(this.leftNavigationTabs_SelectedIndexChanged);
-            // 
-            // contextMenuLeftDirTree
-            // 
-            this.contextMenuLeftDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // systemPage
             // 
