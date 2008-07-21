@@ -28,26 +28,27 @@ namespace CommonUI
         /// </summary>
         private void InitializeComponent ( )
         {
-            this.MainTree = new Gizmox.WebGUI.Forms.TreeView ( );
-            this.SuspendLayout ( );
+            this.MainTree = new Gizmox.WebGUI.Forms.TreeView();
+            this.SuspendLayout();
             // 
             // MainTree
             // 
             this.MainTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
             this.MainTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.MainTree.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.MainTree.Font = new System.Drawing.Font ( "ÐÂËÎÌå" , 14.25F , System.Drawing.FontStyle.Bold , System.Drawing.GraphicsUnit.Point , ( ( byte ) ( 134 ) ) );
-            this.MainTree.Location = new System.Drawing.Point ( 0 , 0 );
+            this.MainTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.MainTree.Font = new System.Drawing.Font("NSimSun", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.MainTree.Location = new System.Drawing.Point(0, 0);
             this.MainTree.Name = "MainTree";
-            this.MainTree.Size = new System.Drawing.Size ( 391 , 306 );
+            this.MainTree.Size = new System.Drawing.Size(391, 306);
             this.MainTree.TabIndex = 0;
+            this.MainTree.AfterSelect += new Gizmox.WebGUI.Forms.TreeViewEventHandler(this.MainTree_AfterSelect);
             // 
             // FunctionTree
             // 
-            this.Controls.Add ( this.MainTree );
-            this.Size = new System.Drawing.Size ( 391 , 306 );
+            this.Controls.Add(this.MainTree);
+            this.Size = new System.Drawing.Size(391, 306);
             this.Text = "FunctionTree";
-            this.ResumeLayout ( false );
+            this.ResumeLayout(false);
 
         }
 
