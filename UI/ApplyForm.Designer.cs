@@ -1,6 +1,6 @@
 namespace UI
 {
-    partial class SortApplyForm
+    partial class ApplyForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,22 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDocId = new Gizmox.WebGUI.Forms.TextBox();
+            this.txtResId = new Gizmox.WebGUI.Forms.TextBox();
             this.txtComment = new Gizmox.WebGUI.Forms.TextBox();
             this.btnSubmission = new Gizmox.WebGUI.Forms.Button();
             this.label1 = new Gizmox.WebGUI.Forms.Label();
             this.label2 = new Gizmox.WebGUI.Forms.Label();
+            this.btnCancel = new Gizmox.WebGUI.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtDocId
+            // txtResId
             // 
-            this.txtDocId.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.txtDocId.Location = new System.Drawing.Point(108, 34);
-            this.txtDocId.Name = "txtDocId";
-            this.txtDocId.Size = new System.Drawing.Size(218, 20);
-            this.txtDocId.TabIndex = 0;
+            this.txtResId.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtResId.Location = new System.Drawing.Point(108, 34);
+            this.txtResId.Name = "txtResId";
+            this.txtResId.ReadOnly = true;
+            this.txtResId.Size = new System.Drawing.Size(218, 20);
+            this.txtResId.TabIndex = 0;
             // 
             // txtComment
             // 
@@ -58,7 +60,7 @@ namespace UI
             // 
             this.btnSubmission.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnSubmission.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnSubmission.Location = new System.Drawing.Point(181, 211);
+            this.btnSubmission.Location = new System.Drawing.Point(127, 211);
             this.btnSubmission.Name = "btnSubmission";
             this.btnSubmission.Size = new System.Drawing.Size(75, 23);
             this.btnSubmission.TabIndex = 2;
@@ -84,13 +86,26 @@ namespace UI
             this.label2.TabIndex = 4;
             this.label2.Text = "×¢½â";
             // 
-            // SortApplyForm
+            // btnCancel
             // 
+            this.btnCancel.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnCancel.Location = new System.Drawing.Point(229, 211);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "È¡Ïû";
+            this.btnCancel.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // ApplyForm
+            // 
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSubmission);
             this.Controls.Add(this.txtComment);
-            this.Controls.Add(this.txtDocId);
+            this.Controls.Add(this.txtResId);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(429, 276);
             this.Text = "¹éµµÉêÇë";
@@ -101,11 +116,12 @@ namespace UI
 
         #endregion
 
-        private Gizmox.WebGUI.Forms.TextBox txtDocId;
+        private Gizmox.WebGUI.Forms.TextBox txtResId;
         private Gizmox.WebGUI.Forms.TextBox txtComment;
         private Gizmox.WebGUI.Forms.Button btnSubmission;
         private Gizmox.WebGUI.Forms.Label label1;
         private Gizmox.WebGUI.Forms.Label label2;
+        private Gizmox.WebGUI.Forms.Button btnCancel;
 
 
     }

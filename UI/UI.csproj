@@ -11,6 +11,10 @@
     <RootNamespace>UI</RootNamespace>
     <AssemblyName>UI</AssemblyName>
     <StartPageUrl>Form1.wgx</StartPageUrl>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -121,11 +125,23 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageAppForm.cs">
+    <Compile Include="AudApyInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageAppForm.Designer.cs">
-      <DependentUpon>ManageAppForm.cs</DependentUpon>
+    <Compile Include="AudApyInfoForm.Designer.cs">
+      <DependentUpon>AudApyInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyApyInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyApyInfoForm.Designer.cs">
+      <DependentUpon>MyApyInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameForm.Designer.cs">
+      <DependentUpon>NameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceClip.cs" />
@@ -135,11 +151,11 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SortApplyForm.cs">
+    <Compile Include="ApplyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SortApplyForm.Designer.cs">
-      <DependentUpon>SortApplyForm.cs</DependentUpon>
+    <Compile Include="ApplyForm.Designer.cs">
+      <DependentUpon>ApplyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
@@ -169,16 +185,24 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageAppForm.resx">
-      <DependentUpon>ManageAppForm.cs</DependentUpon>
+    <EmbeddedResource Include="AudApyInfoForm.resx">
+      <DependentUpon>AudApyInfoForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyApyInfoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MyApyInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SortApplyForm.resx">
-      <DependentUpon>SortApplyForm.cs</DependentUpon>
+    <EmbeddedResource Include="ApplyForm.resx">
+      <DependentUpon>ApplyForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
