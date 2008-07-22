@@ -67,6 +67,7 @@ namespace UI
                 shareDirTree.Helper = new ShareHelpClass();
                 _shareFileList.CurrentUser = _currentUser;
                 _userList.CurrentUser = _currentUser;
+                _groupList.CurrentUser = _currentUser;
 
 
                 //系统管理

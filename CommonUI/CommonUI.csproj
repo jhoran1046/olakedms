@@ -71,6 +71,12 @@
     <Compile Include="GroupList.Designer.cs">
       <DependentUpon>GroupList.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupUsersForm.Designer.cs">
+      <DependentUpon>GroupUsersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpClass.cs" />
     <Compile Include="MainFunctions.cs">
       <SubType>UserControl</SubType>
@@ -132,6 +138,10 @@
     <EmbeddedResource Include="GroupList.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupUsersForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GroupUsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFunctions.resx">
       <SubType>Designer</SubType>

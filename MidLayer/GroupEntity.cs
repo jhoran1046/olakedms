@@ -41,12 +41,38 @@ namespace MidLayer
         {
         }
 
+        public override void Delete()
+        {
+            // delete all its acls
+            String filter = "this.Acl_Role=" + Grp_Id + " and this.Acl_RType=" + (int)ACLROLETYPE.GROUPROLE;
+            new CACLEntity(ConnString).Delete(filter);
+
+            // exclude all users in it
+            filter = "this.Urg_Group=" + Grp_Id;
+            new CUserGroupEntity(ConnString).Delete(filter);
+
+            base.Delete();
+        }
+
         public List<CACLEntity> GetGroupACLs()
         {
             String filter = "this.Acl_Role=" + Grp_Id.ToString();
             filter += " and this.Acl_RType=" + ((int)ACLROLETYPE.GROUPROLE).ToString();
             List<CACLEntity> acls = new CACLEntity(ConnString).GetObjectList(filter);
             return acls;
+        }
+
+        public List<CUserEntity> ListUsers()
+        {
+            List<CUserEntity> users = new List<CUserEntity>();
+            String filter = "this.Urg_Group=" + Grp_Id;
+            List<CUserGroupEntity> userGroups = new CUserGroupEntity(ConnString).GetObjectList(filter);
+            foreach (CUserGroupEntity ug in userGroups)
+            {
+                CUserEntity user = new CUserEntity(ConnString).Load(ug.Urg_User);
+                users.Add(user);
+            }
+            return users;
         }
     }
 }
