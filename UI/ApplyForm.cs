@@ -37,19 +37,32 @@ namespace UI
             txtResId.Text=aRes.MakeFullPath();          
         }
 
+        //提交申请完成后，跳转到MyApplyForm页
         private void btnSubmission_Click(object sender, EventArgs e)
         {
-            if(txtComment.Text == "")
+            try
             {
-                MessageBox.Show("请填写注解！", "文档管理系统", MessageBoxButtons.OK);
+                if (txtComment.Text == "")
+                {
+                    MessageBox.Show("请填写注解！", "文档管理系统", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    CUserEntity user = new CUserEntity();
+                    user.CreateApply(ResId, txtComment.Text.Trim());
+                    MessageBox.Show("您已提交文件归档申请！", "文档管理系统", MessageBoxButtons.OK);
+                }
+                //7月22日修改
+                MyApplyForm myApplyForm = new MyApplyForm();
+                myApplyForm.Show();
+                this.Close();
             }
-            else
+            catch(Exception ex)
             {
-                CUserEntity user = new CUserEntity();
-                user.CreateApply(ResId, txtComment.Text.Trim());
-                MessageBox.Show("您已申请归档", "文档管理系统", MessageBoxButtons.OK);
+                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         //若取消则返回主页
         private void btnCancel_Click(object sender, EventArgs e)
         {
