@@ -68,7 +68,7 @@ namespace CommonUI
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
+            //MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem1.Text = "创建用户";
             MenuItem1.Click += new System.EventHandler(this.menuCreateUser_Click);
@@ -82,9 +82,9 @@ namespace CommonUI
             MenuItem3.Click += new System.EventHandler(this.menuModifyUser_Click);
             userContextMenu.MenuItems.Add(MenuItem3);
 
-            MenuItem4.Text = "用户组";
-            MenuItem4.Click += new System.EventHandler(this.menuUserGroup_Click);
-            userContextMenu.MenuItems.Add(MenuItem4);
+            //MenuItem4.Text = "用户组";
+            //MenuItem4.Click += new System.EventHandler(this.menuUserGroup_Click);
+            //userContextMenu.MenuItems.Add(MenuItem4);
         }
 
         private void UserList_Load(object sender, EventArgs e)

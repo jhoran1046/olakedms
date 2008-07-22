@@ -29,26 +29,33 @@ namespace CommonUI
         private void InitializeComponent()
         {
             this.groupListView = new Gizmox.WebGUI.Forms.ListView();
+            this.groupContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
             this.SuspendLayout();
             // 
             // groupListView
             // 
             this.groupListView.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.groupListView.ContextMenu = this.groupContextMenu;
             this.groupListView.DataMember = null;
             this.groupListView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.groupListView.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.groupListView.ItemsPerPage = 20;
             this.groupListView.Location = new System.Drawing.Point(0, 0);
             this.groupListView.Name = "groupListView";
-            this.groupListView.Size = new System.Drawing.Size(391, 306);
+            this.groupListView.Size = new System.Drawing.Size(391, 326);
             this.groupListView.TabIndex = 0;
             this.groupListView.View = Gizmox.WebGUI.Forms.View.List;
+            // 
+            // groupContextMenu
+            // 
+            this.groupContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // GroupList
             // 
             this.Controls.Add(this.groupListView);
-            this.Size = new System.Drawing.Size(391, 306);
+            this.Size = new System.Drawing.Size(391, 326);
             this.Text = "GroupList";
+            this.Load += new System.EventHandler(this.GroupList_Load);
             this.ResumeLayout(false);
 
         }
@@ -56,6 +63,7 @@ namespace CommonUI
         #endregion
 
         private Gizmox.WebGUI.Forms.ListView groupListView;
+        private Gizmox.WebGUI.Forms.ContextMenu groupContextMenu;
 
 
     }

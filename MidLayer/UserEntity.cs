@@ -89,6 +89,10 @@ namespace MidLayer
             filter = "this.Acl_Role=" + Usr_Id + " and this.Acl_RType=" + (int)ACLROLETYPE.USERROLE;
             new CACLEntity(ConnString).Delete(filter);
 
+            // delete from all groups
+            filter = "this.Urg_User=" + Usr_Id;
+            new CUserGroupEntity(ConnString).Delete(filter);
+
             // delete all its resources
             CResourceEntity userDir = new CResourceEntity(ConnString).Load(Usr_Resource);
             String path = userDir.MakeFullPath();
@@ -400,6 +404,12 @@ namespace MidLayer
             user.Delete();
         }
 
+        public List<CGroupEntity> ListGroups()
+        {
+            String filter = "this.Grp_Organize=" + Usr_Organize;
+            return new CGroupEntity(ConnString).GetObjectList(filter);
+        }
+
         public void CreateGroup(CGroupEntity group)
         {
             // Check privilege
@@ -463,7 +473,7 @@ namespace MidLayer
             if (!CheckPrivilege(acl))
                 throw new Exception("当前用户无修改用户组权限");
 
-            String filter = "this.Usr_Group=" + groupId + " and this.Usr_User=" + userId;
+            String filter = "this.Urg_Group=" + groupId + " and this.Urg_User=" + userId;
             new CUserGroupEntity(ConnString).Delete(filter);
         }
 
