@@ -168,7 +168,7 @@ namespace UI
             this.AuditeDirTree.TabIndex = 9;
             this.AuditeDirTree.Text = "DirTree";
             // 
-            // AudApyInfoForm
+            // AuditeApplyForm
             // 
             this.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
             this.Controls.Add(this.AuditeDirTree);
@@ -178,7 +178,7 @@ namespace UI
             this.Controls.Add(this.lsvOrgApply);
             this.Controls.Add(this.btnRefuse);
             this.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.Location = new System.Drawing.Point(15, -42);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(675, 403);
             this.Text = "…Û∫ÀπÈµµ…Í«Î";
             this.Load += new System.EventHandler(this.ManageAppForm_Load);
