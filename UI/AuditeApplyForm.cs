@@ -95,7 +95,7 @@ namespace UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
       
