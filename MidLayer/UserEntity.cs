@@ -759,11 +759,20 @@ namespace MidLayer
             if (!CheckPrivilege(acl))
                 throw new Exception("没有写权限") ;
 
-            CUserEntity user = new CUserEntity(ConnString).Load(userId);
+            List<CACLEntity> userAcls = new List<CACLEntity>();
+            if (roleType == ACLROLETYPE.USERROLE)
+            {
+                CUserEntity user = new CUserEntity(ConnString).Load(userId);
+                userAcls = user.GetUserACLs();
+            }
+            else if (roleType == ACLROLETYPE.GROUPROLE)
+            {
+                CGroupEntity group = new CGroupEntity(ConnString).Load(userId);
+                userAcls = group.GetGroupACLs();
+            }
 
             // check if this acl conflicts with others
             CResourceEntity resource = new CResourceEntity(ConnString).Load(resourceId);
-            List<CACLEntity> userAcls = user.GetUserACLs();
             foreach (CACLEntity userAcl in userAcls)
             {
                 if (resource.IsChild(userAcl.Acl_Resource) && userAcl.Acl_Operation == (int)operation)
