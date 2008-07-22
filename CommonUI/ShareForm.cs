@@ -52,33 +52,62 @@ namespace CommonUI
             // get all shared users and init list
             List<CACLEntity> acls = _currentUser.ListMyAcls(_resourceId);
             List<CUserEntity> sharedUsers = new List<CUserEntity>();
+            List<CGroupEntity> sharedGroups = new List<CGroupEntity>();
             foreach (CACLEntity acl in acls)
             {
-                if (acl.Acl_RType != (int)ACLROLETYPE.USERROLE || acl.Acl_Role == _currentUser.Usr_Id)
+                if (acl.Acl_RType == (int)ACLROLETYPE.USERROLE && acl.Acl_Role == _currentUser.Usr_Id)
                     continue;
 
                 bool added = false;
-                foreach (CUserEntity u in sharedUsers)
+                if (acl.Acl_RType == (int)ACLROLETYPE.USERROLE)
                 {
-                    if (acl.Acl_Role == u.Usr_Id)
+                    foreach (CUserEntity u in sharedUsers)
                     {
-                        added = true;
-                        break;
+                        if (acl.Acl_Role == u.Usr_Id)
+                        {
+                            added = true;
+                            break;
+                        }
                     }
-                }
-                if (added)
-                    continue;
+                    if (added)
+                        continue;
 
-                CUserEntity user = new CUserEntity(_currentUser.ConnString).Load(acl.Acl_Role);
-                sharedUsers.Add(user);
+                    CUserEntity user = new CUserEntity(_currentUser.ConnString).Load(acl.Acl_Role);
+                    sharedUsers.Add(user);
+                }
+                else if (acl.Acl_RType == (int)ACLROLETYPE.GROUPROLE)
+                {
+                    foreach (CGroupEntity g in sharedGroups)
+                    {
+                        if (acl.Acl_Role == g.Grp_Id)
+                        {
+                            added = true;
+                            break;
+                        }
+                    }
+                    if (added)
+                        continue;
+
+                    CGroupEntity group = new CGroupEntity(_currentUser.ConnString).Load(acl.Acl_Role);
+                    sharedGroups.Add(group);
+                }
             }
 
             shareList.Items.Clear();
+            foreach (CGroupEntity ug in sharedGroups)
+            {
+                ListViewItem lvi = new ListViewItem();
+
+                lvi.Text = ug.Grp_Name;
+                lvi.Tag = ug;
+
+                shareList.Items.Add(lvi);
+            }
             foreach (CUserEntity ur in sharedUsers)
             {
                 ListViewItem lvi = new ListViewItem();
 
-                lvi.Text = ur.Usr_Member;
+                lvi.Text = ur.Usr_Member + "[" + ur.Usr_Name + "]";
                 lvi.Tag = ur;
 
                 shareList.Items.Add(lvi);
@@ -86,7 +115,29 @@ namespace CommonUI
 
             // get other users and fill unshared user list
             List<CUserEntity> allUsers = _currentUser.ListAllUsers();
+            List<CGroupEntity> allGroups = _currentUser.ListGroups();
             unshareList.Items.Clear();
+            foreach (CGroupEntity ug in allGroups)
+            {
+                bool shared = false;
+                foreach (CGroupEntity group in sharedGroups)
+                {
+                    if (ug.Grp_Id == group.Grp_Id)
+                    {
+                        shared = true;
+                        break;
+                    }
+                }
+                if (shared)
+                    continue;
+
+                ListViewItem lvi = new ListViewItem();
+
+                lvi.Text = ug.Grp_Name;
+                lvi.Tag = ug;
+
+                unshareList.Items.Add(lvi);
+            }
             foreach (CUserEntity ur in allUsers)
             {
                 if (ur.Usr_Id == _currentUser.Usr_Id)
@@ -131,14 +182,29 @@ namespace CommonUI
             {
                 try
                 {
-                    CUserEntity user = (CUserEntity)(item.Tag);
-                    if (addReadBox.Checked)
+                    if (item.Tag is CUserEntity)
                     {
-                        _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.READ);
+                        CUserEntity user = (CUserEntity)(item.Tag);
+                        if (addReadBox.Checked)
+                        {
+                            _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.READ);
+                        }
+                        if (addWriteBox.Checked)
+                        {
+                            _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.WRITE);
+                        }
                     }
-                    if (addWriteBox.Checked)
+                    else if (item.Tag is CGroupEntity)
                     {
-                        _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.WRITE);
+                        CGroupEntity group = (CGroupEntity)(item.Tag);
+                        if (addReadBox.Checked)
+                        {
+                            _currentUser.Permit(group.Grp_Id, ACLROLETYPE.GROUPROLE, _resourceId, ACLOPERATION.READ);
+                        }
+                        if (addWriteBox.Checked)
+                        {
+                            _currentUser.Permit(group.Grp_Id, ACLROLETYPE.GROUPROLE, _resourceId, ACLOPERATION.WRITE);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -163,8 +229,16 @@ namespace CommonUI
             {
                 try
                 {
-                    CUserEntity user = (CUserEntity)(item.Tag);
-                    _currentUser.Deny(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId);
+                    if (item.Tag is CUserEntity)
+                    {
+                        CUserEntity user = (CUserEntity)(item.Tag);
+                        _currentUser.Deny(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId);
+                    }
+                    else if (item.Tag is CGroupEntity)
+                    {
+                        CGroupEntity group = (CGroupEntity)(item.Tag);
+                        _currentUser.Deny(group.Grp_Id, ACLROLETYPE.GROUPROLE, _resourceId);
+                    }
                 }
                 catch (Exception ex)
                 {
