@@ -16,7 +16,7 @@ using CommonUI;
 
 namespace UI
 {
-    public partial class AudApyInfoForm : Form
+    public partial class AuditeApplyForm : Form
     {
         public CUserEntity _currentUser;
         public FileList _applyFileLst = new FileList();
@@ -34,7 +34,7 @@ namespace UI
             set { _currentUser = value; }
         }
 
-        public AudApyInfoForm()
+        public AuditeApplyForm()
         {
             InitializeComponent();
         }

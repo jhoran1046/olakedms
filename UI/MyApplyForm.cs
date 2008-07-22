@@ -16,11 +16,11 @@ using MidLayer;
 
 namespace UI
 {
-    public partial class MyApyInfoForm : Form
+    public partial class MyApplyForm : Form
     {
         public CUserEntity _user;
 
-        public MyApyInfoForm()
+        public MyApplyForm()
         {
             InitializeComponent();
         }

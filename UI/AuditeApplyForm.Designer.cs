@@ -1,6 +1,6 @@
 namespace UI
 {
-    partial class AudApyInfoForm
+    partial class AuditeApplyForm
     {
         /// <summary>
         /// Required designer variable.
