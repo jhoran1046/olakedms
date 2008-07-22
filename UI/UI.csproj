@@ -125,17 +125,17 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AudApyInfoForm.cs">
+    <Compile Include="AuditeApplyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AudApyInfoForm.Designer.cs">
-      <DependentUpon>AudApyInfoForm.cs</DependentUpon>
+    <Compile Include="AuditeApplyForm.Designer.cs">
+      <DependentUpon>AuditeApplyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyApyInfoForm.cs">
+    <Compile Include="MyApplyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyApyInfoForm.Designer.cs">
-      <DependentUpon>MyApyInfoForm.cs</DependentUpon>
+    <Compile Include="MyApplyForm.Designer.cs">
+      <DependentUpon>MyApplyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
@@ -179,13 +179,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AudApyInfoForm.resx">
-      <DependentUpon>AudApyInfoForm.cs</DependentUpon>
+    <EmbeddedResource Include="AuditeApplyForm.resx">
+      <DependentUpon>AuditeApplyForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyApyInfoForm.resx">
+    <EmbeddedResource Include="MyApplyForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MyApyInfoForm.cs</DependentUpon>
+      <DependentUpon>MyApplyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NameForm.resx">
       <SubType>Designer</SubType>

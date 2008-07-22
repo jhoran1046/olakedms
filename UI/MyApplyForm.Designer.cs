@@ -1,6 +1,6 @@
 namespace UI
 {
-    partial class MyApyInfoForm
+    partial class MyApplyForm
     {
         /// <summary>
         /// Required designer variable.
