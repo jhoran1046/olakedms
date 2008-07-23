@@ -55,7 +55,6 @@ namespace CommonUI
             this.fileListView.Size = new System.Drawing.Size(391, 306);
             this.fileListView.TabIndex = 0;
             this.fileListView.UseInternalPaging = true;
-            this.fileListView.SelectedIndexChanged += new System.EventHandler(this.fileListView_SelectedIndexChanged);
             // 
             // columnFilleName
             // 
