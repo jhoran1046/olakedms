@@ -259,8 +259,18 @@ namespace CommonUI
                 ListViewItem item = shareList.SelectedItems[0];
                 try
                 {
-                    CUserEntity user = (CUserEntity)(item.Tag);
-                    List<CACLEntity> acls = user.GetUserACLs();
+                    List<CACLEntity> acls = new List<CACLEntity>();
+                    if (item.Tag is CUserEntity)
+                    {
+                        CUserEntity user = (CUserEntity)(item.Tag);
+                        acls = user.GetUserACLs();
+                    }
+                    else if (item.Tag is CGroupEntity)
+                    {
+                        CGroupEntity group = (CGroupEntity)(item.Tag);
+                        acls = group.GetGroupACLs();
+                    }
+
                     foreach (CACLEntity acl in acls)
                     {
                         if (acl.Acl_Resource != _resourceId)
@@ -284,13 +294,29 @@ namespace CommonUI
             if (shareList.SelectedItems.Count == 1)
             {
                 ListViewItem item = shareList.SelectedItems[0];
-                try
+                int id = 0;
+                ACLROLETYPE roleType = ACLROLETYPE.USERROLE;
+
+                if (item.Tag is CUserEntity)
                 {
                     CUserEntity user = (CUserEntity)(item.Tag);
+                    id = user.Usr_Id;
+                    roleType = ACLROLETYPE.USERROLE;
+                }
+                else if (item.Tag is CGroupEntity)
+                {
+                    CGroupEntity group = (CGroupEntity)(item.Tag);
+                    id = group.Grp_Id;
+                    roleType = ACLROLETYPE.GROUPROLE;
+                }
+                else
+                    throw new Exception("错误的数据类型: ");
+                try
+                {
                     if (readBox.Checked)
-                        _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.READ);
+                        _currentUser.Permit(id, roleType, _resourceId, ACLOPERATION.READ);
                     else
-                        _currentUser.Deny(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.READ);
+                        _currentUser.Deny(id, roleType, _resourceId, ACLOPERATION.READ);
 
                     if (!readBox.Checked && !writeBox.Checked)
                         FillUserLists();
@@ -307,13 +333,29 @@ namespace CommonUI
             if (shareList.SelectedItems.Count == 1)
             {
                 ListViewItem item = shareList.SelectedItems[0];
-                try
+                int id = 0;
+                ACLROLETYPE roleType = ACLROLETYPE.USERROLE;
+
+                if (item.Tag is CUserEntity)
                 {
                     CUserEntity user = (CUserEntity)(item.Tag);
+                    id = user.Usr_Id;
+                    roleType = ACLROLETYPE.USERROLE;
+                }
+                else if (item.Tag is CGroupEntity)
+                {
+                    CGroupEntity group = (CGroupEntity)(item.Tag);
+                    id = group.Grp_Id;
+                    roleType = ACLROLETYPE.GROUPROLE;
+                }
+                else
+                    throw new Exception("错误的数据类型: ");
+                try
+                {
                     if (writeBox.Checked)
-                        _currentUser.Permit(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.WRITE);
+                        _currentUser.Permit(id, roleType, _resourceId, ACLOPERATION.WRITE);
                     else
-                        _currentUser.Deny(user.Usr_Id, ACLROLETYPE.USERROLE, _resourceId, ACLOPERATION.WRITE);
+                        _currentUser.Deny(id, roleType, _resourceId, ACLOPERATION.WRITE);
 
                     if (!readBox.Checked && !writeBox.Checked)
                         FillUserLists();
