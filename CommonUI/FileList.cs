@@ -62,30 +62,20 @@ namespace CommonUI
         public void CreateContextMenu()
         {
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
-/*            MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
-            MenuItem MenuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
-*/
+
+            MenuItem3.Text = "打开文件";
+            MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem3);
+
             MenuItem1.Text = "删除文件";
             MenuItem1.Click += new System.EventHandler(this.menuDeleteFile_Click);
             fileContextMenu.MenuItems.Add(MenuItem1);
 
-            //MenuItem9.Text = "复制";
-            //MenuItem9.Click += new System.EventHandler(this.menuCopyFile_Click);
-            //contextMenuRightFile.MenuItems.Add(MenuItem9);
-
-            //MenuItem10.Text = "共享设置";
-            //MenuItem10.Click += new System.EventHandler(this.menuShareFolder_Click);
-            //contextMenuRightFile.MenuItems.Add(MenuItem10);
-            
-            //MenuItem11.Text = "剪切";
-            //MenuItem11.Click += new System.EventHandler(this.menuCutFile_Click);
-            //contextMenuRightFile.MenuItems.Add(MenuItem11);
+            MenuItem2.Text = "共享文件";
+            MenuItem2.Click += new System.EventHandler(this.menuShareFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem2);
         }
 
         /// <summary>
@@ -173,7 +163,7 @@ namespace CommonUI
         }
 
         #endregion
-
+/*
         private void fileListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             LinkParameters objLinkParameters = new LinkParameters();
@@ -181,6 +171,7 @@ namespace CommonUI
 
             Link.Open(new GatewayReference(this, "Download"), objLinkParameters);
         }
+*/
 
         private void menuDeleteFile_Click(object sender, EventArgs e)
         {
@@ -210,6 +201,33 @@ namespace CommonUI
             {
                 MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void menuShareFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int res = (int)FileListView.SelectedItem.Tag;
+                if (res <= 0)
+                {
+                    MessageBox.Show("无法共享选择的资源！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _helper.ShareResource(_currentUser, res);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法共享: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuOpenFile_Click(object sender, EventArgs e)
+        {
+            LinkParameters objLinkParameters = new LinkParameters();
+            objLinkParameters.Target = "_self";
+
+            Link.Open(new GatewayReference(this, "Download"), objLinkParameters);
         }
     }
 }

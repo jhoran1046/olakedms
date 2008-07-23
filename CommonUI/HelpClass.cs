@@ -150,7 +150,7 @@ namespace CommonUI
             return ret;
         }
 
-        public void CreateFolder(CUserEntity user, int parentResource, String folderName)
+        public virtual void CreateFolder(CUserEntity user, int parentResource, String folderName)
         {
             CACLEntity acl = new CACLEntity(user.ConnString);
             acl.Acl_Resource = parentResource;
@@ -163,7 +163,7 @@ namespace CommonUI
             user.CreateFolder(parentResource, folderName);
         }
 
-        public void DeleteFolder(CUserEntity user, int resource)
+        public virtual void DeleteFolder(CUserEntity user, int resource)
         {
             CACLEntity acl = new CACLEntity(user.ConnString);
             acl.Acl_Resource = resource;
@@ -180,7 +180,7 @@ namespace CommonUI
             System.IO.Directory.Delete(dirPath, true);
         }
 
-        public void UploadFile(CUserEntity user, int parentResource, OpenFileDialog objFileDialog)
+        public virtual void UploadFile(CUserEntity user, int parentResource, OpenFileDialog objFileDialog)
         {
             CACLEntity acl = new CACLEntity(user.ConnString);
             acl.Acl_Resource = parentResource;
@@ -199,7 +199,7 @@ namespace CommonUI
             }
         }
 
-        public void ShareResource(CUserEntity user, int resource)
+        public virtual void ShareResource(CUserEntity user, int resource)
         {
             CResourceEntity res = new CResourceEntity(user.ConnString).Load(resource);
             COrganizeEntity org = new COrganizeEntity(user.ConnString).Load(user.Usr_Organize);
@@ -216,7 +216,7 @@ namespace CommonUI
             }
         }
 
-        public void DeleteFile(CUserEntity user, int resource)
+        public virtual void DeleteFile(CUserEntity user, int resource)
         {
             CResourceEntity res = new CResourceEntity(user.ConnString).Load(resource);
             String filePath = res.MakeFullPath();

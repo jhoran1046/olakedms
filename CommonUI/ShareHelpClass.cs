@@ -100,5 +100,10 @@ namespace CommonUI
 
             return ret;
         }
+
+        public override void ShareResource(CUserEntity user, int resource)
+        {
+            throw new Exception("不能共享此目录！");
+        }
     }
 }
