@@ -39,6 +39,18 @@
     <Reference Include="Gizmox.WebGUI.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplyForm.Designer.cs">
+      <DependentUpon>ApplyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuditeApplyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuditeApplyForm.Designer.cs">
+      <DependentUpon>AuditeApplyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackupUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +96,12 @@
     <Compile Include="MainFunctions.Designer.cs">
       <DependentUpon>MainFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyApplyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyApplyForm.Designer.cs">
+      <DependentUpon>MyApplyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +137,14 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ApplyForm.resx">
+      <DependentUpon>ApplyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditeApplyForm.resx">
+      <DependentUpon>AuditeApplyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackupUI.resx">
       <SubType>Designer</SubType>
       <DependentUpon>BackupUI.cs</DependentUpon>
@@ -146,6 +172,10 @@
     <EmbeddedResource Include="MainFunctions.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainFunctions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyApplyForm.resx">
+      <DependentUpon>MyApplyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NameForm.resx">
       <DependentUpon>NameForm.cs</DependentUpon>

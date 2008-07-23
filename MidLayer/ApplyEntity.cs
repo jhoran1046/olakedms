@@ -16,7 +16,7 @@ namespace MidLayer
 	{
         public CApplyEntity()
         {
-            ConnString = "Provider=SQLOLEDB.1;Password=a;Persist Security Info=True;User ID=sa;Initial Catalog=DMS;Data Source=WIN2003";
+            ConnString = MidLayerSettings.ConnectionString;
         }
         
 
@@ -31,6 +31,7 @@ namespace MidLayer
             else
             {
                 aRes.App_Audited = (int)AUDITE.AUDITED;
+                aRes.App_AudTime = DateTime.Now;
                 aRes.Update("this.App_ResId='" + ResId + "'");
                 return true;
             }
@@ -38,15 +39,16 @@ namespace MidLayer
         /// <summary>
         /// 此方法在不批准申请时调用。将审核状态（App_Audited）改为未批准。
         /// </summary>
-        public bool Cancel(int ResId)
+        public bool Cancel(int apply)
         {
             CApplyEntity aRes = new CApplyEntity();
-            if (aRes.GetObjectList("this.App_ResId='" + ResId + "'").Count < 0)
+            if (aRes.GetObjectList("this.App_Id='" + apply + "'").Count < 0)
                 return false;
             else
             {
                 aRes.App_Audited = (int)AUDITE.UNAUDITED;
-                aRes.Update("this.App_ResId='" + ResId + "'");
+                aRes.App_AudTime = DateTime.Now;
+                aRes.Update("this.App_Id='" + apply + "'");
                 return true;
             }
         }
@@ -55,14 +57,14 @@ namespace MidLayer
         /// </summary>
         /// <param name="ResId"></param>
         /// <returns></returns>
-        public bool Delete(int ResId)
+        public bool Delete(int apply)
         {
             CApplyEntity aRes = new CApplyEntity();
-            if (aRes.GetObjectList("this.App_ResId='" + ResId + "'").Count < 0)
+            if (aRes.GetObjectList("this.App_Id='" + apply + "'").Count < 0)
                 return false;
             else
             {
-                aRes.Delete("this.App_ResId='" + ResId + "'");
+                aRes.Delete("this.App_Id='" + apply + "'");
                 return true;
             }
         }

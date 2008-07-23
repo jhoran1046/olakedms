@@ -38,13 +38,13 @@ namespace CommonUI
             this.mainTreeView.ContextMenu = this.treeContextMenu;
             this.mainTreeView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.mainTreeView.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.mainTreeView.Font = new System.Drawing.Font("SimSun", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mainTreeView.Font = new System.Drawing.Font("ËÎÌו", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.mainTreeView.Location = new System.Drawing.Point(0, 0);
             this.mainTreeView.Name = "mainTreeView";
-            this.mainTreeView.Size = new System.Drawing.Size(303, 286);
+            this.mainTreeView.Size = new System.Drawing.Size(303, 306);
             this.mainTreeView.TabIndex = 0;
-            this.mainTreeView.BeforeExpand += new Gizmox.WebGUI.Forms.TreeViewCancelEventHandler(this.mainTreeView_BeforeExpand);
             this.mainTreeView.AfterSelect += new Gizmox.WebGUI.Forms.TreeViewEventHandler(this.mainTreeView_AfterSelect);
+            this.mainTreeView.BeforeExpand += new Gizmox.WebGUI.Forms.TreeViewCancelEventHandler(this.mainTreeView_BeforeExpand);
             // 
             // treeContextMenu
             // 

@@ -14,50 +14,55 @@ using MidLayer;
 
 #endregion
 
-namespace UI
+namespace CommonUI
 {
     public partial class MyApplyForm : Form
     {
-        public CUserEntity _user;
+        public CUserEntity _CurrentUser;
 
         public MyApplyForm()
         {
             InitializeComponent();
         }
 
-        private void MyApyInfoForm_Load(object sender, EventArgs e)
+        private void MyApplyForm_Load(object sender, EventArgs e)
         {
             LoadMyApply();
         }
 
         private void btnDisfrock_Click(object sender, EventArgs e)
         {
-            this._user = new CUserEntity();
-            _user = (CUserEntity)Context.Session["CurrentUser"];
+            this._CurrentUser = new CUserEntity();
+            _CurrentUser = (CUserEntity)Context.Session["CurrentUser"];
 
-            DialogResult result = MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
-                return;
-            else
+            DialogResult result;
+            bool DeletApp = false;
+            try
             {
                 foreach (ListViewItem item in lsvMyApply.Items)
                 {
-                    if(item.Selected == true)
+                    if (item.Selected == true)
                     {
-                        try
-                        {
-                            bool DeleBool = _user.DeleteApply((int)lsvMyApply.Tag);
-                            if (DeleBool == true)
-                                MessageBox.Show("撤销成功！", "文档管理系统", MessageBoxButtons.OK);
-                            else
-                                MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("系统错误！" + ex.Message, "文档管理系统");
-                        }
-                    }                 
+                         result = MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                         if (result == DialogResult.No)
+                              return;
+                         
+                         DeletApp = _CurrentUser.DeleteApply((int)item.Tag);
+                         if (DeletApp == true)
+                         {
+                             MessageBox.Show("撤销成功！", "文档管理系统", MessageBoxButtons.OK);
+                         }
+                         else
+                             MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
+                       //  LoadMyApply();
+                    }              
                 }
+                lsvMyApply.Invalidate();
+
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show("撤销失败：" + ex.Message, "文档管理系统");
             }
         }
 
@@ -85,13 +90,13 @@ namespace UI
 
         private void LoadMyApply()
         {
-            this._user = new CUserEntity();
-            _user = (CUserEntity)Context.Session["CurrentUser"];
+            this._CurrentUser = new CUserEntity();
+            _CurrentUser = (CUserEntity)Context.Session["CurrentUser"];
 
             try
             {
                 List<CApplyInfoEntity> myAppList = new List<CApplyInfoEntity>();
-                myAppList = _user.ListMyApplies();
+                myAppList = _CurrentUser.ListMyApplies();
                 if (myAppList.Count < 0)
                 {
                     lsvMyApply.DataSource = null;
@@ -104,7 +109,7 @@ namespace UI
                     ListViewItem.ListViewSubItem lvsiComment;
                     ListViewItem.ListViewSubItem lvsiAudite;
                     ListViewItem.ListViewSubItem lvsiCreTime;
-                    ListViewItem.ListViewSubItem lvsiAudTime;
+                    //ListViewItem.ListViewSubItem lvsiAudTime;
 
                     lviName.Text = apply.Res_Name;
                     lviName.Tag = apply.App_Id;
@@ -133,9 +138,9 @@ namespace UI
                     lvsiCreTime.Text = apply.App_CreateTime.ToString();
                     lviName.SubItems.Add(lvsiCreTime);
 
-                    lvsiAudTime = new ListViewItem.ListViewSubItem();
-                    lvsiAudTime.Text = apply.App_AudTime.ToString();
-                    lviName.SubItems.Add(lvsiAudTime);
+                   // lvsiAudTime = new ListViewItem.ListViewSubItem();
+                   // lvsiAudTime.Text = apply.App_AudTime.ToString();
+                   // lviName.SubItems.Add(lvsiAudTime);
 
                     lsvMyApply.Items.Add(lviName);
                 }
@@ -149,8 +154,8 @@ namespace UI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            MainForm myMain = new MainForm();
-            myMain.Show();
+           // MainForm myMain = new MainForm();
+           // myMain.Show();
             this.Close();
         }
     }

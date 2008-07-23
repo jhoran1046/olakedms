@@ -14,7 +14,7 @@ using MidLayer;
 using CommonUI;
 #endregion
 
-namespace UI
+namespace CommonUI
 {
     public partial class AuditeApplyForm : Form
     {
@@ -54,11 +54,11 @@ namespace UI
             {
                 foreach (ListViewItem item in lsvOrgApply.Items)
                 {
-                    if (item.Checked == true)
+                    if (item.Selected == true)
                     {
-                        if (AuditeDirTree.MainTreeView.SelectedNode == null)
+                        if (AuditeDirTree.MainTreeView.SelectedNode == null) 
                         {
-                            MessageBox.Show("请选择目标路径！", "文档管理系统", MessageBoxButtons.OK);
+                            MessageBox.Show("请选择目标路径！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
                         else
@@ -68,7 +68,9 @@ namespace UI
                         }
                     }
                 }
-                MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK);
+                MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                lsvOrgApply.Invalidate();
+                AuditeDirTree.Invalidate();
             }
             catch(Exception ex)
             {
@@ -87,15 +89,16 @@ namespace UI
                 {
                     if (item.Selected == true)
                     {
-                        int id = (int)item.Tag;
-                        _currentUser.CancelApply(id);
+                        int applyId = (int)item.Tag;
+                        _currentUser.CancelApply(applyId);
+                        MessageBox.Show("您已拒绝了" + item.Text + "用户的归档申请！", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
-                MessageBox.Show("您已拒绝了" + _currentUser.Usr_Name + "用户的归档申请！", "文档管理系统", MessageBoxButtons.OK);
+                lsvOrgApply.Invalidate();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("审核失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
       
@@ -141,7 +144,7 @@ namespace UI
                     ListViewItem.ListViewSubItem lvsiComment;
                     ListViewItem.ListViewSubItem lvsiAudite;
                     ListViewItem.ListViewSubItem lvsiCreTime;
-                    ListViewItem.ListViewSubItem lvsiAudTime;
+                   // ListViewItem.ListViewSubItem lvsiAudTime;
 
                     lviName.Text = apply.Res_Name;
                     lviName.Tag = apply.App_Id;
@@ -170,9 +173,9 @@ namespace UI
                     lvsiCreTime.Text = apply.App_CreateTime.ToString();
                     lviName.SubItems.Add(lvsiCreTime);
 
-                    lvsiAudTime = new ListViewItem.ListViewSubItem();
-                    lvsiAudTime.Text = apply.App_AudTime.ToString();
-                    lviName.SubItems.Add(lvsiAudTime);
+                      // lvsiAudTime = new ListViewItem.ListViewSubItem();
+                      // lvsiAudTime.Text = apply.App_AudTime.ToString();
+                      // lviName.SubItems.Add(lvsiAudTime);  
 
                     lsvOrgApply.Items.Add(lviName);
                 }
@@ -180,7 +183,7 @@ namespace UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("加载归档申请列表失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -188,23 +191,25 @@ namespace UI
         {
             _currentUser = (CUserEntity)Context.Session["CurrentUser"];
             _applyFileLst.CurrentUser = _currentUser;
+            AuditeDirTree.CurrentUser = _currentUser;
+            AuditeDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_ArchiveRes;
 
             try
             {
-                AuditeDirTree.RootDir = Context.Server.MapPath("~\app_data");
+                AuditeDirTree.RootDir = Context.Server.MapPath("~/app_data");
                 AuditeDirTree.Init();
                 AuditeDirTree.FileListUI = _applyFileLst;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("加载目录树失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+           // MainForm mainForm = new MainForm();
+           // mainForm.Show();
             this.Close();
         }
     }

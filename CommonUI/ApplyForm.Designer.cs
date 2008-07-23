@@ -1,4 +1,4 @@
-namespace UI
+namespace CommonUI
 {
     partial class ApplyForm
     {

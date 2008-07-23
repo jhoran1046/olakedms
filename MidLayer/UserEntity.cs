@@ -78,6 +78,7 @@ namespace MidLayer
         public CUserEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
 
         public override void Delete()
@@ -915,13 +916,18 @@ namespace MidLayer
         /// </summary>
         /// <param name="resource"></param>
         /// <param name="comment"></param>
-        public void CreateApply(int resource,  String comment)
+        public bool CreateApply(int resource,  String comment)
         {
             CApplyEntity aRes = new CApplyEntity();
+            if(aRes.GetObjectList("this.App_ResId='" + resource + "'").Count > 0)
+                return false;
+
             aRes.App_ResId = resource;
             aRes.App_Applyer = this.Usr_Id;
             aRes.App_Comment = comment;
+            aRes.App_Audited = (int)AUDITE.UNAUDITING;
             aRes.Insert();
+                return true;
         }
         /// <summary>
         /// 获取当前用户提交的所有申请——赵英武
@@ -964,8 +970,7 @@ namespace MidLayer
             if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
                 throw new Exception("该资源已审核！");
 
-            CUserEntity aUsr = new CUserEntity();
-            aUsr.CopyResource(appList[0].App_ResId,archiveResource);
+            this.CopyResource(appList[0].App_ResId, archiveResource);
 
             aRes.Permit(appList[0].App_ResId);
         }
@@ -987,7 +992,7 @@ namespace MidLayer
             if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
                 throw new Exception("该资源已审核！");
 
-            aRes.Cancel(appList[0].App_ResId);
+            aRes.Cancel(apply);
         }
         /// <summary>
         /// 删除归档申请,删除成功return true,否则return false——赵英武
@@ -1003,7 +1008,7 @@ namespace MidLayer
 
             if (appList[0].App_Applyer == this.Usr_Id && appList[0].App_Audited == (int)audite[0])
             {
-                aRes.Delete(appList[0].App_ResId);
+                aRes.Delete(apply);
                 return true;
             }
             else

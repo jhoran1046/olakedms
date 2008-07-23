@@ -54,6 +54,7 @@ namespace MidLayer
         public CResourceEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
 
         public String MakeFullPath()

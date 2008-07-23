@@ -1,6 +1,6 @@
-namespace UI
+namespace CommonUI
 {
-    partial class MyApplyForm
+    partial class AuditeApplyForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +28,66 @@ namespace UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.lsvMyApply = new Gizmox.WebGUI.Forms.ListView();
+            this.btnAccept = new Gizmox.WebGUI.Forms.Button();
+            this.btnRefuse = new Gizmox.WebGUI.Forms.Button();
+            this.lsvOrgApply = new Gizmox.WebGUI.Forms.ListView();
             this.columnDocName = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnApplyer = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnComment = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnState = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnApyDate = new Gizmox.WebGUI.Forms.ColumnHeader();
-            this.columnAuDate = new Gizmox.WebGUI.Forms.ColumnHeader();
-            this.btnDisfrock = new Gizmox.WebGUI.Forms.Button();
             this.chkAllSelect = new Gizmox.WebGUI.Forms.CheckBox();
             this.btnBack = new Gizmox.WebGUI.Forms.Button();
+            this.AuditeDirTree = new CommonUI.DirTree();
             this.SuspendLayout();
             // 
-            // lsvMyApply
+            // btnAccept
             // 
-            this.lsvMyApply.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.lsvMyApply.Columns.AddRange(new Gizmox.WebGUI.Forms.ColumnHeader[] {
+            this.btnAccept.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnAccept.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnAccept.Location = new System.Drawing.Point(126, 178);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 3;
+            this.btnAccept.Text = "同意";
+            this.btnAccept.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
+            // btnRefuse
+            // 
+            this.btnRefuse.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnRefuse.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnRefuse.Location = new System.Drawing.Point(126, 228);
+            this.btnRefuse.Name = "btnRefuse";
+            this.btnRefuse.Size = new System.Drawing.Size(75, 23);
+            this.btnRefuse.TabIndex = 4;
+            this.btnRefuse.Text = "拒绝";
+            this.btnRefuse.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnRefuse.Click += new System.EventHandler(this.btnRefuse_Click);
+            // 
+            // lsvOrgApply
+            // 
+            this.lsvOrgApply.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.lsvOrgApply.Columns.AddRange(new Gizmox.WebGUI.Forms.ColumnHeader[] {
             this.columnDocName,
             this.columnApplyer,
             this.columnComment,
             this.columnState,
-            this.columnApyDate,
-            this.columnAuDate});
-            this.lsvMyApply.DataMember = null;
-            this.lsvMyApply.Dock = Gizmox.WebGUI.Forms.DockStyle.Top;
-            this.lsvMyApply.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.lsvMyApply.ItemsPerPage = 20;
-            this.lsvMyApply.Location = new System.Drawing.Point(0, 0);
-            this.lsvMyApply.Name = "lsvMyApply";
-            this.lsvMyApply.Size = new System.Drawing.Size(678, 216);
-            this.lsvMyApply.TabIndex = 0;
+            this.columnApyDate});
+            this.lsvOrgApply.DataMember = null;
+            this.lsvOrgApply.Dock = Gizmox.WebGUI.Forms.DockStyle.Top;
+            this.lsvOrgApply.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.lsvOrgApply.ItemsPerPage = 20;
+            this.lsvOrgApply.Location = new System.Drawing.Point(0, 0);
+            this.lsvOrgApply.Name = "lsvOrgApply";
+            this.lsvOrgApply.Size = new System.Drawing.Size(627, 161);
+            this.lsvOrgApply.TabIndex = 6;
             // 
             // columnDocName
             // 
             this.columnDocName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnDocName.Image = null;
             this.columnDocName.Text = "名称";
-            this.columnDocName.TextAlign = Gizmox.WebGUI.Forms.HorizontalAlignment.Center;
             this.columnDocName.Width = 150;
             // 
             // columnApplyer
@@ -95,35 +118,17 @@ namespace UI
             this.columnApyDate.Text = "申请时间";
             this.columnApyDate.Width = 150;
             // 
-            // columnAuDate
-            // 
-            this.columnAuDate.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.columnAuDate.Image = null;
-            this.columnAuDate.Text = "审核时间";
-            this.columnAuDate.Width = 150;
-            // 
-            // btnDisfrock
-            // 
-            this.btnDisfrock.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnDisfrock.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnDisfrock.Location = new System.Drawing.Point(181, 233);
-            this.btnDisfrock.Name = "btnDisfrock";
-            this.btnDisfrock.Size = new System.Drawing.Size(75, 23);
-            this.btnDisfrock.TabIndex = 1;
-            this.btnDisfrock.Text = "撤销申请";
-            this.btnDisfrock.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnDisfrock.Click += new System.EventHandler(this.btnDisfrock_Click);
-            // 
             // chkAllSelect
             // 
             this.chkAllSelect.Checked = false;
             this.chkAllSelect.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
             this.chkAllSelect.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.chkAllSelect.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.chkAllSelect.Location = new System.Drawing.Point(87, 233);
+            this.chkAllSelect.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.chkAllSelect.Location = new System.Drawing.Point(31, 177);
             this.chkAllSelect.Name = "chkAllSelect";
-            this.chkAllSelect.Size = new System.Drawing.Size(67, 23);
-            this.chkAllSelect.TabIndex = 2;
+            this.chkAllSelect.Size = new System.Drawing.Size(68, 24);
+            this.chkAllSelect.TabIndex = 7;
             this.chkAllSelect.Text = "全选";
             this.chkAllSelect.ThreeState = false;
             this.chkAllSelect.Click += new System.EventHandler(this.chkAllSelect_Click);
@@ -132,42 +137,58 @@ namespace UI
             // 
             this.btnBack.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnBack.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnBack.Location = new System.Drawing.Point(582, 315);
+            this.btnBack.Location = new System.Drawing.Point(126, 281);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 3;
+            this.btnBack.TabIndex = 8;
             this.btnBack.Text = "返回主页";
             this.btnBack.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // MyApyInfoForm
+            // AuditeDirTree
+            // 
+            this.AuditeDirTree.CurrentUser = null;
+            this.AuditeDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.AuditeDirTree.FileListUI = null;
+            this.AuditeDirTree.Location = new System.Drawing.Point(272, 177);
+            this.AuditeDirTree.Name = "AuditeDirTree";
+            this.AuditeDirTree.RootDir = null;
+            this.AuditeDirTree.RootResourceId = 0;
+            this.AuditeDirTree.Size = new System.Drawing.Size(209, 214);
+            this.AuditeDirTree.TabIndex = 9;
+            this.AuditeDirTree.Text = "DirTree";
+            // 
+            // AuditeApplyForm
             // 
             this.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.Controls.Add(this.AuditeDirTree);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.chkAllSelect);
-            this.Controls.Add(this.btnDisfrock);
-            this.Controls.Add(this.lsvMyApply);
+            this.Controls.Add(this.btnAccept);
+            this.Controls.Add(this.lsvOrgApply);
+            this.Controls.Add(this.btnRefuse);
+            this.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(678, 350);
-            this.Text = "MyApyInfoForm";
-            this.Load += new System.EventHandler(this.MyApyInfoForm_Load);
+            this.Size = new System.Drawing.Size(627, 410);
+            this.Text = "审核归档申请";
+            this.Load += new System.EventHandler(this.ManageAppForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Gizmox.WebGUI.Forms.ListView lsvMyApply;
+        private Gizmox.WebGUI.Forms.Button btnAccept;
+        private Gizmox.WebGUI.Forms.Button btnRefuse;
+        private Gizmox.WebGUI.Forms.ListView lsvOrgApply;
         private Gizmox.WebGUI.Forms.ColumnHeader columnDocName;
         private Gizmox.WebGUI.Forms.ColumnHeader columnApplyer;
         private Gizmox.WebGUI.Forms.ColumnHeader columnComment;
         private Gizmox.WebGUI.Forms.ColumnHeader columnState;
         private Gizmox.WebGUI.Forms.ColumnHeader columnApyDate;
-        private Gizmox.WebGUI.Forms.ColumnHeader columnAuDate;
-        private Gizmox.WebGUI.Forms.Button btnDisfrock;
         private Gizmox.WebGUI.Forms.CheckBox chkAllSelect;
         private Gizmox.WebGUI.Forms.Button btnBack;
-
+        private CommonUI.DirTree AuditeDirTree;
 
     }
 }

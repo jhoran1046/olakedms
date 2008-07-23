@@ -10,7 +10,7 @@ namespace MidLayer
 
         public CApplyInfoEntity()
         {
-            ConnString = "Provider=SQLOLEDB.1;Password=a;Persist Security Info=True;User ID=sa;Initial Catalog=DMS;Data Source=WIN2003";
+            ConnString = MidLayerSettings.ConnectionString;
         }
 
 #region grove生成的成员

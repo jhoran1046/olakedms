@@ -46,6 +46,7 @@ namespace MidLayer
         public COrganizeEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
 
         public CResourceEntity GetOrganizeFolder()

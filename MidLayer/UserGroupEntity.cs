@@ -38,6 +38,7 @@ namespace MidLayer
         public CUserGroupEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
     }
 }
