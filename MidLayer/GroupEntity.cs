@@ -39,6 +39,7 @@ namespace MidLayer
         public CGroupEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
 
         public override void Delete()

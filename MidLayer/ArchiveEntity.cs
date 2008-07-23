@@ -1,6 +1,6 @@
 using System;
 using Grove.ORM;
-
+using Framework.DB;
 namespace MidLayer
 {
     public enum ARCHIVESTATUS : int
@@ -11,7 +11,7 @@ namespace MidLayer
     }
 
     [DataTable("TBL_Archive")]
-    public class CArchiveEntity
+    public class CArchiveEntity : CDBEntity<CArchiveEntity>
     {
         Int32 _Arc_Id;
         Int32 _Arc_Resource;
@@ -55,6 +55,11 @@ namespace MidLayer
         {
             get { return this._Arc_Status; }
             set { this._Arc_Status = value; }
+        }
+
+        public CArchiveEntity()
+        {
+            ConnString = MidLayerSettings.ConnectionString;
         }
     }
 }

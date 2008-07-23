@@ -82,6 +82,7 @@ namespace MidLayer
         public CACLEntity()
             : this("")
         {
+            ConnString = MidLayerSettings.ConnectionString;
         }
     }
 }

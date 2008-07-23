@@ -149,7 +149,7 @@ namespace CommonUI
             //treeContextMenu.MenuItems.Add(MenuItem9);
 
             MenuItem10.Text = "∞Ï¿ÌπÈµµ…Í«Î";
-            MenuItem8.Click += new System.EventHandler(this.menuProcessApplies_Click);
+            MenuItem10.Click += new System.EventHandler(this.menuProcessApplies_Click);
             treeContextMenu.MenuItems.Add(MenuItem10);
 
         }
@@ -375,17 +375,21 @@ namespace CommonUI
 
         private void menuApply_Click(object sender, EventArgs e)
         {
-            
+            ApplyForm appForm = new ApplyForm();
+            appForm.ResId = GetSelectedTreeResource();
+            appForm.Show();
         }
 
         private void menuMyApplies_Click(object sender, EventArgs e)
         {
-
+            MyApplyForm myAppForm = new MyApplyForm();
+            myAppForm.Show();
         }
 
         private void menuProcessApplies_Click(object sender, EventArgs e)
         {
-
+            AuditeApplyForm auditApp = new AuditeApplyForm();
+            auditApp.Show();
         }
     }
 }

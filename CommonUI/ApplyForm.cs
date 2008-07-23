@@ -13,11 +13,12 @@ using Gizmox.WebGUI.Forms;
 using MidLayer;
 #endregion
 
-namespace UI
+namespace CommonUI
 {
     public partial class ApplyForm : Form
     {
         private int _resId;
+        private CUserEntity _CurrentUser;
 
         public int ResId
         {
@@ -40,6 +41,8 @@ namespace UI
         //提交申请完成后，跳转到MyApplyForm页
         private void btnSubmission_Click(object sender, EventArgs e)
         {
+            DialogResult result;
+
             try
             {
                 if (txtComment.Text == "")
@@ -48,26 +51,36 @@ namespace UI
                 }
                 else
                 {
-                    CUserEntity user = new CUserEntity();
-                    user.CreateApply(ResId, txtComment.Text.Trim());
-                    MessageBox.Show("您已提交文件归档申请！", "文档管理系统", MessageBoxButtons.OK);
+                    this._CurrentUser = new CUserEntity();
+                    _CurrentUser = (CUserEntity)Context.Session["CurrentUser"];
+
+                    bool CrAp = _CurrentUser.CreateApply(ResId, txtComment.Text.Trim());
+                    if(CrAp == true)
+                    {
+                        result = MessageBox.Show("您已成功提交文件归档申请！", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        result = MessageBox.Show("您提交的归档申请已经存在！", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                    }
+                    if(result == DialogResult.OK)
+                        this.Close();
                 }
                 //7月22日修改
-                MyApplyForm myApplyForm = new MyApplyForm();
-                myApplyForm.Show();
-                this.Close();
+              //  MyApplyForm myApplyForm = new MyApplyForm();
+              //  myApplyForm.Show();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("提交失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //若取消则返回主页
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+           // MainForm mainForm = new MainForm();
+           // mainForm.Show();
             this.Close();
         }
     }
