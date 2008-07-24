@@ -39,9 +39,11 @@ namespace CommonUI
             {
                 if (lsvMyApply.SelectedItems.Count > 0)//判断选中项目与否
                 {
-                    MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo, 
+                    MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, new EventHandler(OnMsgBoxClose));
                 }
+                else
+                    MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             catch (Exception ex)
             {

@@ -72,10 +72,14 @@ namespace CommonUI
                              _currentUser.PermitApply((int)item.Tag, _achiveResourceId);
                          }
                     }
-                    MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(lsvOrgApply.SelectedItems.Count > 0)
+                    {
+                        MessageBox.Show("您选择的项目已批准！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+
                 LoadOrgApp();
-                AuditeDirTree.Invalidate();
+
             }
             catch(Exception ex)
             {
@@ -103,10 +107,13 @@ namespace CommonUI
                         int applyId = (int)item.Tag;
                         _currentUser.CancelApply(applyId);
                     }
-                    MessageBox.Show("审核成功！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);                       
+                    if(SelectedCount > 0)
+                    {
+                        MessageBox.Show("审核成功！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadOrgApp();
+                        LoadDirTree();
+                    }
                 }
-                LoadOrgApp();
-                MessageBox.Show("您选择的项目已拒绝", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
@@ -122,7 +129,6 @@ namespace CommonUI
                 {
                     lsvOrgApply.MultiSelect = true;
                     item.Selected = true;
-                    lsvOrgApply.Invalidate();
                 }
             }
             else
@@ -130,7 +136,6 @@ namespace CommonUI
                 foreach(ListViewItem item in lsvOrgApply.Items)
                 {
                     item.Selected = false;
-                    lsvOrgApply.Invalidate();
                 }
             }
         }
@@ -154,6 +159,8 @@ namespace CommonUI
                     ListViewItem.ListViewSubItem lvsiAudite;
                     ListViewItem.ListViewSubItem lvsiCreTime;
                    // ListViewItem.ListViewSubItem lvsiAudTime;
+
+                    lsvOrgApply.Items.Clear();
 
                     lviName.Text = apply.Res_Name;
                     lviName.Tag = apply.App_Id;
