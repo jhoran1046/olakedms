@@ -16,6 +16,7 @@ namespace UI
         protected void Application_Start(object sender, EventArgs e)
         {
             MidLayerSettings.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
         }
 
         protected void Application_End(object sender, EventArgs e)

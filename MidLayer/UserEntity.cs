@@ -958,23 +958,19 @@ namespace MidLayer
         /// <param name="archiveResource"></param>
         public void PermitApply(int apply, int archiveResource)
         {
-            if(this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
-                throw new Exception("没有管理权限！");
-
-            CApplyEntity aRes=new CApplyEntity();
-            List<CApplyEntity> appList = new List<CApplyEntity>();
-            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
-
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
-                throw new Exception("该资源已审核！");
-
             try
             {
-                this.CopyResource(appList[0].App_ResId, archiveResource);
+                if(this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
+                    throw new Exception("没有管理权限！");
 
-                aRes.Permit(appList[0].App_ResId);
+                CApplyEntity aRes=new CApplyEntity().Load(apply);
+
+                if (aRes.App_Audited == (int)AUDITE.AUDITED || aRes.App_Audited == (int)AUDITE.UNAUDITED)
+                    throw new Exception("该资源已审核！");
+
+            
+                this.CopyResource(aRes.App_ResId, archiveResource);
+                aRes.Permit();
             }
             catch(Exception ex)
             {
@@ -987,21 +983,17 @@ namespace MidLayer
         /// <param name="apply"></param>
         public void CancelApply(int apply)
         {
-            if (this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
-                throw new Exception("没有管理权限！");
-
-            CApplyEntity aRes = new CApplyEntity();
-            List<CApplyEntity> appList = new List<CApplyEntity>();
-            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
-
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
-                throw new Exception("该资源已审核！");
-
             try
             {
-                aRes.Cancel(apply);
+                if (this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
+                    throw new Exception("没有管理权限！");
+
+                CApplyEntity aRes = new CApplyEntity().Load(apply);
+
+                if (aRes.App_Audited == (int)AUDITE.AUDITED || aRes.App_Audited == (int)AUDITE.UNAUDITED)
+                    throw new Exception("该资源已审核！");
+            
+                aRes.Cancel();
             }
             catch(Exception ex)
             {
@@ -1014,15 +1006,11 @@ namespace MidLayer
         /// <param name="apply"></param>
         public bool DeleteApply(int apply)
         {
-            CApplyEntity aRes = new CApplyEntity();
-            List<CApplyEntity> appList = new List<CApplyEntity>();
-            appList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+            CApplyEntity aRes = new CApplyEntity().Load(apply);
 
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (appList[0].App_Applyer == this.Usr_Id && appList[0].App_Audited == (int)audite[0])
+            if (aRes.App_Applyer == this.Usr_Id && aRes.App_Audited == (int)AUDITE.UNAUDITING)
             {
-                aRes.Delete(apply);
+                aRes.Delete();
                 return true;
             }
             else
