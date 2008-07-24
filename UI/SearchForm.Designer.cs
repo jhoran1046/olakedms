@@ -28,69 +28,151 @@ namespace UI
         /// </summary>
         private void InitializeComponent ( )
         {
-            this.mainMenu1 = new Gizmox.WebGUI.Forms.MainMenu ( );
-            this.menuItem1 = new Gizmox.WebGUI.Forms.MenuItem ( );
-            this.menuItem2 = new Gizmox.WebGUI.Forms.MenuItem ( );
-            this.openFileDialog1 = new Gizmox.WebGUI.Forms.OpenFileDialog ( );
-            this.mainFunctions1 = new CommonUI.MainFunctions ( );
-            this.SuspendLayout ( );
+            this.label1 = new Gizmox.WebGUI.Forms.Label();
+            this.targetBox = new Gizmox.WebGUI.Forms.TextBox();
+            this.OKBtn = new Gizmox.WebGUI.Forms.Button();
+            this.CancelBtn = new Gizmox.WebGUI.Forms.Button();
+            this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
+            this.currentDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.myDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.archiveDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.shareDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.SuspendLayout();
             // 
-            // mainMenu1
+            // label1
             // 
-            this.mainMenu1.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.mainMenu1.Dock = Gizmox.WebGUI.Forms.DockStyle.Top;
-            this.mainMenu1.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.mainMenu1.Location = new System.Drawing.Point ( 0 , 0 );
-            this.mainMenu1.MenuItems.AddRange ( new Gizmox.WebGUI.Forms.MenuItem [ ] {
-            this.menuItem1,
-            this.menuItem2} );
-            this.mainMenu1.Name = "mainMenu1";
-            this.mainMenu1.Size = new System.Drawing.Size ( 100 , 22 );
+            this.label1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.label1.Location = new System.Drawing.Point(35, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "检索文本";
             // 
-            // menuItem1
+            // targetBox
             // 
-            this.menuItem1.AllowDrop = true;
-            this.menuItem1.Checked = true;
-            this.menuItem1.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.menuItem1.Index = 0;
-            this.menuItem1.Text = "aaaaa";
+            this.targetBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.targetBox.Location = new System.Drawing.Point(99, 34);
+            this.targetBox.Name = "targetBox";
+            this.targetBox.Size = new System.Drawing.Size(340, 20);
+            this.targetBox.TabIndex = 1;
             // 
-            // menuItem2
+            // OKBtn
             // 
-            this.menuItem2.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.menuItem2.Index = 1;
-            this.menuItem2.Text = "ddfffff";
+            this.OKBtn.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.OKBtn.Location = new System.Drawing.Point(86, 263);
+            this.OKBtn.Name = "OKBtn";
+            this.OKBtn.Size = new System.Drawing.Size(75, 23);
+            this.OKBtn.TabIndex = 2;
+            this.OKBtn.Text = "搜索";
+            this.OKBtn.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.OKBtn.Click += new System.EventHandler(this.OKBtn_Click);
             // 
-            // mainFunctions1
+            // CancelBtn
             // 
-            this.mainFunctions1.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.mainFunctions1.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.mainFunctions1.DragTargets = new Gizmox.WebGUI.Forms.Component [ 0 ];
-            this.mainFunctions1.Location = new System.Drawing.Point ( 0 , 0 );
-            this.mainFunctions1.Name = "mainFunctions1";
-            this.mainFunctions1.Size = new System.Drawing.Size ( 419 , 466 );
-            this.mainFunctions1.TabIndex = 0;
-            this.mainFunctions1.Text = "MainFunctions";
+            this.CancelBtn.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.CancelBtn.Location = new System.Drawing.Point(322, 263);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.TabIndex = 3;
+            this.CancelBtn.Text = "退出";
+            this.CancelBtn.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.shareDirBox);
+            this.groupBox1.Controls.Add(this.archiveDirBox);
+            this.groupBox1.Controls.Add(this.myDirBox);
+            this.groupBox1.Controls.Add(this.currentDirBox);
+            this.groupBox1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.groupBox1.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
+            this.groupBox1.Location = new System.Drawing.Point(38, 85);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(401, 157);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.Text = "检索范围";
+            // 
+            // currentDirBox
+            // 
+            this.currentDirBox.Checked = false;
+            this.currentDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.currentDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.currentDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.currentDirBox.Location = new System.Drawing.Point(48, 28);
+            this.currentDirBox.Name = "currentDirBox";
+            this.currentDirBox.Size = new System.Drawing.Size(104, 24);
+            this.currentDirBox.TabIndex = 0;
+            this.currentDirBox.Text = "当前目录";
+            this.currentDirBox.ThreeState = false;
+            // 
+            // myDirBox
+            // 
+            this.myDirBox.Checked = false;
+            this.myDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.myDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.myDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.myDirBox.Location = new System.Drawing.Point(48, 58);
+            this.myDirBox.Name = "myDirBox";
+            this.myDirBox.Size = new System.Drawing.Size(104, 24);
+            this.myDirBox.TabIndex = 1;
+            this.myDirBox.Text = "我的文档";
+            this.myDirBox.ThreeState = false;
+            // 
+            // archiveDirBox
+            // 
+            this.archiveDirBox.Checked = false;
+            this.archiveDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.archiveDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.archiveDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.archiveDirBox.Location = new System.Drawing.Point(48, 88);
+            this.archiveDirBox.Name = "archiveDirBox";
+            this.archiveDirBox.Size = new System.Drawing.Size(104, 24);
+            this.archiveDirBox.TabIndex = 2;
+            this.archiveDirBox.Text = "归档区";
+            this.archiveDirBox.ThreeState = false;
+            // 
+            // shareDirBox
+            // 
+            this.shareDirBox.Checked = false;
+            this.shareDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.shareDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.shareDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.shareDirBox.Location = new System.Drawing.Point(48, 118);
+            this.shareDirBox.Name = "shareDirBox";
+            this.shareDirBox.Size = new System.Drawing.Size(104, 24);
+            this.shareDirBox.TabIndex = 3;
+            this.shareDirBox.Text = "共享目录";
+            this.shareDirBox.ThreeState = false;
             // 
             // SearchForm
             // 
-            this.Controls.Add ( this.mainFunctions1 );
-            this.Location = new System.Drawing.Point ( 15 , 15 );
-            this.Menu = this.mainMenu1;
-            this.Size = new System.Drawing.Size ( 419 , 466 );
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.CancelBtn);
+            this.Controls.Add(this.OKBtn);
+            this.Controls.Add(this.targetBox);
+            this.Controls.Add(this.label1);
+            this.Location = new System.Drawing.Point(15, -73);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Size = new System.Drawing.Size(473, 299);
             this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SearchForm";
-            this.ResumeLayout ( false );
+            this.Text = "全文检索";
+            this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Gizmox.WebGUI.Forms.MainMenu mainMenu1;
-        private Gizmox.WebGUI.Forms.MenuItem menuItem1;
-        private Gizmox.WebGUI.Forms.MenuItem menuItem2;
-        private Gizmox.WebGUI.Forms.OpenFileDialog openFileDialog1;
-        private CommonUI.MainFunctions mainFunctions1;
+        private Gizmox.WebGUI.Forms.Label label1;
+        private Gizmox.WebGUI.Forms.TextBox targetBox;
+        private Gizmox.WebGUI.Forms.Button OKBtn;
+        private Gizmox.WebGUI.Forms.Button CancelBtn;
+        private Gizmox.WebGUI.Forms.GroupBox groupBox1;
+        private Gizmox.WebGUI.Forms.CheckBox currentDirBox;
+        private Gizmox.WebGUI.Forms.CheckBox shareDirBox;
+        private Gizmox.WebGUI.Forms.CheckBox archiveDirBox;
+        private Gizmox.WebGUI.Forms.CheckBox myDirBox;
+
 
 
     }

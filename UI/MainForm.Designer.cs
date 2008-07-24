@@ -41,6 +41,7 @@ namespace UI
             this.menuCutFolder = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuCutFile = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuPaste = new Gizmox.WebGUI.Forms.MenuItem();
+            this.menuSearch = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuShareFile = new Gizmox.WebGUI.Forms.MenuItem();
@@ -127,7 +128,8 @@ namespace UI
             this.menuItem9,
             this.menuCutFolder,
             this.menuCutFile,
-            this.menuPaste});
+            this.menuPaste,
+            this.menuSearch});
             this.menuItem2.Text = "Edit";
             // 
             // menuItem8
@@ -159,6 +161,11 @@ namespace UI
             this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuPaste.Text = "Paste";
             this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
+            // menuSearch
+            // 
+            this.menuSearch.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.menuSearch.Text = "Search";
+            this.menuSearch.Click += new System.EventHandler(this.menuSearch_Click);
             // 
             // menuItem3
             // 
@@ -440,6 +447,7 @@ namespace UI
         private Gizmox.WebGUI.Forms.MenuItem menuCutFolder;
         private Gizmox.WebGUI.Forms.MenuItem menuCutFile;
         private Gizmox.WebGUI.Forms.MenuItem menuPaste;
+        private Gizmox.WebGUI.Forms.MenuItem menuSearch;
         private Gizmox.WebGUI.Forms.SplitContainer mainSplit;
         private Gizmox.WebGUI.Forms.NavigationTabs leftNavigationTabs;
 
