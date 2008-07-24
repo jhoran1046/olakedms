@@ -141,7 +141,7 @@ namespace CommonUI
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 8;
-            this.btnBack.Text = "返回主页";
+            this.btnBack.Text = "完成";
             this.btnBack.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -150,11 +150,11 @@ namespace CommonUI
             this.AuditeDirTree.CurrentUser = null;
             this.AuditeDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.AuditeDirTree.FileListUI = null;
-            this.AuditeDirTree.Location = new System.Drawing.Point(272, 177);
+            this.AuditeDirTree.Location = new System.Drawing.Point(241, 177);
             this.AuditeDirTree.Name = "AuditeDirTree";
             this.AuditeDirTree.RootDir = null;
             this.AuditeDirTree.RootResourceId = 0;
-            this.AuditeDirTree.Size = new System.Drawing.Size(209, 214);
+            this.AuditeDirTree.Size = new System.Drawing.Size(185, 221);
             this.AuditeDirTree.TabIndex = 9;
             this.AuditeDirTree.Text = "DirTree";
             // 
@@ -188,7 +188,7 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.ColumnHeader columnApyDate;
         private Gizmox.WebGUI.Forms.CheckBox chkAllSelect;
         private Gizmox.WebGUI.Forms.Button btnBack;
-        private CommonUI.DirTree AuditeDirTree;
+        private DirTree AuditeDirTree;
 
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 namespace MidLayer
 {
 	using System;
@@ -23,20 +24,56 @@ namespace MidLayer
         /// <summary>
         ///此方法在批准申请时调用。将审核状态（App_Audited）改为已批准。
         /// </summary>
-        public void Permit()
+        public void Permit(int apply)
         {
-            this.App_Audited = (int)AUDITE.AUDITED;
-            this.App_AudTime = DateTime.Now;
-            this.Update();
+            CApplyEntity aRes = new CApplyEntity();
+            List<CApplyEntity> aResList=new List<CApplyEntity>();
+            aResList=aRes.GetObjectList("this.App_Id='" + apply + "'");
+            if (aResList.Count == 0)
+                throw new Exception("没有该条记录！");
+            else
+            {
+                aRes = aRes.Load(aResList[0].App_Id);
+                aRes.App_Audited = (int)AUDITE.AUDITED;
+                aRes.App_AudTime = DateTime.Now;
+                aRes.Update();
+            }
         }
         /// <summary>
         /// 此方法在不批准申请时调用。将审核状态（App_Audited）改为未批准。
         /// </summary>
-        public void Cancel()
+        public void Cancel(int apply)
         {
-            this.App_Audited = (int)AUDITE.UNAUDITED;
-            this.App_AudTime = DateTime.Now;
-            this.Update();
+            CApplyEntity aRes = new CApplyEntity();
+            List<CApplyEntity> aResList = new List<CApplyEntity>();
+            aResList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+            if (aResList.Count == 0)
+                throw new Exception("没有该条记录！");
+            else
+            {
+                aRes = aRes.Load(aResList[0].App_Id);
+                aRes.App_Audited = (int)AUDITE.UNAUDITED;
+                aRes.App_AudTime = DateTime.Now;
+                aRes.Update();
+            }
+        }
+        /// <summary>
+        /// 删除归档申请
+        /// </summary>
+        /// <param name="ResId"></param>
+        /// <returns></returns>
+        public void Delete(int apply)
+        {
+            CApplyEntity aRes = new CApplyEntity();
+            List<CApplyEntity> aResList = new List<CApplyEntity>();
+            aResList = aRes.GetObjectList("this.App_Id='" + apply + "'");
+            if (aResList.Count == 0)
+                throw new Exception("没有该条记录！");
+            else
+            {
+                aRes = aRes.Load(aResList[0].App_Id);
+                aRes.Delete();
+            }
         }
 
 #region grove生成的成员

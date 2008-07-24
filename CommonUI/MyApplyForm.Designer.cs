@@ -127,7 +127,7 @@ namespace CommonUI
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "返回主页";
+            this.btnBack.Text = "完成";
             this.btnBack.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
