@@ -962,10 +962,7 @@ namespace MidLayer
                 throw new Exception("没有管理权限！");
 
             CApplyEntity aRes=new CApplyEntity().Load(apply);
-
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (aRes.App_Audited == (int)audite[1] || aRes.App_Audited == (int)audite[2])
+            if (aRes.App_Audited == (int)AUDITE.AUDITED || aRes.App_Audited == (int)AUDITE.UNAUDITED)
                 throw new Exception("该资源已审核！");
 
             try
@@ -990,9 +987,7 @@ namespace MidLayer
 
             CApplyEntity aRes = new CApplyEntity().Load(apply);
 
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (aRes.App_Audited == (int)audite[1] || aRes.App_Audited == (int)audite[2])
+            if (aRes.App_Audited == (int)AUDITE.UNAUDITED || aRes.App_Audited == (int)AUDITE.AUDITED)
                 throw new Exception("该资源已审核！");
 
             try
@@ -1012,9 +1007,7 @@ namespace MidLayer
         {
             CApplyEntity aRes = new CApplyEntity().Load(apply);
 
-            AUDITE[] audite = new AUDITE[] { AUDITE.UNAUDITING, AUDITE.AUDITED, AUDITE.UNAUDITED };
-
-            if (aRes.App_Applyer == this.Usr_Id && aRes.App_Audited == (int)audite[0])
+            if (aRes.App_Applyer == this.Usr_Id && aRes.App_Audited == (int)AUDITE.UNAUDITING)
             {
                 aRes.Delete();
                 return true;
