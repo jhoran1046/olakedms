@@ -123,7 +123,7 @@ namespace CommonUI
             // 
             this.btnBack.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.btnBack.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnBack.Location = new System.Drawing.Point(582, 315);
+            this.btnBack.Location = new System.Drawing.Point(181, 279);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 3;
@@ -140,7 +140,7 @@ namespace CommonUI
             this.Controls.Add(this.lsvMyApply);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(678, 350);
-            this.Text = "MyApyInfoForm";
+            this.Text = "我的归档申请列表";
             this.Load += new System.EventHandler(this.MyApplyForm_Load);
             this.ResumeLayout(false);
 

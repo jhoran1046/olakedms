@@ -375,21 +375,42 @@ namespace CommonUI
 
         private void menuApply_Click(object sender, EventArgs e)
         {
-            ApplyForm appForm = new ApplyForm();
-            appForm.ResId = GetSelectedTreeResource();
-            appForm.Show();
+            try
+            {
+                ApplyForm appForm = new ApplyForm();
+                appForm.ResId = GetSelectedTreeResource();
+                appForm.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统提示："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
 
         private void menuMyApplies_Click(object sender, EventArgs e)
         {
-            MyApplyForm myAppForm = new MyApplyForm();
-            myAppForm.Show();
+            try
+            {
+                MyApplyForm myAppForm = new MyApplyForm();
+                myAppForm.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void menuProcessApplies_Click(object sender, EventArgs e)
         {
-            AuditeApplyForm auditApp = new AuditeApplyForm();
-            auditApp.Show();
+            try
+            {
+                AuditeApplyForm auditApp = new AuditeApplyForm();
+                auditApp.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

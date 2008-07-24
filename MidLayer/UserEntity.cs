@@ -970,9 +970,16 @@ namespace MidLayer
             if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
                 throw new Exception("该资源已审核！");
 
-            this.CopyResource(appList[0].App_ResId, archiveResource);
+            try
+            {
+                this.CopyResource(appList[0].App_ResId, archiveResource);
 
-            aRes.Permit(appList[0].App_ResId);
+                aRes.Permit(appList[0].App_ResId);
+            }
+            catch(Exception ex)
+            {
+                throw (ex);
+            }
         }
         /// <summary>
         /// 不批准归档申请——赵英武
@@ -992,7 +999,14 @@ namespace MidLayer
             if (appList[0].App_Audited == (int)audite[1] || appList[0].App_Audited == (int)audite[2])
                 throw new Exception("该资源已审核！");
 
-            aRes.Cancel(apply);
+            try
+            {
+                aRes.Cancel(apply);
+            }
+            catch(Exception ex)
+            {
+                throw (ex);
+            }
         }
         /// <summary>
         /// 删除归档申请,删除成功return true,否则return false——赵英武

@@ -49,6 +49,7 @@
     <Content Include="App_Data\searchTest\txt\2007-09-19.txt.txt" />
     <Content Include="App_Data\searchTest\txt\2007-10-26.txt.txt" />
     <Content Include="App_Data\searchTest\txt\search.txt" />
+    <Content Include="Global.asax" />
     <Content Include="Resources\Icons\24X24\Applications.gif" />
     <Content Include="Resources\Icons\24X24\Behaviors.gif" />
     <Content Include="Resources\Icons\24X24\Controls.gif" />
@@ -110,6 +111,9 @@
     <Content Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -52,29 +52,40 @@ namespace CommonUI
 
             try
             {
-                foreach (ListViewItem item in lsvOrgApply.Items)
+                int SelectedCount = lsvOrgApply.SelectedItems.Count;
+                if(SelectedCount <= 0)//判断选中项目与否
                 {
-                    if (item.Selected == true)
-                    {
-                        if (AuditeDirTree.MainTreeView.SelectedNode == null) 
-                        {
-                            MessageBox.Show("请选择目标路径！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            return;
-                        }
-                        else
-                        {
-                            this._achiveResourceId = (int)AuditeDirTree.MainTreeView.SelectedNode.Tag;
-                            _currentUser.PermitApply((int)item.Tag, _achiveResourceId);
-                        }
-                    }
+                    MessageBox.Show("请选中项目！", "文档管理系统", MessageBoxButtons.OK);
+                    return;
                 }
-                MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                lsvOrgApply.Invalidate();
+                else
+                {
+                    foreach (ListViewItem item in lsvOrgApply.SelectedItems)
+                    {
+                         if (AuditeDirTree.MainTreeView.SelectedNode == null)
+                         {
+                              MessageBox.Show("请选择目标路径！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                 return;
+                         }
+                         else
+                         {
+                             this._achiveResourceId = (int)AuditeDirTree.MainTreeView.SelectedNode.Tag;
+                             _currentUser.PermitApply((int)item.Tag, _achiveResourceId);
+                         }
+                        
+                    }
+                    if(SelectedCount > 0)
+                    {
+                        MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                   
+                }
+                lsvOrgApply.Update();
                 AuditeDirTree.Invalidate();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("审核失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -85,16 +96,26 @@ namespace CommonUI
 
             try
             {
-                foreach (ListViewItem item in lsvOrgApply.Items)
+                int SelectedCount = lsvOrgApply.SelectedItems.Count;
+                if(SelectedCount <= 0)
                 {
-                    if (item.Selected == true)
+                    MessageBox.Show("请选中项目！", "文档管理系统", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    foreach (ListViewItem item in lsvOrgApply.SelectedItems)
                     {
                         int applyId = (int)item.Tag;
                         _currentUser.CancelApply(applyId);
-                        MessageBox.Show("您已拒绝了" + item.Text + "用户的归档申请！", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+                    if(SelectedCount > 0)
+                    {
+                        MessageBox.Show("审核成功！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);                       
                     }
                 }
-                lsvOrgApply.Invalidate();
+                
+                lsvOrgApply.Update();
             }
             catch(Exception ex)
             {
