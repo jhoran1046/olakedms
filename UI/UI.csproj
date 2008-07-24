@@ -187,6 +187,10 @@
       <Project>{7DF52D2B-D069-418D-A631-A042C99E0EE6}</Project>
       <Name>MidLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SearchEngine\SearchEngine.csproj">
+      <Project>{EAAED226-0D72-446F-803D-FF940624A988}</Project>
+      <Name>SearchEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\子湖科技\Archive\dms\" />
