@@ -12,7 +12,7 @@ using Gizmox.WebGUI.Forms;
 using Gizmox.WebGUI.Common.Resources;
 using CommonUI;
 using MidLayer;
-
+using Olake.WDS;
 #endregion
 
 namespace UI
@@ -633,29 +633,42 @@ namespace UI
             }
         }
 
-        //（右侧文件列表）打开文件——赵英武
-        private void menuOpen_Click(object sender, EventArgs e)
+        private void menuSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                FileList selectedfile = GetActiveFileList();
-                ListView filelistview = new ListView();
-                if(selectedfile == null)
+                int selectedResource = GetSelectedTreeResource();
+                SearchForm searchForm = new SearchForm();
+                searchForm.CurrentResource = selectedResource;
+                searchForm.Closed += new EventHandler(SearchFrom_Closed);
+                searchForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchFrom_Closed(object sender, EventArgs e)
+        {
+            SearchForm searchForm = (SearchForm)sender;
+            if (searchForm.DialogResult != DialogResult.OK)
+                return;
+
+            try
+            {
+                List<CSearchResultItem> result = searchForm.SearchResult;
+                if (result.Count == 0)
                 {
-                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 else
                 {
-                    System.Diagnostics.Process.Start(filelistview.Columns[0].Text);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("系统错误:" + ex.Message,"文档管理系统",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("搜索失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-           // throw new Exception("The method or operation is not implemented.");
         }
     }
 }
