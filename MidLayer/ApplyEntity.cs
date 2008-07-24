@@ -23,47 +23,20 @@ namespace MidLayer
         /// <summary>
         ///此方法在批准申请时调用。将审核状态（App_Audited）改为已批准。
         /// </summary>
-        public void Permit(int ResId)
+        public void Permit()
         {
-            CApplyEntity aRes = new CApplyEntity();
-            if (aRes.GetObjectList("this.App_ResId='" + ResId + "'").Count <= 0)
-                throw new Exception("没有该条记录！");
-            else
-            {
-                aRes.App_Audited = (int)AUDITE.AUDITED;
-                aRes.App_AudTime = DateTime.Now;
-                aRes.Update("this.App_ResId='" + ResId + "'");
-            }
+            this.App_Audited = (int)AUDITE.AUDITED;
+            this.App_AudTime = DateTime.Now;
+            this.Update();
         }
         /// <summary>
         /// 此方法在不批准申请时调用。将审核状态（App_Audited）改为未批准。
         /// </summary>
-        public void Cancel(int apply)
+        public void Cancel()
         {
-            CApplyEntity aRes = new CApplyEntity();
-            if (aRes.GetObjectList("this.App_Id='" + apply + "'").Count <= 0)
-                throw new Exception("没有该条记录！");
-            else
-            {
-                aRes.App_Audited = (int)AUDITE.UNAUDITED;
-                aRes.App_AudTime = DateTime.Now;
-                aRes.Update("this.App_Id='" + apply + "'");
-            }
-        }
-        /// <summary>
-        /// 删除归档申请
-        /// </summary>
-        /// <param name="ResId"></param>
-        /// <returns></returns>
-        public void Delete(int apply)
-        {
-            CApplyEntity aRes = new CApplyEntity();
-            if (aRes.GetObjectList("this.App_Id='" + apply + "'").Count <= 0)
-                throw new Exception("没有该条记录！");
-            else
-            {
-                aRes.Delete("this.App_Id='" + apply + "'");
-            }
+            this.App_Audited = (int)AUDITE.UNAUDITED;
+            this.App_AudTime = DateTime.Now;
+            this.Update();
         }
 
 #region grove生成的成员

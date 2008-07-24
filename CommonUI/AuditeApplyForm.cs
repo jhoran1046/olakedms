@@ -52,8 +52,7 @@ namespace CommonUI
 
             try
             {
-                int SelectedCount = lsvOrgApply.SelectedItems.Count;
-                if(SelectedCount <= 0)//判断选中项目与否
+                if (lsvOrgApply.SelectedItems.Count <= 0)//判断选中项目与否
                 {
                     MessageBox.Show("请选中项目！", "文档管理系统", MessageBoxButtons.OK);
                     return;
@@ -72,15 +71,10 @@ namespace CommonUI
                              this._achiveResourceId = (int)AuditeDirTree.MainTreeView.SelectedNode.Tag;
                              _currentUser.PermitApply((int)item.Tag, _achiveResourceId);
                          }
-                        
                     }
-                    if(SelectedCount > 0)
-                    {
-                        MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                   
+                    MessageBox.Show("您选择的项目已批准", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                lsvOrgApply.Update();
+                LoadOrgApp();
                 AuditeDirTree.Invalidate();
             }
             catch(Exception ex)
@@ -109,13 +103,10 @@ namespace CommonUI
                         int applyId = (int)item.Tag;
                         _currentUser.CancelApply(applyId);
                     }
-                    if(SelectedCount > 0)
-                    {
-                        MessageBox.Show("审核成功！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);                       
-                    }
+                    MessageBox.Show("审核成功！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);                       
                 }
-                
-                lsvOrgApply.Update();
+                LoadOrgApp();
+                MessageBox.Show("您选择的项目已拒绝", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
@@ -151,13 +142,10 @@ namespace CommonUI
 
             try
             {
+                lsvOrgApply.Items.Clear();
                 List<CApplyInfoEntity> OrgAppList = new List<CApplyInfoEntity>();
                 OrgAppList = _currentUser.ListOrganizeApplies();
-                if (OrgAppList.Count < 0)
-                {
-                    lsvOrgApply.DataSource = null;
-                    return;
-                }
+                
                 foreach (CApplyInfoEntity apply in OrgAppList)
                 {
                     ListViewItem lviName = new ListViewItem();
@@ -200,7 +188,6 @@ namespace CommonUI
 
                     lsvOrgApply.Items.Add(lviName);
                 }
-                lsvOrgApply.Invalidate();
             }
             catch(Exception ex)
             {

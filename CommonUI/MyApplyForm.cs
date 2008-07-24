@@ -67,17 +67,14 @@ namespace CommonUI
                         MessageBox.Show("系统错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
-                    else
-                    {
-                        lsvMyApply.SelectedItem.Remove();
-                    }
                 }
                 if (SelectedCount > 0)//若进行了撤销处理，则判断操作成功与否
                 {
+                    LoadMyApply();
                     if (DeleteApp == true)
                     {
                         MessageBox.Show("撤销成功！", "文档管理系统", MessageBoxButtons.OK);
-                        lsvMyApply.Invalidate();
+                        
                     }
                     else
                         MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
@@ -119,11 +116,7 @@ namespace CommonUI
             {
                 List<CApplyInfoEntity> myAppList = new List<CApplyInfoEntity>();
                 myAppList = _CurrentUser.ListMyApplies();
-                if (myAppList.Count < 0)
-                {
-                    lsvMyApply.DataSource = null;
-                    return;
-                }
+                lsvMyApply.Items.Clear();
                 foreach (CApplyInfoEntity apply in myAppList)
                 {
                     ListViewItem lviName = new ListViewItem();
@@ -166,7 +159,6 @@ namespace CommonUI
 
                     lsvMyApply.Items.Add(lviName);
                 }
-                lsvMyApply.Invalidate();
             }
             catch(Exception ex)
             {

@@ -37,10 +37,6 @@ namespace UI
         public MainForm ()
         {
             InitializeComponent ( );
-
-            MidLayerSettings.ConnectionString = "Provider=SQLOLEDB.1;Data Source=WIN2003;Initial Catalog=DMS;User ID=sa;password=a;connect timeout = 300";
-            MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
-
             _clipBoard = new ResourceClip();
         }
 
