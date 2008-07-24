@@ -57,7 +57,7 @@ namespace MidLayer
             ConnString = MidLayerSettings.ConnectionString;
         }
 
-        public String MakeFullPath()
+        public String MakeCompletePath()
         {
             if (Res_Type != (int)RESOURCETYPE.FOLDERRESOURCE && Res_Type != (int)RESOURCETYPE.FILERESOURCE)
                 throw new Exception("资源不是文件或目录。 ID=" + Res_Id);
@@ -87,12 +87,18 @@ namespace MidLayer
                     }
                 }
 
-                return Path.Combine(MidLayerSettings.AppPath, fullPath);
+                return fullPath;
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        public String MakeFullPath()
+        {
+            String fullPath = MakeCompletePath();
+            return Path.Combine(MidLayerSettings.AppPath, fullPath);
         }
 
         public bool IsChild(int parentId)
