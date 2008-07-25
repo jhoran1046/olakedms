@@ -35,7 +35,7 @@ namespace CommonUI
         {
             CResourceEntity aRes = new CResourceEntity();
             aRes = aRes.Load(_resId);
-            txtResId.Text=aRes.MakeFullPath();          
+            txtResId.Text=aRes.MakeCompletePath();          
         }
 
         //提交申请完成后，跳转到MyApplyForm页

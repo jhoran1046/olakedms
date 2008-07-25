@@ -143,6 +143,12 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SearchList.Designer.cs">
+      <DependentUpon>SearchList.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\searchTest\doc\西门子生产记录系统使用手册V2.0.doc" />
@@ -172,6 +178,10 @@
     <EmbeddedResource Include="SearchForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchList.resx">
+      <DependentUpon>SearchList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

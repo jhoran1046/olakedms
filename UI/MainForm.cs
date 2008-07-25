@@ -24,6 +24,7 @@ namespace UI
         FileList _shareFileList = new FileList();
         UserList _userList = new UserList();
         GroupList _groupList = new GroupList();
+        SearchList _searchList = new SearchList();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -637,9 +638,13 @@ namespace UI
         {
             try
             {
-                int selectedResource = GetSelectedTreeResource();
+                int selectedResource = 0;
+                TreeNode node = GetSelectedTreeNode();
+                if (node != null && node.Tag is int)
+                    selectedResource = (int)node.Tag;
                 SearchForm searchForm = new SearchForm();
                 searchForm.CurrentResource = selectedResource;
+                searchForm.CurrentUser = _currentUser;
                 searchForm.Closed += new EventHandler(SearchFrom_Closed);
                 searchForm.ShowDialog();
             }
@@ -660,9 +665,14 @@ namespace UI
                 List<CSearchResultItem> result = searchForm.SearchResult;
                 if (result.Count == 0)
                 {
+                    MessageBox.Show("搜索结果为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    this._searchList.Init(result);
+                    this.mainSplit.Panel2.Controls.Clear();
+                    this.mainSplit.Panel2.Controls.Add(_searchList);
+                    _searchList.Dock = DockStyle.Fill;
                 }
             }
             catch (Exception ex)
