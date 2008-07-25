@@ -161,6 +161,7 @@ namespace UI
             this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuPaste.Text = "Paste";
             this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
+            // 
             // menuSearch
             // 
             this.menuSearch.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
