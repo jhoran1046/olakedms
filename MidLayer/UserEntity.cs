@@ -71,7 +71,7 @@ namespace MidLayer
         }
         [DataField("Usr_Email")]
         public String Usr_Email
-        {
+        { 
             get { return this._Usr_Email; }
             set { this._Usr_Email = value; }
         }

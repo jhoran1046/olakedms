@@ -90,6 +90,7 @@ namespace CommonUI
             // UserList
             // 
             this.Controls.Add(this.userListView);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(391, 326);
             this.Text = "UserList";
             this.Load += new System.EventHandler(this.UserList_Load);

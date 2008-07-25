@@ -38,6 +38,8 @@ namespace CommonUI
             this.label5 = new Gizmox.WebGUI.Forms.Label();
             this.btnOK = new Gizmox.WebGUI.Forms.Button();
             this.btnCancel = new Gizmox.WebGUI.Forms.Button();
+            this.label6 = new Gizmox.WebGUI.Forms.Label();
+            this.txtEmail = new Gizmox.WebGUI.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +117,7 @@ namespace CommonUI
             // 
             this.btnOK.DialogResult = Gizmox.WebGUI.Forms.DialogResult.OK;
             this.btnOK.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnOK.Location = new System.Drawing.Point(46, 182);
+            this.btnOK.Location = new System.Drawing.Point(43, 209);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
@@ -127,7 +129,7 @@ namespace CommonUI
             // 
             this.btnCancel.DialogResult = Gizmox.WebGUI.Forms.DialogResult.Cancel;
             this.btnCancel.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnCancel.Location = new System.Drawing.Point(170, 182);
+            this.btnCancel.Location = new System.Drawing.Point(169, 209);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -135,8 +137,27 @@ namespace CommonUI
             this.btnCancel.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label6
+            // 
+            this.label6.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.label6.Location = new System.Drawing.Point(44, 161);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 17);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "E_mail";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtEmail.Location = new System.Drawing.Point(104, 158);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(151, 20);
+            this.txtEmail.TabIndex = 6;
+            // 
             // UserForm
             // 
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label4);
@@ -146,7 +167,7 @@ namespace CommonUI
             this.Controls.Add(this.memberBox);
             this.Controls.Add(this.label1);
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(299, 249);
+            this.Size = new System.Drawing.Size(302, 284);
             this.Text = "用户管理";
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.ResumeLayout(false);
@@ -165,6 +186,8 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.Label label5;
         private Gizmox.WebGUI.Forms.Button btnOK;
         private Gizmox.WebGUI.Forms.Button btnCancel;
+        private Gizmox.WebGUI.Forms.Label label6;
+        private Gizmox.WebGUI.Forms.TextBox txtEmail;
 
 
     }

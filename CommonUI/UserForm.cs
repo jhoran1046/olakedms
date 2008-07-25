@@ -19,6 +19,7 @@ namespace CommonUI
         private String _member="";
         private String _password="";
         private String _name="";
+        private String _email = "";
 
         public UserForm()
         {
@@ -30,6 +31,7 @@ namespace CommonUI
             _member = memberBox.Text;
             _password = passwordBox.Text;
             _name = nameBox.Text;
+            _email = txtEmail.Text;
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -59,11 +61,18 @@ namespace CommonUI
             set { _name = value; }
         }
 
+        public String Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
         private void UserForm_Load(object sender, EventArgs e)
         {
             memberBox.Text = _member;
             passwordBox.Text = _password;
             nameBox.Text = _name;
+            txtEmail.Text = _email;
         }
     }
 }

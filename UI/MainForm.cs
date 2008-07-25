@@ -103,7 +103,6 @@ namespace UI
                 function.Image = new IconResourceHandle("importantmail.gif");
                 myinfoFunctions.Add(function);
 
-
                 function = new CFunction();
                 function.Name = "其它信息";
                 function.Image = new IconResourceHandle("member.gif");
@@ -117,6 +116,7 @@ namespace UI
 
                 this.myinfofunctionTree.FunctionList = myinfoFunctions;
                 this.myinfofunctionTree.TreeEvent += FunctionTreeEventHandler;
+
 
                 //我的文档
                 myDirTree.RootDir = Context.Server.MapPath("~/");
@@ -491,6 +491,7 @@ namespace UI
                 newUser.Usr_Member = userForm.Member;
                 newUser.Usr_Password = userForm.Password;
                 newUser.Usr_Name = userForm.UserName;
+                newUser.Usr_Email = userForm.Email;
                 newUser.Usr_Organize = _currentUser.Usr_Organize;
                 _currentUser.CreateNormalUser(newUser);
             }
