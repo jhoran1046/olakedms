@@ -203,9 +203,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\子湖科技\Archive\dms\" />
-    <Folder Include="App_Data\子湖科技\Archive\oraltest\" />
-    <Folder Include="App_Data\子湖科技\olake\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
