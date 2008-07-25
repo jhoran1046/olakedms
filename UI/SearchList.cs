@@ -73,7 +73,7 @@ namespace UI
         {
             if (strAction == "Download")
             {
-                String fileName = "attachment; filename=" + searchListView.SelectedItem.Text;
+                String fileName = "attachment; filename=\"" + searchListView.SelectedItem.Text + "\"";
                 String fullPath = (String)searchListView.SelectedItem.Tag;
                 objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
                 objContext.HttpContext.Response.WriteFile(fullPath);
