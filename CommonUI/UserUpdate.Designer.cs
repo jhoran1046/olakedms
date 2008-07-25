@@ -60,7 +60,6 @@ namespace CommonUI
             this.groupBox1.Size = new System.Drawing.Size(365, 259);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.Text = "修改个人信息";
-            this.groupBox1.Visible = false;
             // 
             // btnCancel
             // 
@@ -71,7 +70,6 @@ namespace CommonUI
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "取消";
             this.btnCancel.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
@@ -83,7 +81,6 @@ namespace CommonUI
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "保存";
             this.btnSave.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtEmail
@@ -93,7 +90,6 @@ namespace CommonUI
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(151, 20);
             this.txtEmail.TabIndex = 7;
-            this.txtEmail.Visible = false;
             // 
             // txtName
             // 
@@ -102,7 +98,6 @@ namespace CommonUI
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(151, 20);
             this.txtName.TabIndex = 6;
-            this.txtName.Visible = false;
             // 
             // txtPassword
             // 
@@ -111,7 +106,6 @@ namespace CommonUI
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(151, 20);
             this.txtPassword.TabIndex = 5;
-            this.txtPassword.Visible = false;
             // 
             // txtMember
             // 
@@ -121,7 +115,6 @@ namespace CommonUI
             this.txtMember.ReadOnly = true;
             this.txtMember.Size = new System.Drawing.Size(151, 20);
             this.txtMember.TabIndex = 4;
-            this.txtMember.Visible = false;
             // 
             // label4
             // 
@@ -131,7 +124,6 @@ namespace CommonUI
             this.label4.Size = new System.Drawing.Size(47, 23);
             this.label4.TabIndex = 3;
             this.label4.Text = "E_mail";
-            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -141,7 +133,6 @@ namespace CommonUI
             this.label3.Size = new System.Drawing.Size(63, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "真实姓名";
-            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -151,7 +142,6 @@ namespace CommonUI
             this.label2.Size = new System.Drawing.Size(63, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "密       码";
-            this.label2.Visible = false;
             // 
             // label1
             // 
@@ -161,9 +151,8 @@ namespace CommonUI
             this.label1.Size = new System.Drawing.Size(63, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "用户账号";
-            this.label1.Visible = false;
             // 
-            // UserControl1
+            // UserUpdate
             // 
             this.Controls.Add(this.groupBox1);
             this.Size = new System.Drawing.Size(430, 298);
