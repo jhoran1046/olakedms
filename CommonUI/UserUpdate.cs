@@ -15,7 +15,7 @@ using MidLayer;
 
 namespace CommonUI
 {
-    public partial class UserControl1 : UserControl
+    public partial class UserUpdate : UserControl
     {
         CUserEntity _currentUser;
 
@@ -25,7 +25,7 @@ namespace CommonUI
             set { _currentUser = value; }
         }
 
-        public UserControl1()
+        public UserUpdate()
         {
             InitializeComponent();
         }
