@@ -160,8 +160,6 @@ namespace CommonUI
                     ListViewItem.ListViewSubItem lvsiCreTime;
                    // ListViewItem.ListViewSubItem lvsiAudTime;
 
-                    lsvOrgApply.Items.Clear();
-
                     lviName.Text = apply.Res_Name;
                     lviName.Tag = apply.App_Id;
 

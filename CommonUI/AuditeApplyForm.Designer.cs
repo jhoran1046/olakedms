@@ -80,7 +80,7 @@ namespace CommonUI
             this.lsvOrgApply.ItemsPerPage = 20;
             this.lsvOrgApply.Location = new System.Drawing.Point(0, 0);
             this.lsvOrgApply.Name = "lsvOrgApply";
-            this.lsvOrgApply.Size = new System.Drawing.Size(627, 161);
+            this.lsvOrgApply.Size = new System.Drawing.Size(605, 161);
             this.lsvOrgApply.TabIndex = 6;
             // 
             // columnDocName
@@ -88,14 +88,14 @@ namespace CommonUI
             this.columnDocName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnDocName.Image = null;
             this.columnDocName.Text = "√˚≥∆";
-            this.columnDocName.Width = 150;
+            this.columnDocName.Width = 100;
             // 
             // columnApplyer
             // 
             this.columnApplyer.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnApplyer.Image = null;
             this.columnApplyer.Text = "…Í«Î»À";
-            this.columnApplyer.Width = 150;
+            this.columnApplyer.Width = 100;
             // 
             // columnComment
             // 
@@ -109,7 +109,7 @@ namespace CommonUI
             this.columnState.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnState.Image = null;
             this.columnState.Text = "◊¥Ã¨";
-            this.columnState.Width = 150;
+            this.columnState.Width = 100;
             // 
             // columnApyDate
             // 
@@ -169,7 +169,7 @@ namespace CommonUI
             this.Controls.Add(this.btnRefuse);
             this.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(627, 410);
+            this.Size = new System.Drawing.Size(605, 408);
             this.Text = "…Û∫ÀπÈµµ…Í«Î";
             this.Load += new System.EventHandler(this.ManageAppForm_Load);
             this.ResumeLayout(false);
