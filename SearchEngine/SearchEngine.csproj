@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.Search.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f748985a6e9a7cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\Setup\wdsdk\Managed\Microsoft.Search.Interop.dll</HintPath>
+      <HintPath>D:\Program Files\Managed\Microsoft.Search.Interop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

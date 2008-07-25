@@ -30,11 +30,11 @@ namespace CommonUI
             InitializeComponent();
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
+        private void UserUpdate_Load(object sender, EventArgs e)
         {
-            txtMember.Text = _currentUser.Usr_Member;
-            txtPassword.Text = _currentUser.Usr_Password;
-            txtName.Text = _currentUser.Usr_Name;
+            txtMember.Text = _currentUser.Usr_Member.ToString();
+            txtPassword.Text = _currentUser.Usr_Password.ToString();
+            txtName.Text = _currentUser.Usr_Name.ToString();
             txtEmail.Text = _currentUser.Usr_Email;
         }
         

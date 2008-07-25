@@ -157,7 +157,7 @@ namespace CommonUI
             this.Controls.Add(this.groupBox1);
             this.Size = new System.Drawing.Size(430, 298);
             this.Text = "UserControl1";
-            this.Load += new System.EventHandler(this.UserControl1_Load);
+            this.Load += new System.EventHandler(this.UserUpdate_Load);
             this.ResumeLayout(false);
 
         }

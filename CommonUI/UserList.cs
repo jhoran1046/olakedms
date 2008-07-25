@@ -116,6 +116,7 @@ namespace CommonUI
                 newUser.Usr_Member = userForm.Member;
                 newUser.Usr_Password = userForm.Password;
                 newUser.Usr_Name = userForm.UserName;
+                newUser.Usr_Email = userForm.Email;
                 newUser.Usr_Organize = _currentUser.Usr_Organize;
                 _currentUser.CreateNormalUser(newUser);
                 this.LoadUsers();
@@ -167,6 +168,7 @@ namespace CommonUI
                 userForm.Member = user.Usr_Member;
                 userForm.Password = user.Usr_Password;
                 userForm.UserName = user.Usr_Name;
+                userForm.Email = user.Usr_Email;
                 userForm.Closed += new EventHandler(ModifyUser_Closed);
                 userForm.ShowDialog();
             }
@@ -188,6 +190,7 @@ namespace CommonUI
                 user.Usr_Member = userForm.Member;
                 user.Usr_Password = userForm.Password;
                 user.Usr_Name = userForm.UserName;
+                user.Usr_Email = userForm.Email;
                 _currentUser.ModifyUser(user);
                 this.LoadUsers();
             }
