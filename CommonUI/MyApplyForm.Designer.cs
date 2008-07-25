@@ -54,7 +54,7 @@ namespace CommonUI
             this.lsvMyApply.ItemsPerPage = 20;
             this.lsvMyApply.Location = new System.Drawing.Point(0, 0);
             this.lsvMyApply.Name = "lsvMyApply";
-            this.lsvMyApply.Size = new System.Drawing.Size(678, 216);
+            this.lsvMyApply.Size = new System.Drawing.Size(606, 216);
             this.lsvMyApply.TabIndex = 0;
             // 
             // columnDocName
@@ -63,14 +63,14 @@ namespace CommonUI
             this.columnDocName.Image = null;
             this.columnDocName.Text = "名称";
             this.columnDocName.TextAlign = Gizmox.WebGUI.Forms.HorizontalAlignment.Center;
-            this.columnDocName.Width = 150;
+            this.columnDocName.Width = 100;
             // 
             // columnApplyer
             // 
             this.columnApplyer.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnApplyer.Image = null;
             this.columnApplyer.Text = "申请人";
-            this.columnApplyer.Width = 150;
+            this.columnApplyer.Width = 100;
             // 
             // columnComment
             // 
@@ -84,7 +84,7 @@ namespace CommonUI
             this.columnState.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnState.Image = null;
             this.columnState.Text = "状态";
-            this.columnState.Width = 150;
+            this.columnState.Width = 100;
             // 
             // columnApyDate
             // 
@@ -139,7 +139,7 @@ namespace CommonUI
             this.Controls.Add(this.btnDisfrock);
             this.Controls.Add(this.lsvMyApply);
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(678, 350);
+            this.Size = new System.Drawing.Size(606, 320);
             this.Text = "我的归档申请列表";
             this.Load += new System.EventHandler(this.MyApplyForm_Load);
             this.ResumeLayout(false);

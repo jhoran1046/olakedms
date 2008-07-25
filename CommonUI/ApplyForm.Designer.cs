@@ -106,8 +106,8 @@ namespace CommonUI
             this.Controls.Add(this.btnSubmission);
             this.Controls.Add(this.txtComment);
             this.Controls.Add(this.txtResId);
-            this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(429, 276);
+            this.Location = new System.Drawing.Point(210, 80);
+            this.Size = new System.Drawing.Size(362, 262);
             this.Text = "πÈµµ…Í«Î";
             this.Load += new System.EventHandler(this.SortApplyForm_Load);
             this.ResumeLayout(false);
