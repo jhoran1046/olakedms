@@ -154,7 +154,7 @@ namespace CommonUI
                 if (!_currentUser.CheckPrivilege(acl))
                     return null;
                 CResourceEntity resource = new CResourceEntity(_currentUser.ConnString).Load(res);
-                String fileName = "attachment; filename=" + resource.Res_Name;
+                String fileName = "attachment; filename=\"" + resource.Res_Name + "\"";
                 String fullPath = resource.MakeFullPath();
                 objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
                 objContext.HttpContext.Response.WriteFile(fullPath);
@@ -224,6 +224,12 @@ namespace CommonUI
 
         private void menuOpenFile_Click(object sender, EventArgs e)
         {
+            if (fileListView.SelectedItem == null)
+            {
+                MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             LinkParameters objLinkParameters = new LinkParameters();
             objLinkParameters.Target = "_self";
 
