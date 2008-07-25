@@ -122,11 +122,11 @@
       <DependentUpon>ShareForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ShareHelpClass.cs" />
-    <Compile Include="UserControl1.cs">
+    <Compile Include="UserUpdate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="UserUpdate.Designer.cs">
+      <DependentUpon>UserUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
@@ -195,9 +195,9 @@
       <DependentUpon>ShareForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
+    <EmbeddedResource Include="UserUpdate.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>UserControl1.cs</DependentUpon>
+      <DependentUpon>UserUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>

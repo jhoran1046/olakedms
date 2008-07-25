@@ -1,6 +1,6 @@
 namespace CommonUI
 {
-    partial class UserControl1
+    partial class UserUpdate
     {
         /// <summary>
         /// Required designer variable.
