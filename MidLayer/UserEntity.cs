@@ -23,6 +23,7 @@ namespace MidLayer
         Int32 _Usr_Resource;
         Int32 _Usr_Organize;
         Int32 _Usr_Type;
+        String _Usr_Email;
 
         private COrganizeEntity m_userOrganize;
 
@@ -67,6 +68,12 @@ namespace MidLayer
         {
             get { return this._Usr_Type; }
             set { this._Usr_Type = value; }
+        }
+        [DataField("Usr_Email")]
+        public String Usr_Email
+        {
+            get { return this._Usr_Email; }
+            set { this._Usr_Email = value; }
         }
 
         public CUserEntity(String connectionString)
