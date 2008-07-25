@@ -33,10 +33,10 @@ namespace UI
             this.OKBtn = new Gizmox.WebGUI.Forms.Button();
             this.CancelBtn = new Gizmox.WebGUI.Forms.Button();
             this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
-            this.currentDirBox = new Gizmox.WebGUI.Forms.CheckBox();
-            this.myDirBox = new Gizmox.WebGUI.Forms.CheckBox();
-            this.archiveDirBox = new Gizmox.WebGUI.Forms.CheckBox();
             this.shareDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.archiveDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.myDirBox = new Gizmox.WebGUI.Forms.CheckBox();
+            this.currentDirBox = new Gizmox.WebGUI.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +92,45 @@ namespace UI
             this.groupBox1.TabIndex = 4;
             this.groupBox1.Text = "检索范围";
             // 
+            // shareDirBox
+            // 
+            this.shareDirBox.Checked = true;
+            this.shareDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.shareDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.shareDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.shareDirBox.Location = new System.Drawing.Point(48, 118);
+            this.shareDirBox.Name = "shareDirBox";
+            this.shareDirBox.Size = new System.Drawing.Size(104, 24);
+            this.shareDirBox.TabIndex = 3;
+            this.shareDirBox.Text = "共享目录";
+            this.shareDirBox.ThreeState = false;
+            // 
+            // archiveDirBox
+            // 
+            this.archiveDirBox.Checked = true;
+            this.archiveDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.archiveDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.archiveDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.archiveDirBox.Location = new System.Drawing.Point(48, 88);
+            this.archiveDirBox.Name = "archiveDirBox";
+            this.archiveDirBox.Size = new System.Drawing.Size(104, 24);
+            this.archiveDirBox.TabIndex = 2;
+            this.archiveDirBox.Text = "归档区";
+            this.archiveDirBox.ThreeState = false;
+            // 
+            // myDirBox
+            // 
+            this.myDirBox.Checked = true;
+            this.myDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.myDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.myDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.myDirBox.Location = new System.Drawing.Point(48, 58);
+            this.myDirBox.Name = "myDirBox";
+            this.myDirBox.Size = new System.Drawing.Size(104, 24);
+            this.myDirBox.TabIndex = 1;
+            this.myDirBox.Text = "我的文档";
+            this.myDirBox.ThreeState = false;
+            // 
             // currentDirBox
             // 
             this.currentDirBox.Checked = false;
@@ -105,45 +144,6 @@ namespace UI
             this.currentDirBox.Text = "当前目录";
             this.currentDirBox.ThreeState = false;
             // 
-            // myDirBox
-            // 
-            this.myDirBox.Checked = false;
-            this.myDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.myDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.myDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.myDirBox.Location = new System.Drawing.Point(48, 58);
-            this.myDirBox.Name = "myDirBox";
-            this.myDirBox.Size = new System.Drawing.Size(104, 24);
-            this.myDirBox.TabIndex = 1;
-            this.myDirBox.Text = "我的文档";
-            this.myDirBox.ThreeState = false;
-            // 
-            // archiveDirBox
-            // 
-            this.archiveDirBox.Checked = false;
-            this.archiveDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.archiveDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.archiveDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.archiveDirBox.Location = new System.Drawing.Point(48, 88);
-            this.archiveDirBox.Name = "archiveDirBox";
-            this.archiveDirBox.Size = new System.Drawing.Size(104, 24);
-            this.archiveDirBox.TabIndex = 2;
-            this.archiveDirBox.Text = "归档区";
-            this.archiveDirBox.ThreeState = false;
-            // 
-            // shareDirBox
-            // 
-            this.shareDirBox.Checked = false;
-            this.shareDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.shareDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.shareDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.shareDirBox.Location = new System.Drawing.Point(48, 118);
-            this.shareDirBox.Name = "shareDirBox";
-            this.shareDirBox.Size = new System.Drawing.Size(104, 24);
-            this.shareDirBox.TabIndex = 3;
-            this.shareDirBox.Text = "共享目录";
-            this.shareDirBox.ThreeState = false;
-            // 
             // SearchForm
             // 
             this.Controls.Add(this.groupBox1);
@@ -151,12 +151,13 @@ namespace UI
             this.Controls.Add(this.OKBtn);
             this.Controls.Add(this.targetBox);
             this.Controls.Add(this.label1);
-            this.Location = new System.Drawing.Point(15, -73);
+            this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Size = new System.Drawing.Size(473, 299);
             this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
             this.Text = "全文检索";
+            this.Load += new System.EventHandler(this.SearchForm_Load);
             this.ResumeLayout(false);
 
         }

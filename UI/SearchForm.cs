@@ -24,6 +24,13 @@ namespace UI
             get { return _result; }
         }
 
+        CUserEntity _currentUser;
+        public CUserEntity CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
+
         private int _resource;
         public int CurrentResource
         {
@@ -46,9 +53,71 @@ namespace UI
                 return;
             }
 
-            String scope = "f:/Game";
-            CSearchDAL searchEngine = new CSearchDAL();
-            _result = searchEngine.SearchFolder(targetText, scope);
+            List<String> searchScopes = new List<string>();
+
+            if (currentDirBox.Checked)
+            {
+                CResourceEntity res = new CResourceEntity().Load(_resource);
+                String curDir = res.MakeFullPath();
+                searchScopes.Add(curDir);
+            }
+
+            if (myDirBox.Checked)
+            {
+                int myDirId = _currentUser.Usr_Resource;
+                CResourceEntity res = new CResourceEntity().Load(myDirId);
+                String myDir = res.MakeFullPath();
+                searchScopes.Add(myDir);
+            }
+
+            if (archiveDirBox.Checked)
+            {
+                int archiveId = _currentUser.GetUserOrganize().Org_ArchiveRes;
+                CACLEntity acl1 = new CACLEntity();
+                acl1.Acl_Resource = archiveId;
+                acl1.Acl_Operation = (int)ACLOPERATION.READ;
+
+                if (_currentUser.CheckPrivilege(acl1))
+                {
+                    CResourceEntity res = new CResourceEntity().Load(archiveId);
+                    String archiveDir = res.MakeFullPath();
+                    searchScopes.Add(archiveDir);
+                }
+                else
+                {
+                    List<CResourceEntity> ress = _currentUser.ListDescendants(archiveId);
+                    foreach (CResourceEntity res in ress)
+                    {
+                        searchScopes.Add(res.MakeFullPath());
+                    }
+                }
+            }
+
+            if (shareDirBox.Checked)
+            {
+                List<CResourceEntity> ress = _currentUser.ListShareResources();
+                foreach (CResourceEntity res in ress)
+                {
+                    searchScopes.Add(res.MakeFullPath());
+                }
+            }
+
+            _result.Clear();
+            foreach (String s in searchScopes)
+            {
+                String scope = s;
+                if (scope[scope.Length - 1] == '\\')
+                    scope = scope.Substring(0, scope.Length - 1);
+                scope = scope.Replace('\\', '/');
+                
+                CSearchDAL searchEngine = new CSearchDAL();
+                List<CSearchResultItem> tempResult = searchEngine.SearchFolder(targetText, scope);
+                if (tempResult.Count > 0)
+                {
+                    _result.AddRange(tempResult);
+                }
+            }
+
             this.DialogResult = DialogResult.OK;
             Close();
         }
@@ -57,6 +126,20 @@ namespace UI
         {
             this.DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void SearchForm_Load(object sender, EventArgs e)
+        {
+            if (_resource > 0)
+            {
+                CResourceEntity res = new CResourceEntity().Load(_resource);
+                currentDirBox.Text = "µ±Ç°Ä¿Â¼£º" + res.MakeCompletePath();
+            }
+            else
+            {
+                currentDirBox.Checked = false;
+                currentDirBox.Enabled = false;
+            }
         }
     }
 }
