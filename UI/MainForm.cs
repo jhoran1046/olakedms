@@ -24,7 +24,11 @@ namespace UI
         FileList _shareFileList = new FileList();
         UserList _userList = new UserList();
         GroupList _groupList = new GroupList();
+<<<<<<< .mine
+        UserUpdate _userUpdate = new UserUpdate();
+=======
         SearchList _searchList = new SearchList();
+>>>>>>> .r80
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -65,6 +69,7 @@ namespace UI
                 _shareFileList.CurrentUser = _currentUser;
                 _userList.CurrentUser = _currentUser;
                 _groupList.CurrentUser = _currentUser;
+                _userUpdate.CurrentUser = _currentUser;
 
 
                 //系统管理
@@ -107,8 +112,14 @@ namespace UI
                 function.Image = new IconResourceHandle("member.gif");
                 myinfoFunctions.Add(function);
 
-                this.myinfofunctionTree.FunctionList = myinfoFunctions;
+                function = new CFunction();
+                function.Name = "修改个人信息";
+                function.Image = new IconResourceHandle("member.gif");
+                function.Ui = _userUpdate;
+                myinfoFunctions.Add(function);
 
+                this.myinfofunctionTree.FunctionList = myinfoFunctions;
+                this.myinfofunctionTree.TreeEvent += TreeEventHandler;
                 //我的文档
                 myDirTree.RootDir = Context.Server.MapPath("~/");
                 myDirTree.Init();
@@ -678,6 +689,16 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("搜索失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void TreeEventHandler(object sender, FunctionTreeEventArgs e)
+        {
+            if(e.UI != null)
+            {
+                this.mainSplit.Panel2.Controls.Clear();
+                this.mainSplit.Panel2.Controls.Add(e.UI);
+                e.UI.Dock = DockStyle.Fill;
+             //   return;
             }
         }
     }
