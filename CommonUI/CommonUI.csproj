@@ -240,6 +240,7 @@
     <Content Include="Icons\Delete.GIF" />
     <Content Include="Icons\DetailsView.gif" />
     <Content Include="Icons\Disable.gif" />
+    <Content Include="Icons\doc.ico" />
     <Content Include="Icons\EnsureVisible.gif" />
     <Content Include="Icons\Event.gif" />
     <Content Include="Icons\favicon.ico" />
@@ -275,8 +276,10 @@
     <Content Include="Icons\ShowLines.gif" />
     <Content Include="Icons\Sorting.gif" />
     <Content Include="Icons\Spelling.gif" />
+    <Content Include="Icons\txt.ico" />
     <Content Include="Icons\weekView.gif" />
     <Content Include="Icons\WorkWeekView.gif" />
+    <Content Include="txt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

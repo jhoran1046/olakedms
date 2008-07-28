@@ -150,18 +150,16 @@ namespace CommonUI
             this.AuditeDirTree.CurrentUser = null;
             this.AuditeDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.AuditeDirTree.FileListUI = null;
-            this.AuditeDirTree.Location = new System.Drawing.Point(241, 177);
+            this.AuditeDirTree.Location = new System.Drawing.Point(15, 15);
             this.AuditeDirTree.Name = "AuditeDirTree";
             this.AuditeDirTree.RootDir = null;
             this.AuditeDirTree.RootResourceId = 0;
-            this.AuditeDirTree.Size = new System.Drawing.Size(185, 221);
-            this.AuditeDirTree.TabIndex = 9;
+            this.AuditeDirTree.Size = new System.Drawing.Size(303, 306);
             this.AuditeDirTree.Text = "DirTree";
             // 
             // AuditeApplyForm
             // 
             this.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.Controls.Add(this.AuditeDirTree);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.chkAllSelect);
             this.Controls.Add(this.btnAccept);

@@ -75,10 +75,12 @@ namespace CommonUI
                     if(lsvOrgApply.SelectedItems.Count > 0)
                     {
                         MessageBox.Show("您选择的项目已批准！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadOrgApp();
+                        DirTree appDirTree = new DirTree();
+                        appDirTree.ReloadTreeNode(AuditeDirTree.MainTreeView.SelectedNode);
                     }
                 }
 
-                LoadOrgApp();
 
             }
             catch(Exception ex)
