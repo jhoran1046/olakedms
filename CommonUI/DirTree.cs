@@ -318,19 +318,26 @@ namespace CommonUI
 
         private void menuUpload_Click(object sender, EventArgs e)
         {
-            int selectedResource = GetSelectedTreeResource();
+         /*   int selectedResource = GetSelectedTreeResource();            
             if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }*/
+            try
+            {
+                GetSelectedTreeResource(); 
+                OpenFileDialog objFile = new OpenFileDialog();
+                objFile.FileOk += new CancelEventHandler(objFile_FileOk);
+                objFile.MaxFileSize = 1000000;
+                //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
+                objFile.Multiselect = true;
+                objFile.ShowDialog();
             }
-
-            OpenFileDialog objFile = new OpenFileDialog();
-            objFile.FileOk += new CancelEventHandler(objFile_FileOk);
-            objFile.MaxFileSize = 1000000;
-            //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
-            objFile.Multiselect = true;
-            objFile.ShowDialog();
+            catch(Exception ex)
+            {
+                MessageBox.Show("失败:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
 
         private void objFile_FileOk(object sender, CancelEventArgs e)
