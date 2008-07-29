@@ -250,28 +250,36 @@ namespace UI
 
         private void menuUpload_Click(object sender, EventArgs e)
         {
-            int selectedResource = GetSelectedTreeResource();
+          /*  int selectedResource = GetSelectedTreeResource();
             if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-            
-            CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
-            acl.Acl_Resource = selectedResource;
-            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
-            if (!_currentUser.CheckPrivilege(acl))
-            {
-                MessageBox.Show("没有写权限！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            } */
 
-            OpenFileDialog objFile = new OpenFileDialog();
-            objFile.FileOk += new CancelEventHandler(objFile_FileOk);
-            objFile.MaxFileSize = 1000000;
-            //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
-            objFile.Multiselect = true;
-            objFile.ShowDialog();
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
+                acl.Acl_Resource = selectedResource;
+                acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+                if (!_currentUser.CheckPrivilege(acl))
+                {
+                    MessageBox.Show("没有写权限！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                OpenFileDialog objFile = new OpenFileDialog();
+                objFile.FileOk += new CancelEventHandler(objFile_FileOk);
+                objFile.MaxFileSize = 1000000;
+                //objFile.Filter = "Image files(*.bmp;*.gif;*.jpg)|*.bmp;*.gif;*.jpg";
+                objFile.Multiselect = true;
+                objFile.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("警告:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
 
         private void objFile_FileOk(object sender, CancelEventArgs e)
@@ -353,15 +361,16 @@ namespace UI
 
         private void menuCreateFolder_Click(object sender, EventArgs e)
         {
-            int selectedResource = GetSelectedTreeResource();
+           /* int selectedResource = GetSelectedTreeResource();
             if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            } */
 
             try
             {
+                int selectedResource = GetSelectedTreeResource();
                 CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
                 acl.Acl_Resource = selectedResource;
                 acl.Acl_Operation = (int)ACLOPERATION.WRITE;
@@ -409,15 +418,17 @@ namespace UI
 
         private void menuDeleteFolder_Click(object sender, EventArgs e)
         {
-            int selectedResource = GetSelectedTreeResource();
+           /* int selectedResource = GetSelectedTreeResource();
             if (selectedResource <= 0)
             {
                 MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            } */
 
             try
             {
+                int selectedResource = GetSelectedTreeResource();
+
                 CACLEntity acl = new CACLEntity(MidLayerSettings.ConnectionString);
                 acl.Acl_Resource = selectedResource;
                 acl.Acl_Operation = (int)ACLOPERATION.WRITE;

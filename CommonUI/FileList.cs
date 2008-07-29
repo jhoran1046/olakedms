@@ -125,13 +125,13 @@ namespace CommonUI
                 ListViewItem.ListViewSubItem lvsi;
 
                 lvi.Text = f.FileName;
-                switch(f.Ext)
+                IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".ico");
+                if(icoHandle==null)
                 {
-                    case "doc": lvi.SmallImage = new IconResourceHandle("doc.ico");
-                        break;
-                    case "txt": lvi.SmallImage = new IconResourceHandle("txt.ico");
-                        break;
+                    icoHandle = new IconResourceHandle("anual.ico");
                 }
+                
+                lvi.SmallImage = icoHandle;
                 lvi.Tag = f.ResourceId;
 
                 lvsi = new ListViewItem.ListViewSubItem();
