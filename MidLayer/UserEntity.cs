@@ -317,7 +317,7 @@ namespace MidLayer
                 // add acls to admin, organize acl, root dir acl
                 COrganizeEntity organize = new COrganizeEntity(ConnString);
                 organize = organize.Load(user.Usr_Organize);
-
+/*
                 CACLEntity acl1 = new CACLEntity(ConnString);
                 acl1.Acl_CreateTime = DateTime.Now;
                 acl1.Acl_Creator = Usr_Id;
@@ -326,7 +326,7 @@ namespace MidLayer
                 acl1.Acl_Role = user.Usr_Id;
                 acl1.Acl_RType = (int)ACLROLETYPE.USERROLE;
                 acl1.Acl_Id = acl1.Insert();
-
+*/
                 CACLEntity acl2 = new CACLEntity(ConnString);
                 acl2.Acl_CreateTime = DateTime.Now;
                 acl2.Acl_Creator = Usr_Id;
@@ -965,8 +965,12 @@ namespace MidLayer
         /// <param name="archiveResource"></param>
         public void PermitApply(int apply, int archiveResource)
         {
-            if(this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
-                throw new Exception("没有管理权限！");
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.AUDITAPPLY;
+            acl.Acl_Resource = this.Usr_Organize;
+
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有管理归档申请的权限！");
 
             CApplyEntity aRes=new CApplyEntity().Load(apply);
             if (aRes.App_Audited == (int)AUDITE.AUDITED || aRes.App_Audited == (int)AUDITE.UNAUDITED)
@@ -989,8 +993,12 @@ namespace MidLayer
         /// <param name="apply"></param>
         public void CancelApply(int apply)
         {
-            if (this.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
-                throw new Exception("没有管理权限！");
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Operation = (int)ACLOPERATION.AUDITAPPLY;
+            acl.Acl_Resource = this.Usr_Organize;
+            
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有管理归档申请的权限！");
 
             CApplyEntity aRes = new CApplyEntity().Load(apply);
 

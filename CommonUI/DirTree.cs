@@ -87,6 +87,7 @@ namespace CommonUI
   
  */
             CreateContextMenu();
+            helper.FilterContextMenu(_currentUser, treeContextMenu);
 
             helper.InitDirectory(MainTreeView.Nodes, _currentUser, _rootResourceId);
             foreach ( TreeNode aNode in mainTreeView.Nodes )

@@ -15,8 +15,8 @@ namespace MidLayer
         CREATEORGANIZE = 0,
         CRETAEORGANIZEADMIN = 1,
         CREATENORMALUSER = 2,
-        CREATEORGANIZEFOLDER = 3,
-        READ =4,
+        AUDITAPPLY = 3,
+        READ = 4,
         WRITE = 5
     }
 
