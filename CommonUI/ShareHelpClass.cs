@@ -105,5 +105,18 @@ namespace CommonUI
         {
             throw new Exception("不能共享此目录！");
         }
+
+        public override void FilterContextMenu(CUserEntity user, ContextMenu contextMenu)
+        {
+            foreach (MenuItem item in contextMenu.MenuItems)
+            {
+                if (item.Text == "删除目录")
+                    item.Enabled = false;
+                if (item.Text == "共享设置")
+                    item.Enabled = false;
+                if (item.Text == "申请归档")
+                    item.Enabled = false;
+            }
+        }
     }
 }

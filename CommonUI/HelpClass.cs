@@ -223,5 +223,9 @@ namespace CommonUI
             user.DeleteResource(resource);
             System.IO.File.Delete(filePath);
         }
+
+        public virtual void FilterContextMenu(CUserEntity user, ContextMenu contextMenu)
+        {
+        }
     }
 }
