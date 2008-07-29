@@ -53,6 +53,7 @@ namespace CommonUI
             // GroupList
             // 
             this.Controls.Add(this.groupListView);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(391, 326);
             this.Text = "GroupList";
             this.Load += new System.EventHandler(this.GroupList_Load);

@@ -46,7 +46,7 @@ namespace CommonUI
             this.fileListView.DataMember = null;
             this.fileListView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.fileListView.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.fileListView.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.fileListView.Font = new System.Drawing.Font("ËÎÌו", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.fileListView.GridLines = true;
             this.fileListView.ItemsPerPage = 22;
             this.fileListView.Location = new System.Drawing.Point(0, 0);
@@ -77,6 +77,7 @@ namespace CommonUI
             // FileList
             // 
             this.Controls.Add(this.fileListView);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(391, 306);
             this.Text = "FileList";
             this.ResumeLayout(false);

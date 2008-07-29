@@ -58,7 +58,7 @@ namespace CommonUI
             {
                 bool blnHasNodes = objSubDir.GetDirectories ( ).Length > 0;
 
-
+                
                 TreeNode objNode = new TreeNode ( objSubDir.Name );
                 objNode.Tag = objSubDir.FullName;
                 //objNode.DragTargets = treeView1.DragTargets;

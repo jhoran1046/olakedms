@@ -275,6 +275,7 @@
     <Content Include="Icons\RemoveItem.gif" />
     <Content Include="Icons\Save.gif" />
     <Content Include="Icons\Search.gif" />
+    <Content Include="Icons\shareFolder.gif" />
     <Content Include="Icons\Show.gif" />
     <Content Include="Icons\ShowLines.gif" />
     <Content Include="Icons\Sorting.gif" />

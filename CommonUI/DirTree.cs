@@ -169,11 +169,21 @@ namespace CommonUI
             foreach (TreeNode aNode in node.Nodes)
             {
                 aNode.NodeFont = _defaultFnt;
-                aNode.Image = new IconResourceHandle("folder.gif");
-                if (!aNode.Loaded)
+                CACLEntity shareNode = new CACLEntity();
+                List<CACLEntity>  nodeList=new List<CACLEntity>();
+                nodeList = shareNode.GetObjectList("this.Acl_Resource=" + (int)aNode.Tag + "and this.Acl_Creator=" + _currentUser.Usr_Id);
+                if(nodeList.Count > 0)
                 {
-                    aNode.Image = new IconResourceHandle("folders.gif");
+                    aNode.Image = new IconResourceHandle("shareFolder.gif");
                 }
+                else
+                {
+                    aNode.Image = new IconResourceHandle("folder.gif");
+                    if (!aNode.Loaded)
+                    {
+                        aNode.Image = new IconResourceHandle("folders.gif");
+                    }
+                }                
             }
 
         }

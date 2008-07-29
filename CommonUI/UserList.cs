@@ -11,6 +11,8 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using Gizmox.WebGUI.Common.Resources;
+
 #endregion
 
 namespace CommonUI
@@ -41,6 +43,7 @@ namespace CommonUI
                 ListViewItem.ListViewSubItem lvsi;
 
                 lvi.Text = user.Usr_Member;
+                lvi.SmallImage = new IconResourceHandle("personal.gif");
                 lvi.Tag = user.Usr_Id;
 
                 lvsi = new ListViewItem.ListViewSubItem();
@@ -167,6 +170,7 @@ namespace CommonUI
                 UserForm userForm = new UserForm();
                 userForm.Member = user.Usr_Member;
                 userForm.Password = user.Usr_Password;
+                userForm.Surepwd = user.Usr_Password;
                 userForm.UserName = user.Usr_Name;
                 userForm.Email = user.Usr_Email;
                 userForm.Closed += new EventHandler(ModifyUser_Closed);
