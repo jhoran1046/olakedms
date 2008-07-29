@@ -227,6 +227,7 @@
     <Content Include="Icons\24X24\Controls.gif" />
     <Content Include="Icons\24X24\Folders.gif" />
     <Content Include="Icons\Add.gif" />
+    <Content Include="Icons\anual.ico" />
     <Content Include="Icons\AttachedMail.gif" />
     <Content Include="Icons\Back.gif" />
     <Content Include="Icons\CheckBoxes.gif" />
@@ -266,8 +267,10 @@
     <Content Include="Icons\Open.gif" />
     <Content Include="Icons\OpenedMail.gif" />
     <Content Include="Icons\Paste.gif" />
+    <Content Include="Icons\ppt.ico" />
     <Content Include="Icons\Print.gif" />
     <Content Include="Icons\Properties.gif" />
+    <Content Include="Icons\rar.ico" />
     <Content Include="Icons\Remove.gif" />
     <Content Include="Icons\RemoveItem.gif" />
     <Content Include="Icons\Save.gif" />
@@ -279,7 +282,7 @@
     <Content Include="Icons\txt.ico" />
     <Content Include="Icons\weekView.gif" />
     <Content Include="Icons\WorkWeekView.gif" />
-    <Content Include="txt.ico" />
+    <Content Include="Icons\xls.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -59,6 +59,7 @@
     <Content Include="Resources\Icons\24X24\Controls.gif" />
     <Content Include="Resources\Icons\24X24\Folders.gif" />
     <Content Include="Resources\Icons\Add.gif" />
+    <Content Include="Resources\Icons\anual.ico" />
     <Content Include="Resources\Icons\AttachedMail.gif" />
     <Content Include="Resources\Icons\Back.gif" />
     <Content Include="Resources\Icons\CheckBoxes.gif" />
@@ -72,6 +73,7 @@
     <Content Include="Resources\Icons\Delete.GIF" />
     <Content Include="Resources\Icons\DetailsView.gif" />
     <Content Include="Resources\Icons\Disable.gif" />
+    <Content Include="Resources\Icons\doc.ico" />
     <Content Include="Resources\Icons\EnsureVisible.gif" />
     <Content Include="Resources\Icons\Event.gif" />
     <Content Include="Resources\Icons\favicon.ico" />
@@ -85,6 +87,9 @@
     <Content Include="Resources\Icons\IconsView.gif" />
     <Content Include="Resources\Icons\ImportantMail.gif" />
     <Content Include="Resources\Icons\Interface.gif" />
+    <Content Include="Resources\Icons\ppt.ico" />
+    <Content Include="Resources\Icons\rar.ico" />
+    <Content Include="Resources\Icons\txt.ico" />
     <Content Include="Resources\Icons\User.gif" />
     <Content Include="Resources\Icons\ListView.gif" />
     <Content Include="Resources\Icons\Member.gif" />
@@ -113,6 +118,7 @@
     <Content Include="Resources\Icons\weekView.gif" />
     <Content Include="Resources\Icons\WorkWeekView.gif" />
     <Content Include="Readme.txt" />
+    <Content Include="Resources\Icons\xls.ico" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
