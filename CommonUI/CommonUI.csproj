@@ -227,7 +227,6 @@
     <Content Include="Icons\24X24\Controls.gif" />
     <Content Include="Icons\24X24\Folders.gif" />
     <Content Include="Icons\Add.gif" />
-    <Content Include="Icons\anual.ico" />
     <Content Include="Icons\AttachedMail.gif" />
     <Content Include="Icons\Back.gif" />
     <Content Include="Icons\CheckBoxes.gif" />
