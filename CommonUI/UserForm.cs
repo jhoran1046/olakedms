@@ -18,6 +18,7 @@ namespace CommonUI
     {
         private String _member="";
         private String _password="";
+        private String _surepwd = "";
         private String _name="";
         private String _email = "";
 
@@ -30,6 +31,7 @@ namespace CommonUI
         {
             _member = memberBox.Text;
             _password = passwordBox.Text;
+            _surepwd = txtSurePwd.Text;
             _name = nameBox.Text;
             _email = txtEmail.Text;
 
@@ -67,10 +69,17 @@ namespace CommonUI
             set { _email = value; }
         }
 
+        public String Surepwd
+        {
+            get { return _surepwd; }
+            set { _surepwd = value; }
+        }
+
         private void UserForm_Load(object sender, EventArgs e)
         {
             memberBox.Text = _member;
             passwordBox.Text = _password;
+            txtSurePwd.Text = _surepwd;
             nameBox.Text = _name;
             txtEmail.Text = _email;
         }

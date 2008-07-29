@@ -11,6 +11,8 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using Gizmox.WebGUI.Common.Resources;
+
 #endregion
 
 namespace CommonUI
@@ -99,6 +101,7 @@ namespace CommonUI
                 ListViewItem lvi = new ListViewItem();
 
                 lvi.Text = ug.Grp_Name;
+                lvi.SmallImage = new IconResourceHandle("people.gif");
                 lvi.Tag = ug;
 
                 shareList.Items.Add(lvi);
@@ -108,6 +111,7 @@ namespace CommonUI
                 ListViewItem lvi = new ListViewItem();
 
                 lvi.Text = ur.Usr_Member + "[" + ur.Usr_Name + "]";
+                lvi.SmallImage = new IconResourceHandle("personal.gif");
                 lvi.Tag = ur;
 
                 shareList.Items.Add(lvi);
@@ -134,6 +138,7 @@ namespace CommonUI
                 ListViewItem lvi = new ListViewItem();
 
                 lvi.Text = ug.Grp_Name;
+                lvi.SmallImage = new IconResourceHandle("people.gif");
                 lvi.Tag = ug;
 
                 unshareList.Items.Add(lvi);
@@ -158,6 +163,7 @@ namespace CommonUI
                 ListViewItem lvi = new ListViewItem();
 
                 lvi.Text = ur.Usr_Member;
+                lvi.SmallImage = new IconResourceHandle("personal.gif");
                 lvi.Tag = ur;
 
                 unshareList.Items.Add(lvi);

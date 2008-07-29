@@ -126,7 +126,7 @@ namespace CommonUI
 
                 lvi.Text = f.FileName;
                 IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".ico");
-                if(icoHandle==null)
+                if(icoHandle == null)
                 {
                     icoHandle = new IconResourceHandle("anual.ico");
                 }

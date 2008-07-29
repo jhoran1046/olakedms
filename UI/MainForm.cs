@@ -144,6 +144,12 @@ namespace UI
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
 
+                systemPage.Image = new IconResourceHandle("24X24.applications.gif");
+                myInfoPage.Image = new IconResourceHandle("24X24.behaviors.gif");
+                myDocPage.Image = new IconResourceHandle("24X24.controls.gif");
+                shareSpaceTab.Image = new IconResourceHandle("24X24.SharedSpace.ico");
+                archiveTab.Image = new IconResourceHandle("24X24.folders.gif");
+
                 // only administrator can see system admin page
                 if (_currentUser.Usr_Type != (int)USERTYPE.ORGANIZEADMIN &&
                     _currentUser.Usr_Type != (int)USERTYPE.SYSTEMADMIN)

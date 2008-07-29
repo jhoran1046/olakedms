@@ -11,6 +11,7 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using Gizmox.WebGUI.Common.Resources;
 
 #endregion
 
@@ -41,6 +42,7 @@ namespace CommonUI
                 ListViewItem lvi = new ListViewItem();
 
                 lvi.Text = group.Grp_Name;
+                lvi.SmallImage = new IconResourceHandle("people.gif");
                 lvi.Tag = group.Grp_Id;
                 groupListView.Items.Add(lvi);
             }

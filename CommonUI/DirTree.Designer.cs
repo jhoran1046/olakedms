@@ -53,7 +53,7 @@ namespace CommonUI
             // DirTree
             // 
             this.Controls.Add(this.mainTreeView);
-            this.Location = new System.Drawing.Point(15, 15);
+            this.Location = new System.Drawing.Point(15, 1);
             this.Size = new System.Drawing.Size(303, 306);
             this.Text = "DirTree";
             this.ResumeLayout(false);

@@ -11,6 +11,7 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using Gizmox.WebGUI.Common.Resources;
 
 #endregion
 
@@ -52,6 +53,7 @@ namespace CommonUI
                     ListViewItem lvi = new ListViewItem();
 
                     lvi.Text = user.Usr_Member + "[" + user.Usr_Name + "]";
+                    lvi.SmallImage = new IconResourceHandle("personal.gif");
                     lvi.Tag = user;
                     groupUserList.Items.Add(lvi);
                 }
@@ -73,6 +75,7 @@ namespace CommonUI
                         ListViewItem lvi = new ListViewItem();
 
                         lvi.Text = user.Usr_Member + "[" + user.Usr_Name + "]";
+                        lvi.SmallImage = new IconResourceHandle("personal.gif");
                         lvi.Tag = user;
                         otherUserList.Items.Add(lvi);
                     }

@@ -34,6 +34,7 @@ namespace CommonUI
         {
             txtMember.Text = _currentUser.Usr_Member.ToString();
             txtPassword.Text = _currentUser.Usr_Password.ToString();
+            txtSurePwd.Text = _currentUser.Usr_Password.ToString();
             txtName.Text = _currentUser.Usr_Name.ToString();
             txtEmail.Text = _currentUser.Usr_Email;
         }
@@ -43,6 +44,12 @@ namespace CommonUI
             if (txtPassword.Text.Trim() == "")
             {
                 MessageBox.Show("密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if(txtSurePwd.Text.Trim() == "")
+            {
+                MessageBox.Show("确认密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
@@ -64,6 +71,7 @@ namespace CommonUI
         {
             txtMember.Text = _currentUser.Usr_Member;
             txtPassword.Text = _currentUser.Usr_Password;
+            txtSurePwd.Text = _currentUser.Usr_Password.ToString();
             txtName.Text = _currentUser.Usr_Name;
             txtEmail.Text = _currentUser.Usr_Email;
         }

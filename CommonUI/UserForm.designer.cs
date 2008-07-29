@@ -34,12 +34,13 @@ namespace CommonUI
             this.label3 = new Gizmox.WebGUI.Forms.Label();
             this.passwordBox = new Gizmox.WebGUI.Forms.TextBox();
             this.nameBox = new Gizmox.WebGUI.Forms.TextBox();
-            this.label4 = new Gizmox.WebGUI.Forms.Label();
             this.label5 = new Gizmox.WebGUI.Forms.Label();
             this.btnOK = new Gizmox.WebGUI.Forms.Button();
             this.btnCancel = new Gizmox.WebGUI.Forms.Button();
             this.label6 = new Gizmox.WebGUI.Forms.Label();
             this.txtEmail = new Gizmox.WebGUI.Forms.TextBox();
+            this.label4 = new Gizmox.WebGUI.Forms.Label();
+            this.txtSurePwd = new Gizmox.WebGUI.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -83,31 +84,22 @@ namespace CommonUI
             this.passwordBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.passwordBox.Location = new System.Drawing.Point(104, 67);
             this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(150, 20);
             this.passwordBox.TabIndex = 2;
             // 
             // nameBox
             // 
             this.nameBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.nameBox.Location = new System.Drawing.Point(104, 113);
+            this.nameBox.Location = new System.Drawing.Point(104, 144);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(151, 20);
             this.nameBox.TabIndex = 1;
             // 
-            // label4
-            // 
-            this.label4.Controls.Add(this.label5);
-            this.label4.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label4.Location = new System.Drawing.Point(30, 116);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 18);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "用户帐号";
-            // 
             // label5
             // 
             this.label5.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Location = new System.Drawing.Point(30, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 18);
             this.label5.TabIndex = 0;
@@ -117,7 +109,7 @@ namespace CommonUI
             // 
             this.btnOK.DialogResult = Gizmox.WebGUI.Forms.DialogResult.OK;
             this.btnOK.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnOK.Location = new System.Drawing.Point(43, 209);
+            this.btnOK.Location = new System.Drawing.Point(58, 222);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
@@ -129,7 +121,7 @@ namespace CommonUI
             // 
             this.btnCancel.DialogResult = Gizmox.WebGUI.Forms.DialogResult.Cancel;
             this.btnCancel.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnCancel.Location = new System.Drawing.Point(169, 209);
+            this.btnCancel.Location = new System.Drawing.Point(169, 222);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -140,7 +132,7 @@ namespace CommonUI
             // label6
             // 
             this.label6.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label6.Location = new System.Drawing.Point(44, 161);
+            this.label6.Location = new System.Drawing.Point(44, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 17);
             this.label6.TabIndex = 5;
@@ -149,18 +141,38 @@ namespace CommonUI
             // txtEmail
             // 
             this.txtEmail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.txtEmail.Location = new System.Drawing.Point(104, 158);
+            this.txtEmail.Location = new System.Drawing.Point(104, 181);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(151, 20);
             this.txtEmail.TabIndex = 6;
             // 
+            // label4
+            // 
+            this.label4.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.label4.Location = new System.Drawing.Point(30, 108);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 23);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "确认密码";
+            // 
+            // txtSurePwd
+            // 
+            this.txtSurePwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtSurePwd.Location = new System.Drawing.Point(103, 105);
+            this.txtSurePwd.Name = "txtSurePwd";
+            this.txtSurePwd.PasswordChar = '*';
+            this.txtSurePwd.Size = new System.Drawing.Size(150, 20);
+            this.txtSurePwd.TabIndex = 8;
+            // 
             // UserForm
             // 
+            this.Controls.Add(this.txtSurePwd);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.label3);
@@ -182,12 +194,13 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.Label label3;
         private Gizmox.WebGUI.Forms.TextBox passwordBox;
         private Gizmox.WebGUI.Forms.TextBox nameBox;
-        private Gizmox.WebGUI.Forms.Label label4;
         private Gizmox.WebGUI.Forms.Label label5;
         private Gizmox.WebGUI.Forms.Button btnOK;
         private Gizmox.WebGUI.Forms.Button btnCancel;
         private Gizmox.WebGUI.Forms.Label label6;
         private Gizmox.WebGUI.Forms.TextBox txtEmail;
+        private Gizmox.WebGUI.Forms.Label label4;
+        private Gizmox.WebGUI.Forms.TextBox txtSurePwd;
 
 
     }
