@@ -178,6 +178,11 @@ namespace UI
                 {
                     leftNavigationTabs.Controls.Remove(systemPage);
                 }
+                //only orgnizeAdministrator can see orgnize admin page
+                if(_currentUser.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
+                {
+                    leftNavigationTabs.Controls.Remove(sysManagerTab);
+                }
             }
             catch (Exception ex)
             {
