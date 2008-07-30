@@ -141,17 +141,17 @@ namespace CommonUI
             MenuItem7.Click += new System.EventHandler(this.menuApply_Click);
             treeContextMenu.MenuItems.Add(MenuItem7);
 
-            MenuItem8.Text = "我的归档申请";
-            MenuItem8.Click += new System.EventHandler(this.menuMyApplies_Click);
-            treeContextMenu.MenuItems.Add(MenuItem8);
+           // MenuItem8.Text = "我的归档申请";
+           // MenuItem8.Click += new System.EventHandler(this.menuMyApplies_Click);
+           // treeContextMenu.MenuItems.Add(MenuItem8);
             
             //MenuItem9.Text = "剪切";
             //MenuItem9.Click += new System.EventHandler(this.menuCutFolder_Click);
             //treeContextMenu.MenuItems.Add(MenuItem9);
 
-            MenuItem10.Text = "办理归档申请";
-            MenuItem10.Click += new System.EventHandler(this.menuProcessApplies_Click);
-            treeContextMenu.MenuItems.Add(MenuItem10);
+           // MenuItem10.Text = "办理归档申请";
+           // MenuItem10.Click += new System.EventHandler(this.menuProcessApplies_Click);
+           // treeContextMenu.MenuItems.Add(MenuItem10);
 
         }
 
@@ -401,24 +401,24 @@ namespace CommonUI
             }
             catch(Exception ex)
             {
-                MessageBox.Show("系统提示："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
-        private void menuMyApplies_Click(object sender, EventArgs e)
+     /*   private void menuMyApplies_Click(object sender, EventArgs e)
         {
             try
             {
                 MyApplyForm myAppForm = new MyApplyForm();
                 myAppForm.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("系统错误:" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void menuProcessApplies_Click(object sender, EventArgs e)
+      */
+     /*   private void menuProcessApplies_Click(object sender, EventArgs e)
         {
             try
             {
@@ -430,5 +430,6 @@ namespace CommonUI
                 MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+      */
     }
 }

@@ -16,80 +16,30 @@ using MidLayer;
 
 namespace CommonUI
 {
-    public partial class MyApplyForm : Form
+    public partial class MyApplyUsrCrl : UserControl
     {
-        public CUserEntity _CurrentUser;
+        CUserEntity _currentUser;
+        AuditeAppUsrCrl auditApply = new AuditeAppUsrCrl();
 
-        public MyApplyForm()
+        public CUserEntity CurrentUser
+        {
+            get { return _currentUser; }
+            set { _currentUser = value; }
+        }
+
+        public MyApplyUsrCrl()
         {
             InitializeComponent();
         }
 
-        private void MyApplyForm_Load(object sender, EventArgs e)
+        public void MyApplyUsrCrl_Load(object sender, EventArgs e)
         {
-            LoadMyApply();
+            MyApplyLoad();
         }
 
-        private void btnDisfrock_Click(object sender, EventArgs e)
+        private void ckbAllSelected_Click(object sender, EventArgs e)
         {
-            this._CurrentUser = new CUserEntity();
-            _CurrentUser = (CUserEntity)Context.Session["CurrentUser"];
-
-            try
-            {
-                if (lsvMyApply.SelectedItems.Count > 0)//判断选中项目与否
-                {
-                    MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question, new EventHandler(OnMsgBoxClose));
-                }
-                else
-                    MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-            catch (Exception ex)
-            {
-                 MessageBox.Show("撤销失败：" + ex.Message, "文档管理系统");
-            }
-        }
-        protected  void OnMsgBoxClose(object sender,EventArgs e)
-        {
-            if(((Form)sender).DialogResult != DialogResult.Yes)
-            {
-                return;
-            }
-
-            int SelectedCount = lsvMyApply.SelectedItems.Count;
-            bool DeleteApp = false;
-            try
-            {
-                foreach (ListViewItem item in lsvMyApply.SelectedItems)
-                {
-                    DeleteApp = _CurrentUser.DeleteApply((int)item.Tag);
-                    if (DeleteApp == false)
-                    {
-                        MessageBox.Show("系统错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                    }
-                }
-                if (SelectedCount > 0)//若进行了撤销处理，则判断操作成功与否
-                {
-                    LoadMyApply();
-                    if (DeleteApp == true)
-                    {
-                        MessageBox.Show("撤销成功！", "文档管理系统", MessageBoxButtons.OK);
-                        
-                    }
-                    else
-                        MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void chkAllSelect_Click(object sender, EventArgs e)
-        {
-            if(chkAllSelect.Checked == true)
+            if(ckbAllSelected.Checked == true)
             {
                 foreach(ListViewItem item in lsvMyApply.Items)
                 {
@@ -102,22 +52,74 @@ namespace CommonUI
             {
                 foreach(ListViewItem item in lsvMyApply.Items)
                 {
-                    //lsvMyApply.MultiSelect = true;
-                    item.Selected = false;
+                    lsvMyApply.MultiSelect = true;
+                    item.Selected = true;
                     lsvMyApply.Invalidate();
                 }
             }
         }
 
-        private void LoadMyApply()
+        private void btnDisfrock_Click(object sender, EventArgs e)
         {
-            this._CurrentUser = new CUserEntity();
-            _CurrentUser = (CUserEntity)Context.Session["CurrentUser"];
+            try
+            {
+                if (lsvMyApply.SelectedItems.Count > 0)//判断选中项目与否
+                {
+                    MessageBox.Show("您确定要撤销文件的归档申请吗？！", "文档管理系统", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question, new EventHandler(OnMsgBoxClose));
+                }
+                else
+                    MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("撤销失败：" + ex.Message, "文档管理系统");
+            }
+        }
+        protected void OnMsgBoxClose(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult != DialogResult.Yes)
+            {
+                return;
+            }
 
+            int SelectedCount = lsvMyApply.SelectedItems.Count;
+            bool DeleteApp = false;
+            try
+            {
+                foreach (ListViewItem item in lsvMyApply.SelectedItems)
+                {
+                    DeleteApp = _currentUser.DeleteApply((int)item.Tag);
+                    if (DeleteApp == false)
+                    {
+                        MessageBox.Show("系统错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                }
+                if (SelectedCount > 0)//若进行了撤销处理，则判断操作成功与否
+                {
+                    MyApplyLoad();
+                    if (DeleteApp == false)
+                    {
+                        MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
+                    }
+
+                    auditApply.CurrentUser = _currentUser;
+                    auditApply.LoadOrgApp();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误:" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void MyApplyLoad()
+        {
             try
             {
                 List<CApplyInfoEntity> myAppList = new List<CApplyInfoEntity>();
-                myAppList = _CurrentUser.ListMyApplies();
+                myAppList = _currentUser.ListMyApplies();
                 lsvMyApply.Items.Clear();
                 foreach (CApplyInfoEntity apply in myAppList)
                 {
@@ -155,24 +157,17 @@ namespace CommonUI
                     lvsiCreTime.Text = apply.App_CreateTime.ToString();
                     lviName.SubItems.Add(lvsiCreTime);
 
-                   // lvsiAudTime = new ListViewItem.ListViewSubItem();
-                   // lvsiAudTime.Text = apply.App_AudTime.ToString();
-                   // lviName.SubItems.Add(lvsiAudTime);
+                    // lvsiAudTime = new ListViewItem.ListViewSubItem();
+                    // lvsiAudTime.Text = apply.App_AudTime.ToString();
+                    // lviName.SubItems.Add(lvsiAudTime);
 
                     lsvMyApply.Items.Add(lviName);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("系统错误:"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("系统错误:" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-           // MainForm myMain = new MainForm();
-           // myMain.Show();
-            this.Close();
         }
     }
 }
