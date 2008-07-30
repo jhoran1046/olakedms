@@ -26,6 +26,8 @@ namespace UI
         GroupList _groupList = new GroupList();
         UserUpdate _userUpdate = new UserUpdate();
         SearchList _searchList = new SearchList();
+        MyApplyUsrCrl _myApply = new MyApplyUsrCrl();
+        AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -67,6 +69,8 @@ namespace UI
                 _userList.CurrentUser = _currentUser;
                 _groupList.CurrentUser = _currentUser;
                 _userUpdate.CurrentUser = _currentUser;
+                _myApply.CurrentUser = _currentUser;
+                _auditeApply.CurrentUser = _currentUser;
 
 
                 //系统管理
@@ -114,9 +118,27 @@ namespace UI
                 function.Ui = _userUpdate;
                 myinfoFunctions.Add(function);
 
+                function = new CFunction();
+                function.Name = "审核归档申请";
+                function.Image = new IconResourceHandle("member.gif");
+                function.Ui = _auditeApply;
+                CACLEntity acl = new CACLEntity();
+                acl.Acl_Operation = (int)ACLOPERATION.AUDITAPPLY;
+                acl.Acl_Resource = _currentUser.Usr_Organize;
+                if(_currentUser.CheckPrivilege(acl) == true)
+                {
+                    myinfoFunctions.Add(function);
+                }
+
+                function = new CFunction();
+                function.Name = "我的归档申请";
+                function.Image = new IconResourceHandle("member.gif");
+                function.Ui = _myApply;
+                myinfoFunctions.Add(function);
+             
                 this.myinfofunctionTree.FunctionList = myinfoFunctions;
                 this.myinfofunctionTree.TreeEvent += FunctionTreeEventHandler;
-
+                     
 
                 //我的文档
                 myDirTree.RootDir = Context.Server.MapPath("~/");

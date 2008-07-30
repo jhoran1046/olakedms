@@ -109,7 +109,7 @@ namespace CommonUI
             this.Location = new System.Drawing.Point(210, 80);
             this.Size = new System.Drawing.Size(362, 262);
             this.Text = "πÈµµ…Í«Î";
-            this.Load += new System.EventHandler(this.SortApplyForm_Load);
+            this.Load += new System.EventHandler(this.ApplyForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,8 @@ namespace CommonUI
     {
         private int _resId;
         private CUserEntity _CurrentUser;
+        MyApplyUsrCrl _myApplyList = new MyApplyUsrCrl();
+        AuditeAppUsrCrl _orgApplyList = new AuditeAppUsrCrl();
 
         public int ResId
         {
@@ -31,14 +33,13 @@ namespace CommonUI
             InitializeComponent();
         }
 
-        private void SortApplyForm_Load(object sender, EventArgs e)
+        private void ApplyForm_Load(object sender, EventArgs e)
         {
             CResourceEntity aRes = new CResourceEntity();
             aRes = aRes.Load(_resId);
-            txtResId.Text=aRes.MakeCompletePath();          
+            txtResId.Text=aRes.MakeCompletePath();  
         }
 
-        //提交申请完成后，跳转到MyApplyForm页
         private void btnSubmission_Click(object sender, EventArgs e)
         {
             try
@@ -63,9 +64,6 @@ namespace CommonUI
                         MessageBox.Show("您提交的归档申请已经存在！", "文档管理系统", MessageBoxButtons.OK,MessageBoxIcon.Stop);
                     }
                 }
-                //7月22日修改
-              //  MyApplyForm myApplyForm = new MyApplyForm();
-              //  myApplyForm.Show();
             }
             catch(Exception ex)
             {
@@ -77,9 +75,14 @@ namespace CommonUI
         {
             if(((Form)sender).DialogResult == DialogResult.OK)
             {
-                MyApplyForm MyForm = new MyApplyForm();
-                MyForm.Show();
+              //  MyApplyForm MyForm = new MyApplyForm();
+              //  MyForm.Show();
                 this.Close();
+
+                _myApplyList.CurrentUser = _CurrentUser;
+                _myApplyList.MyApplyUsrCrl_Load(sender,e);
+                _orgApplyList.CurrentUser = _CurrentUser;
+                _orgApplyList.LoadOrgApp();
             }
         }
 

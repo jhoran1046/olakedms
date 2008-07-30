@@ -933,6 +933,7 @@ namespace MidLayer
             aRes.App_Applyer = this.Usr_Id;
             aRes.App_Comment = comment;
             aRes.App_Audited = (int)AUDITE.UNAUDITING;
+            aRes.App_CreateTime = DateTime.Now;
             aRes.Insert();
                 return true;
         }
@@ -955,7 +956,7 @@ namespace MidLayer
         {
             CApplyInfoEntity OrgApply = new CApplyInfoEntity();
             List<CApplyInfoEntity> OrgApplyList = new List<CApplyInfoEntity>();
-            OrgApplyList = OrgApply.GetObjectList("this.Usr_Organize='" + this.Usr_Organize + "'");
+            OrgApplyList = OrgApply.GetObjectList("this.Usr_Organize='" + this.Usr_Organize + "'"+"and this.App_Audited='"+(int)AUDITE.UNAUDITING+"'");
             return OrgApplyList;
         }
         /// <summary>
@@ -1005,14 +1006,7 @@ namespace MidLayer
             if (aRes.App_Audited == (int)AUDITE.UNAUDITED || aRes.App_Audited == (int)AUDITE.AUDITED)
                 throw new Exception("¸Ã×ÊÔ´ÒÑÉóºË£¡");
 
-            try
-            {
-                aRes.Cancel();
-            }
-            catch(Exception ex)
-            {
-                throw (ex);
-            }
+            aRes.Cancel();
         }
         /// <summary>
         /// É¾³ý¹éµµÉêÇë,É¾³ý³É¹¦return true,·ñÔòreturn false¡ª¡ªÕÔÓ¢Îä
