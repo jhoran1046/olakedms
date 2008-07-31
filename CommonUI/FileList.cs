@@ -65,6 +65,7 @@ namespace CommonUI
             MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -81,6 +82,15 @@ namespace CommonUI
             MenuItem4.Text = "更新文件";
             MenuItem4.Click += new System.EventHandler(this.menuUpdateFile_Click);
             fileContextMenu.MenuItems.Add(MenuItem4);
+
+            MenuItem5.Text = "刷新";
+            MenuItem5.Click += new EventHandler(menuRefreshFilst_Click);
+            fileContextMenu.MenuItems.Add(MenuItem5);
+        }
+
+        void menuRefreshFilst_Click(object sender, EventArgs e)
+        {
+            LoadFiles();
         }
 
         /// <summary>

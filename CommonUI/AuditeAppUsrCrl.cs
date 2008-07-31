@@ -35,6 +35,7 @@ namespace CommonUI
         {
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             
             MenuItem1.Text = "Åú×¼ÉêÇë";
             MenuItem1.Click += new System.EventHandler(this.btnAccept_Click);
@@ -43,6 +44,15 @@ namespace CommonUI
             MenuItem2.Text = "¾Ü¾øÉêÇë";
             MenuItem2.Click += new System.EventHandler(this.btnReject_Click);
             listContextMenu.MenuItems.Add(MenuItem2);
+
+            MenuItem3.Text = "Ë¢ÐÂ";
+            MenuItem3.Click += new System.EventHandler(this.refreshApp_Click);
+            listContextMenu.MenuItems.Add(MenuItem3);
+        }
+
+        private void refreshApp_Click(object sender,EventArgs e)
+        {
+            LoadOrgApp();
         }
 
         private void AuditeAppUsrCrl_Load(object sender, EventArgs e)
