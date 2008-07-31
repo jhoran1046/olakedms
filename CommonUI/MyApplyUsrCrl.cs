@@ -34,10 +34,20 @@ namespace CommonUI
         public void CreateContextMenu()
         {
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem1.Text = "³·ÏúÉêÇë";
             MenuItem1.Click += new System.EventHandler(this.btnDisfrock_Click);
             listContextMenu.MenuItems.Add(MenuItem1);
+
+            MenuItem2.Text = "Ë¢ÐÂ";
+            MenuItem2.Click += new EventHandler(refreshMyApp_Click);
+            listContextMenu.MenuItems.Add(MenuItem2);
+        }
+
+        void refreshMyApp_Click(object sender, EventArgs e)
+        {
+            MyApplyLoad();
         }
 
         public void MyApplyUsrCrl_Load(object sender, EventArgs e)

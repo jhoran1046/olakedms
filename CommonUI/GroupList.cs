@@ -54,6 +54,7 @@ namespace CommonUI
             MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
 
 
             MenuItem1.Text = "创建用户组";
@@ -71,6 +72,15 @@ namespace CommonUI
             MenuItem4.Text = "组用户设置";
             MenuItem4.Click += new System.EventHandler(this.menuGroupUsers_Click);
             groupContextMenu.MenuItems.Add(MenuItem4);
+
+            MenuItem5.Text = "刷新";
+            MenuItem5.Click += new EventHandler(menuRefreshGrpUsr_Click);
+            groupContextMenu.MenuItems.Add(MenuItem5);
+        }
+
+        void menuRefreshGrpUsr_Click(object sender, EventArgs e)
+        {
+            LoadGroups();
         }
 
 
