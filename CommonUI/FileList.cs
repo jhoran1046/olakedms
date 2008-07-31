@@ -64,6 +64,7 @@ namespace CommonUI
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -76,6 +77,10 @@ namespace CommonUI
             MenuItem2.Text = "共享文件";
             MenuItem2.Click += new System.EventHandler(this.menuShareFile_Click);
             fileContextMenu.MenuItems.Add(MenuItem2);
+
+            MenuItem4.Text = "更新文件";
+            MenuItem4.Click += new System.EventHandler(this.menuUpdateFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem4);
         }
 
         /// <summary>
@@ -242,6 +247,52 @@ namespace CommonUI
             objLinkParameters.Target = "_self";
 
             Link.Open(new GatewayReference(this, "Download"), objLinkParameters);
+        }
+
+        private void menuUpdateFile_Click(object sender,EventArgs e)
+        {
+            int selectCount = fileListView.SelectedItems.Count;
+            if (selectCount <= 0)
+            {
+                MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (selectCount > 0)
+                MessageBox.Show("您确定要覆盖原文件吗？", "文档管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 
+                    new EventHandler(UpdateFileClosed));
+        }
+        protected void UpdateFileClosed(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult != DialogResult.Yes)
+                return;
+            try
+            {
+                OpenFileDialog newFile = new OpenFileDialog();
+                newFile.FileOk += new CancelEventHandler(newFile_FileOk);
+                newFile.MaxFileSize = 1000000;
+                newFile.Multiselect = true;
+                newFile.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void newFile_FileOk(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog newfile = (OpenFileDialog)sender;
+                _helper.UploadFile(_currentUser, _parentResourceId, newfile);
+                _helper.DeleteFile(_currentUser, (int)fileListView.SelectedItem.Tag);
+                LoadFiles();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
