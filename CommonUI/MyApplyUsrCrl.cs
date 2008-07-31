@@ -19,7 +19,6 @@ namespace CommonUI
     public partial class MyApplyUsrCrl : UserControl
     {
         CUserEntity _currentUser;
-        AuditeAppUsrCrl auditApply = new AuditeAppUsrCrl();
 
         public CUserEntity CurrentUser
         {
@@ -32,31 +31,19 @@ namespace CommonUI
             InitializeComponent();
         }
 
+        public void CreateContextMenu()
+        {
+            MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
+
+            MenuItem1.Text = "撤销申请";
+            MenuItem1.Click += new System.EventHandler(this.btnDisfrock_Click);
+            listContextMenu.MenuItems.Add(MenuItem1);
+        }
+
         public void MyApplyUsrCrl_Load(object sender, EventArgs e)
         {
             MyApplyLoad();
-        }
-
-        private void ckbAllSelected_Click(object sender, EventArgs e)
-        {
-            if(ckbAllSelected.Checked == true)
-            {
-                foreach(ListViewItem item in lsvMyApply.Items)
-                {
-                    lsvMyApply.MultiSelect = true;
-                    item.Selected = true;
-                    lsvMyApply.Invalidate();
-                }
-            }
-            else
-            {
-                foreach(ListViewItem item in lsvMyApply.Items)
-                {
-                    lsvMyApply.MultiSelect = true;
-                    item.Selected = true;
-                    lsvMyApply.Invalidate();
-                }
-            }
+            CreateContextMenu();
         }
 
         private void btnDisfrock_Click(object sender, EventArgs e)
@@ -69,13 +56,14 @@ namespace CommonUI
                         MessageBoxIcon.Question, new EventHandler(OnMsgBoxClose));
                 }
                 else
-                    MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("没有选中的申请！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("撤销失败：" + ex.Message, "文档管理系统");
             }
         }
+
         protected void OnMsgBoxClose(object sender, EventArgs e)
         {
             if (((Form)sender).DialogResult != DialogResult.Yes)
@@ -84,28 +72,24 @@ namespace CommonUI
             }
 
             int SelectedCount = lsvMyApply.SelectedItems.Count;
-            bool DeleteApp = false;
+            bool DeleteApp = true;
             try
             {
                 foreach (ListViewItem item in lsvMyApply.SelectedItems)
                 {
                     DeleteApp = _currentUser.DeleteApply((int)item.Tag);
-                    if (DeleteApp == false)
+                    if (!DeleteApp)
                     {
-                        MessageBox.Show("系统错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     }
                 }
                 if (SelectedCount > 0)//若进行了撤销处理，则判断操作成功与否
                 {
                     MyApplyLoad();
-                    if (DeleteApp == false)
+                    if (!DeleteApp)
                     {
-                        MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK);
+                        MessageBox.Show("您要撤销的申请已审核！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    auditApply.CurrentUser = _currentUser;
-                    auditApply.LoadOrgApp();
                 }
             }
             catch (Exception ex)

@@ -19,14 +19,7 @@ namespace CommonUI
     public partial class AuditeAppUsrCrl : UserControl
     {
         CUserEntity _currentUser;
-        int _selectedCount;
 
-        public int SelectedCount
-        {
-            get { return _selectedCount; }
-            set { _selectedCount = value; }
-        }
-        
         public CUserEntity CurrentUser
         {
             get { return _currentUser; }
@@ -38,39 +31,32 @@ namespace CommonUI
             InitializeComponent();
         }
 
+        public void CreateContextMenu()
+        {
+            MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem2 = new Gizmox.WebGUI.Forms.MenuItem();
+            
+            MenuItem1.Text = "批准申请";
+            MenuItem1.Click += new System.EventHandler(this.btnAccept_Click);
+            listContextMenu.MenuItems.Add(MenuItem1);
+
+            MenuItem2.Text = "拒绝申请";
+            MenuItem2.Click += new System.EventHandler(this.btnReject_Click);
+            listContextMenu.MenuItems.Add(MenuItem2);
+        }
+
         private void AuditeAppUsrCrl_Load(object sender, EventArgs e)
         {
             LoadOrgApp();
-        }
-
-        private void chbAllSelect_Click(object sender, EventArgs e)
-        {
-            if(chbAllSelect.Checked == true)
-            {
-                foreach(ListViewItem item in lsvOrgApply.Items)
-                {
-                    lsvOrgApply.MultiSelect = true;
-                    item.Selected = true;
-                   // lsvOrgApply.Invalidate();
-                }
-            }
-            else
-            {
-                foreach(ListViewItem item in lsvOrgApply.Items)
-                {
-                    lsvOrgApply.MultiSelect = true;
-                    item.Selected = true;
-                   // lsvOrgApply.Invalidate();
-                }
-            }
+            CreateContextMenu();
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            _selectedCount = lsvOrgApply.SelectedItems.Count;
-            if (_selectedCount <= 0)
+            int selectedCount = lsvOrgApply.SelectedItems.Count;
+            if (selectedCount <= 0)
             {
-                MessageBox.Show("没有选中的项目！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("没有选中的申请！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
             try
@@ -91,15 +77,22 @@ namespace CommonUI
             ShowArchiveContent showArchive = (ShowArchiveContent)sender;
             if (showArchive.DialogResult != DialogResult.OK)
                 return;
+            int selectedCount = lsvOrgApply.SelectedItems.Count;
+            if (selectedCount <= 0)
+            {
+                MessageBox.Show("没有选中的申请！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             try
             {
                 if (showArchive.SelectedNode == null || showArchive.SelectedNode.Tag == null)
                     return;
-                foreach (ListViewItem item in lsvOrgApply.Items)
+                foreach (ListViewItem item in lsvOrgApply.SelectedItems)
                 {
                     _currentUser.PermitApply((int)item.Tag, (int)showArchive.SelectedNode.Tag);
                 }
-                if (_selectedCount > 0)
+                if (selectedCount > 0)
                 {
                     MessageBox.Show("您选择的项目已批准！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
