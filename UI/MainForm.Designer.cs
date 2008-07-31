@@ -64,8 +64,8 @@ namespace UI
             this.shareDirTree = new CommonUI.DirTree();
             this.archiveTab = new Gizmox.WebGUI.Forms.TabPage();
             this.archiveDirTree = new CommonUI.DirTree();
-            this.sysManagerTab = new Gizmox.WebGUI.Forms.TabPage();
-            this.sysMgerDirTree = new CommonUI.DirTree();
+            this.orgManageTab = new Gizmox.WebGUI.Forms.TabPage();
+            this.orgMgerDirTree = new CommonUI.DirTree();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
@@ -279,7 +279,7 @@ namespace UI
             this.leftNavigationTabs.Controls.Add(this.myDocPage);
             this.leftNavigationTabs.Controls.Add(this.shareSpaceTab);
             this.leftNavigationTabs.Controls.Add(this.archiveTab);
-            this.leftNavigationTabs.Controls.Add(this.sysManagerTab);
+            this.leftNavigationTabs.Controls.Add(this.orgManageTab);
             this.leftNavigationTabs.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.leftNavigationTabs.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.leftNavigationTabs.Location = new System.Drawing.Point(0, 0);
@@ -407,30 +407,30 @@ namespace UI
             this.archiveDirTree.TabIndex = 0;
             this.archiveDirTree.Text = "DirTree";
             // 
-            // sysManagerTab
+            // orgManageTab
             // 
-            this.sysManagerTab.Controls.Add(this.sysMgerDirTree);
-            this.sysManagerTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.sysManagerTab.Location = new System.Drawing.Point(4, 22);
-            this.sysManagerTab.Name = "sysManagerTab";
-            this.sysManagerTab.Size = new System.Drawing.Size(203, 433);
-            this.sysManagerTab.TabIndex = 0;
-            this.sysManagerTab.Text = "组织管理";
+            this.orgManageTab.Controls.Add(this.orgMgerDirTree);
+            this.orgManageTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.orgManageTab.Location = new System.Drawing.Point(4, 22);
+            this.orgManageTab.Name = "orgManageTab";
+            this.orgManageTab.Size = new System.Drawing.Size(203, 433);
+            this.orgManageTab.TabIndex = 0;
+            this.orgManageTab.Text = "组织管理";
             // 
-            // sysMgerDirTree
+            // orgMgerDirTree
             // 
-            this.sysMgerDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.sysMgerDirTree.CurrentUser = null;
-            this.sysMgerDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.sysMgerDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.sysMgerDirTree.FileListUI = null;
-            this.sysMgerDirTree.Location = new System.Drawing.Point(0, 0);
-            this.sysMgerDirTree.Name = "sysMgerDirTree";
-            this.sysMgerDirTree.RootDir = null;
-            this.sysMgerDirTree.RootResourceId = 0;
-            this.sysMgerDirTree.Size = new System.Drawing.Size(203, 433);
-            this.sysMgerDirTree.TabIndex = 0;
-            this.sysMgerDirTree.Text = "DirTree";
+            this.orgMgerDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.orgMgerDirTree.CurrentUser = null;
+            this.orgMgerDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.orgMgerDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.orgMgerDirTree.FileListUI = null;
+            this.orgMgerDirTree.Location = new System.Drawing.Point(0, 0);
+            this.orgMgerDirTree.Name = "orgMgerDirTree";
+            this.orgMgerDirTree.RootDir = null;
+            this.orgMgerDirTree.RootResourceId = 0;
+            this.orgMgerDirTree.Size = new System.Drawing.Size(203, 433);
+            this.orgMgerDirTree.TabIndex = 0;
+            this.orgMgerDirTree.Text = "DirTree";
             // 
             // menuItem6
             // 
@@ -485,12 +485,12 @@ namespace UI
         private Gizmox.WebGUI.Forms.TabPage myDocPage;
         private Gizmox.WebGUI.Forms.TabPage shareSpaceTab;
         private Gizmox.WebGUI.Forms.TabPage archiveTab;
-        private Gizmox.WebGUI.Forms.TabPage sysManagerTab;
+        private Gizmox.WebGUI.Forms.TabPage orgManageTab;
         private FunctionTree sysFunctionTree;
         private FunctionTree myinfofunctionTree;
         private DirTree myDirTree;
         private DirTree archiveDirTree;
-        private DirTree sysMgerDirTree;
+        private DirTree orgMgerDirTree;
         private Gizmox.WebGUI.Forms.ListView listView1;
         private Gizmox.WebGUI.Forms.MenuItem menuItem4;
         private Gizmox.WebGUI.Forms.MenuItem menuShareFile;

@@ -58,6 +58,7 @@
     <Content Include="Resources\Icons\24X24\Behaviors.gif" />
     <Content Include="Resources\Icons\24X24\Controls.gif" />
     <Content Include="Resources\Icons\24X24\Folders.gif" />
+    <Content Include="Resources\Icons\24X24\orgAdmin.gif" />
     <Content Include="Resources\Icons\24X24\sharedspace.ico" />
     <Content Include="Resources\Icons\Add.gif" />
     <Content Include="Resources\Icons\anual.ico" />

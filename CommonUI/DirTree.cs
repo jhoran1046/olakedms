@@ -99,7 +99,11 @@ namespace CommonUI
             }
             return true;
         }
-           
+        public bool OrgMgerInit()
+        {
+            return true;
+        }
+
         public void CreateContextMenu()
         {
             MenuItem MenuItem1 = new Gizmox.WebGUI.Forms.MenuItem();
