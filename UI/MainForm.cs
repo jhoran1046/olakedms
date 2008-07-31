@@ -206,7 +206,8 @@ namespace UI
             this.mainSplit.Panel2.Controls.Clear ( );
             if (leftNavigationTabs.SelectedItem == this.myDocPage||
                 leftNavigationTabs.SelectedItem == this.archiveTab ||
-                leftNavigationTabs.SelectedItem == this.shareSpaceTab)
+                leftNavigationTabs.SelectedItem == this.shareSpaceTab ||
+                leftNavigationTabs.SelectedItem == this.orgManageTab)
             {
                 DirTree dirTree =(DirTree) leftNavigationTabs.SelectedItem.Controls [ 0 ];
                 this.mainSplit.Panel2.Controls.Clear();
