@@ -415,7 +415,7 @@ namespace UI
             this.orgManageTab.Name = "orgManageTab";
             this.orgManageTab.Size = new System.Drawing.Size(203, 433);
             this.orgManageTab.TabIndex = 0;
-            this.orgManageTab.Text = "组织管理";
+            this.orgManageTab.Text = "全部目录";
             // 
             // orgMgerDirTree
             // 
