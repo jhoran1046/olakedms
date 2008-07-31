@@ -34,8 +34,7 @@ namespace CommonUI
             this.columnComment = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnState = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnCrTime = new Gizmox.WebGUI.Forms.ColumnHeader();
-            this.btnDisfrock = new Gizmox.WebGUI.Forms.Button();
-            this.ckbAllSelected = new Gizmox.WebGUI.Forms.CheckBox();
+            this.listContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
             this.SuspendLayout();
             // 
             // lsvMyApply
@@ -47,13 +46,14 @@ namespace CommonUI
             this.columnComment,
             this.columnState,
             this.columnCrTime});
+            this.lsvMyApply.ContextMenu = this.listContextMenu;
             this.lsvMyApply.DataMember = null;
-            this.lsvMyApply.Dock = Gizmox.WebGUI.Forms.DockStyle.Top;
+            this.lsvMyApply.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.lsvMyApply.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.lsvMyApply.ItemsPerPage = 20;
             this.lsvMyApply.Location = new System.Drawing.Point(0, 0);
             this.lsvMyApply.Name = "lsvMyApply";
-            this.lsvMyApply.Size = new System.Drawing.Size(637, 438);
+            this.lsvMyApply.Size = new System.Drawing.Size(637, 493);
             this.lsvMyApply.TabIndex = 0;
             // 
             // columnName
@@ -91,37 +91,14 @@ namespace CommonUI
             this.columnCrTime.Text = "申请时间";
             this.columnCrTime.Width = 150;
             // 
-            // btnDisfrock
+            // listContextMenu
             // 
-            this.btnDisfrock.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnDisfrock.Location = new System.Drawing.Point(326, 455);
-            this.btnDisfrock.Name = "btnDisfrock";
-            this.btnDisfrock.Size = new System.Drawing.Size(75, 23);
-            this.btnDisfrock.TabIndex = 1;
-            this.btnDisfrock.Text = "撤销申请";
-            this.btnDisfrock.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnDisfrock.Click += new System.EventHandler(this.btnDisfrock_Click);
-            // 
-            // ckbAllSelected
-            // 
-            this.ckbAllSelected.Checked = false;
-            this.ckbAllSelected.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.ckbAllSelected.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.ckbAllSelected.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.ckbAllSelected.Location = new System.Drawing.Point(244, 454);
-            this.ckbAllSelected.Name = "ckbAllSelected";
-            this.ckbAllSelected.Size = new System.Drawing.Size(61, 24);
-            this.ckbAllSelected.TabIndex = 3;
-            this.ckbAllSelected.Text = "全选";
-            this.ckbAllSelected.ThreeState = false;
-            this.ckbAllSelected.Click += new System.EventHandler(this.ckbAllSelected_Click);
+            this.listContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // MyApplyUsrCrl
             // 
-            this.Controls.Add(this.ckbAllSelected);
-            this.Controls.Add(this.btnDisfrock);
             this.Controls.Add(this.lsvMyApply);
-            this.Location = new System.Drawing.Point(15, -132);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(637, 493);
             this.Text = "MyApplyUsrCrl";
             this.Load += new System.EventHandler(this.MyApplyUsrCrl_Load);
@@ -137,8 +114,7 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.ColumnHeader columnState;
         private Gizmox.WebGUI.Forms.ColumnHeader columnCrTime;
         private Gizmox.WebGUI.Forms.ColumnHeader columnComment;
-        private Gizmox.WebGUI.Forms.Button btnDisfrock;
-        private Gizmox.WebGUI.Forms.CheckBox ckbAllSelected;
+        private Gizmox.WebGUI.Forms.ContextMenu listContextMenu;
 
 
     }

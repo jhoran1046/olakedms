@@ -212,6 +212,16 @@ namespace UI
                     func.Ui.Dock = DockStyle.Fill;
                 }
             }
+            else if (leftNavigationTabs.SelectedItem == this.myInfoPage)
+            {
+                CFunction func = myinfofunctionTree.SelectedFunction;
+                if (func != null && func.Ui != null)
+                {
+                    this.mainSplit.Panel2.Controls.Clear();
+                    this.mainSplit.Panel2.Controls.Add(func.Ui);
+                    func.Ui.Dock = DockStyle.Fill;
+                }
+            }
         }
 
         public void FunctionTreeEventHandler(object sender, FunctionTreeEventArgs e)
