@@ -1026,5 +1026,15 @@ namespace MidLayer
                 return false;
             }
         }
+
+        public void KeyWordChange(int resId,string keyword)
+        {
+            if (resId <= 0)
+                throw new Exception("ÏµÍ³´íÎó");
+
+            CResourceEntity aRes = new CResourceEntity().Load(resId);
+            aRes.Res_KeyWord = keyword;
+            aRes.Update();
+        }
     }
 }

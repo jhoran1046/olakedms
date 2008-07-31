@@ -29,7 +29,7 @@ namespace CommonUI
             get { return _resourceId; }
             set { _resourceId = value; }
         }
-    
+
         public File()
         {
 

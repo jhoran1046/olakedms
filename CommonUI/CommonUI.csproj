@@ -90,6 +90,12 @@
       <DependentUpon>GroupUsersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HelpClass.cs" />
+    <Compile Include="KeyWdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyWdForm.Designer.cs">
+      <DependentUpon>KeyWdForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFunctions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +186,10 @@
     <EmbeddedResource Include="GroupUsersForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>GroupUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyWdForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>KeyWdForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFunctions.resx">
       <SubType>Designer</SubType>
