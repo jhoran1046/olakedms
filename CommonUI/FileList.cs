@@ -23,6 +23,13 @@ namespace CommonUI
     {
         string _rootDir;
         HelpClass _helper;
+        string _keyword;
+
+        public string Keyword
+        {
+            get { return _keyword; }
+            set { _keyword = value; }
+        }
 
         public string RootDir
         {
@@ -66,6 +73,7 @@ namespace CommonUI
             MenuItem MenuItem3 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -83,9 +91,53 @@ namespace CommonUI
             MenuItem4.Click += new System.EventHandler(this.menuUpdateFile_Click);
             fileContextMenu.MenuItems.Add(MenuItem4);
 
+            MenuItem6.Text = "更改关键字";
+            MenuItem6.Click += new EventHandler(menuKeyWord_Click);
+            fileContextMenu.MenuItems.Add(MenuItem6);
+
             MenuItem5.Text = "刷新";
             MenuItem5.Click += new EventHandler(menuRefreshFilst_Click);
             fileContextMenu.MenuItems.Add(MenuItem5);
+        }
+
+        void menuKeyWord_Click(object sender, EventArgs e)
+        {
+            if(fileListView.SelectedItem == null)
+            {
+                MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            try
+            {
+                KeyWdForm keyword = new KeyWdForm();
+                keyword.Closed += new EventHandler(keyword_Closed);
+                keyword.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void keyword_Closed(object sender, EventArgs e)
+        {
+            KeyWdForm keyWd = (KeyWdForm)sender;
+            if (keyWd.DialogResult != DialogResult.OK)
+                return;
+
+            try
+            {
+                foreach(ListViewItem item in fileListView.SelectedItems)
+                {
+                    _currentUser.KeyWordChange((int)item.Tag, keyWd.KeyWord);
+                    LoadFiles();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void menuRefreshFilst_Click(object sender, EventArgs e)
@@ -152,6 +204,11 @@ namespace CommonUI
 
                 lvsi = new ListViewItem.ListViewSubItem();
                 lvsi.Text = f.Ext;
+                lvi.SubItems.Add(lvsi);
+
+                lvsi = new ListViewItem.ListViewSubItem();
+                CResourceEntity resource = new CResourceEntity().Load(f.ResourceId);
+                lvsi.Text = resource.Res_KeyWord;
                 lvi.SubItems.Add(lvsi);
 
                 fileListView.Items.Add(lvi);

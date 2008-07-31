@@ -20,6 +20,14 @@ namespace MidLayer
         String _Res_Name;
         Int32 _Res_Type;
         Int32 _Res_Parent;
+        String _Res_KeyWord;
+
+        [DataField("Res_KeyWord")]
+        public String Res_KeyWord
+        {
+            get { return _Res_KeyWord; }
+            set { _Res_KeyWord = value; }
+        }
 
         [KeyField("Res_Id")]
         public Int32 Res_Id

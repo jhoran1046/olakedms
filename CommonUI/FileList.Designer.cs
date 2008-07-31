@@ -32,6 +32,7 @@ namespace CommonUI
             this.columnFilleName = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnExt = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.fileContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
+            this.columnKeyWord = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // fileListView
@@ -41,7 +42,8 @@ namespace CommonUI
             this.fileListView.ColumnResizeStyle = Gizmox.WebGUI.Forms.ColumnHeaderAutoResizeStyle.ColumnContent;
             this.fileListView.Columns.AddRange(new Gizmox.WebGUI.Forms.ColumnHeader[] {
             this.columnFilleName,
-            this.columnExt});
+            this.columnExt,
+            this.columnKeyWord});
             this.fileListView.ContextMenu = this.fileContextMenu;
             this.fileListView.DataMember = null;
             this.fileListView.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
@@ -52,7 +54,7 @@ namespace CommonUI
             this.fileListView.Location = new System.Drawing.Point(0, 0);
             this.fileListView.MultiSelect = false;
             this.fileListView.Name = "fileListView";
-            this.fileListView.Size = new System.Drawing.Size(391, 306);
+            this.fileListView.Size = new System.Drawing.Size(453, 306);
             this.fileListView.TabIndex = 0;
             this.fileListView.UseInternalPaging = true;
             // 
@@ -74,11 +76,18 @@ namespace CommonUI
             // 
             this.fileContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
+            // columnKeyWord
+            // 
+            this.columnKeyWord.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.columnKeyWord.Image = null;
+            this.columnKeyWord.Text = "¹Ø¼ü×Ö";
+            this.columnKeyWord.Width = 150;
+            // 
             // FileList
             // 
             this.Controls.Add(this.fileListView);
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(391, 306);
+            this.Size = new System.Drawing.Size(453, 306);
             this.Text = "FileList";
             this.ResumeLayout(false);
 
@@ -90,6 +99,7 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.ColumnHeader columnFilleName;
         private Gizmox.WebGUI.Forms.ColumnHeader columnExt;
         private Gizmox.WebGUI.Forms.ContextMenu fileContextMenu;
+        private Gizmox.WebGUI.Forms.ColumnHeader columnKeyWord;
 
         public Gizmox.WebGUI.Forms.ListView FileListView
         {
