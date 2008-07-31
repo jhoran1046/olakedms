@@ -98,7 +98,7 @@ namespace CommonUI
             // AuditeAppUsrCrl
             // 
             this.Controls.Add(this.lsvOrgApply);
-            this.Location = new System.Drawing.Point(15, -56);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(632, 430);
             this.Text = "AuditeAppUsrCrl";
             this.Load += new System.EventHandler(this.AuditeAppUsrCrl_Load);

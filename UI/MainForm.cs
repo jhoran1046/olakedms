@@ -28,6 +28,7 @@ namespace UI
         SearchList _searchList = new SearchList();
         MyApplyUsrCrl _myApply = new MyApplyUsrCrl();
         AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
+        FileList _orgMgerList = new FileList();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -71,6 +72,10 @@ namespace UI
                 _userUpdate.CurrentUser = _currentUser;
                 _myApply.CurrentUser = _currentUser;
                 _auditeApply.CurrentUser = _currentUser;
+
+                orgMgerDirTree.CurrentUser = _currentUser;
+                orgMgerDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_Resource;
+                _orgMgerList.CurrentUser = _currentUser;
 
 
                 //系统管理
@@ -165,12 +170,18 @@ namespace UI
                 archiveDirTree.RootDir = Context.Server.MapPath("~/app_data");
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
+                
+                //组织管理——赵英武
+                orgMgerDirTree.RootDir = Context.Server.MapPath("~/");
+                orgMgerDirTree.Init();
+                orgMgerDirTree.FileListUI = _orgMgerList;
 
                 systemPage.Image = new IconResourceHandle("24X24.applications.gif");
                 myInfoPage.Image = new IconResourceHandle("24X24.behaviors.gif");
                 myDocPage.Image = new IconResourceHandle("24X24.controls.gif");
-                shareSpaceTab.Image = new IconResourceHandle("24X24.SharedSpace.ico");
+                shareSpaceTab.Image = new IconResourceHandle("24X24.sharedspace.ico");
                 archiveTab.Image = new IconResourceHandle("24X24.folders.gif");
+                orgManageTab.Image = new IconResourceHandle("24X24.orgAdmin.gif");
 
                 // only administrator can see system admin page
                 if (_currentUser.Usr_Type != (int)USERTYPE.ORGANIZEADMIN &&
@@ -181,7 +192,7 @@ namespace UI
                 //only orgnizeAdministrator can see orgnize admin page
                 if(_currentUser.Usr_Type != (int)USERTYPE.ORGANIZEADMIN)
                 {
-                    leftNavigationTabs.Controls.Remove(sysManagerTab);
+                    leftNavigationTabs.Controls.Remove(orgManageTab);
                 }
             }
             catch (Exception ex)
