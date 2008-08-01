@@ -375,7 +375,7 @@ namespace CommonUI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

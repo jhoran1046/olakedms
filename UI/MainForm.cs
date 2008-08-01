@@ -29,6 +29,7 @@ namespace UI
         MyApplyUsrCrl _myApply = new MyApplyUsrCrl();
         AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
         FileList _orgMgerList = new FileList();
+        SearchForm _search = new SearchForm();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -76,6 +77,8 @@ namespace UI
                 orgMgerDirTree.CurrentUser = _currentUser;
                 orgMgerDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_Resource;
                 _orgMgerList.CurrentUser = _currentUser;
+
+                _search.CurrentUser = _currentUser;
 
 
                 //系统管理
@@ -588,6 +591,7 @@ namespace UI
                     ShareForm shareForm = new ShareForm();
                     shareForm.CurrentUser = _currentUser;
                     shareForm.ResourceId = res;
+                    shareForm.Closed += new EventHandler(shareForm_Closed);
                     shareForm.ShowDialog();
                 }
                 else
@@ -599,6 +603,14 @@ namespace UI
             {
                 MessageBox.Show("无法共享: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        void shareForm_Closed(object sender, EventArgs e)
+        {
+            ShareForm share = (ShareForm)sender;
+            if (share.DialogResult != DialogResult.OK)
+                return;
+            myDirTree.ReloadTreeNode(myDirTree.MainTreeView.SelectedNode.Parent);
         }
 
         private void menuCopyFile_Click(object sender, EventArgs e)
@@ -754,6 +766,87 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("搜索失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string targetText = txtTarget.Text;
+            if(targetText.Length < 0)
+            {
+                MessageBox.Show("请填写检索内容！", "问昂管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            if(ckbKeyWd.Checked == false && ckbWholeDocumt.Checked == false)
+            {
+                MessageBox.Show("请选择检索方式！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            List<String> searchScope = new List<string>();
+            List<CSearchResultItem> result = new List<CSearchResultItem>();
+            try
+            {
+                if (ckbKeyWd.Checked)
+                {
+                    _search.SearchKeyword(targetText);
+                    result = _search.SearchResult;
+                }
+
+                if (ckbWholeDocumt.Checked)
+                {
+                    List<CACLEntity> myAclst = new List<CACLEntity>();
+                    myAclst = _currentUser.GetUserACLs();
+                    foreach(CACLEntity acl in myAclst)
+                    {
+                        /* CResourceEntity res = new CResourceEntity().Load(acl.Acl_Resource);
+                        string scope = res.MakeFullPath();
+                        _search.SearchFullText(targetText, scope);
+                         */
+                        if(acl.Acl_Operation >= 4)
+                        {
+                            _search.SearchFullText(targetText, acl.Acl_Resource);
+                            result = _search.SearchResult;
+                        }
+                    }
+                }
+                if (result.Count <= 0)
+                {
+                    MessageBox.Show("搜索结果为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    this._searchList.Init(result);
+                    this.mainSplit.Panel2.Controls.Clear();
+                    this.mainSplit.Panel2.Controls.Add(_searchList);
+                    this._searchList.Dock = DockStyle.Fill;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ckbKeyWd_Click(object sender, EventArgs e)
+        {
+            if (ckbKeyWd.Checked)
+                ckbWholeDocumt.Enabled = false;
+            else
+            {
+                ckbWholeDocumt.Enabled = true;
+                ckbKeyWd.Enabled = true;
+            }
+        }
+
+        private void ckbWholeDocumt_Click(object sender, EventArgs e)
+        {
+            if (ckbWholeDocumt.Checked)
+                ckbKeyWd.Enabled = false;
+            else
+            {
+                ckbKeyWd.Enabled = true;
+                ckbWholeDocumt.Enabled = true;
             }
         }
     }
