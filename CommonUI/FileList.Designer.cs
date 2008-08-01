@@ -31,8 +31,8 @@ namespace CommonUI
             this.fileListView = new Gizmox.WebGUI.Forms.ListView();
             this.columnFilleName = new Gizmox.WebGUI.Forms.ColumnHeader();
             this.columnExt = new Gizmox.WebGUI.Forms.ColumnHeader();
-            this.fileContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
             this.columnKeyWord = new Gizmox.WebGUI.Forms.ColumnHeader();
+            this.fileContextMenu = new Gizmox.WebGUI.Forms.ContextMenu();
             this.SuspendLayout();
             // 
             // fileListView
@@ -72,16 +72,16 @@ namespace CommonUI
             this.columnExt.Text = "À©Õ¹Ãû";
             this.columnExt.Width = 150;
             // 
-            // fileContextMenu
-            // 
-            this.fileContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            // 
             // columnKeyWord
             // 
             this.columnKeyWord.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.columnKeyWord.Image = null;
             this.columnKeyWord.Text = "¹Ø¼ü×Ö";
             this.columnKeyWord.Width = 150;
+            // 
+            // fileContextMenu
+            // 
+            this.fileContextMenu.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             // 
             // FileList
             // 

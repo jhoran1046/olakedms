@@ -48,7 +48,7 @@ namespace UI
             this.searchListView.Location = new System.Drawing.Point(0, 0);
             this.searchListView.MultiSelect = false;
             this.searchListView.Name = "searchListView";
-            this.searchListView.Size = new System.Drawing.Size(391, 306);
+            this.searchListView.Size = new System.Drawing.Size(391, 326);
             this.searchListView.TabIndex = 0;
             // 
             // columnHeader1
@@ -72,6 +72,7 @@ namespace UI
             // SearchList
             // 
             this.Controls.Add(this.searchListView);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(391, 326);
             this.Text = "SearchList";
             this.ResumeLayout(false);

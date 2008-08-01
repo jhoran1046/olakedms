@@ -198,7 +198,7 @@ namespace CommonUI
                     icoHandle = new IconResourceHandle("anual.ico");
                     
                 }
-                
+                    
                 lvi.SmallImage = icoHandle;
                 lvi.Tag = f.ResourceId;
 
