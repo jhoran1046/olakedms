@@ -139,7 +139,7 @@ namespace UI
             this.currentDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
             this.currentDirBox.Location = new System.Drawing.Point(48, 28);
             this.currentDirBox.Name = "currentDirBox";
-            this.currentDirBox.Size = new System.Drawing.Size(104, 24);
+            this.currentDirBox.Size = new System.Drawing.Size(347, 24);
             this.currentDirBox.TabIndex = 0;
             this.currentDirBox.Text = "µ±Ç°Ä¿Â¼";
             this.currentDirBox.ThreeState = false;
