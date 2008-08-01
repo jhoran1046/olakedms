@@ -105,21 +105,52 @@ namespace UI
             _result.Clear();
             foreach (String s in searchScopes)
             {
-                String scope = s;
-                if (scope[scope.Length - 1] == '\\')
-                    scope = scope.Substring(0, scope.Length - 1);
-                scope = scope.Replace('\\', '/');
-                
-                CSearchDAL searchEngine = new CSearchDAL();
-                List<CSearchResultItem> tempResult = searchEngine.SearchFolder(targetText, scope);
-                if (tempResult.Count > 0)
-                {
-                    _result.AddRange(tempResult);
-                }
+                SearchFullText(targetText, s);
             }
 
             this.DialogResult = DialogResult.OK;
             Close();
+        }
+
+        public void SearchFullText(String text, int resource)
+        {
+            CResourceEntity res = new CResourceEntity().Load(resource);
+            String s = res.MakeFullPath();
+            SearchFullText(text, s);
+        }
+
+        public void SearchFullText(String text, String path)
+        {
+            String scope = path;
+            if (scope[scope.Length - 1] == '\\')
+                scope = scope.Substring(0, scope.Length - 1);
+            scope = scope.Replace('\\', '/');
+
+            CSearchDAL searchEngine = new CSearchDAL();
+            List<CSearchResultItem> tempResult = searchEngine.SearchFolder(text, scope);
+            if (tempResult.Count > 0)
+            {
+                _result.AddRange(tempResult);
+            }
+        }
+
+        public void SearchKeyword(String key)
+        {
+            String filter = "this.Res_KeyWord='" + key + "'";
+            List<CResourceEntity> resList = new CResourceEntity().GetObjectList(filter);
+            foreach (CResourceEntity res in resList)
+            {
+                CACLEntity acl = new CACLEntity();
+                acl.Acl_Resource = res.Res_Id;
+                acl.Acl_Operation = (int)ACLOPERATION.READ;
+                if (_currentUser.CheckPrivilege(acl))
+                {
+                    CSearchResultItem item = new CSearchResultItem();
+                    item.DispName = res.Res_Name;
+                    item.FullPath = res.MakeFullPath();
+                    _result.Add(item);
+                }
+            }
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
