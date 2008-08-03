@@ -29,7 +29,6 @@ namespace UI
         MyApplyUsrCrl _myApply = new MyApplyUsrCrl();
         AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
         FileList _orgMgerList = new FileList();
-        SearchForm _search = new SearchForm();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -77,8 +76,6 @@ namespace UI
                 orgMgerDirTree.CurrentUser = _currentUser;
                 orgMgerDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_Resource;
                 _orgMgerList.CurrentUser = _currentUser;
-
-                _search.CurrentUser = _currentUser;
 
 
                 //系统管理
@@ -777,46 +774,47 @@ namespace UI
                 MessageBox.Show("请填写检索内容！", "问昂管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            if(ckbKeyWd.Checked == false && ckbWholeDocumt.Checked == false)
+            if(!searchKeyword.Checked && !searchFullText.Checked)
             {
                 MessageBox.Show("请选择检索方式！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
+            SearchForm searchForm = new SearchForm();
+            searchForm.CurrentUser = _currentUser;
             List<String> searchScope = new List<string>();
             List<CSearchResultItem> result = new List<CSearchResultItem>();
             try
             {
-                if (ckbKeyWd.Checked)
+                if (searchKeyword.Checked)
                 {
-                    _search.SearchKeyword(targetText);
-                    result = _search.SearchResult;
+                    searchForm.SearchKeyword(targetText);
+                    result = searchForm.SearchResult;
                 }
-
-                if (ckbWholeDocumt.Checked)
+                else if (searchFullText.Checked)
                 {
                     List<CACLEntity> myAclst = new List<CACLEntity>();
-                    myAclst = _currentUser.GetUserACLs();
+                    myAclst = _currentUser.GetAllACLs();
                     foreach(CACLEntity acl in myAclst)
                     {
                         /* CResourceEntity res = new CResourceEntity().Load(acl.Acl_Resource);
                         string scope = res.MakeFullPath();
                         _search.SearchFullText(targetText, scope);
                          */
-                        if(acl.Acl_Operation >= 4)
+                        if(acl.Acl_Operation == (int)ACLOPERATION.READ)
                         {
-                            _search.SearchFullText(targetText, acl.Acl_Resource);
-                            result = _search.SearchResult;
+                            searchForm.SearchFullText(targetText, acl.Acl_Resource);
                         }
                     }
+                    result = searchForm.SearchResult;
                 }
+                this._searchList.Init(result);
                 if (result.Count <= 0)
                 {
                     MessageBox.Show("搜索结果为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    this._searchList.Init(result);
                     this.mainSplit.Panel2.Controls.Clear();
                     this.mainSplit.Panel2.Controls.Add(_searchList);
                     this._searchList.Dock = DockStyle.Fill;
@@ -828,26 +826,12 @@ namespace UI
             }
         }
 
-        private void ckbKeyWd_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (ckbKeyWd.Checked)
-                ckbWholeDocumt.Enabled = false;
-            else
-            {
-                ckbWholeDocumt.Enabled = true;
-                ckbKeyWd.Enabled = true;
-            }
-        }
-
-        private void ckbWholeDocumt_Click(object sender, EventArgs e)
-        {
-            if (ckbWholeDocumt.Checked)
-                ckbKeyWd.Enabled = false;
-            else
-            {
-                ckbKeyWd.Enabled = true;
-                ckbWholeDocumt.Enabled = true;
-            }
+            Context.Session.IsLoggedOn = false;
+            MainForm form = new MainForm();
+            form.Show();
+            this.Close();
         }
     }
 }
