@@ -66,15 +66,16 @@ namespace UI
             this.archiveDirTree = new CommonUI.DirTree();
             this.orgManageTab = new Gizmox.WebGUI.Forms.TabPage();
             this.orgMgerDirTree = new CommonUI.DirTree();
+            this.flowLayoutPanel1 = new Gizmox.WebGUI.Forms.FlowLayoutPanel();
+            this.txtTarget = new Gizmox.WebGUI.Forms.TextBox();
+            this.btnSearch = new Gizmox.WebGUI.Forms.Button();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
             this.chbAllDocument = new Gizmox.WebGUI.Forms.CheckBox();
-            this.flowLayoutPanel1 = new Gizmox.WebGUI.Forms.FlowLayoutPanel();
-            this.btnSearch = new Gizmox.WebGUI.Forms.Button();
-            this.ckbKeyWd = new Gizmox.WebGUI.Forms.CheckBox();
-            this.txtTarget = new Gizmox.WebGUI.Forms.TextBox();
-            this.ckbWholeDocumt = new Gizmox.WebGUI.Forms.CheckBox();
+            this.searchKeyword = new Gizmox.WebGUI.Forms.RadioButton();
+            this.searchFullText = new Gizmox.WebGUI.Forms.RadioButton();
+            this.btnLogout = new Gizmox.WebGUI.Forms.Button();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -262,7 +263,7 @@ namespace UI
             this.mainSplit.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.mainSplit.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.mainSplit.FixedPanel = Gizmox.WebGUI.Forms.FixedPanel.None;
-            this.mainSplit.Location = new System.Drawing.Point(3, 65);
+            this.mainSplit.Location = new System.Drawing.Point(3, 66);
             this.mainSplit.Name = "mainSplit";
             this.mainSplit.Orientation = Gizmox.WebGUI.Forms.Orientation.Vertical;
             // 
@@ -274,7 +275,7 @@ namespace UI
             // mainSplit.Panel2
             // 
             this.mainSplit.Panel2.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.mainSplit.Size = new System.Drawing.Size(635, 455);
+            this.mainSplit.Size = new System.Drawing.Size(635, 454);
             this.mainSplit.SplitterDistance = 211;
             this.mainSplit.TabIndex = 0;
             // 
@@ -293,7 +294,7 @@ namespace UI
             this.leftNavigationTabs.Multiline = false;
             this.leftNavigationTabs.Name = "leftNavigationTabs";
             this.leftNavigationTabs.SelectedIndex = 0;
-            this.leftNavigationTabs.Size = new System.Drawing.Size(211, 455);
+            this.leftNavigationTabs.Size = new System.Drawing.Size(211, 454);
             this.leftNavigationTabs.TabIndex = 0;
             this.leftNavigationTabs.SelectedIndexChanged += new System.EventHandler(this.leftNavigationTabs_SelectedIndexChanged);
             // 
@@ -303,7 +304,7 @@ namespace UI
             this.systemPage.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.systemPage.Location = new System.Drawing.Point(4, 22);
             this.systemPage.Name = "systemPage";
-            this.systemPage.Size = new System.Drawing.Size(203, 429);
+            this.systemPage.Size = new System.Drawing.Size(203, 428);
             this.systemPage.TabIndex = 0;
             this.systemPage.Text = "系统管理";
             // 
@@ -315,7 +316,7 @@ namespace UI
             this.sysFunctionTree.FunctionList = null;
             this.sysFunctionTree.Location = new System.Drawing.Point(0, 0);
             this.sysFunctionTree.Name = "sysFunctionTree";
-            this.sysFunctionTree.Size = new System.Drawing.Size(203, 429);
+            this.sysFunctionTree.Size = new System.Drawing.Size(203, 428);
             this.sysFunctionTree.TabIndex = 0;
             this.sysFunctionTree.Text = "FunctionTree";
             // 
@@ -325,7 +326,7 @@ namespace UI
             this.myInfoPage.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.myInfoPage.Location = new System.Drawing.Point(4, 22);
             this.myInfoPage.Name = "myInfoPage";
-            this.myInfoPage.Size = new System.Drawing.Size(203, 433);
+            this.myInfoPage.Size = new System.Drawing.Size(203, 428);
             this.myInfoPage.TabIndex = 0;
             this.myInfoPage.Text = "我的信息";
             // 
@@ -345,7 +346,7 @@ namespace UI
             this.myDocPage.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.myDocPage.Location = new System.Drawing.Point(4, 22);
             this.myDocPage.Name = "myDocPage";
-            this.myDocPage.Size = new System.Drawing.Size(203, 433);
+            this.myDocPage.Size = new System.Drawing.Size(203, 428);
             this.myDocPage.TabIndex = 1;
             this.myDocPage.Text = "我的文档";
             // 
@@ -360,7 +361,7 @@ namespace UI
             this.myDirTree.Name = "myDirTree";
             this.myDirTree.RootDir = null;
             this.myDirTree.RootResourceId = 0;
-            this.myDirTree.Size = new System.Drawing.Size(203, 433);
+            this.myDirTree.Size = new System.Drawing.Size(203, 428);
             this.myDirTree.TabIndex = 0;
             this.myDirTree.Text = "DirTree";
             // 
@@ -370,7 +371,7 @@ namespace UI
             this.shareSpaceTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.shareSpaceTab.Location = new System.Drawing.Point(4, 22);
             this.shareSpaceTab.Name = "shareSpaceTab";
-            this.shareSpaceTab.Size = new System.Drawing.Size(203, 433);
+            this.shareSpaceTab.Size = new System.Drawing.Size(203, 428);
             this.shareSpaceTab.TabIndex = 0;
             this.shareSpaceTab.Text = "共享空间";
             // 
@@ -385,7 +386,7 @@ namespace UI
             this.shareDirTree.Name = "shareDirTree";
             this.shareDirTree.RootDir = null;
             this.shareDirTree.RootResourceId = 0;
-            this.shareDirTree.Size = new System.Drawing.Size(203, 433);
+            this.shareDirTree.Size = new System.Drawing.Size(203, 428);
             this.shareDirTree.TabIndex = 0;
             this.shareDirTree.Text = "DirTree";
             // 
@@ -395,7 +396,7 @@ namespace UI
             this.archiveTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.archiveTab.Location = new System.Drawing.Point(4, 22);
             this.archiveTab.Name = "archiveTab";
-            this.archiveTab.Size = new System.Drawing.Size(203, 433);
+            this.archiveTab.Size = new System.Drawing.Size(203, 428);
             this.archiveTab.TabIndex = 0;
             this.archiveTab.Text = "归档区";
             // 
@@ -410,7 +411,7 @@ namespace UI
             this.archiveDirTree.Name = "archiveDirTree";
             this.archiveDirTree.RootDir = null;
             this.archiveDirTree.RootResourceId = 0;
-            this.archiveDirTree.Size = new System.Drawing.Size(203, 433);
+            this.archiveDirTree.Size = new System.Drawing.Size(203, 428);
             this.archiveDirTree.TabIndex = 0;
             this.archiveDirTree.Text = "DirTree";
             // 
@@ -420,7 +421,7 @@ namespace UI
             this.orgManageTab.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.orgManageTab.Location = new System.Drawing.Point(4, 22);
             this.orgManageTab.Name = "orgManageTab";
-            this.orgManageTab.Size = new System.Drawing.Size(203, 433);
+            this.orgManageTab.Size = new System.Drawing.Size(203, 428);
             this.orgManageTab.TabIndex = 0;
             this.orgManageTab.Text = "全部目录";
             // 
@@ -435,9 +436,45 @@ namespace UI
             this.orgMgerDirTree.Name = "orgMgerDirTree";
             this.orgMgerDirTree.RootDir = null;
             this.orgMgerDirTree.RootResourceId = 0;
-            this.orgMgerDirTree.Size = new System.Drawing.Size(203, 433);
+            this.orgMgerDirTree.Size = new System.Drawing.Size(203, 428);
             this.orgMgerDirTree.TabIndex = 0;
             this.orgMgerDirTree.Text = "DirTree";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Controls.Add(this.txtTarget);
+            this.flowLayoutPanel1.Controls.Add(this.btnSearch);
+            this.flowLayoutPanel1.Controls.Add(this.btnLogout);
+            this.flowLayoutPanel1.Controls.Add(this.searchKeyword);
+            this.flowLayoutPanel1.Controls.Add(this.searchFullText);
+            this.flowLayoutPanel1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.flowLayoutPanel1.FlowDirection = Gizmox.WebGUI.Forms.FlowDirection.LeftToRight;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(334, 4);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(304, 56);
+            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // txtTarget
+            // 
+            this.txtTarget.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtTarget.Location = new System.Drawing.Point(3, 3);
+            this.txtTarget.Name = "txtTarget";
+            this.txtTarget.Size = new System.Drawing.Size(124, 20);
+            this.txtTarget.TabIndex = 1;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.btnSearch.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnSearch.Location = new System.Drawing.Point(133, 3);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "搜索";
+            this.btnSearch.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // menuItem6
             // 
@@ -470,70 +507,35 @@ namespace UI
             this.chbAllDocument.Text = "全文检索";
             this.chbAllDocument.ThreeState = false;
             // 
-            // flowLayoutPanel1
+            // searchKeyword
             // 
-            this.flowLayoutPanel1.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Controls.Add(this.txtTarget);
-            this.flowLayoutPanel1.Controls.Add(this.btnSearch);
-            this.flowLayoutPanel1.Controls.Add(this.ckbKeyWd);
-            this.flowLayoutPanel1.Controls.Add(this.ckbWholeDocumt);
-            this.flowLayoutPanel1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.flowLayoutPanel1.FlowDirection = Gizmox.WebGUI.Forms.FlowDirection.LeftToRight;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(419, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(219, 56);
-            this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.searchKeyword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.searchKeyword.Location = new System.Drawing.Point(3, 32);
+            this.searchKeyword.Name = "searchKeyword";
+            this.searchKeyword.Size = new System.Drawing.Size(85, 24);
+            this.searchKeyword.TabIndex = 0;
+            this.searchKeyword.Text = "关键字检索";
             // 
-            // btnSearch
+            // searchFullText
             // 
-            this.btnSearch.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Top | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.btnSearch.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnSearch.Location = new System.Drawing.Point(133, 3);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 0;
-            this.btnSearch.Text = "搜索";
-            this.btnSearch.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.searchFullText.Checked = true;
+            this.searchFullText.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.searchFullText.Location = new System.Drawing.Point(94, 32);
+            this.searchFullText.Name = "searchFullText";
+            this.searchFullText.Size = new System.Drawing.Size(85, 24);
+            this.searchFullText.TabIndex = 0;
+            this.searchFullText.Text = "全文检索";
             // 
-            // ckbKeyWd
+            // btnLogout
             // 
-            this.ckbKeyWd.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)));
-            this.ckbKeyWd.Checked = false;
-            this.ckbKeyWd.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.ckbKeyWd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.ckbKeyWd.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.ckbKeyWd.Location = new System.Drawing.Point(3, 32);
-            this.ckbKeyWd.Name = "ckbKeyWd";
-            this.ckbKeyWd.Size = new System.Drawing.Size(102, 19);
-            this.ckbKeyWd.TabIndex = 0;
-            this.ckbKeyWd.Text = "按关键字检索";
-            this.ckbKeyWd.ThreeState = false;
-            this.ckbKeyWd.Click += new System.EventHandler(this.ckbKeyWd_Click);
-            // 
-            // txtTarget
-            // 
-            this.txtTarget.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.txtTarget.Location = new System.Drawing.Point(3, 3);
-            this.txtTarget.Name = "txtTarget";
-            this.txtTarget.Size = new System.Drawing.Size(124, 20);
-            this.txtTarget.TabIndex = 1;
-            // 
-            // ckbWholeDocumt
-            // 
-            this.ckbWholeDocumt.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
-            this.ckbWholeDocumt.Checked = false;
-            this.ckbWholeDocumt.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.ckbWholeDocumt.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.ckbWholeDocumt.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.ckbWholeDocumt.Location = new System.Drawing.Point(111, 32);
-            this.ckbWholeDocumt.Name = "ckbWholeDocumt";
-            this.ckbWholeDocumt.Size = new System.Drawing.Size(87, 19);
-            this.ckbWholeDocumt.TabIndex = 0;
-            this.ckbWholeDocumt.Text = "按全文检索";
-            this.ckbWholeDocumt.ThreeState = false;
-            this.ckbWholeDocumt.Click += new System.EventHandler(this.ckbWholeDocumt_Click);
+            this.btnLogout.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnLogout.Location = new System.Drawing.Point(214, 3);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "注销";
+            this.btnLogout.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // MainForm
             // 
@@ -594,7 +596,8 @@ namespace UI
         private Gizmox.WebGUI.Forms.FlowLayoutPanel flowLayoutPanel1;
         private Gizmox.WebGUI.Forms.TextBox txtTarget;
         private Gizmox.WebGUI.Forms.Button btnSearch;
-        private Gizmox.WebGUI.Forms.CheckBox ckbKeyWd;
-        private Gizmox.WebGUI.Forms.CheckBox ckbWholeDocumt;
+        private Gizmox.WebGUI.Forms.RadioButton searchKeyword;
+        private Gizmox.WebGUI.Forms.RadioButton searchFullText;
+        private Gizmox.WebGUI.Forms.Button btnLogout;
     }
 }
