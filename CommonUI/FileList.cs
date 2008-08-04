@@ -74,6 +74,7 @@ namespace CommonUI
             MenuItem MenuItem4 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem5 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -360,6 +361,11 @@ namespace CommonUI
             {
                 MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
