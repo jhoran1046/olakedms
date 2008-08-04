@@ -23,7 +23,6 @@ namespace UI
         {
             get { return _result; }
         }
-
         CUserEntity _currentUser;
         public CUserEntity CurrentUser
         {

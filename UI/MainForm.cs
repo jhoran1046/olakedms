@@ -29,6 +29,7 @@ namespace UI
         MyApplyUsrCrl _myApply = new MyApplyUsrCrl();
         AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
         FileList _orgMgerList = new FileList();
+        Memoes _orgMemo = new Memoes();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -77,11 +78,13 @@ namespace UI
                 orgMgerDirTree.RootResourceId = _currentUser.GetUserOrganize().Org_Resource;
                 _orgMgerList.CurrentUser = _currentUser;
 
+                _orgMemo.CurrentUser = _currentUser;
 
                 //系统管理
                 List<CFunction> systemFunctions = new List<CFunction>();
                 CFunction function = new CFunction();
                 function.Name = "备份";
+                function.Ui = _orgMemo;
                 function.Image = new IconResourceHandle("save.gif");
                 systemFunctions.Add(function);
 

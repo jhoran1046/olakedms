@@ -69,13 +69,13 @@ namespace UI
             this.flowLayoutPanel1 = new Gizmox.WebGUI.Forms.FlowLayoutPanel();
             this.txtTarget = new Gizmox.WebGUI.Forms.TextBox();
             this.btnSearch = new Gizmox.WebGUI.Forms.Button();
+            this.btnLogout = new Gizmox.WebGUI.Forms.Button();
+            this.searchKeyword = new Gizmox.WebGUI.Forms.RadioButton();
+            this.searchFullText = new Gizmox.WebGUI.Forms.RadioButton();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
             this.chbAllDocument = new Gizmox.WebGUI.Forms.CheckBox();
-            this.searchKeyword = new Gizmox.WebGUI.Forms.RadioButton();
-            this.searchFullText = new Gizmox.WebGUI.Forms.RadioButton();
-            this.btnLogout = new Gizmox.WebGUI.Forms.Button();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -476,6 +476,36 @@ namespace UI
             this.btnSearch.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.btnLogout.Location = new System.Drawing.Point(214, 3);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "×¢Ïú";
+            this.btnLogout.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // searchKeyword
+            // 
+            this.searchKeyword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.searchKeyword.Location = new System.Drawing.Point(3, 32);
+            this.searchKeyword.Name = "searchKeyword";
+            this.searchKeyword.Size = new System.Drawing.Size(85, 24);
+            this.searchKeyword.TabIndex = 0;
+            this.searchKeyword.Text = "¹Ø¼ü×Ö¼ìË÷";
+            // 
+            // searchFullText
+            // 
+            this.searchFullText.Checked = true;
+            this.searchFullText.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.searchFullText.Location = new System.Drawing.Point(94, 32);
+            this.searchFullText.Name = "searchFullText";
+            this.searchFullText.Size = new System.Drawing.Size(85, 24);
+            this.searchFullText.TabIndex = 0;
+            this.searchFullText.Text = "È«ÎÄ¼ìË÷";
+            // 
             // menuItem6
             // 
             this.menuItem6.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -506,36 +536,6 @@ namespace UI
             this.chbAllDocument.TabIndex = 3;
             this.chbAllDocument.Text = "È«ÎÄ¼ìË÷";
             this.chbAllDocument.ThreeState = false;
-            // 
-            // searchKeyword
-            // 
-            this.searchKeyword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.searchKeyword.Location = new System.Drawing.Point(3, 32);
-            this.searchKeyword.Name = "searchKeyword";
-            this.searchKeyword.Size = new System.Drawing.Size(85, 24);
-            this.searchKeyword.TabIndex = 0;
-            this.searchKeyword.Text = "¹Ø¼ü×Ö¼ìË÷";
-            // 
-            // searchFullText
-            // 
-            this.searchFullText.Checked = true;
-            this.searchFullText.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.searchFullText.Location = new System.Drawing.Point(94, 32);
-            this.searchFullText.Name = "searchFullText";
-            this.searchFullText.Size = new System.Drawing.Size(85, 24);
-            this.searchFullText.TabIndex = 0;
-            this.searchFullText.Text = "È«ÎÄ¼ìË÷";
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnLogout.Location = new System.Drawing.Point(214, 3);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
-            this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "×¢Ïú";
-            this.btnLogout.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // MainForm
             // 

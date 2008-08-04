@@ -54,7 +54,7 @@ namespace CommonUI
             this.fileListView.Location = new System.Drawing.Point(0, 0);
             this.fileListView.MultiSelect = false;
             this.fileListView.Name = "fileListView";
-            this.fileListView.Size = new System.Drawing.Size(453, 306);
+            this.fileListView.Size = new System.Drawing.Size(453, 274);
             this.fileListView.TabIndex = 0;
             this.fileListView.UseInternalPaging = true;
             // 
@@ -87,7 +87,7 @@ namespace CommonUI
             // 
             this.Controls.Add(this.fileListView);
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(453, 306);
+            this.Size = new System.Drawing.Size(453, 274);
             this.Text = "FileList";
             this.ResumeLayout(false);
 

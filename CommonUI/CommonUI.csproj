@@ -28,6 +28,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SharpZip\net-20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -101,6 +105,12 @@
     </Compile>
     <Compile Include="MainFunctions.Designer.cs">
       <DependentUpon>MainFunctions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Memoes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Memoes.Designer.cs">
+      <DependentUpon>Memoes.cs</DependentUpon>
     </Compile>
     <Compile Include="MyApplyUsrCrl.cs">
       <SubType>UserControl</SubType>
@@ -194,6 +204,10 @@
     <EmbeddedResource Include="MainFunctions.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainFunctions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Memoes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Memoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyApplyUsrCrl.resx">
       <SubType>Designer</SubType>
