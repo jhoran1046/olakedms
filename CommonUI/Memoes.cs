@@ -72,7 +72,7 @@ namespace CommonUI
             if(strAction == "Download")
             {
                 string orgName = _currentUser.GetUserOrganize().Org_Name;
-                string fileName = orgName;
+                String fileName = "attachment; filename=\"" + orgName + ".zip\"";
                 string filePath = Context.Server.MapPath("~/App_data/" + DateTime.Now.ToString("yyyy-MM-dd") + orgName + "/" + orgName + ".zip");
                 objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
                 objContext.HttpContext.Response.WriteFile(filePath);
