@@ -832,9 +832,10 @@ namespace UI
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Context.Session.IsLoggedOn = false;
-            MainForm form = new MainForm();
-            form.Show();
-            this.Close();
+            Context.Redirect("mainform.wgx");
+//            MainForm form = new MainForm();
+//            form.Show();
+//            this.Close();
         }
     }
 }
