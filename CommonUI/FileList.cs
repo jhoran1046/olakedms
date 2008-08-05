@@ -196,8 +196,7 @@ namespace CommonUI
                 IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".ico");
                 if(System.IO.File.Exists(Context.HttpContext.Server.MapPath("/resources/icons/" + f.Ext + ".ico")) == false)
                 {
-                    icoHandle = new IconResourceHandle("anual.ico");
-                    
+                    icoHandle = new IconResourceHandle("anual.ico");          
                 }
                     
                 lvi.SmallImage = icoHandle;

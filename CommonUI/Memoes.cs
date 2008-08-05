@@ -15,12 +15,15 @@ using System.IO;
 using System.Collections;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Zip;
+using Gizmox.WebGUI.Common.Gateways;
+using Gizmox.WebGUI.Common.Interfaces;
+using Gizmox.WebGUI.Common.Resources;
 
 #endregion
 
 namespace CommonUI
 {
-    public partial class Memoes : UserControl
+    public partial class Memoes : UserControl,IGatewayControl
     {
         CUserEntity _currentUser;
 
@@ -33,48 +36,48 @@ namespace CommonUI
         public Memoes()
         {
             InitializeComponent();
-            fbdialogSave.ShowNewFolderButton = false;
-            fbdialogSave.Title = "请选择目标目录";
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            fbdialogSave.ShowDialog();
-            fbdialogSave.Closed += new EventHandler(fbdialogSave_Closed);
-        }
-
-        void fbdialogSave_Closed(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderPath = (FolderBrowserDialog)sender;
-            string savePath = null;
-            if (folderPath.DialogResult != DialogResult.OK)
-                return;
-
-            savePath = folderPath.SelectedPath.ToString();
-            
-
             try
             {
-                COrganizeEntity currentOrg = new COrganizeEntity().Load(_currentUser.Usr_Organize);
-                savePath += @"\";
-                savePath += currentOrg.Org_Name;
-                savePath += ".zip";
-                //string orignPath = Context.Server.MapPath("~/App_Data/" + currentOrg.Org_Name);
-                CResourceEntity orgRes = new CResourceEntity().Load(_currentUser.GetUserOrganize().Org_Resource);
+                COrganizeEntity currentOrg = new COrganizeEntity().Load(_currentUser.GetUserOrganize().Org_Id);
+                CResourceEntity orgRes = new CResourceEntity().Load(currentOrg.Org_Resource);
+                string rootDir = Context.Server.MapPath("~/App_data");
+                string temperoryFolder = rootDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
+                DirectoryInfo di = Directory.CreateDirectory(temperoryFolder);
+
+                string outputPath = temperoryFolder + @"\";
+                outputPath += currentOrg.Org_Name;
+                outputPath += ".zip";
                 string orignPath = orgRes.MakeFullPath();
-                ZipFiles(orignPath, savePath);
-                
+                ZipFiles(orignPath, outputPath);
+
+                LinkParameters objlinkParameters = new LinkParameters();
+                objlinkParameters.Target = "_self";
+                Link.Open(new Gizmox.WebGUI.Common.Gateways.GatewayReference(this, "Download"), objlinkParameters);
+
+                //System.IO.File.Delete(outputPath);
+                //di.Delete();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+                
+        IGatewayHandler IGatewayControl.GetGatewayHandler(IContext objContext,string strAction)
         {
-
+            if(strAction == "Download")
+            {
+                string orgName = _currentUser.GetUserOrganize().Org_Name;
+                string fileName = orgName;
+                string filePath = Context.Server.MapPath("~/App_data/" + DateTime.Now.ToString("yyyy-MM-dd") + orgName + "/" + orgName + ".zip");
+                objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
+                objContext.HttpContext.Response.WriteFile(filePath);
+            }
+            return null;
         }
 
         public void ZipFiles(string inputFolderPath, string outputPathAndFile)
