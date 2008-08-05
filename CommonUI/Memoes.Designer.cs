@@ -29,7 +29,6 @@ namespace CommonUI
         private void InitializeComponent()
         {
             this.btnStart = new Gizmox.WebGUI.Forms.Button();
-            this.btnCancel = new Gizmox.WebGUI.Forms.Button();
             this.prgbMemo = new Gizmox.WebGUI.Forms.ProgressBar();
             this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
             this.fbdialogSave = new Gizmox.WebGUI.Forms.FolderBrowserDialog();
@@ -38,24 +37,13 @@ namespace CommonUI
             // btnStart
             // 
             this.btnStart.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnStart.Location = new System.Drawing.Point(39, 33);
+            this.btnStart.Location = new System.Drawing.Point(32, 32);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "开始备份";
             this.btnStart.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnCancel.Location = new System.Drawing.Point(39, 84);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取消备份";
-            this.btnCancel.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // prgbMemo
             // 
@@ -72,7 +60,6 @@ namespace CommonUI
             this.groupBox1.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.btnStart);
             this.groupBox1.Controls.Add(this.prgbMemo);
-            this.groupBox1.Controls.Add(this.btnCancel);
             this.groupBox1.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.groupBox1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.groupBox1.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
@@ -80,7 +67,7 @@ namespace CommonUI
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(615, 281);
             this.groupBox1.TabIndex = 3;
-            this.groupBox1.Text = "备份组织文件";
+            this.groupBox1.Text = "备份本组织文件";
             // 
             // fbdialogSave
             // 
@@ -99,7 +86,6 @@ namespace CommonUI
         #endregion
 
         private Gizmox.WebGUI.Forms.Button btnStart;
-        private Gizmox.WebGUI.Forms.Button btnCancel;
         private Gizmox.WebGUI.Forms.ProgressBar prgbMemo;
         private Gizmox.WebGUI.Forms.GroupBox groupBox1;
         private Gizmox.WebGUI.Forms.FolderBrowserDialog fbdialogSave;
