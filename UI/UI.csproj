@@ -233,8 +233,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4515</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/UI</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
         </WebProjectProperties>
       </FlavorProperties>
