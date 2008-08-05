@@ -59,7 +59,9 @@ namespace CommonUI
                 savePath += @"\";
                 savePath += currentOrg.Org_Name;
                 savePath += ".zip";
-                string orignPath = Context.Server.MapPath("~/App_Data/" + currentOrg.Org_Name);
+                //string orignPath = Context.Server.MapPath("~/App_Data/" + currentOrg.Org_Name);
+                CResourceEntity orgRes = new CResourceEntity().Load(_currentUser.GetUserOrganize().Org_Resource);
+                string orignPath = orgRes.MakeFullPath();
                 ZipFiles(orignPath, savePath);
                 
             }
