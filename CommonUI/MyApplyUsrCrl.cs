@@ -140,9 +140,9 @@ namespace CommonUI
                     {
                         case 1: lvsiAudite.Text = "未审核";
                             break;
-                        case 2: lvsiAudite.Text = "已批准";
+                        case 2: lvsiAudite.Text = "批准了您的申请";
                             break;
-                        case 3: lvsiAudite.Text = "未批准";
+                        case 3: lvsiAudite.Text = "拒绝了您的申请";
                             break;
                     }
                     lviName.SubItems.Add(lvsiAudite);
