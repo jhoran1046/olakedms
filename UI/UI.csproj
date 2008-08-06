@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\searchTest\txt\2007-09-19.txt.txt" />
-    <Content Include="App_Data\searchTest\txt\2007-10-26.txt.txt" />
-    <Content Include="App_Data\searchTest\txt\search.txt" />
     <Content Include="Global.asax" />
     <Content Include="Resources\Icons\24X24\Applications.gif" />
     <Content Include="Resources\Icons\24X24\Behaviors.gif" />
@@ -214,7 +211,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+
+    <Folder Include="App_Data\searchTest\txt\" />
     <Folder Include="Resources\Icons\Headers\" />
+
+    <Folder Include="Resources\Icons\Headers\" />
+
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

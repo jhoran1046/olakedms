@@ -540,7 +540,7 @@ namespace UI
             // MainForm
             // 
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Location = new System.Drawing.Point(15, -313);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(641, 523);
             this.Text = "文档管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);
