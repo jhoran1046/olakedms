@@ -135,7 +135,7 @@ namespace UI
 
         public void SearchKeyword(String key)
         {
-            String filter = "this.Res_KeyWord like'" + key + "'";
+            String filter = "this.Res_KeyWord like'%" + key + "%'";
             List<CResourceEntity> resList = new CResourceEntity().GetObjectList(filter);
             foreach (CResourceEntity res in resList)
             {
