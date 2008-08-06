@@ -43,6 +43,9 @@ namespace UI
                 lvsi.Text = result.FullPath.Substring(MidLayerSettings.AppPath.Length);
                 lvi.SubItems.Add(lvsi);
 
+                lvsi = new ListViewItem.ListViewSubItem();
+                
+
                 searchListView.Items.Add(lvi);
             }
 
