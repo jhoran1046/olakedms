@@ -10,6 +10,8 @@ using System.Text;
 using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 using MidLayer;
+using System.Security.Cryptography;
+using Framework.Util;
 
 #endregion
 
@@ -55,7 +57,34 @@ namespace CommonUI
 
             try
             {
-                _currentUser.Usr_Password = txtPassword.Text.Trim();
+               // _currentUser.Usr_Password = txtPassword.Text.Trim();
+
+               /* MD5 md5 = MD5.Create();
+                byte[] bytePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(txtPassword.Text.Trim()));
+                byte[] byteSurePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(txtSurePwd.Text.Trim()));
+                string resultPwd = System.Text.UTF8Encoding.Unicode.GetString(bytePwd);
+                string resultSurePwd = System.Text.UTF8Encoding.Unicode.GetString(byteSurePwd);
+                if(resultPwd == resultSurePwd)
+                {
+                    _currentUser.Usr_Password = resultPwd;
+                }
+                else
+                {
+                    MessageBox.Show("密码与确认密码不相等！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }*/
+                string pwd = CHelperClass.UserMd5(txtPassword.Text.Trim());
+                string surePwd = CHelperClass.UserMd5(txtSurePwd.Text.Trim());
+                if(pwd == surePwd)
+                {
+                    _currentUser.Usr_Password = pwd;
+                }
+                else
+                {
+                    MessageBox.Show("密码与确认密码不相等！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
                 _currentUser.Usr_Name = txtName.Text.Trim();
                 _currentUser.Usr_Email = txtEmail.Text.Trim();
                 _currentUser.Update();

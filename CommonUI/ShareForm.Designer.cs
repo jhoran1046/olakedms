@@ -231,6 +231,7 @@ namespace CommonUI
             this.Controls.Add(this.btnOK);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(422, 343);
+            this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
             this.Text = "π≤œÌ…Ë÷√";
             this.Load += new System.EventHandler(this.ShareForm_Load);
             this.ResumeLayout(false);

@@ -12,6 +12,8 @@ using Gizmox.WebGUI.Forms;
 
 using MidLayer;
 using Gizmox.WebGUI.Common.Resources;
+using System.Security.Cryptography;
+using Framework.Util;
 
 #endregion
 
@@ -117,7 +119,32 @@ namespace CommonUI
             {
                 CUserEntity newUser = new CUserEntity(_currentUser.ConnString);
                 newUser.Usr_Member = userForm.Member;
-                newUser.Usr_Password = userForm.Password;
+               // newUser.Usr_Password = userForm.Password;
+
+             /*   MD5 md5 = MD5.Create();
+                byte[] bytePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Password));
+                byte[] byteSurePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Surepwd));
+                string resultPwd = System.Text.UTF8Encoding.Unicode.GetString(bytePwd);
+                string resultSurePwd = System.Text.UTF8Encoding.Unicode.GetString(byteSurePwd);
+                if(resultPwd == resultSurePwd)
+                {
+                    newUser.Usr_Password = resultPwd;
+                }
+                else
+                {
+                    throw new Exception("密码与确认密码不相等！");
+                }*/
+                string pwd = CHelperClass.UserMd5(userForm.Password);
+                string surePwd = CHelperClass.UserMd5(userForm.Surepwd);
+                if(pwd == surePwd)
+                {
+                    newUser.Usr_Password = pwd;
+                }
+                else
+                {
+                    throw new Exception("密码与确认密码不相等！");
+                }
+
                 newUser.Usr_Name = userForm.UserName;
                 newUser.Usr_Email = userForm.Email;
                 newUser.Usr_Organize = _currentUser.Usr_Organize;
@@ -192,7 +219,32 @@ namespace CommonUI
             {
                 CUserEntity user = new CUserEntity(_currentUser.ConnString).Load((int)userListView.SelectedItems[0].Tag);
                 user.Usr_Member = userForm.Member;
-                user.Usr_Password = userForm.Password;
+                //user.Usr_Password = userForm.Password;
+
+               /* MD5 md5 = MD5.Create();
+                byte[] bytePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Password));
+                byte[] byteSurePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Surepwd));
+                string resultPwd = System.Text.UTF8Encoding.Unicode.GetString(bytePwd);
+                string resultSurePwd = System.Text.UTF8Encoding.Unicode.GetString(byteSurePwd);
+                if (resultPwd == resultSurePwd)
+                {
+                    user.Usr_Password = resultPwd;
+                }
+                else
+                {
+                    throw new Exception("密码与确认密码不相等！");
+                }*/
+                string pwd = CHelperClass.UserMd5(userForm.Password);
+                string surePwd = CHelperClass.UserMd5(userForm.Surepwd);
+                if(pwd == surePwd)
+                {
+                    user.Usr_Password = pwd;
+                }
+                else
+                {
+                    throw new Exception("密码与确认密码不相等！");
+                }
+
                 user.Usr_Name = userForm.UserName;
                 user.Usr_Email = userForm.Email;
                 _currentUser.ModifyUser(user);

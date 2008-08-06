@@ -485,10 +485,19 @@ namespace MidLayer
             new CUserGroupEntity(ConnString).Delete(filter);
         }
 
-        public CUserEntity Login(String member, String password)
+        public CUserEntity Login(String member, String password) //8月6日下午修改——赵英武
         {
-            String filter = "this.Usr_Member='" + member + "' and Usr_Password='" + password + "'";
-            List<CUserEntity> users = GetObjectList(filter);
+            List<CUserEntity> users;
+            try
+            {
+                String filter = "this.Usr_Member='" + member + "' and Usr_Password='" + password + "'";
+                users = GetObjectList(filter);
+            }
+            catch
+            {
+                throw new Exception("无法访问数据库！");
+            }
+
             if (users.Count > 0)
                 return users[0];
             else
