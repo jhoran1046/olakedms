@@ -194,7 +194,7 @@ namespace CommonUI
 
                 lvi.Text = f.FileName;
                 IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".ico");
-                if(System.IO.File.Exists(Context.HttpContext.Server.MapPath("/resources/icons/" + f.Ext + ".ico")) == false)
+                if(!System.IO.File.Exists(Context.HttpContext.Server.MapPath("/resources/icons/" + f.Ext + ".ico")))
                 {
                     icoHandle = new IconResourceHandle("anual.ico");          
                 }
@@ -255,6 +255,12 @@ namespace CommonUI
 
         private void menuDeleteFile_Click(object sender, EventArgs e)
         {
+            if(fileListView.SelectedItem == null)
+            {
+                MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             MessageBox.Show("确定要删除文件吗？", "文档管理系统", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question, new EventHandler(DeleteFileHandler));
         }
@@ -268,9 +274,9 @@ namespace CommonUI
 
             try
             {
-                foreach (ListViewItem item in fileListView.Items)
+                foreach (ListViewItem item in fileListView.SelectedItems)
                 {
-                    if (item.Checked)
+                    if (item.Selected)
                     {
                         _helper.DeleteFile(_currentUser, (int)item.Tag);
                     }
@@ -285,6 +291,12 @@ namespace CommonUI
 
         private void menuShareFile_Click(object sender, EventArgs e)
         {
+            if(fileListView.SelectedItem == null)
+            {
+                MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             try
             {
                 int res = (int)FileListView.SelectedItem.Tag;

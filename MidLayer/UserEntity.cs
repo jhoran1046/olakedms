@@ -980,7 +980,6 @@ namespace MidLayer
             try
             {
                 this.CopyResource(aRes.App_ResId, archiveResource);
-
                 aRes.Permit();
             }
             catch(Exception ex)

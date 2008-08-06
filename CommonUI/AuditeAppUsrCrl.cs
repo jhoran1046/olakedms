@@ -94,17 +94,20 @@ namespace CommonUI
                 return;
             }
 
+            List<ListViewItem> permitItems = new List<ListViewItem>();
             try
             {
                 if (showArchive.SelectedNode == null || showArchive.SelectedNode.Tag == null)
                     return;
                 foreach (ListViewItem item in lsvOrgApply.SelectedItems)
                 {
+                    permitItems.Add(item);
                     _currentUser.PermitApply((int)item.Tag, (int)showArchive.SelectedNode.Tag);
                 }
                 if (selectedCount > 0)
                 {
                     MessageBox.Show("您选择的项目已批准！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadOrgApp();
                 }
             }
             catch(Exception ex)
