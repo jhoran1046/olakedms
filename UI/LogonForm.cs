@@ -11,6 +11,7 @@ using MidLayer;
 using System.Security.Cryptography;
 using System.Text;
 using Framework.Util;
+using Gizmox.WebGUI.Common.Resources;
 
 #endregion
 
@@ -86,6 +87,8 @@ namespace UI
 		private Panel mobjPanelLine;
 		private Label mobjLabelMessage;
         private GroupBox groupBox1;
+        private PictureBox pictureBoxName;
+        private PictureBox pictureBoxPwd;
 
 		/// <summary>
 		/// Required designer variable.
@@ -149,6 +152,8 @@ namespace UI
             this.mobjPanelLine = new Gizmox.WebGUI.Forms.Panel();
             this.mobjLabelMessage = new Gizmox.WebGUI.Forms.Label();
             this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
+            this.pictureBoxName = new Gizmox.WebGUI.Forms.PictureBox();
+            this.pictureBoxPwd = new Gizmox.WebGUI.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // mobjTextUsername
@@ -265,6 +270,8 @@ namespace UI
             // groupBox1
             // 
             this.groupBox1.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.pictureBoxPwd);
+            this.groupBox1.Controls.Add(this.pictureBoxName);
             this.groupBox1.Controls.Add(this.mobjTextUsername);
             this.groupBox1.Controls.Add(this.mobjLabelUsername);
             this.groupBox1.Controls.Add(this.mobjLabelMessage);
@@ -280,6 +287,26 @@ namespace UI
             this.groupBox1.Size = new System.Drawing.Size(304, 191);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.Text = "µÇÂ¼ÏµÍ³";
+            // 
+            // pictureBoxName
+            // 
+            this.pictureBoxName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.pictureBoxName.Image = null;
+            this.pictureBoxName.Location = new System.Drawing.Point(263, 36);
+            this.pictureBoxName.Name = "pictureBoxName";
+            this.pictureBoxName.Size = new System.Drawing.Size(35, 23);
+            this.pictureBoxName.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.Normal;
+            this.pictureBoxName.TabIndex = 10;
+            // 
+            // pictureBoxPwd
+            // 
+            this.pictureBoxPwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.pictureBoxPwd.Image = null;
+            this.pictureBoxPwd.Location = new System.Drawing.Point(262, 71);
+            this.pictureBoxPwd.Name = "pictureBoxPwd";
+            this.pictureBoxPwd.Size = new System.Drawing.Size(36, 23);
+            this.pictureBoxPwd.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.Normal;
+            this.pictureBoxPwd.TabIndex = 11;
             // 
             // LogonForm
             // 
@@ -358,7 +385,8 @@ namespace UI
 
 		private void Logon_Load(object sender, EventArgs e)
 		{
-            
+            pictureBoxName.Image = new IconResourceHandle("usrName.gif");
+            pictureBoxPwd.Image = new IconResourceHandle("password.gif");
             if (Context.Cookies["Username"] != "")
             {
                 this.mobjTextUsername.Text = Context.Cookies["Username"];
