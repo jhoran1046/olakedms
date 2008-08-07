@@ -87,6 +87,7 @@ namespace CommonUI
             this.Controls.Add(this.btnOK);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(337, 310);
+            this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
             this.Text = "选择目标目录";
             this.Load += new System.EventHandler(this.ShowArchiveContent_Load);
             this.ResumeLayout(false);
