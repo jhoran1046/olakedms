@@ -119,10 +119,12 @@ namespace CommonUI
 
             MenuItem1.Text = "创建子目录";
             MenuItem1.Click += new System.EventHandler(this.menuCreateFolder_Click);
+            MenuItem1.Icon = new IconResourceHandle("NewItem.gif");
             treeContextMenu.MenuItems.Add(MenuItem1);
 
             MenuItem2.Text = "删除目录";
             MenuItem2.Click += new System.EventHandler(this.menuDeleteFolder_Click);
+            MenuItem2.Icon = new IconResourceHandle("Delete.gif");
             treeContextMenu.MenuItems.Add(MenuItem2);
 
             MenuItem3.Text = "上传文件";
@@ -139,10 +141,12 @@ namespace CommonUI
 
             MenuItem6.Text = "共享设置";
             MenuItem6.Click += new System.EventHandler(this.menuShareFolder_Click);
+            MenuItem6.Icon = new IconResourceHandle("shareFolder.gif");
             treeContextMenu.MenuItems.Add(MenuItem6);
 
             MenuItem7.Text = "申请归档";
             MenuItem7.Click += new System.EventHandler(this.menuApply_Click);
+            MenuItem7.Icon = new IconResourceHandle("apply.gif");
             treeContextMenu.MenuItems.Add(MenuItem7);
 
            // MenuItem8.Text = "我的归档申请";

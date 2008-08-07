@@ -358,6 +358,7 @@ namespace UI
 
 		private void Logon_Load(object sender, EventArgs e)
 		{
+            
             if (Context.Cookies["Username"] != "")
             {
                 this.mobjTextUsername.Text = Context.Cookies["Username"];
