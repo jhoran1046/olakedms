@@ -100,6 +100,12 @@
     <Compile Include="KeyWdForm.Designer.cs">
       <DependentUpon>KeyWdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MailUsrCrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MailUsrCrl.Designer.cs">
+      <DependentUpon>MailUsrCrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFunctions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -200,6 +206,10 @@
     <EmbeddedResource Include="KeyWdForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>KeyWdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MailUsrCrl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MailUsrCrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFunctions.resx">
       <SubType>Designer</SubType>

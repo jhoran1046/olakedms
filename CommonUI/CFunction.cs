@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Gizmox.WebGUI.Common.Resources;
+
 namespace CommonUI
 {
     public class CFunction

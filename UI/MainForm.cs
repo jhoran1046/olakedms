@@ -32,6 +32,7 @@ namespace UI
         AuditeAppUsrCrl _auditeApply = new AuditeAppUsrCrl();
         FileList _orgMgerList = new FileList();
         Memoes _orgMemo = new Memoes();
+        MailUsrCrl _mailSet = new MailUsrCrl();
 
         CUserEntity _currentUser;
         ResourceClip _clipBoard;
@@ -106,6 +107,7 @@ namespace UI
                 function = new CFunction();
                 function.Name = "œµÕ≥≈‰÷√";
                 function.Image = new IconResourceHandle("properties.gif");
+                function.Ui = _mailSet;
                 systemFunctions.Add(function);
                 this.sysFunctionTree.FunctionList = systemFunctions;
                 this.sysFunctionTree.TreeEvent += FunctionTreeEventHandler;
