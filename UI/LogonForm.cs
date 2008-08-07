@@ -305,7 +305,7 @@ namespace UI
 			if(mobjCheckSavePassword.Checked)
 			{
 				Context.Cookies["Username"] = this.mobjTextUsername.Text;
-                Context.Cookies["Password"] = resultPwd;
+                Context.Cookies["Password"] = this.mobjTextPassword.Text;
 
 				//Context.Cookies["Password"] = this.mobjTextPassword.Text;
 				//Context.Cookies["Lang"] = this.mobjComboLanguage.SelectedIndex.ToString();

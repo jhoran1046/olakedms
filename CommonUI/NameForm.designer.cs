@@ -84,6 +84,7 @@ namespace CommonUI
             this.Controls.Add(this.nameBox);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(419, 128);
+            this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
             this.Text = "NameForm";
             this.Load += new System.EventHandler(this.NameForm_Load);
             this.ResumeLayout(false);

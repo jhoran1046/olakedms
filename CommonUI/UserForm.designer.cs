@@ -180,6 +180,7 @@ namespace CommonUI
             this.Controls.Add(this.label1);
             this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(302, 284);
+            this.StartPosition = Gizmox.WebGUI.Forms.FormStartPosition.CenterScreen;
             this.Text = "用户管理";
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.ResumeLayout(false);
