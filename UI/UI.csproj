@@ -59,8 +59,10 @@
     <Content Include="Resources\Icons\24X24\sharedspace.ico" />
     <Content Include="Resources\Icons\Add.gif" />
     <Content Include="Resources\Icons\anual.ico" />
+    <Content Include="Resources\Icons\apply.gif" />
     <Content Include="Resources\Icons\AttachedMail.gif" />
     <Content Include="Resources\Icons\Back.gif" />
+    <Content Include="Resources\Icons\changeFile.gif" />
     <Content Include="Resources\Icons\CheckBoxes.gif" />
     <Content Include="Resources\Icons\Class.gif" />
     <Content Include="Resources\Icons\Clear.gif" />
@@ -83,6 +85,8 @@
     <Content Include="Resources\Icons\IconsView.gif" />
     <Content Include="Resources\Icons\ImportantMail.gif" />
     <Content Include="Resources\Icons\Interface.gif" />
+    <Content Include="Resources\Icons\keyword.gif" />
+    <Content Include="Resources\Icons\password.gif" />
     <Content Include="Resources\Icons\people.gif" />
     <Content Include="Resources\Icons\personal.gif" />
     <Content Include="Resources\Icons\ppt.ico" />
@@ -114,6 +118,7 @@
     <Content Include="Resources\Icons\Show.gif" />
     <Content Include="Resources\Icons\ShowLines.gif" />
     <Content Include="Resources\Icons\Sorting.gif" />
+    <Content Include="Resources\Icons\usrName.gif" />
     <Content Include="Resources\Icons\weekView.gif" />
     <Content Include="Resources\Icons\WorkWeekView.gif" />
     <Content Include="Readme.txt" />

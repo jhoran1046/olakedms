@@ -79,22 +79,27 @@ namespace CommonUI
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
+            MenuItem3.Icon = new IconResourceHandle("Open.gif");
             fileContextMenu.MenuItems.Add(MenuItem3);
 
             MenuItem1.Text = "删除文件";
             MenuItem1.Click += new System.EventHandler(this.menuDeleteFile_Click);
+            MenuItem1.Icon = new IconResourceHandle("Delete.gif");
             fileContextMenu.MenuItems.Add(MenuItem1);
 
             MenuItem2.Text = "共享文件";
             MenuItem2.Click += new System.EventHandler(this.menuShareFile_Click);
+            MenuItem2.Icon = new IconResourceHandle("shareFolder.gif");
             fileContextMenu.MenuItems.Add(MenuItem2);
 
             MenuItem4.Text = "更新文件";
             MenuItem4.Click += new System.EventHandler(this.menuUpdateFile_Click);
+            MenuItem4.Icon = new IconResourceHandle("changeFile.gif");
             fileContextMenu.MenuItems.Add(MenuItem4);
 
             MenuItem6.Text = "更改关键字";
             MenuItem6.Click += new EventHandler(menuKeyWord_Click);
+            MenuItem6.Icon = new IconResourceHandle("keyword.gif");
             fileContextMenu.MenuItems.Add(MenuItem6);
 
             MenuItem5.Text = "刷新";
