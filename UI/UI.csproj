@@ -87,6 +87,7 @@
     <Content Include="Resources\Icons\personal.gif" />
     <Content Include="Resources\Icons\ppt.ico" />
     <Content Include="Resources\Icons\rar.ico" />
+    <Content Include="Resources\Icons\refresh.bmp" />
     <Content Include="Resources\Icons\shareFolder.gif" />
     <Content Include="Resources\Icons\txt.ico" />
     <Content Include="Resources\Icons\User.gif" />
@@ -211,12 +212,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-
     <Folder Include="App_Data\searchTest\txt\" />
     <Folder Include="Resources\Icons\Headers\" />
-
-    <Folder Include="Resources\Icons\Headers\" />
-
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

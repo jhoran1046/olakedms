@@ -99,6 +99,7 @@ namespace CommonUI
 
             MenuItem5.Text = "刷新";
             MenuItem5.Click += new EventHandler(menuRefreshFilst_Click);
+            MenuItem5.Icon = new IconResourceHandle("refresh.bmp");
             fileContextMenu.MenuItems.Add(MenuItem5);
 
             MenuItem8.Text = "上传文件";
