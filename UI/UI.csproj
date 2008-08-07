@@ -235,7 +235,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4515</DevelopmentServerPort>
+          <DevelopmentServerPort>8702</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/UI</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
