@@ -31,6 +31,11 @@ namespace CommonUI
         private void btnOK_Click(object sender, EventArgs e)
         {
             _member = memberBox.Text;
+            if(passwordBox.Text == "" || txtSurePwd.Text == "")
+            {
+                MessageBox.Show("密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             _password = passwordBox.Text;
             _surepwd = txtSurePwd.Text;
             _name = nameBox.Text;
@@ -79,8 +84,8 @@ namespace CommonUI
         private void UserForm_Load(object sender, EventArgs e)
         {
             memberBox.Text = _member;
-            passwordBox.Text = _password;
-            txtSurePwd.Text = _surepwd;
+            passwordBox.Text = "";
+            txtSurePwd.Text = "";
             nameBox.Text = _name;
             txtEmail.Text = _email;
         }
