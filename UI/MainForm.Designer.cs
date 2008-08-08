@@ -72,11 +72,11 @@ namespace UI
             this.btnLogout = new Gizmox.WebGUI.Forms.Button();
             this.searchKeyword = new Gizmox.WebGUI.Forms.RadioButton();
             this.searchFullText = new Gizmox.WebGUI.Forms.RadioButton();
+            this.ckbBookMail = new Gizmox.WebGUI.Forms.CheckBox();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
             this.chbAllDocument = new Gizmox.WebGUI.Forms.CheckBox();
-            this.ckbBookMail = new Gizmox.WebGUI.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -508,6 +508,19 @@ namespace UI
             this.searchFullText.TabIndex = 0;
             this.searchFullText.Text = "全文检索";
             // 
+            // ckbBookMail
+            // 
+            this.ckbBookMail.Checked = false;
+            this.ckbBookMail.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.ckbBookMail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.ckbBookMail.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.ckbBookMail.Location = new System.Drawing.Point(185, 32);
+            this.ckbBookMail.Name = "ckbBookMail";
+            this.ckbBookMail.Size = new System.Drawing.Size(104, 24);
+            this.ckbBookMail.TabIndex = 0;
+            this.ckbBookMail.Text = "订阅系统邮件";
+            this.ckbBookMail.ThreeState = false;
+            // 
             // menuItem6
             // 
             this.menuItem6.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -538,19 +551,6 @@ namespace UI
             this.chbAllDocument.TabIndex = 3;
             this.chbAllDocument.Text = "全文检索";
             this.chbAllDocument.ThreeState = false;
-            // 
-            // ckbBookMail
-            // 
-            this.ckbBookMail.Checked = false;
-            this.ckbBookMail.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.ckbBookMail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.ckbBookMail.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.ckbBookMail.Location = new System.Drawing.Point(185, 32);
-            this.ckbBookMail.Name = "ckbBookMail";
-            this.ckbBookMail.Size = new System.Drawing.Size(104, 24);
-            this.ckbBookMail.TabIndex = 0;
-            this.ckbBookMail.Text = "订阅系统邮件";
-            this.ckbBookMail.ThreeState = false;
             // 
             // MainForm
             // 
