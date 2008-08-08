@@ -49,6 +49,7 @@
     <Compile Include="ApplyInfoEntity.cs" />
     <Compile Include="ArchiveEntity.cs" />
     <Compile Include="GroupEntity.cs" />
+    <Compile Include="MailEntity.cs" />
     <Compile Include="MidLayerSettings.cs" />
     <Compile Include="OrganizeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

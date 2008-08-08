@@ -5,6 +5,13 @@ using Framework.DB;
 
 namespace MidLayer
 {
+    public enum SSL : int
+    {
+        CHECKED = 1,
+        UNCHECK
+    }
+
+
     [DataTable("TBL_Organize")]
     public class COrganizeEntity : CDBEntity<COrganizeEntity>
     {
