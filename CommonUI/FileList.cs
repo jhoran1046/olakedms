@@ -76,6 +76,7 @@ namespace CommonUI
             MenuItem MenuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -108,13 +109,60 @@ namespace CommonUI
             fileContextMenu.MenuItems.Add(MenuItem5);
 
             MenuItem8.Text = "上传文件";
-            MenuItem8.Click += new EventHandler(MenuItem8_Click);
+            MenuItem8.Click += new EventHandler(menuUpLoadFile_Click);
             fileContextMenu.MenuItems.Add(MenuItem8);
+
+            MenuItem9.Text = "订阅文档";
+            MenuItem9.Click += new EventHandler(menuBookDoc_Click);
+            fileContextMenu.MenuItems.Add(MenuItem9);
         }
 
-        void MenuItem8_Click(object sender, EventArgs e)
+        void menuBookDoc_Click(object sender, EventArgs e)
         {
-            
+            int selectedCount = fileListView.SelectedItems.Count;
+            if(selectedCount <= 0)
+            {
+                MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            try
+            {
+                foreach(ListViewItem item in fileListView.SelectedItems)
+                {
+                    _currentUser.BookRead((int)item.Tag);
+                }
+                if(selectedCount > 0)
+                {
+                    MessageBox.Show("您已订阅选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void menuUpLoadFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog objfile = new OpenFileDialog();
+            objfile.Closed += new EventHandler(objfile_Closed);
+            objfile.MaxFileSize = 100000;
+            objfile.ShowDialog();
+        }
+
+        void objfile_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog newfile = (OpenFileDialog)sender;
+                _helper.UploadFile(_currentUser, _parentResourceId, newfile);
+                LoadFiles();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void menuKeyWord_Click(object sender, EventArgs e)
@@ -298,7 +346,16 @@ namespace CommonUI
                 {
                     if (item.Selected)
                     {
+                        string body = _currentUser.Usr_Name;
+                        body += "于";
+                        body += DateTime.Now.ToString();
+                        body += "删除了";
+                        body += item.Text;
+                        body += "文件";
+
                         _helper.DeleteFile(_currentUser, (int)item.Tag);
+
+                        _currentUser.MailSend((int)item.Tag, body);
                     }
                 }
                 LoadFiles();
@@ -383,8 +440,17 @@ namespace CommonUI
         {
             try
             {
+                int resId = (int)fileListView.SelectedItem.Tag;
                 OpenFileDialog newfile = (OpenFileDialog)sender;
                 _helper.Update(_currentUser, (int)fileListView.SelectedItem.Tag, newfile);
+
+                string body = _currentUser.Usr_Name.ToString();
+                body += "于";
+                body += DateTime.Now.ToString();
+                body += "更新了";
+                body += fileListView.SelectedItem.Text.ToString() + "文件";
+                _currentUser.MailSend(resId,body);
+
                 LoadFiles();
             }
             catch(Exception ex)
