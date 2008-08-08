@@ -95,6 +95,7 @@ namespace CommonUI
             this.btnOK.TabIndex = 6;
             this.btnOK.Text = "保存设置";
             this.btnOK.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnOK.Visible = false;
             // 
             // label7
             // 
@@ -104,6 +105,7 @@ namespace CommonUI
             this.label7.Size = new System.Drawing.Size(81, 23);
             this.label7.TabIndex = 5;
             this.label7.Text = "重新输入口令";
+            this.label7.Visible = false;
             // 
             // label6
             // 
@@ -113,6 +115,7 @@ namespace CommonUI
             this.label6.Size = new System.Drawing.Size(40, 16);
             this.label6.TabIndex = 4;
             this.label6.Text = "口令";
+            this.label6.Visible = false;
             // 
             // label5
             // 
@@ -122,6 +125,7 @@ namespace CommonUI
             this.label5.Size = new System.Drawing.Size(52, 15);
             this.label5.TabIndex = 3;
             this.label5.Text = "用户名";
+            this.label5.Visible = false;
             // 
             // textBox4
             // 
@@ -130,6 +134,7 @@ namespace CommonUI
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(153, 20);
             this.textBox4.TabIndex = 2;
+            this.textBox4.Visible = false;
             // 
             // textBox3
             // 
@@ -138,6 +143,7 @@ namespace CommonUI
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(153, 20);
             this.textBox3.TabIndex = 1;
+            this.textBox3.Visible = false;
             // 
             // textBox2
             // 
@@ -146,6 +152,7 @@ namespace CommonUI
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(153, 20);
             this.textBox2.TabIndex = 0;
+            this.textBox2.Visible = false;
             // 
             // groupBox3
             // 
@@ -167,6 +174,7 @@ namespace CommonUI
             this.button1.TabIndex = 6;
             this.button1.Text = "重建索引";
             this.button1.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
