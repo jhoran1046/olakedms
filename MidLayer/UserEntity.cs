@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using Grove.ORM;
 using Framework.DB;
+using System.Net.Mail;
 
 namespace MidLayer
 {
@@ -1059,7 +1060,11 @@ namespace MidLayer
                 return false;
             }
         }
-
+        /// <summary>
+        /// 更改关键字——赵英武
+        /// </summary>
+        /// <param name="resId"></param>
+        /// <param name="keyword"></param>
         public void KeyWordChange(int resId,string keyword)
         {
             if (resId <= 0)
@@ -1068,6 +1073,58 @@ namespace MidLayer
             CResourceEntity aRes = new CResourceEntity().Load(resId);
             aRes.Res_KeyWord = keyword;
             aRes.Update();
+        }
+        /// <summary>
+        /// 系统邮件服务——赵英武
+        /// </summary>
+        /// <param name="resId"></param>
+        /// <param name="body"></param>
+        public void MailSend(int resId,string body)
+        {
+            CMailEntity mail = new CMailEntity();
+            List<CMailEntity> mailList = new List<CMailEntity>();
+            string filter = "this.M_Resource ='" + resId + "'";
+            filter += "and this.M_Organize ='" + this.Usr_Organize + "'";
+            mailList = mail.GetObjectList(filter);
+
+            COrganizeEntity org = new COrganizeEntity().Load(this.Usr_Organize);
+            string from = org.Org_Mail;
+            string subject = "文档管理系统邮件服务";
+            string pwd = org.Org_MailPassword;
+
+            SmtpClient client = new SmtpClient();
+            client.Host = org.Org_MailSmtp;
+            if (org.Org_MailSSL == (int)SSL.CHECKED)
+                client.EnableSsl = true;
+            
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new System.Net.NetworkCredential(from, pwd);
+
+            foreach(CMailEntity m in mailList)
+            {
+                string to = m.M_UsrMail;
+                MailMessage msg = new MailMessage(from, to, subject, body);
+                client.Send(msg);
+            }
+        }
+        /// <summary>
+        /// 用户订阅文档——赵英武
+        /// </summary>
+        /// <param name="resId"></param>
+        public void BookRead(int resId)
+        {
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Resource = resId;
+            acl.Acl_Operation = (int)ACLOPERATION.READ;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有阅读权限！");
+
+            CMailEntity book = new CMailEntity();
+            book.M_Organize = this.Usr_Organize;
+            book.M_Resource = resId;
+            book.M_UsrId = this.Usr_Id;
+            book.M_UsrMail = this._Usr_Email;
+            book.Insert();
         }
     }
 }
