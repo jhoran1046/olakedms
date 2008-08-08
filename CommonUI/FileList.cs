@@ -114,7 +114,6 @@ namespace CommonUI
 
         void MenuItem8_Click(object sender, EventArgs e)
         {
-            //List<CResourceEntity> children = _currentUser.ListResources(_parentResourceId);
             
         }
 
@@ -215,7 +214,7 @@ namespace CommonUI
                 {
                     icoHandle = new IconResourceHandle("anual.ico");          
                 }
-                    
+
                 lvi.SmallImage = icoHandle;
                 lvi.Tag = f.ResourceId;
 
@@ -226,6 +225,10 @@ namespace CommonUI
                 lvsi = new ListViewItem.ListViewSubItem();
                 CResourceEntity resource = new CResourceEntity().Load(f.ResourceId);
                 lvsi.Text = resource.Res_KeyWord;
+                lvi.SubItems.Add(lvsi);
+
+                lvsi = new ListViewItem.ListViewSubItem();
+                lvsi.Text = f.ResourceId.ToString();
                 lvi.SubItems.Add(lvsi);
 
                 fileListView.Items.Add(lvi);
@@ -381,19 +384,13 @@ namespace CommonUI
             try
             {
                 OpenFileDialog newfile = (OpenFileDialog)sender;
-                _helper.UploadFile(_currentUser, _parentResourceId, newfile);
-                _helper.DeleteFile(_currentUser, (int)fileListView.SelectedItem.Tag);
+                _helper.Update(_currentUser, (int)fileListView.SelectedItem.Tag, newfile);
                 LoadFiles();
             }
             catch(Exception ex)
             {
                 MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
