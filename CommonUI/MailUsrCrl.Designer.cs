@@ -34,9 +34,9 @@ namespace CommonUI
             this.label7 = new Gizmox.WebGUI.Forms.Label();
             this.label6 = new Gizmox.WebGUI.Forms.Label();
             this.label5 = new Gizmox.WebGUI.Forms.Label();
-            this.textBox4 = new Gizmox.WebGUI.Forms.TextBox();
-            this.textBox3 = new Gizmox.WebGUI.Forms.TextBox();
-            this.textBox2 = new Gizmox.WebGUI.Forms.TextBox();
+            this.txtSurePwd = new Gizmox.WebGUI.Forms.TextBox();
+            this.txtUsrPwd = new Gizmox.WebGUI.Forms.TextBox();
+            this.txtUsrName = new Gizmox.WebGUI.Forms.TextBox();
             this.groupBox3 = new Gizmox.WebGUI.Forms.GroupBox();
             this.button1 = new Gizmox.WebGUI.Forms.Button();
             this.groupBox2 = new Gizmox.WebGUI.Forms.GroupBox();
@@ -74,9 +74,9 @@ namespace CommonUI
             this.grpBoxValidate.Controls.Add(this.label7);
             this.grpBoxValidate.Controls.Add(this.label6);
             this.grpBoxValidate.Controls.Add(this.label5);
-            this.grpBoxValidate.Controls.Add(this.textBox4);
-            this.grpBoxValidate.Controls.Add(this.textBox3);
-            this.grpBoxValidate.Controls.Add(this.textBox2);
+            this.grpBoxValidate.Controls.Add(this.txtSurePwd);
+            this.grpBoxValidate.Controls.Add(this.txtUsrPwd);
+            this.grpBoxValidate.Controls.Add(this.txtUsrName);
             this.grpBoxValidate.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.grpBoxValidate.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.grpBoxValidate.Location = new System.Drawing.Point(17, 310);
@@ -95,6 +95,8 @@ namespace CommonUI
             this.btnOK.TabIndex = 6;
             this.btnOK.Text = "保存设置";
             this.btnOK.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             this.btnOK.Visible = false;
             // 
             // label7
@@ -127,32 +129,34 @@ namespace CommonUI
             this.label5.Text = "用户名";
             this.label5.Visible = false;
             // 
-            // textBox4
+            // txtSurePwd
             // 
-            this.textBox4.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.textBox4.Location = new System.Drawing.Point(117, 101);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(153, 20);
-            this.textBox4.TabIndex = 2;
-            this.textBox4.Visible = false;
+            this.txtSurePwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtSurePwd.Location = new System.Drawing.Point(117, 101);
+            this.txtSurePwd.Name = "txtSurePwd";
+            this.txtSurePwd.PasswordChar = '*';
+            this.txtSurePwd.Size = new System.Drawing.Size(153, 20);
+            this.txtSurePwd.TabIndex = 2;
+            this.txtSurePwd.Visible = false;
             // 
-            // textBox3
+            // txtUsrPwd
             // 
-            this.textBox3.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.textBox3.Location = new System.Drawing.Point(117, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(153, 20);
-            this.textBox3.TabIndex = 1;
-            this.textBox3.Visible = false;
+            this.txtUsrPwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtUsrPwd.Location = new System.Drawing.Point(117, 66);
+            this.txtUsrPwd.Name = "txtUsrPwd";
+            this.txtUsrPwd.PasswordChar = '*';
+            this.txtUsrPwd.Size = new System.Drawing.Size(153, 20);
+            this.txtUsrPwd.TabIndex = 1;
+            this.txtUsrPwd.Visible = false;
             // 
-            // textBox2
+            // txtUsrName
             // 
-            this.textBox2.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.textBox2.Location = new System.Drawing.Point(117, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(153, 20);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Visible = false;
+            this.txtUsrName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtUsrName.Location = new System.Drawing.Point(117, 30);
+            this.txtUsrName.Name = "txtUsrName";
+            this.txtUsrName.Size = new System.Drawing.Size(153, 20);
+            this.txtUsrName.TabIndex = 0;
+            this.txtUsrName.Visible = false;
             // 
             // groupBox3
             // 
@@ -245,7 +249,7 @@ namespace CommonUI
             this.chkBoxSSL.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
             this.chkBoxSSL.Location = new System.Drawing.Point(62, 209);
             this.chkBoxSSL.Name = "chkBoxSSL";
-            this.chkBoxSSL.Size = new System.Drawing.Size(208, 24);
+            this.chkBoxSSL.Size = new System.Drawing.Size(191, 24);
             this.chkBoxSSL.TabIndex = 9;
             this.chkBoxSSL.Text = "此服务器要求安全连接（SSL）";
             this.chkBoxSSL.ThreeState = false;
@@ -259,6 +263,7 @@ namespace CommonUI
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "保存设置";
             this.btnSave.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label1
             // 
@@ -292,6 +297,7 @@ namespace CommonUI
             this.txtPassword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.txtPassword.Location = new System.Drawing.Point(127, 73);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(155, 20);
             this.txtPassword.TabIndex = 7;
             // 
@@ -307,7 +313,7 @@ namespace CommonUI
             // MailUsrCrl
             // 
             this.Controls.Add(this.groupBox1);
-            this.Location = new System.Drawing.Point(15, 15);
+            this.Location = new System.Drawing.Point(15, -179);
             this.Size = new System.Drawing.Size(652, 502);
             this.Text = "MailUsrCrl";
             this.Load += new System.EventHandler(this.MailUsrCrl_Load);
@@ -336,11 +342,10 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.Label label7;
         private Gizmox.WebGUI.Forms.Label label6;
         private Gizmox.WebGUI.Forms.Label label5;
-        private Gizmox.WebGUI.Forms.TextBox textBox4;
-        private Gizmox.WebGUI.Forms.TextBox textBox3;
-        private Gizmox.WebGUI.Forms.TextBox textBox2;
+        private Gizmox.WebGUI.Forms.TextBox txtSurePwd;
+        private Gizmox.WebGUI.Forms.TextBox txtUsrPwd;
+        private Gizmox.WebGUI.Forms.TextBox txtUsrName;
         private Gizmox.WebGUI.Forms.Button btnOK;
-
 
     }
 }
