@@ -35,8 +35,8 @@ namespace CommonUI
         private void UserUpdate_Load(object sender, EventArgs e)
         {
             txtMember.Text = _currentUser.Usr_Member.ToString();
-            txtPassword.Text = _currentUser.Usr_Password.ToString();
-            txtSurePwd.Text = _currentUser.Usr_Password.ToString();
+            txtPassword.Text = "";
+            txtSurePwd.Text = "";
             txtName.Text = _currentUser.Usr_Name.ToString();
             txtEmail.Text = _currentUser.Usr_Email;
         }
