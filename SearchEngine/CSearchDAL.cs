@@ -45,6 +45,52 @@ namespace Olake.WDS
             searchScopeManager.RemoveScopeRule("file:///" + strPath);
         }
 
+        public void ReIndexFolder(string strPath)
+        {
+            if (strPath == null || strPath.Length == 0)
+                return;
+
+            String searchPath = "file:///" + strPath.ToLower();
+            CSearchManager manager = new CSearchManager();
+            CSearchCatalogManager catalogManager = manager.GetCatalog("SystemIndex");
+            CSearchCrawlScopeManager searchScopeManager = catalogManager.GetCrawlScopeManager();
+
+            // create search root
+            uint rootCnt = 0;
+            CEnumSearchRoots roots = searchScopeManager.EnumerateRoots();
+            bool exist = false;
+            do
+            {
+                CSearchRoot aRoot = new CSearchRoot();
+
+                roots.Next(1, out aRoot, ref rootCnt);
+                if (rootCnt != 0)
+                {
+                    roots.Skip(1);
+                    if (aRoot.RootURL == searchPath)
+                    {
+                        exist = true;
+                    }
+                }
+            } while (rootCnt != 0);
+
+            if (!exist)
+            {
+                CSearchRoot r = new CSearchRoot();
+                r.RootURL = searchPath;
+                searchScopeManager.AddRoot(r);
+                searchScopeManager.SaveAll();
+            }
+
+            searchScopeManager.RevertToDefaultScopes();
+            //if (searchScopeManager.IncludedInCrawlScope(searchPath) == 0)
+            //{
+                searchScopeManager.AddUserScopeRule(searchPath, 1, 1, 0);
+                searchScopeManager.SaveAll();
+            //}
+            catalogManager.ReindexSearchRoot(searchPath);
+        }
+
         //strPath: e.g. c:/disk
         public List<CSearchResultItem> SearchFolder(string strContent, string strPath)
         {
