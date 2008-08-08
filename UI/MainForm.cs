@@ -82,6 +82,7 @@ namespace UI
                 _orgMgerList.CurrentUser = _currentUser;
 
                 _orgMemo.CurrentUser = _currentUser;
+                _mailSet.CurrentUser = _currentUser;
 
                 //系统管理
                 List<CFunction> systemFunctions = new List<CFunction>();
