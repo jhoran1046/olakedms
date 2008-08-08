@@ -198,6 +198,28 @@ namespace CommonUI
                 hfh.SaveAs(filePath);
             }
         }
+        /// <summary>
+        /// 更新文件——赵英武
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="resId"></param>
+        /// <param name="objFileDialog"></param>
+        public virtual void Update(CUserEntity user,int resId,OpenFileDialog objFileDialog)
+        {
+            CACLEntity acl = new CACLEntity(user.ConnString);
+            acl.Acl_Resource = resId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!user.CheckPrivilege(acl))
+            {
+                throw new Exception("没有写权限！");
+            }
+
+            String filePath;
+            HttpPostedFileHandle hfh = (HttpPostedFileHandle)objFileDialog.Files[0];
+            CResourceEntity res = new CResourceEntity().Load(resId);
+            user.UpdateFile(resId, hfh.PostedFileName, out filePath);
+            hfh.SaveAs(filePath);
+        }
 
         public virtual void ShareResource(CUserEntity user, int resource)
         {

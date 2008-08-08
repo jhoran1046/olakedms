@@ -76,6 +76,7 @@ namespace UI
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
             this.chbAllDocument = new Gizmox.WebGUI.Forms.CheckBox();
+            this.ckbBookMail = new Gizmox.WebGUI.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -448,6 +449,7 @@ namespace UI
             this.flowLayoutPanel1.Controls.Add(this.btnLogout);
             this.flowLayoutPanel1.Controls.Add(this.searchKeyword);
             this.flowLayoutPanel1.Controls.Add(this.searchFullText);
+            this.flowLayoutPanel1.Controls.Add(this.ckbBookMail);
             this.flowLayoutPanel1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.flowLayoutPanel1.FlowDirection = Gizmox.WebGUI.Forms.FlowDirection.LeftToRight;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(334, 4);
@@ -537,6 +539,19 @@ namespace UI
             this.chbAllDocument.Text = "全文检索";
             this.chbAllDocument.ThreeState = false;
             // 
+            // ckbBookMail
+            // 
+            this.ckbBookMail.Checked = false;
+            this.ckbBookMail.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.ckbBookMail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.ckbBookMail.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.ckbBookMail.Location = new System.Drawing.Point(185, 32);
+            this.ckbBookMail.Name = "ckbBookMail";
+            this.ckbBookMail.Size = new System.Drawing.Size(104, 24);
+            this.ckbBookMail.TabIndex = 0;
+            this.ckbBookMail.Text = "订阅系统邮件";
+            this.ckbBookMail.ThreeState = false;
+            // 
             // MainForm
             // 
             this.Controls.Add(this.tableLayoutPanel1);
@@ -599,5 +614,6 @@ namespace UI
         private Gizmox.WebGUI.Forms.RadioButton searchKeyword;
         private Gizmox.WebGUI.Forms.RadioButton searchFullText;
         private Gizmox.WebGUI.Forms.Button btnLogout;
+        private Gizmox.WebGUI.Forms.CheckBox ckbBookMail;
     }
 }

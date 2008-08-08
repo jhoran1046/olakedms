@@ -753,6 +753,31 @@ namespace MidLayer
             parent.CreateChildResource(res);
             return res;
         }
+        /// <summary>
+        /// 更新文件——赵英武
+        /// </summary>
+        /// <param name="resId"></param>
+        /// <param name="fileName"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public CResourceEntity UpdateFile(int resId,String fileName,out String filePath)
+        {
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Resource = resId;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            if (!CheckPrivilege(acl))
+                throw new Exception("没有写权限");
+
+            CResourceEntity res = new CResourceEntity().Load(resId);
+            string path = res.MakeFullPath();
+            if(!System.IO.File.Exists(path)) 
+                throw new Exception("要更新的文件不存在！");
+
+            filePath = path;
+            res.Res_Name = fileName;
+            res.Update();
+            return res;
+        }
 
         public void DeleteResource(int resourceId)
         {
