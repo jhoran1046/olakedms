@@ -26,6 +26,13 @@ namespace CommonUI
     public partial class Memoes : UserControl,IGatewayControl
     {
         CUserEntity _currentUser;
+        String _temperoryFolder;
+
+        public String TemperoryFolder
+        {
+            get { return _temperoryFolder; }
+            set { _temperoryFolder = value; }
+        }
 
         public CUserEntity CurrentUser
         {
@@ -45,10 +52,10 @@ namespace CommonUI
                 COrganizeEntity currentOrg = new COrganizeEntity().Load(_currentUser.GetUserOrganize().Org_Id);
                 CResourceEntity orgRes = new CResourceEntity().Load(currentOrg.Org_Resource);
                 string rootDir = Context.Server.MapPath("~/App_data");
-                string temperoryFolder = rootDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
-                DirectoryInfo di = Directory.CreateDirectory(temperoryFolder);
+                _temperoryFolder = rootDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
+                DirectoryInfo di = Directory.CreateDirectory(_temperoryFolder);
 
-                string outputPath = temperoryFolder + @"\";
+                string outputPath = _temperoryFolder + @"\";
                 outputPath += currentOrg.Org_Name;
                 outputPath += ".zip";
                 string orignPath = orgRes.MakeFullPath();
@@ -73,7 +80,7 @@ namespace CommonUI
             {
                 string orgName = _currentUser.GetUserOrganize().Org_Name;
                 String fileName = "attachment; filename=\"" + orgName + ".zip\"";
-                string filePath = Context.Server.MapPath("~/App_data/" + DateTime.Now.ToString("yyyy-MM-dd") + orgName + "/" + orgName + ".zip");
+                string filePath = _temperoryFolder + @"\" + orgName + ".zip";
                 objContext.HttpContext.Response.AddHeader("content-disposition", fileName);
                 objContext.HttpContext.Response.WriteFile(filePath);
             }

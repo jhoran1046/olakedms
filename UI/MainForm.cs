@@ -15,6 +15,7 @@ using MidLayer;
 using Olake.WDS;
 using System.Security.Cryptography;
 using Framework.Util;
+using System.Configuration;
 #endregion
 
 namespace UI
@@ -152,9 +153,11 @@ namespace UI
                 this.myinfofunctionTree.FunctionList = myinfoFunctions;
                 this.myinfofunctionTree.TreeEvent += FunctionTreeEventHandler;
                      
-
                 //我的文档
                 myDirTree.RootDir = Context.Server.MapPath("~/");
+                //myDirTree.RootDir = ConfigurationManager.AppSettings["Userdata"];
+                //myDirTree.RootDir = Context.Server.MapPath("~/"+ConfigurationManager.AppSettings["Userdata"]);
+               // myDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 myDirTree.Init();
                 myDirTree.FileListUI = _myFileList;
 
@@ -175,12 +178,12 @@ namespace UI
                 shareDirTree.FileListUI = _shareFileList;
 
                 //归档区
-                archiveDirTree.RootDir = Context.Server.MapPath("~/app_data");
+                archiveDirTree.RootDir = Context.Server.MapPath("~/App_Data");
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
                 
                 //组织管理——赵英武
-                orgMgerDirTree.RootDir = Context.Server.MapPath("~/");
+                orgMgerDirTree.RootDir = Context.Server.MapPath("~/App_Data");
                 orgMgerDirTree.Init();
                 orgMgerDirTree.FileListUI = _orgMgerList;
 

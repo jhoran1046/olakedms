@@ -72,7 +72,6 @@ namespace UI
             this.btnLogout = new Gizmox.WebGUI.Forms.Button();
             this.searchKeyword = new Gizmox.WebGUI.Forms.RadioButton();
             this.searchFullText = new Gizmox.WebGUI.Forms.RadioButton();
-            this.ckbBookMail = new Gizmox.WebGUI.Forms.CheckBox();
             this.menuItem6 = new Gizmox.WebGUI.Forms.MenuItem();
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
@@ -103,30 +102,30 @@ namespace UI
             this.menuCreateFolder,
             this.menuDeleteFolder});
             this.menuItem1.RadioCheck = true;
-            this.menuItem1.Text = "File";
+            this.menuItem1.Text = "文件";
             // 
             // menuUpload
             // 
             this.menuUpload.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuUpload.Text = "Upload File";
+            this.menuUpload.Text = "上传文件";
             this.menuUpload.Click += new System.EventHandler(this.menuUpload_Click);
             // 
             // menuDeleteFile
             // 
             this.menuDeleteFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuDeleteFile.Text = "Delete File";
+            this.menuDeleteFile.Text = "删除文件";
             this.menuDeleteFile.Click += new System.EventHandler(this.menuDeleteFile_Click);
             // 
             // menuCreateFolder
             // 
             this.menuCreateFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuCreateFolder.Text = "Create Folder";
+            this.menuCreateFolder.Text = "创建文件夹";
             this.menuCreateFolder.Click += new System.EventHandler(this.menuCreateFolder_Click);
             // 
             // menuDeleteFolder
             // 
             this.menuDeleteFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuDeleteFolder.Text = "Delete Folder";
+            this.menuDeleteFolder.Text = "删除文件夹";
             this.menuDeleteFolder.Click += new System.EventHandler(this.menuDeleteFolder_Click);
             // 
             // menuItem2
@@ -140,49 +139,49 @@ namespace UI
             this.menuCutFile,
             this.menuPaste,
             this.menuSearch});
-            this.menuItem2.Text = "Edit";
+            this.menuItem2.Text = "编辑";
             // 
             // menuItem8
             // 
             this.menuItem8.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem8.Text = "Copy File";
+            this.menuItem8.Text = "复制文件";
             this.menuItem8.Click += new System.EventHandler(this.menuCopyFile_Click);
             // 
             // menuItem9
             // 
             this.menuItem9.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem9.Text = "Copy Folder";
+            this.menuItem9.Text = "复制文件夹";
             this.menuItem9.Click += new System.EventHandler(this.menuCopyFolder_Click);
             // 
             // menuCutFolder
             // 
             this.menuCutFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuCutFolder.Text = "Cut Folder";
+            this.menuCutFolder.Text = "剪切文件夹";
             this.menuCutFolder.Click += new System.EventHandler(this.menuCutFolder_Click);
             // 
             // menuCutFile
             // 
             this.menuCutFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuCutFile.Text = "Cut File";
+            this.menuCutFile.Text = "剪切文件";
             this.menuCutFile.Click += new System.EventHandler(this.menuCutFile_Click);
             // 
             // menuPaste
             // 
             this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuPaste.Text = "Paste";
+            this.menuPaste.Text = "粘贴";
             this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
             // 
             // menuSearch
             // 
             this.menuSearch.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuSearch.Text = "Search";
+            this.menuSearch.Text = "搜索";
             this.menuSearch.Click += new System.EventHandler(this.menuSearch_Click);
             // 
             // menuItem3
             // 
             this.menuItem3.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuItem3.Index = 2;
-            this.menuItem3.Text = "Help";
+            this.menuItem3.Text = "帮助";
             // 
             // menuItem4
             // 
@@ -191,17 +190,17 @@ namespace UI
             this.menuItem4.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
             this.menuShareFile,
             this.menuShareFolder});
-            this.menuItem4.Text = "Share";
+            this.menuItem4.Text = "共享";
             // 
             // menuShareFile
             // 
             this.menuShareFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuShareFile.Text = "Share File...";
+            this.menuShareFile.Text = "共享文件...";
             // 
             // menuShareFolder
             // 
             this.menuShareFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuShareFolder.Text = "Share Folder";
+            this.menuShareFolder.Text = "共享文件夹...";
             this.menuShareFolder.Click += new System.EventHandler(this.menuShareFolder_Click);
             // 
             // menuItem5
@@ -213,29 +212,29 @@ namespace UI
             this.menuDeleteUser,
             this.menuAddGroup,
             this.menuDeleteGroup});
-            this.menuItem5.Text = "User";
+            this.menuItem5.Text = "用户";
             // 
             // menuAddUser
             // 
             this.menuAddUser.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuAddUser.Text = "Add User";
+            this.menuAddUser.Text = "添加用户";
             this.menuAddUser.Click += new System.EventHandler(this.menuAddUser_Click);
             // 
             // menuDeleteUser
             // 
             this.menuDeleteUser.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuDeleteUser.Text = "Delete User";
+            this.menuDeleteUser.Text = "删除用户";
             this.menuDeleteUser.Click += new System.EventHandler(this.menuDeleteUser_Click);
             // 
             // menuAddGroup
             // 
             this.menuAddGroup.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuAddGroup.Text = "Add Group";
+            this.menuAddGroup.Text = "添加用户组";
             // 
             // menuDeleteGroup
             // 
             this.menuDeleteGroup.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuDeleteGroup.Text = "Delete Group";
+            this.menuDeleteGroup.Text = "删除用户组";
             // 
             // tableLayoutPanel1
             // 
@@ -449,7 +448,6 @@ namespace UI
             this.flowLayoutPanel1.Controls.Add(this.btnLogout);
             this.flowLayoutPanel1.Controls.Add(this.searchKeyword);
             this.flowLayoutPanel1.Controls.Add(this.searchFullText);
-            this.flowLayoutPanel1.Controls.Add(this.ckbBookMail);
             this.flowLayoutPanel1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.flowLayoutPanel1.FlowDirection = Gizmox.WebGUI.Forms.FlowDirection.LeftToRight;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(334, 4);
@@ -507,19 +505,6 @@ namespace UI
             this.searchFullText.Size = new System.Drawing.Size(85, 24);
             this.searchFullText.TabIndex = 0;
             this.searchFullText.Text = "全文检索";
-            // 
-            // ckbBookMail
-            // 
-            this.ckbBookMail.Checked = false;
-            this.ckbBookMail.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
-            this.ckbBookMail.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.ckbBookMail.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
-            this.ckbBookMail.Location = new System.Drawing.Point(185, 32);
-            this.ckbBookMail.Name = "ckbBookMail";
-            this.ckbBookMail.Size = new System.Drawing.Size(104, 24);
-            this.ckbBookMail.TabIndex = 0;
-            this.ckbBookMail.Text = "订阅系统邮件";
-            this.ckbBookMail.ThreeState = false;
             // 
             // menuItem6
             // 
@@ -614,6 +599,5 @@ namespace UI
         private Gizmox.WebGUI.Forms.RadioButton searchKeyword;
         private Gizmox.WebGUI.Forms.RadioButton searchFullText;
         private Gizmox.WebGUI.Forms.Button btnLogout;
-        private Gizmox.WebGUI.Forms.CheckBox ckbBookMail;
     }
 }
