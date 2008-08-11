@@ -52,20 +52,18 @@ namespace CommonUI
             this.prgbMemo.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.prgbMemo.Location = new System.Drawing.Point(133, 238);
             this.prgbMemo.Name = "prgbMemo";
-            this.prgbMemo.Size = new System.Drawing.Size(319, 37);
+            this.prgbMemo.Size = new System.Drawing.Size(361, 37);
             this.prgbMemo.TabIndex = 2;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.btnStart);
             this.groupBox1.Controls.Add(this.prgbMemo);
-            this.groupBox1.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
             this.groupBox1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.groupBox1.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(615, 281);
+            this.groupBox1.Size = new System.Drawing.Size(657, 281);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.Text = "备份本组织文件";
             // 
@@ -77,7 +75,7 @@ namespace CommonUI
             // 
             this.Controls.Add(this.groupBox1);
             this.Location = new System.Drawing.Point(15, 15);
-            this.Size = new System.Drawing.Size(615, 281);
+            this.Size = new System.Drawing.Size(660, 281);
             this.Text = "Memoes";
             this.ResumeLayout(false);
 

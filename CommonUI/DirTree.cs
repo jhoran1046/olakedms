@@ -245,7 +245,7 @@ namespace CommonUI
                 int selectedResource = GetSelectedTreeResource();
                 if (selectedResource <= 0)
                 {
-                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("您不能在该目录下创建子目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -271,7 +271,7 @@ namespace CommonUI
                 int selectedResource = GetSelectedTreeResource();
                 if (selectedResource <= 0)
                 {
-                    MessageBox.Show("选择的父目录不存在", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("您不能在该目录下创建子目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -321,6 +321,15 @@ namespace CommonUI
                     return;
                 }
 
+                CUserEntity user = new CUserEntity();
+                List<CUserEntity> userList = new List<CUserEntity>();
+                userList = user.GetObjectList("this.Usr_Resource =" + (int)node.Tag);
+                if(userList.Count > 0)
+                {
+                    MessageBox.Show("这是" + userList[0].Usr_Name + "的工作目录（根目录）！如果您想删除该目录，请直接删除该用户！","文档管理系统" ,MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 helper.DeleteFolder(_currentUser, (int)node.Tag);
 
                 node = node.Parent;
@@ -337,15 +346,17 @@ namespace CommonUI
 
         private void menuUpload_Click(object sender, EventArgs e)
         {
-         /*   int selectedResource = GetSelectedTreeResource();            
-            if (selectedResource <= 0)
-            {
-                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
             try
             {
-                GetSelectedTreeResource(); 
+
+                int selectedResource = GetSelectedTreeResource();            
+                if (selectedResource <= 0)
+                {
+                     MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     return;
+                }
+
+
                 OpenFileDialog objFile = new OpenFileDialog();
                 objFile.FileOk += new CancelEventHandler(objFile_FileOk);
                 objFile.MaxFileSize = 1000000;
@@ -364,7 +375,7 @@ namespace CommonUI
             int selectedResource = GetSelectedTreeResource();
             if (selectedResource <= 0)
             {
-                MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("您不能在该目录下上传文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

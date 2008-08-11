@@ -79,8 +79,7 @@ namespace UI
 		//private ComboBox mobjComboLanguage;
 		private Button mobjButtonLogon;
 		private Label mobjLabelPassword;
-		private Label mobjLabelUsername;
-		private Label mobjLabelLanguage;
+        private Label mobjLabelUsername;
 		private CheckBox mobjCheckSavePassword;
 		private Button mobjButtonClear;
 		private Panel mobjPanelTitle;
@@ -145,15 +144,14 @@ namespace UI
             this.mobjButtonLogon = new Gizmox.WebGUI.Forms.Button();
             this.mobjLabelPassword = new Gizmox.WebGUI.Forms.Label();
             this.mobjLabelUsername = new Gizmox.WebGUI.Forms.Label();
-            this.mobjLabelLanguage = new Gizmox.WebGUI.Forms.Label();
             this.mobjCheckSavePassword = new Gizmox.WebGUI.Forms.CheckBox();
             this.mobjButtonClear = new Gizmox.WebGUI.Forms.Button();
             this.mobjPanelTitle = new Gizmox.WebGUI.Forms.Panel();
             this.mobjPanelLine = new Gizmox.WebGUI.Forms.Panel();
             this.mobjLabelMessage = new Gizmox.WebGUI.Forms.Label();
             this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
-            this.pictureBoxName = new Gizmox.WebGUI.Forms.PictureBox();
             this.pictureBoxPwd = new Gizmox.WebGUI.Forms.PictureBox();
+            this.pictureBoxName = new Gizmox.WebGUI.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // mobjTextUsername
@@ -181,17 +179,17 @@ namespace UI
             this.mobjButtonLogon.Name = "mobjButtonLogon";
             this.mobjButtonLogon.Size = new System.Drawing.Size(72, 23);
             this.mobjButtonLogon.TabIndex = 5;
-            this.mobjButtonLogon.Text = "Logon";
+            this.mobjButtonLogon.Text = "µÇÂ¼";
             this.mobjButtonLogon.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             // 
             // mobjLabelPassword
             // 
             this.mobjLabelPassword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.mobjLabelPassword.Location = new System.Drawing.Point(9, 80);
+            this.mobjLabelPassword.Location = new System.Drawing.Point(9, 77);
             this.mobjLabelPassword.Name = "mobjLabelPassword";
-            this.mobjLabelPassword.Size = new System.Drawing.Size(64, 23);
+            this.mobjLabelPassword.Size = new System.Drawing.Size(64, 17);
             this.mobjLabelPassword.TabIndex = 3;
-            this.mobjLabelPassword.Text = "Password:";
+            this.mobjLabelPassword.Text = "ÃÜ¡¡¡¡Âë:";
             // 
             // mobjLabelUsername
             // 
@@ -200,15 +198,7 @@ namespace UI
             this.mobjLabelUsername.Name = "mobjLabelUsername";
             this.mobjLabelUsername.Size = new System.Drawing.Size(64, 16);
             this.mobjLabelUsername.TabIndex = 4;
-            this.mobjLabelUsername.Text = "Username:";
-            // 
-            // mobjLabelLanguage
-            // 
-            this.mobjLabelLanguage.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.mobjLabelLanguage.Location = new System.Drawing.Point(0, 0);
-            this.mobjLabelLanguage.Name = "mobjLabelLanguage";
-            this.mobjLabelLanguage.Size = new System.Drawing.Size(100, 23);
-            this.mobjLabelLanguage.TabIndex = 0;
+            this.mobjLabelUsername.Text = "ÓÃ»§Ãû³Æ:";
             // 
             // mobjCheckSavePassword
             // 
@@ -220,7 +210,7 @@ namespace UI
             this.mobjCheckSavePassword.Name = "mobjCheckSavePassword";
             this.mobjCheckSavePassword.Size = new System.Drawing.Size(105, 23);
             this.mobjCheckSavePassword.TabIndex = 3;
-            this.mobjCheckSavePassword.Text = "Save Password";
+            this.mobjCheckSavePassword.Text = "±£´æÃÜÂë";
             this.mobjCheckSavePassword.ThreeState = false;
             // 
             // mobjButtonClear
@@ -231,7 +221,7 @@ namespace UI
             this.mobjButtonClear.Name = "mobjButtonClear";
             this.mobjButtonClear.Size = new System.Drawing.Size(75, 23);
             this.mobjButtonClear.TabIndex = 6;
-            this.mobjButtonClear.Text = "Clear";
+            this.mobjButtonClear.Text = "Çå³ý";
             this.mobjButtonClear.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
             // 
             // mobjPanelTitle
@@ -288,16 +278,6 @@ namespace UI
             this.groupBox1.TabIndex = 10;
             this.groupBox1.Text = "µÇÂ¼ÏµÍ³";
             // 
-            // pictureBoxName
-            // 
-            this.pictureBoxName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.pictureBoxName.Image = null;
-            this.pictureBoxName.Location = new System.Drawing.Point(263, 36);
-            this.pictureBoxName.Name = "pictureBoxName";
-            this.pictureBoxName.Size = new System.Drawing.Size(35, 23);
-            this.pictureBoxName.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.Normal;
-            this.pictureBoxName.TabIndex = 10;
-            // 
             // pictureBoxPwd
             // 
             this.pictureBoxPwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
@@ -308,10 +288,19 @@ namespace UI
             this.pictureBoxPwd.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.Normal;
             this.pictureBoxPwd.TabIndex = 11;
             // 
+            // pictureBoxName
+            // 
+            this.pictureBoxName.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.pictureBoxName.Image = null;
+            this.pictureBoxName.Location = new System.Drawing.Point(263, 36);
+            this.pictureBoxName.Name = "pictureBoxName";
+            this.pictureBoxName.Size = new System.Drawing.Size(35, 23);
+            this.pictureBoxName.SizeMode = Gizmox.WebGUI.Forms.PictureBoxSizeMode.Normal;
+            this.pictureBoxName.TabIndex = 10;
+            // 
             // LogonForm
             // 
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.mobjLabelLanguage);
             this.Controls.Add(this.mobjPanelLine);
             this.Controls.Add(this.mobjPanelTitle);
             this.Location = new System.Drawing.Point(15, 15);
@@ -379,8 +368,7 @@ namespace UI
 			Context.Session.IsLoggedOn = false;
 			mobjLabelMessage.Text="";
 			mobjTextUsername.Text="";
-			mobjTextUsername.Text="";
-
+            mobjTextPassword.Text = "";
 		}
 
 		private void Logon_Load(object sender, EventArgs e)

@@ -113,7 +113,7 @@ namespace Framework.DB
             m_db.OP = new ObjectOperator ( m_connString );
             m_db.OP.DbOperator.ClearParameters ( );
             T ret = (T)m_db.OP.Retrieve(GetType(), keyValues);
-            ret.ConnString = m_connString;
+            //ret.ConnString = m_connString;
              m_db.OP.Dispose();
              return ret;
            
