@@ -19,7 +19,6 @@ namespace CommonUI
     public partial class DirTree:UserControl
     {
         string _rootDir;
-        
         public string RootDir
         {
             get { return _rootDir; }
