@@ -292,6 +292,10 @@ namespace UI
             {
                 selectedTree = shareDirTree;
             }
+            else if(leftNavigationTabs.SelectedItem == orgManageTab)
+            {
+                selectedTree = orgMgerDirTree;
+            }
 
             return selectedTree;
         }
@@ -309,6 +313,10 @@ namespace UI
             else if (leftNavigationTabs.SelectedItem == shareSpaceTab)
             {
                 return _shareFileList;
+            }
+            else if(leftNavigationTabs.SelectedItem == orgManageTab)
+            {
+                return _orgMgerList;
             }
 
             return null;

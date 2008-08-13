@@ -789,8 +789,10 @@ namespace MidLayer
                 throw new Exception("没有写权限");
 
             CResourceEntity res = new CResourceEntity(ConnString).Load(resourceId);
-
             res.Remove();
+
+            CMailEntity mailRes = new CMailEntity();
+            mailRes.Remove("this.M_Resource ='"+resourceId+"'");
         }
 
         public void Permit(int userId, ACLROLETYPE roleType, int resourceId, ACLOPERATION operation)

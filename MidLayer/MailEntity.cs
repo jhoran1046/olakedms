@@ -47,5 +47,10 @@ namespace MidLayer
         {
             ConnString = MidLayerSettings.ConnectionString;
         }
+
+        public void Remove(string filter)
+        {
+            this.Delete(filter);
+        }
 	}
 }
