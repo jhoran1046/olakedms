@@ -55,8 +55,10 @@ namespace CommonUI
                 CResourceEntity orgRes = new CResourceEntity().Load(currentOrg.Org_Resource);
                 //string rootDir = Context.Server.MapPath("~/App_data");
                 string rootDir = ConfigurationManager.AppSettings["UserData"];
-                _temperoryFolder = rootDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
+                _temperoryFolder = rootDir + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
                 DirectoryInfo di = Directory.CreateDirectory(_temperoryFolder);
+
+                Context.Session["temperoryFolder"] = _temperoryFolder;
 
                 string outputPath = _temperoryFolder + @"\";
                 outputPath += currentOrg.Org_Name;
