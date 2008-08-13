@@ -7,7 +7,6 @@ using System.Web.Security;
 using System.Web.SessionState;
 
 using MidLayer;
-using System.Configuration;
 
 namespace UI
 {
@@ -18,6 +17,12 @@ namespace UI
         {
             MidLayerSettings.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             //MidLayerSettings.AppPath = Context.Server.MapPath("~/App_Data");
+            if(!System.IO.File.Exists(ConfigurationManager.AppSettings["UserData"]))
+            {
+                string path = ConfigurationManager.AppSettings["UserData"];
+                System.IO.Directory.CreateDirectory(path);
+            }
+
             MidLayerSettings.AppPath = ConfigurationManager.AppSettings["UserData"];
         }
 

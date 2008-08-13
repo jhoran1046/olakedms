@@ -246,6 +246,20 @@ namespace UI
                     func.Ui.Dock = DockStyle.Fill;
                 }
             }
+
+            //删除由于备份产生的临时文件夹——赵英武
+            if(leftNavigationTabs.SelectedItem != systemPage)
+            {
+                string path = (string)Context.Session["temperoryFolder"];
+                if(System.IO.Directory.Exists(path))
+                {
+                    COrganizeEntity org = new COrganizeEntity().Load(_currentUser.Usr_Organize);
+                    string filePath = path + @"\" + org.Org_Name + ".zip";
+                    System.IO.File.Delete(filePath);
+                    System.IO.Directory.Delete(path);
+                    Context.Session["temperoryFolder"] = "";
+                }
+            }
         }
 
         public void FunctionTreeEventHandler(object sender, FunctionTreeEventArgs e)
