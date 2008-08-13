@@ -11,6 +11,7 @@ using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 
 using MidLayer;
+using System.Configuration;
 
 #endregion
 
@@ -47,7 +48,8 @@ namespace CommonUI
 
             try
             {
-                ContentDirTree.RootDir = Context.Server.MapPath("~/app_data");
+                //ContentDirTree.RootDir = Context.Server.MapPath("~/app_data");
+                ContentDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 ContentDirTree.Init();
                 ContentDirTree.FileListUI = archiFilst;
             }

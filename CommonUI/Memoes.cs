@@ -19,6 +19,8 @@ using Gizmox.WebGUI.Common.Gateways;
 using Gizmox.WebGUI.Common.Interfaces;
 using Gizmox.WebGUI.Common.Resources;
 
+using System.Configuration;
+
 #endregion
 
 namespace CommonUI
@@ -51,7 +53,8 @@ namespace CommonUI
             {
                 COrganizeEntity currentOrg = new COrganizeEntity().Load(_currentUser.GetUserOrganize().Org_Id);
                 CResourceEntity orgRes = new CResourceEntity().Load(currentOrg.Org_Resource);
-                string rootDir = Context.Server.MapPath("~/App_data");
+                //string rootDir = Context.Server.MapPath("~/App_data");
+                string rootDir = ConfigurationManager.AppSettings["UserData"];
                 _temperoryFolder = rootDir + @"\" + DateTime.Now.ToString("yyyy-MM-dd") + currentOrg.Org_Name;
                 DirectoryInfo di = Directory.CreateDirectory(_temperoryFolder);
 
