@@ -154,10 +154,9 @@ namespace UI
                 this.myinfofunctionTree.TreeEvent += FunctionTreeEventHandler;
                      
                 //我的文档
-                myDirTree.RootDir = Context.Server.MapPath("~/");
-                //myDirTree.RootDir = ConfigurationManager.AppSettings["Userdata"];
+               // myDirTree.RootDir = Context.Server.MapPath("~/App_Data");
                 //myDirTree.RootDir = Context.Server.MapPath("~/"+ConfigurationManager.AppSettings["Userdata"]);
-               // myDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
+                myDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 myDirTree.Init();
                 myDirTree.FileListUI = _myFileList;
 
@@ -178,12 +177,14 @@ namespace UI
                 shareDirTree.FileListUI = _shareFileList;
 
                 //归档区
-                archiveDirTree.RootDir = Context.Server.MapPath("~/App_Data");
+                //archiveDirTree.RootDir = Context.Server.MapPath("~/App_Data");
+                archiveDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
                 
                 //组织管理——赵英武
-                orgMgerDirTree.RootDir = Context.Server.MapPath("~/App_Data");
+               // orgMgerDirTree.RootDir = Context.Server.MapPath("~/App_Data");
+                orgMgerDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 orgMgerDirTree.Init();
                 orgMgerDirTree.FileListUI = _orgMgerList;
 
