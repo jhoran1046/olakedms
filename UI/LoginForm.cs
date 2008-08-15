@@ -40,6 +40,9 @@ namespace UI
                 _user = _user.Login(memberBox.Text, passwordBox.Text);
                 Context.Session["CurrentUser"] = _user;
                 Context.Session.IsLoggedOn = true;
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
