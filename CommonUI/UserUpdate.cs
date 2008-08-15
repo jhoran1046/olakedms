@@ -99,8 +99,8 @@ namespace CommonUI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             txtMember.Text = _currentUser.Usr_Member;
-            txtPassword.Text = _currentUser.Usr_Password;
-            txtSurePwd.Text = _currentUser.Usr_Password.ToString();
+            txtPassword.Text = "";
+            txtSurePwd.Text = "";
             txtName.Text = _currentUser.Usr_Name;
             txtEmail.Text = _currentUser.Usr_Email;
         }

@@ -29,6 +29,8 @@ namespace CommonUI
         private void InitializeComponent()
         {
             this.groupBox1 = new Gizmox.WebGUI.Forms.GroupBox();
+            this.txtSurePwd = new Gizmox.WebGUI.Forms.TextBox();
+            this.label5 = new Gizmox.WebGUI.Forms.Label();
             this.btnCancel = new Gizmox.WebGUI.Forms.Button();
             this.btnSave = new Gizmox.WebGUI.Forms.Button();
             this.txtEmail = new Gizmox.WebGUI.Forms.TextBox();
@@ -39,8 +41,6 @@ namespace CommonUI
             this.label3 = new Gizmox.WebGUI.Forms.Label();
             this.label2 = new Gizmox.WebGUI.Forms.Label();
             this.label1 = new Gizmox.WebGUI.Forms.Label();
-            this.label5 = new Gizmox.WebGUI.Forms.Label();
-            this.txtSurePwd = new Gizmox.WebGUI.Forms.TextBox();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -64,6 +64,24 @@ namespace CommonUI
             this.groupBox1.Size = new System.Drawing.Size(365, 303);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.Text = "修改个人信息";
+            // 
+            // txtSurePwd
+            // 
+            this.txtSurePwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.txtSurePwd.Location = new System.Drawing.Point(149, 111);
+            this.txtSurePwd.Name = "txtSurePwd";
+            this.txtSurePwd.PasswordChar = '*';
+            this.txtSurePwd.Size = new System.Drawing.Size(151, 20);
+            this.txtSurePwd.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.label5.Location = new System.Drawing.Point(59, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "确认密码";
             // 
             // btnCancel
             // 
@@ -157,27 +175,10 @@ namespace CommonUI
             this.label1.TabIndex = 0;
             this.label1.Text = "用户账号";
             // 
-            // label5
-            // 
-            this.label5.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label5.Location = new System.Drawing.Point(59, 114);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "确认密码";
-            // 
-            // txtSurePwd
-            // 
-            this.txtSurePwd.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.txtSurePwd.Location = new System.Drawing.Point(149, 111);
-            this.txtSurePwd.Name = "txtSurePwd";
-            this.txtSurePwd.PasswordChar = '*';
-            this.txtSurePwd.Size = new System.Drawing.Size(151, 20);
-            this.txtSurePwd.TabIndex = 11;
-            // 
             // UserUpdate
             // 
             this.Controls.Add(this.groupBox1);
+            this.Location = new System.Drawing.Point(15, 15);
             this.Size = new System.Drawing.Size(429, 335);
             this.Text = "UserControl1";
             this.Load += new System.EventHandler(this.UserUpdate_Load);

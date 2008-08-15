@@ -38,7 +38,7 @@ namespace UI
             // label1
             // 
             this.label1.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label1.Location = new System.Drawing.Point(64, 76);
+            this.label1.Location = new System.Drawing.Point(64, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 20);
             this.label1.TabIndex = 0;
@@ -47,7 +47,7 @@ namespace UI
             // memberBox
             // 
             this.memberBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.memberBox.Location = new System.Drawing.Point(122, 70);
+            this.memberBox.Location = new System.Drawing.Point(122, 46);
             this.memberBox.Name = "memberBox";
             this.memberBox.Size = new System.Drawing.Size(180, 20);
             this.memberBox.TabIndex = 1;
@@ -55,15 +55,16 @@ namespace UI
             // passwordBox
             // 
             this.passwordBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.passwordBox.Location = new System.Drawing.Point(122, 122);
+            this.passwordBox.Location = new System.Drawing.Point(122, 92);
             this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(180, 20);
             this.passwordBox.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.label2.Location = new System.Drawing.Point(64, 128);
+            this.label2.Location = new System.Drawing.Point(64, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 0;
@@ -72,7 +73,7 @@ namespace UI
             // loginBtn
             // 
             this.loginBtn.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.loginBtn.Location = new System.Drawing.Point(122, 178);
+            this.loginBtn.Location = new System.Drawing.Point(150, 138);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(78, 26);
             this.loginBtn.TabIndex = 2;
@@ -90,7 +91,7 @@ namespace UI
             this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Size = new System.Drawing.Size(465, 270);
+            this.Size = new System.Drawing.Size(366, 196);
             this.Text = "登录文档管理系统";
             this.ResumeLayout(false);
 
