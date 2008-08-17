@@ -130,13 +130,17 @@ namespace CommonUI
             MenuItem3.Click += new System.EventHandler(this.menuUpload_Click);
             treeContextMenu.MenuItems.Add(MenuItem3);
 
-            //MenuItem4.Text = "复制";
-            //MenuItem4.Click += new System.EventHandler(this.menuCopyFolder_Click);
-            //treeContextMenu.MenuItems.Add(MenuItem4);
+            MenuItem4.Text = "复制";
+            MenuItem4.Click += new System.EventHandler(this.menuCopyFolder_Click);
+            treeContextMenu.MenuItems.Add(MenuItem4);
 
-            //MenuItem5.Text = "粘贴";
-            //MenuItem5.Click += new System.EventHandler(this.menuPaste_Click);
-            //treeContextMenu.MenuItems.Add(MenuItem5);
+            MenuItem9.Text = "剪切";
+            MenuItem9.Click += new System.EventHandler(this.menuCutFolder_Click);
+            treeContextMenu.MenuItems.Add(MenuItem9);
+
+            MenuItem5.Text = "粘贴";
+            MenuItem5.Click += new System.EventHandler(this.menuPaste_Click);
+            treeContextMenu.MenuItems.Add(MenuItem5);
 
             MenuItem6.Text = "共享设置";
             MenuItem6.Click += new System.EventHandler(this.menuShareFolder_Click);
@@ -151,10 +155,6 @@ namespace CommonUI
            // MenuItem8.Text = "我的归档申请";
            // MenuItem8.Click += new System.EventHandler(this.menuMyApplies_Click);
            // treeContextMenu.MenuItems.Add(MenuItem8);
-            
-            //MenuItem9.Text = "剪切";
-            //MenuItem9.Click += new System.EventHandler(this.menuCutFolder_Click);
-            //treeContextMenu.MenuItems.Add(MenuItem9);
 
            // MenuItem10.Text = "办理归档申请";
            // MenuItem10.Click += new System.EventHandler(this.menuProcessApplies_Click);
@@ -420,6 +420,68 @@ namespace CommonUI
             catch(Exception ex)
             {
                 MessageBox.Show("系统错误："+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void menuCopyFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ResourceClip clipBoard = (ResourceClip)Context.Session["ResourceClipBoard"];
+                clipBoard.Copy(_currentUser, selectedResource);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuCutFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ResourceClip clipBoard = (ResourceClip)Context.Session["ResourceClipBoard"];
+                clipBoard.Cut(_currentUser, selectedResource);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuPaste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = GetSelectedTreeResource();
+                if (selectedResource <= 0)
+                {
+                    MessageBox.Show("请选择一个目录", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ResourceClip clipBoard = (ResourceClip)Context.Session["ResourceClipBoard"];
+                clipBoard.Paste(_currentUser, selectedResource);
+                ReloadTreeNode(MainTreeView.SelectedNode);
+                ReloadFileList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -133,43 +133,43 @@ namespace UI
             this.menuItem2.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.menuItem2.Index = 1;
             this.menuItem2.MenuItems.AddRange(new Gizmox.WebGUI.Forms.MenuItem[] {
-            this.menuItem8,
-            this.menuItem9,
-            this.menuCutFolder,
-            this.menuCutFile,
-            this.menuPaste,
+            //this.menuItem8,
+            //this.menuItem9,
+            //this.menuCutFolder,
+            //this.menuCutFile,
+            //this.menuPaste,
             this.menuSearch});
             this.menuItem2.Text = "编辑";
             // 
             // menuItem8
             // 
-            this.menuItem8.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem8.Text = "复制文件";
-            this.menuItem8.Click += new System.EventHandler(this.menuCopyFile_Click);
+            //this.menuItem8.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            //this.menuItem8.Text = "复制文件";
+            //this.menuItem8.Click += new System.EventHandler(this.menuCopyFile_Click);
             // 
             // menuItem9
             // 
-            this.menuItem9.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuItem9.Text = "复制文件夹";
-            this.menuItem9.Click += new System.EventHandler(this.menuCopyFolder_Click);
+            //this.menuItem9.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            //this.menuItem9.Text = "复制文件夹";
+            //this.menuItem9.Click += new System.EventHandler(this.menuCopyFolder_Click);
             // 
             // menuCutFolder
             // 
-            this.menuCutFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuCutFolder.Text = "剪切文件夹";
-            this.menuCutFolder.Click += new System.EventHandler(this.menuCutFolder_Click);
+            //this.menuCutFolder.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            //this.menuCutFolder.Text = "剪切文件夹";
+            //this.menuCutFolder.Click += new System.EventHandler(this.menuCutFolder_Click);
             // 
             // menuCutFile
             // 
-            this.menuCutFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuCutFile.Text = "剪切文件";
-            this.menuCutFile.Click += new System.EventHandler(this.menuCutFile_Click);
+            //this.menuCutFile.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            //this.menuCutFile.Text = "剪切文件";
+            //this.menuCutFile.Click += new System.EventHandler(this.menuCutFile_Click);
             // 
             // menuPaste
             // 
-            this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.menuPaste.Text = "粘贴";
-            this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
+            //this.menuPaste.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            //this.menuPaste.Text = "粘贴";
+            //this.menuPaste.Click += new System.EventHandler(this.menuPaste_Click);
             // 
             // menuSearch
             // 

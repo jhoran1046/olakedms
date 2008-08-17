@@ -77,6 +77,8 @@ namespace CommonUI
             MenuItem MenuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem8 = new Gizmox.WebGUI.Forms.MenuItem();
             MenuItem MenuItem9 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem10 = new Gizmox.WebGUI.Forms.MenuItem();
+            MenuItem MenuItem11 = new Gizmox.WebGUI.Forms.MenuItem();
 
             MenuItem3.Text = "打开文件";
             MenuItem3.Click += new System.EventHandler(this.menuOpenFile_Click);
@@ -98,6 +100,14 @@ namespace CommonUI
             MenuItem4.Icon = new IconResourceHandle("changeFile.gif");
             fileContextMenu.MenuItems.Add(MenuItem4);
 
+            MenuItem10.Text = "复制";
+            MenuItem10.Click += new System.EventHandler(this.menuCopyFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem10);
+
+            MenuItem11.Text = "剪切";
+            MenuItem11.Click += new System.EventHandler(this.menuCutFile_Click);
+            fileContextMenu.MenuItems.Add(MenuItem11);
+
             MenuItem6.Text = "更改关键字";
             MenuItem6.Click += new EventHandler(menuKeyWord_Click);
             MenuItem6.Icon = new IconResourceHandle("keyword.gif");
@@ -115,6 +125,52 @@ namespace CommonUI
             MenuItem9.Text = "订阅文档";
             MenuItem9.Click += new EventHandler(menuBookDoc_Click);
             fileContextMenu.MenuItems.Add(MenuItem9);
+        }
+
+        private void menuCopyFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> resources = new List<int>();
+                foreach (ListViewItem item in FileListView.SelectedItems)
+                {
+                    resources.Add((int)item.Tag);
+                }
+                if (resources.Count == 0)
+                {
+                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ResourceClip clipBoard = (ResourceClip)Context.Session["ResourceClipBoard"];
+                clipBoard.Copy(_currentUser, resources);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void menuCutFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> resources = new List<int>();
+                foreach (ListViewItem item in FileListView.SelectedItems)
+                {
+                    resources.Add((int)item.Tag);
+                }
+                if (resources.Count == 0)
+                {
+                    MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ResourceClip clipBoard = (ResourceClip)Context.Session["ResourceClipBoard"];
+                clipBoard.Cut(_currentUser, resources);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void menuBookDoc_Click(object sender, EventArgs e)
@@ -167,9 +223,9 @@ namespace CommonUI
 
         void menuKeyWord_Click(object sender, EventArgs e)
         {
-            if(fileListView.SelectedItem == null)
+            if(fileListView.SelectedItems.Count == 0)
             {
-                MessageBox.Show("没有选中的目录！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
@@ -293,7 +349,7 @@ namespace CommonUI
             if (strAction == "Download")
             {
                 //objContext.HttpContext.Response.ContentType = "image/jpeg";
-                int res = (int)fileListView.SelectedItem.Tag;
+                int res = (int)fileListView.SelectedItems[0].Tag;
                 CACLEntity acl = new CACLEntity(_currentUser.ConnString);
                 acl.Acl_Operation = (int)ACLOPERATION.READ;
                 acl.Acl_Resource = res;
@@ -323,7 +379,7 @@ namespace CommonUI
 
         private void menuDeleteFile_Click(object sender, EventArgs e)
         {
-            if(fileListView.SelectedItem == null)
+            if(fileListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -344,19 +400,16 @@ namespace CommonUI
             {
                 foreach (ListViewItem item in fileListView.SelectedItems)
                 {
-                    if (item.Selected)
-                    {
-                        string body = _currentUser.Usr_Name;
-                        body += "于";
-                        body += DateTime.Now.ToString();
-                        body += "删除了";
-                        body += item.Text;
-                        body += "文件";
+                    string body = _currentUser.Usr_Name;
+                    body += "于";
+                    body += DateTime.Now.ToString();
+                    body += "删除了";
+                    body += item.Text;
+                    body += "文件";
 
-                        _helper.DeleteFile(_currentUser, (int)item.Tag);
+                    _helper.DeleteFile(_currentUser, (int)item.Tag);
 
-                        _currentUser.MailSend((int)item.Tag, body);
-                    }
+                    _currentUser.MailSend((int)item.Tag, body);
                 }
                 LoadFiles();
             }
@@ -368,7 +421,7 @@ namespace CommonUI
 
         private void menuShareFile_Click(object sender, EventArgs e)
         {
-            if(fileListView.SelectedItem == null)
+            if(fileListView.SelectedItems.Count == 0)
             {
                 MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -376,14 +429,17 @@ namespace CommonUI
 
             try
             {
-                int res = (int)FileListView.SelectedItem.Tag;
-                if (res <= 0)
+                foreach (ListViewItem item in fileListView.SelectedItems)
                 {
-                    MessageBox.Show("无法共享选择的资源！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    int res = (int)item.Tag;
+                    if (res <= 0)
+                    {
+                        MessageBox.Show("无法共享选择的资源！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                _helper.ShareResource(_currentUser, res);
+                    _helper.ShareResource(_currentUser, res);
+                }
             }
             catch (Exception ex)
             {
@@ -393,9 +449,9 @@ namespace CommonUI
 
         private void menuOpenFile_Click(object sender, EventArgs e)
         {
-            if (fileListView.SelectedItem == null)
+            if (fileListView.SelectedItems.Count != 1)
             {
-                MessageBox.Show("请选择文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("请选择一个文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -408,15 +464,14 @@ namespace CommonUI
         private void menuUpdateFile_Click(object sender,EventArgs e)
         {
             int selectCount = fileListView.SelectedItems.Count;
-            if (selectCount <= 0)
+            if (selectCount != 1)
             {
-                MessageBox.Show("没有选中的文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("请选择一个文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
-            if (selectCount > 0)
-                MessageBox.Show("您确定要覆盖原文件吗？", "文档管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 
-                    new EventHandler(UpdateFileClosed));
+            MessageBox.Show("您确定要覆盖原文件吗？", "文档管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 
+                new EventHandler(UpdateFileClosed));
         }
         protected void UpdateFileClosed(object sender, EventArgs e)
         {
@@ -440,15 +495,22 @@ namespace CommonUI
         {
             try
             {
-                int resId = (int)fileListView.SelectedItem.Tag;
+                int selectCount = fileListView.SelectedItems.Count;
+                if (selectCount != 1)
+                {
+                    MessageBox.Show("请选择一个文件！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+
+                int resId = (int)fileListView.SelectedItems[0].Tag;
                 OpenFileDialog newfile = (OpenFileDialog)sender;
-                _helper.Update(_currentUser, (int)fileListView.SelectedItem.Tag, newfile);
+                _helper.Update(_currentUser, (int)fileListView.SelectedItems[0].Tag, newfile);
 
                 string body = _currentUser.Usr_Name.ToString();
                 body += "于";
                 body += DateTime.Now.ToString();
                 body += "更新了";
-                body += fileListView.SelectedItem.Text.ToString() + "文件";
+                body += fileListView.SelectedItems[0].Text + "文件";
                 _currentUser.MailSend(resId,body);
 
                 LoadFiles();
