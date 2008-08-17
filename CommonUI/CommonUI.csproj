@@ -131,6 +131,7 @@
       <DependentUpon>NameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceClip.cs" />
     <Compile Include="ResTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
