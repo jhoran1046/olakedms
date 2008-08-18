@@ -77,9 +77,9 @@ namespace UI
             // 
             this.btnInitialize.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
             this.btnInitialize.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnInitialize.Location = new System.Drawing.Point(431, 429);
+            this.btnInitialize.Location = new System.Drawing.Point(431, 426);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(75, 29);
+            this.btnInitialize.Size = new System.Drawing.Size(75, 32);
             this.btnInitialize.TabIndex = 13;
             this.btnInitialize.Text = "≥ı ºªØ";
             this.btnInitialize.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;

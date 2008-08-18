@@ -102,6 +102,7 @@ namespace UI
             get { return _rootPath; }
             set { _rootPath = value; }
         }
+        String _orgName;
 #endregion
 
         public install()
@@ -117,15 +118,15 @@ namespace UI
                 List<CUserEntity> userList = new List<CUserEntity>();
                 userList = user.GetObjectList("this.Usr_Type = '1'");
 
-                if(userList.Count > 0)
+                if(userList.Count > 0)//如果该用户已经存在，则要求其输入密码
                 {
                     LoginForm login = new LoginForm();
                     login.Closed += new EventHandler(login_Closed);
                     login.ShowDialog();
                 }
-
-                this.btnCreate.Visible = true;
-                this.btnInitialize.Visible = false;
+                //如果该用户第一次使用本系统，则为其创建帐户
+                this.btnCreate.Enabled = true;
+                this.btnInitialize.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -139,16 +140,22 @@ namespace UI
             if (login.DialogResult != DialogResult.OK)
                 return;
 
-            this.btnCreate.Visible = false;
-            this.btnInitialize.Visible = true;
+            this.btnCreate.Enabled = false;
+            this.btnInitialize.Enabled = true;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            if (txtServer.Text == "" || txtUserId.Text == "" || txtPassword.Text == "" || txtInitialCatalog.Text == "" || txtPath.Text == ""||txtOrgName.Text == "")
+            {
+                MessageBox.Show("您有未填写的项目！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             _server = txtServer.Text;
             _userId = txtUserId.Text;
             _password = txtPassword.Text;
             _initialCatalog = txtInitialCatalog.Text;
+            _orgName = txtOrgName.Text;
             string pt = txtPath.Text;
             if(pt[2].ToString() == "/")
             {
@@ -179,10 +186,11 @@ namespace UI
             try
             {
                 CreateDataBase();
+                ChangeWebConfig();
                 CreateTable(_connString);
                 CreateRootDir();
 
-                MessageBox.Show("注册成功！请您登录系统！", "文档管理系统", 
+                MessageBox.Show("注册成功！请您登录系统前将'Web1.config'改成'Web.config'替换原有Web.config文件", "文档管理系统", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information,new EventHandler(Create_Closed));
             }
             catch(Exception ex)
@@ -210,20 +218,14 @@ namespace UI
             createDB = "CREATE DATABASE " + _initialCatalog;
             SqlCommand comm = new SqlCommand(createDB, DBconn);
 
-            //获取新数据库的完整字符串
-            string connString = DBconn.ConnectionString;
-            connString += ";Initial Catalog =";
-            connString += _initialCatalog;
-            _connString = connString;
-
             try
             {
                 DBconn.Open();
                 comm.ExecuteNonQuery();
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("系统错误！");
+                throw (ex);
             }
             finally
             {
@@ -239,10 +241,10 @@ namespace UI
             string adminPath = _rootPath + "\\" + _member;
             System.IO.Directory.CreateDirectory(adminPath);
             
-            SqlConnection adminRootConn = new SqlConnection();
+            SqlConnection adminRootConn = new SqlConnection(_connString);
             CResourceEntity res = new CResourceEntity();
             List<CResourceEntity> resLst = new List<CResourceEntity>();
-            resLst = res.GetObjectList("this.Res_Name ='" + txtOrgName + "'");
+            resLst = res.GetObjectList("this.Res_Name ='" + _orgName + "'");
             int adminParent = resLst[0].Res_Id; //管理员目录的父目录,即该组织的资源ID
             string adminCommText = "INSERT INTO TBL_Resource"
                 + "(Res_Name,Res_Type,Res_Parent) VALUES ('" +
@@ -259,11 +261,23 @@ namespace UI
             adminLst = adminRes.GetObjectList("this.Res_Name ='" + _member + "'");
             int adRes = adminLst[0].Res_Id;//管理员的资源ID
             string commText = "INSERT INTO TBL_User (Usr_Member,Usr_Password,Usr_Name,Usr_Resource,Usr_Organize,Usr_Type)"
-                +"VALUES ('" + _member + "','" + _userPwd + "','" + _userName + "','" + adRes + "','" + resLst[0].Res_Id + "',1)";
+                +"VALUES ('" + _member + "','" + _userPwd + "','" + _userName + "','" + adRes + "','" + resLst[0].Res_Id + "','" + (int)USERTYPE.ORGANIZEADMIN + "')";
             SqlCommand adminComm = new SqlCommand(commText,adminConn);
             adminConn.Open();
             adminComm.ExecuteNonQuery();
             adminConn.Close();
+
+            //更新TBL_ACL表
+            CUserEntity user = new CUserEntity();
+            List<CUserEntity> usrLst=new List<CUserEntity>();
+            usrLst = user.GetObjectList("this.Usr_Member ='"+_member+"'");
+            CACLEntity acl = new CACLEntity();
+            acl.Acl_Resource = usrLst[0].Usr_Resource;
+            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Role = usrLst[0].Usr_Id;
+            acl.Acl_RType = (int)ACLROLETYPE.USERROLE;
+            acl.Acl_Creator = usrLst[0].Usr_Id;
+            acl.Insert();
         }
         /// <summary>
         /// 修改Web.config文件
@@ -274,8 +288,15 @@ namespace UI
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(fileName);
 
+            string connString = "Server=" + _server +
+                                  ";User Id=" + _userId +
+                                  ";Password=" + _password +
+                                  ";Initial Catalog=" + _initialCatalog;
+            _connString = connString;
+            MidLayerSettings.ConnectionString = connString;
+            
             XmlNodeList nodeList = xmlDoc.DocumentElement.ChildNodes;
-
+            
             foreach(XmlElement element in nodeList)
             {
                 if(element.Name == "connectionStrings")
@@ -286,11 +307,10 @@ namespace UI
 
                     foreach(XmlElement aNode in node)
                     {
-                        aNode["connectionString"].Value = "Provider=SQLOLEDB;" +
-                            "Server=" + _server +
-                            ";User Id=" + _userId +
-                            ";Password=" + _password +
-                            ";Initial Catalog=" + _initialCatalog;
+                        if(aNode.Attributes["name"].Value == "ConnectionString")
+                        {
+                            aNode.Attributes["connectionString"].Value = connString;
+                        }
                     }
                 } 
 
@@ -309,6 +329,13 @@ namespace UI
                     }
                 }
             }
+            string newConfig = Context.Server.MapPath("~/");
+            newConfig += "Web1.config";
+            FileStream webStream = new FileStream(newConfig, FileMode.Create);
+            XmlTextWriter xmltext = new XmlTextWriter(webStream, Encoding.UTF8);
+            xmltext.Flush();
+            xmltext.Close();
+            xmlDoc.Save(newConfig);
         }
         /// <summary>
         /// 为新数据库创建数据表：
@@ -368,26 +395,43 @@ namespace UI
         /// </summary>
         private void CreateRootDir()
         {
-            string path = ConfigurationManager.AppSettings["UserData"];
+            string path = txtPath.Text;
             if(path.Length <= 0)
                 throw new Exception("路径不存在！");
 
             //创建根目录，将根目录写入资源表-TBL_Resource
-            path += txtOrgName;
+            path += _orgName;
             System.IO.Directory.CreateDirectory(path);
             _rootPath = path;
 
             SqlConnection orgRootConn = new SqlConnection(_connString);
             string newRoot = "INSERT INTO TBL_Resource"
-                +"(Res_Name,Res_Type,Res_Parent) VALUES ('" + txtOrgName + "',1,0)";
+                +"(Res_Name,Res_Type,Res_Parent) VALUES ('" + _orgName + "','" + (int)RESOURCETYPE.ORGANIZERESOURCE +"',0)";
             SqlCommand rootComm = new SqlCommand(newRoot, orgRootConn);
             orgRootConn.Open();
             rootComm.ExecuteNonQuery();
             orgRootConn.Close();
 
+            //create the archiveDir,and write to the table of TBL_Resource
+            System.IO.Directory.CreateDirectory(_rootPath);
+            CResourceEntity res = new CResourceEntity();
+            List<CResourceEntity> reslst = new List<CResourceEntity>();
+            reslst = res.GetObjectList("this.Res_Name ='" + _orgName + "'");
+            int parentId = reslst[0].Res_Id;
+
+            res.Res_Name = "归档目录";
+            res.Res_Type = (int)RESOURCETYPE.FOLDERRESOURCE;
+            res.Res_Parent = parentId;
+            res.Insert();
+
+            CResourceEntity arc=new CResourceEntity();
+            List<CResourceEntity> arclst=new List<CResourceEntity>();
+            arclst = arc.GetObjectList("this.Res_Name ='" + _orgName + "'");
+
             //将新组织写入组织表-TBL_Organize
             SqlConnection orgConn = new SqlConnection(_connString);
-            string newOrg = "INSERT INTO TBL_Organize (Org_Name) VALUES '" + txtOrgName + "'";
+            string newOrg = "INSERT INTO TBL_Organize (Org_Name,Org_Resource,Org_ArchiveRes) VALUES ('" 
+                + _orgName + "'," + "'" + reslst[0].Res_Id + "'," + "'" + arclst[0].Res_Id + "')";
             SqlCommand orgComm = new SqlCommand(newOrg,orgConn);
             orgConn.Open();
             orgComm.ExecuteNonQuery();
@@ -432,17 +476,28 @@ namespace UI
 
             try
             {
-                CreateDataBase();
+                DeleteData();
                 CreateTable(_connString);
                 CreateRootDir();
 
-                MessageBox.Show("注册成功！请您登录系统！", "文档管理系统",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information, new EventHandler(Create_Closed));
+                MessageBox.Show("您的系统已初始化！请您登录系统！", "文档管理系统",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information, new EventHandler(Initialize_Closed));
             }
             catch (Exception ex)
             {
                 MessageBox.Show("系统错误：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Initialize_Closed(object sender, EventArgs e)
+        {
+            if (((Form)sender).DialogResult == DialogResult.OK)
+                Context.Redirect("~MainForm.wgx");
+        }
+
+        private void DeleteData()
+        {
+
         }
     }
 }
