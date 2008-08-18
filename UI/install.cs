@@ -497,7 +497,7 @@ namespace UI
 
         private void DeleteData()
         {
-
+            throw new Exception("Î´É¾³ý×ÊÔ´£¡");
         }
     }
 }
