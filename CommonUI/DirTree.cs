@@ -60,6 +60,9 @@ namespace CommonUI
         }
 
         Font _defaultFnt = new Font ( "arial" , 9 );
+
+        public event DirTreeEventHandler TreeEvent;
+
         public DirTree ( )
         {
             InitializeComponent ( );
@@ -221,6 +224,9 @@ namespace CommonUI
                 _fileListUI.CurrentUser = _currentUser;
                 _fileListUI.ParentResourceId = (int)e.Node.Tag;
                 _fileListUI.LoadFiles();
+
+                DirTreeEventArgs args = new DirTreeEventArgs(_fileListUI);
+                TreeEvent(this, args);
             }
             catch (Exception ex)
             {
@@ -512,4 +518,23 @@ namespace CommonUI
         }
       */
     }
+
+    public class DirTreeEventArgs : EventArgs
+    {
+        private readonly UserControl _ui;
+
+        //Constructor.
+        //
+        public DirTreeEventArgs(UserControl ui)
+        {
+            _ui = ui;
+        }
+
+        public UserControl UI
+        {
+            get { return _ui; }
+        }
+    }
+
+    public delegate void DirTreeEventHandler(object sender, DirTreeEventArgs e);
 }
