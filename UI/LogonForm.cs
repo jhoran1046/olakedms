@@ -12,6 +12,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Framework.Util;
 using Gizmox.WebGUI.Common.Resources;
+using System.Web;
+using System.Collections.Generic;
 
 #endregion
 
@@ -373,6 +375,19 @@ namespace UI
 
 		private void Logon_Load(object sender, EventArgs e)
 		{
+            Uri url = Context.HttpContext.Request.Url;
+            if (url.Query.Contains("install.wgx"))
+            {
+                CUserEntity usr = new CUserEntity();
+                List<CUserEntity> usrlst = new List<CUserEntity>();
+                usrlst = usr.GetObjectList("this.Usr_Type ='" + (int)USERTYPE.ORGANIZEADMIN + "'");
+                if(usrlst.Count <= 0)
+                {
+                    Context.Redirect(url.ToString());
+                }
+            }
+
+
             pictureBoxName.Image = new IconResourceHandle("usrName.gif");
             pictureBoxPwd.Image = new IconResourceHandle("password.gif");
             if (Context.Cookies["Username"] != "")

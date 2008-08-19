@@ -202,7 +202,7 @@ namespace UI
         private void Create_Closed(object sender,EventArgs e)
         {
             if (((Form)sender).DialogResult == DialogResult.OK)
-                Context.Redirect("~MainForm.wgx");
+                Context.Redirect("MainForm.wgx");
         }
         /// <summary>
         /// 创建数据库
@@ -248,7 +248,7 @@ namespace UI
             int adminParent = resLst[0].Res_Id; //管理员目录的父目录,即该组织的资源ID
             string adminCommText = "INSERT INTO TBL_Resource"
                 + "(Res_Name,Res_Type,Res_Parent) VALUES ('" +
-                _member + "',1,'" + adminParent + "')";
+                _member + "','" + (int)RESOURCETYPE.FOLDERRESOURCE + "','" + adminParent + "')";
             SqlCommand adminRootComm = new SqlCommand(adminCommText, adminRootConn);
             adminRootConn.Open();
             adminRootComm.ExecuteNonQuery();
@@ -258,7 +258,7 @@ namespace UI
             SqlConnection adminConn = new SqlConnection(_connString);
             CResourceEntity adminRes = new CResourceEntity();
             List<CResourceEntity> adminLst = new List<CResourceEntity>();
-            adminLst = adminRes.GetObjectList("this.Res_Name ='" + _member + "'");
+            adminLst = adminRes.GetObjectList("this.Res_Name ='" + _member + "'and" + "this.Res_Parent > 0");
             int adRes = adminLst[0].Res_Id;//管理员的资源ID
             string commText = "INSERT INTO TBL_User (Usr_Member,Usr_Password,Usr_Name,Usr_Resource,Usr_Organize,Usr_Type)"
                 +"VALUES ('" + _member + "','" + _userPwd + "','" + _userName + "','" + adRes + "','" + resLst[0].Res_Id + "','" + (int)USERTYPE.ORGANIZEADMIN + "')";
@@ -273,10 +273,32 @@ namespace UI
             usrLst = user.GetObjectList("this.Usr_Member ='"+_member+"'");
             CACLEntity acl = new CACLEntity();
             acl.Acl_Resource = usrLst[0].Usr_Resource;
-            acl.Acl_Operation = (int)ACLOPERATION.CREATENORMALUSER;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
             acl.Acl_Role = usrLst[0].Usr_Id;
             acl.Acl_RType = (int)ACLROLETYPE.USERROLE;
             acl.Acl_Creator = usrLst[0].Usr_Id;
+            acl.Acl_CreateTime = DateTime.Now;
+            acl.Insert();
+
+            CResourceEntity arc = new CResourceEntity();
+            List<CResourceEntity> arclst = new List<CResourceEntity>();
+            arclst = arc.GetObjectList("this.Res_Name = '归档目录'");
+            acl = new CACLEntity();
+            acl.Acl_Resource = arclst[0].Res_Id;
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            acl.Acl_Role = usrLst[0].Usr_Id;
+            acl.Acl_RType = (int)ACLROLETYPE.USERROLE;
+            acl.Acl_Creator = usrLst[0].Usr_Id;
+            acl.Acl_CreateTime = DateTime.Now;
+            acl.Insert();
+
+            acl = new CACLEntity();
+            acl.Acl_Resource = arclst[0].Res_Parent;//归档目录的父目录ID既是组织的ID
+            acl.Acl_Operation = (int)ACLOPERATION.WRITE;
+            acl.Acl_Role = usrLst[0].Usr_Id;
+            acl.Acl_RType = (int)ACLROLETYPE.USERROLE;
+            acl.Acl_Creator = usrLst[0].Usr_Id;
+            acl.Acl_CreateTime = DateTime.Now;
             acl.Insert();
         }
         /// <summary>
@@ -413,7 +435,8 @@ namespace UI
             orgRootConn.Close();
 
             //create the archiveDir,and write to the table of TBL_Resource
-            System.IO.Directory.CreateDirectory(_rootPath);
+            string archivePath = _rootPath + "\\归档目录";
+            System.IO.Directory.CreateDirectory(archivePath);
             CResourceEntity res = new CResourceEntity();
             List<CResourceEntity> reslst = new List<CResourceEntity>();
             reslst = res.GetObjectList("this.Res_Name ='" + _orgName + "'");
