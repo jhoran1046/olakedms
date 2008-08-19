@@ -36,6 +36,7 @@ namespace UI
         MailUsrCrl _mailSet = new MailUsrCrl();
 
         CUserEntity _currentUser;
+        private UserControl _activeRigthControl = null;
         
         public CUserEntity CurrentUser
         {
@@ -46,6 +47,16 @@ namespace UI
         public MainForm ()
         {
             InitializeComponent ( );
+        }
+
+        private void ActiveRigthPanel(UserControl uc)
+        {
+            if (_activeRigthControl == uc)
+                return;
+            this.mainSplit.Panel2.Controls.Clear();
+            this.mainSplit.Panel2.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            _activeRigthControl = uc;
         }
 
         private void button1_Click ( object sender , EventArgs e )
@@ -161,6 +172,7 @@ namespace UI
                 myDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 myDirTree.Init();
                 myDirTree.FileListUI = _myFileList;
+                myDirTree.TreeEvent += DirTreeEventHandler;
 
                 //共享空间
                 /*
@@ -177,18 +189,21 @@ namespace UI
                 */
                 shareDirTree.Init();
                 shareDirTree.FileListUI = _shareFileList;
+                shareDirTree.TreeEvent += DirTreeEventHandler;
 
                 //归档区
                 //archiveDirTree.RootDir = Context.Server.MapPath("~/App_Data");
                 archiveDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
+                archiveDirTree.TreeEvent += DirTreeEventHandler;
                 
                 //组织管理——赵英武
                // orgMgerDirTree.RootDir = Context.Server.MapPath("~/App_Data");
                 orgMgerDirTree.RootDir = ConfigurationManager.AppSettings["UserData"];
                 orgMgerDirTree.Init();
                 orgMgerDirTree.FileListUI = _orgMgerList;
+                orgMgerDirTree.TreeEvent += DirTreeEventHandler;
 
                 systemPage.Image = new IconResourceHandle("24X24.applications.gif");
                 myInfoPage.Image = new IconResourceHandle("24X24.behaviors.gif");
@@ -224,18 +239,14 @@ namespace UI
                 leftNavigationTabs.SelectedItem == this.orgManageTab)
             {
                 DirTree dirTree =(DirTree) leftNavigationTabs.SelectedItem.Controls [ 0 ];
-                this.mainSplit.Panel2.Controls.Clear();
-                this.mainSplit.Panel2.Controls.Add(dirTree.FileListUI);
-                dirTree.FileListUI.Dock = DockStyle.Fill;
+                ActiveRigthPanel(dirTree.FileListUI);
             }
             else if (leftNavigationTabs.SelectedItem == this.systemPage)
             {
                 CFunction func = sysFunctionTree.SelectedFunction;
                 if (func != null && func.Ui != null)
                 {
-                    this.mainSplit.Panel2.Controls.Clear();
-                    this.mainSplit.Panel2.Controls.Add(func.Ui);
-                    func.Ui.Dock = DockStyle.Fill;
+                    ActiveRigthPanel(func.Ui);
                 }
             }
             else if (leftNavigationTabs.SelectedItem == this.myInfoPage)
@@ -243,9 +254,7 @@ namespace UI
                 CFunction func = myinfofunctionTree.SelectedFunction;
                 if (func != null && func.Ui != null)
                 {
-                    this.mainSplit.Panel2.Controls.Clear();
-                    this.mainSplit.Panel2.Controls.Add(func.Ui);
-                    func.Ui.Dock = DockStyle.Fill;
+                    ActiveRigthPanel(func.Ui);
                 }
             }
 
@@ -268,9 +277,15 @@ namespace UI
         {
             if (e.UI != null)
             {
-                this.mainSplit.Panel2.Controls.Clear();
-                this.mainSplit.Panel2.Controls.Add(e.UI);
-                e.UI.Dock = DockStyle.Fill;
+                ActiveRigthPanel(e.UI);
+            }
+        }
+
+        public void DirTreeEventHandler(object sender, DirTreeEventArgs e)
+        {
+            if (e.UI != null)
+            {
+                ActiveRigthPanel(e.UI);
             }
         }
 
@@ -708,9 +723,7 @@ namespace UI
                 else
                 {
                     this._searchList.Init(result);
-                    this.mainSplit.Panel2.Controls.Clear();
-                    this.mainSplit.Panel2.Controls.Add(_searchList);
-                    _searchList.Dock = DockStyle.Fill;
+                    ActiveRigthPanel(_searchList);
                 }
             }
             catch (Exception ex)
@@ -768,9 +781,7 @@ namespace UI
                 }
                 else
                 {
-                    this.mainSplit.Panel2.Controls.Clear();
-                    this.mainSplit.Panel2.Controls.Add(_searchList);
-                    this._searchList.Dock = DockStyle.Fill;
+                    ActiveRigthPanel(_searchList);
                 }
             }
             catch(Exception ex)
