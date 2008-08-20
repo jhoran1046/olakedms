@@ -27,7 +27,7 @@ namespace MidLayer
         String _Org_SMTPUsrName;
         String _Org_SMTPPassword;
 
-        [KeyField("Org_Id", KeyType = UniqueIDType.OtherDefinition)]
+        [KeyField("Org_Id")]
         public Int32 Org_Id
         {
             get { return this._Org_Id; }
@@ -96,12 +96,14 @@ namespace MidLayer
 
         public COrganizeEntity(String connectionString)
         {
+     
             ConnString = connectionString;
         }
 
         public COrganizeEntity()
             : this("")
         {
+    
             ConnString = MidLayerSettings.ConnectionString;
         }
 

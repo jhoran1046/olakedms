@@ -132,7 +132,7 @@ namespace Framework.DB
             m_db.OP.DbOperator.ClearParameters ( );
             m_db.OP.Remove ( this );
             m_db.OP.Dispose();
-
+            
         }
         /// <summary>
         /// Deletes the specified filter.

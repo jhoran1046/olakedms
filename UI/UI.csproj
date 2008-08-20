@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="InstallForm.aspx" />
     <Content Include="Resources\Icons\24X24\Applications.gif" />
     <Content Include="Resources\Icons\24X24\Behaviors.gif" />
     <Content Include="Resources\Icons\24X24\Controls.gif" />
@@ -128,11 +129,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="install.cs">
-      <SubType>Form</SubType>
+    <Compile Include="InstallForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>InstallForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="install.Designer.cs">
-      <DependentUpon>install.cs</DependentUpon>
+    <Compile Include="InstallForm.aspx.designer.cs">
+      <DependentUpon>InstallForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -178,10 +180,6 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="install.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>install.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LoginForm.cs</DependentUpon>
