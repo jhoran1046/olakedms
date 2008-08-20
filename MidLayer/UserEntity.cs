@@ -231,8 +231,8 @@ namespace MidLayer
                 // Create organize entity
                 COrganizeEntity organize = new COrganizeEntity(ConnString);
                 organize.Org_Name = organizeName;
-                organize.Org_Id = res.Res_Id;
-                organize.Org_Resource = folderRes.Res_Id;
+                //organize = res.Res_Id;
+                organize.Org_Resource = res.Res_Id;
                 organize.Insert();
 
                 // create archive folder for organzie
