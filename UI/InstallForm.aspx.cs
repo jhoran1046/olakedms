@@ -226,6 +226,7 @@ namespace UI
             }
             catch (Exception ex)
             {
+                lblErrorMsg.BackColor = Color.Red;
                 lblErrorMsg.Text = "ÏµÍ³´íÎó£º" + ex.Message;
             }
         }
@@ -288,7 +289,7 @@ namespace UI
                         if (aNode.Attributes["name"].Value == "ConnectionString")
                         {
                             _originalConnString = aNode.Attributes["connectionString"].Value;
-                            aNode.Attributes["connectionString"].Value = connString;
+                            aNode.Attributes["connectionString"].Value = "Provider=SQLOLEDB;" + connString;
                         }
                     }
                 }
@@ -542,7 +543,7 @@ namespace UI
                 acl3.Acl_Resource = organize.Org_Resource;
                 acl3.Acl_Role = user.Usr_Id;
                 acl3.Acl_RType = (int)ACLROLETYPE.USERROLE;
-                acl3.Acl_Id = acl2.Insert();
+                acl3.Acl_Id = acl3.Insert();
 
                 return user;
             }
