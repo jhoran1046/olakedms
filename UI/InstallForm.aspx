@@ -159,7 +159,7 @@
                         <asp:Button ID="btnCreate" runat="server" Text="创建" Width="66px" OnClick="btnCreate_Click" />
                     </td>
                     <td style="width: 101px">
-                        <asp:Button ID="btnInitial" runat="server" Text="初始化" Width="65px" OnClick="btnInitial_Click" /></td>
+                        <asp:Button ID="btnInitial" runat="server" Text="初始化" Width="65px" OnClick="btnInitial_Click" OnClientClick="return confirm('您确定要初始化吗？这样将丢失您原来所有数据！');" /></td>
                 </tr>
             </table>
         </asp:Panel>
