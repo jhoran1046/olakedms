@@ -322,7 +322,7 @@ namespace UI
         /// <param name="connString"></param>
         private void CreateTable(string connString)
         {
-            string path = Context.Server.MapPath("/App_Data/dms.sql");
+            string path = Context.Server.MapPath("~/App_Data/dms.sql");
             StreamReader read = File.OpenText(path);
             ArrayList commandList = new ArrayList();
             string commandText = "";
