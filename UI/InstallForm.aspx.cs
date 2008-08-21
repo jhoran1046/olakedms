@@ -262,7 +262,7 @@ namespace UI
         /// </summary>
         private void ChangeWebConfig()
         {
-            string fileName = Context.Server.MapPath("/Web.config");
+            string fileName = Context.Server.MapPath("~/Web.config");
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(fileName);
 
