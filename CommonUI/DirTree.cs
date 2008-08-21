@@ -225,8 +225,11 @@ namespace CommonUI
                 _fileListUI.ParentResourceId = (int)e.Node.Tag;
                 _fileListUI.LoadFiles();
 
-                DirTreeEventArgs args = new DirTreeEventArgs(_fileListUI);
-                TreeEvent(this, args);
+                if (TreeEvent != null)
+                {
+                    DirTreeEventArgs args = new DirTreeEventArgs(_fileListUI);
+                    TreeEvent(this, args);
+                }
             }
             catch (Exception ex)
             {
@@ -236,11 +239,11 @@ namespace CommonUI
 
         private void mainTreeView_BeforeExpand ( object sender , TreeViewCancelEventArgs e )
         {
-            if ( !e.Node.Loaded )
+/*            if ( !e.Node.Loaded )
             {
-                LoadNode(e.Node);
+*/                LoadNode(e.Node);
                 e.Node.Loaded = true;
-            }
+/*            } */
         }
 
         private void menuCreateFolder_Click(object sender, EventArgs e)

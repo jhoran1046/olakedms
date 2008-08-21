@@ -63,9 +63,12 @@ namespace CommonUI
 
         private void MainTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            CFunction func = (CFunction)e.Node.Tag;
-            FunctionTreeEventArgs args = new FunctionTreeEventArgs(func.Ui);
-            TreeEvent(this, args);
+            if (TreeEvent != null)
+            {
+                CFunction func = (CFunction)e.Node.Tag;
+                FunctionTreeEventArgs args = new FunctionTreeEventArgs(func.Ui);
+                TreeEvent(this, args);
+            }
         }
     }
 
