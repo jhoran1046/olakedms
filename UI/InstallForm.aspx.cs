@@ -119,6 +119,7 @@ namespace UI
                 if(usrlst.Count > 0)
                 {
                     LogonPanel.Visible = true;
+                    LogonPanel.Enabled = true;
                     mainPanel.Enabled = false;
                     this.btnCreate.Enabled = false;
                     this.btnInitial.Enabled = true;
@@ -126,7 +127,6 @@ namespace UI
             }
             catch
             {
-                //lblMsg.Text = "系统错误："+ex.Message;
                 LogonPanel.Visible = false;
                 mainPanel.Enabled = true;
                 this.btnCreate.Enabled = true;
@@ -172,6 +172,7 @@ namespace UI
                 lblMsg.BackColor = Color.GreenYellow;
                 lblMsg.Text = "成功登录！";
                 mainPanel.Enabled = true;
+                LogonPanel.Enabled = false;
             }
         }
 
@@ -378,8 +379,8 @@ namespace UI
             string dataBase = str.Substring(startStr + 1);
 
             SqlConnection conn = new SqlConnection(_originalConnString);
-            SqlCommand comm = new SqlCommand();
-            comm.CommandText = "DROP DATABASE " + dataBase;
+            string commText = "DROP DATABASE " + dataBase;
+            SqlCommand comm = new SqlCommand(commText,conn);
             conn.Open();
             comm.ExecuteNonQuery();
             conn.Close();
@@ -425,9 +426,9 @@ namespace UI
 
             try
             {
+                ChangeWebConfig();
                 DeleteData();
                 CreateDataBase();
-                ChangeWebConfig();
                 CreateTable(_connString);
                 CreateOrganize(_orgName);
                 CreateAdminlUser();
@@ -455,6 +456,7 @@ namespace UI
                 // create default storage folder named as organize resource id
                 String organizePath = System.IO.Path.Combine(_path, res.Res_Id.ToString() + _orgName);
                 Directory.CreateDirectory(organizePath);
+                _rootPath = organizePath;
 
                 // create resource for default folder of organize
                 CResourceEntity folderRes = new CResourceEntity(_connString);
@@ -570,7 +572,8 @@ namespace UI
                 folderRes.Update();
 
                 // create user's folder
-                String userPath = folderRes.MakeFullPath();
+                //String userPath = folderRes.MakeFullPath();
+                String userPath = _rootPath + "\\" + folderRes.Res_Name;
                 Directory.CreateDirectory(userPath);
 
                 // create user
