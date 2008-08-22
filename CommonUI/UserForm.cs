@@ -10,6 +10,7 @@ using System.Text;
 using Gizmox.WebGUI.Common;
 using Gizmox.WebGUI.Forms;
 using System.Security.Cryptography;
+using MidLayer;
 
 #endregion
 
@@ -22,6 +23,13 @@ namespace CommonUI
         private String _surepwd = "";
         private String _name="";
         private String _email = "";
+        private Int32 _userType = -1;
+
+        public Int32 UserType
+        {
+            get { return _userType; }
+            set { _userType = value; }
+        }
 
         public UserForm()
         {
@@ -40,6 +48,10 @@ namespace CommonUI
             _surepwd = txtSurePwd.Text;
             _name = nameBox.Text;
             _email = txtEmail.Text;
+            if(ckbAdmin.Checked == true)
+            {
+                _userType = (int)USERTYPE.ORGANIZEADMIN;
+            }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
