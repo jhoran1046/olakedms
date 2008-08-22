@@ -41,6 +41,7 @@ namespace CommonUI
             this.txtEmail = new Gizmox.WebGUI.Forms.TextBox();
             this.label4 = new Gizmox.WebGUI.Forms.Label();
             this.txtSurePwd = new Gizmox.WebGUI.Forms.TextBox();
+            this.ckbAdmin = new Gizmox.WebGUI.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +110,7 @@ namespace CommonUI
             // 
             this.btnOK.DialogResult = Gizmox.WebGUI.Forms.DialogResult.OK;
             this.btnOK.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnOK.Location = new System.Drawing.Point(58, 222);
+            this.btnOK.Location = new System.Drawing.Point(47, 239);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
@@ -121,7 +122,7 @@ namespace CommonUI
             // 
             this.btnCancel.DialogResult = Gizmox.WebGUI.Forms.DialogResult.Cancel;
             this.btnCancel.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnCancel.Location = new System.Drawing.Point(169, 222);
+            this.btnCancel.Location = new System.Drawing.Point(156, 239);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -164,8 +165,22 @@ namespace CommonUI
             this.txtSurePwd.Size = new System.Drawing.Size(150, 20);
             this.txtSurePwd.TabIndex = 8;
             // 
+            // ckbAdmin
+            // 
+            this.ckbAdmin.Checked = false;
+            this.ckbAdmin.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
+            this.ckbAdmin.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.ckbAdmin.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
+            this.ckbAdmin.Location = new System.Drawing.Point(47, 209);
+            this.ckbAdmin.Name = "ckbAdmin";
+            this.ckbAdmin.Size = new System.Drawing.Size(75, 24);
+            this.ckbAdmin.TabIndex = 9;
+            this.ckbAdmin.Text = "π‹¿Ì‘±";
+            this.ckbAdmin.ThreeState = false;
+            // 
             // UserForm
             // 
+            this.Controls.Add(this.ckbAdmin);
             this.Controls.Add(this.txtSurePwd);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -202,6 +217,7 @@ namespace CommonUI
         private Gizmox.WebGUI.Forms.TextBox txtEmail;
         private Gizmox.WebGUI.Forms.Label label4;
         private Gizmox.WebGUI.Forms.TextBox txtSurePwd;
+        private Gizmox.WebGUI.Forms.CheckBox ckbAdmin;
 
 
     }

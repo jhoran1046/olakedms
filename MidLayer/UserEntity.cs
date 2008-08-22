@@ -344,7 +344,7 @@ namespace MidLayer
                 acl3.Acl_Resource = organize.Org_Resource;
                 acl3.Acl_Role = user.Usr_Id;
                 acl3.Acl_RType = (int)ACLROLETYPE.USERROLE;
-                acl3.Acl_Id = acl2.Insert();
+                acl3.Acl_Id = acl3.Insert();
 
                 return user;
             }

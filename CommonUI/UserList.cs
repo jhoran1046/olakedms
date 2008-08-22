@@ -121,19 +121,6 @@ namespace CommonUI
                 newUser.Usr_Member = userForm.Member;
                // newUser.Usr_Password = userForm.Password;
 
-             /*   MD5 md5 = MD5.Create();
-                byte[] bytePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Password));
-                byte[] byteSurePwd = md5.ComputeHash(Encoding.Unicode.GetBytes(userForm.Surepwd));
-                string resultPwd = System.Text.UTF8Encoding.Unicode.GetString(bytePwd);
-                string resultSurePwd = System.Text.UTF8Encoding.Unicode.GetString(byteSurePwd);
-                if(resultPwd == resultSurePwd)
-                {
-                    newUser.Usr_Password = resultPwd;
-                }
-                else
-                {
-                    throw new Exception("密码与确认密码不相等！");
-                }*/
                 string pwd = CHelperClass.UserMd5(userForm.Password);
                 string surePwd = CHelperClass.UserMd5(userForm.Surepwd);
                 if(pwd == surePwd)
@@ -148,7 +135,14 @@ namespace CommonUI
                 newUser.Usr_Name = userForm.UserName;
                 newUser.Usr_Email = userForm.Email;
                 newUser.Usr_Organize = _currentUser.Usr_Organize;
-                _currentUser.CreateNormalUser(newUser);
+                if(userForm.UserType == (int)USERTYPE.ORGANIZEADMIN)
+                {
+                    _currentUser.CreateAdminlUser(newUser);
+                }
+                else
+                {
+                    _currentUser.CreateNormalUser(newUser);
+                }
                 this.LoadUsers();
             }
             catch (Exception ex)
