@@ -208,7 +208,7 @@ namespace UI
                 systemPage.Image = new IconResourceHandle("24X24.applications.gif");
                 myInfoPage.Image = new IconResourceHandle("24X24.behaviors.gif");
                 myDocPage.Image = new IconResourceHandle("24X24.controls.gif");
-                shareSpaceTab.Image = new IconResourceHandle("24X24.sharedspace.ico");
+                shareSpaceTab.Image = new IconResourceHandle("24X24.sharedspace.gif");
                 archiveTab.Image = new IconResourceHandle("24X24.folders.gif");
                 orgManageTab.Image = new IconResourceHandle("24X24.orgAdmin.gif");
 
