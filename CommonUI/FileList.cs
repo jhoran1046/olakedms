@@ -416,9 +416,9 @@ namespace CommonUI
                 }
                 LoadFiles();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("删除文件失败!", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("删除文件失败!"+ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -349,9 +349,9 @@ namespace CommonUI
                    ReloadTreeNode(node);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("删除目录失败！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("删除目录失败！" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
