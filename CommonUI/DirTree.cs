@@ -131,12 +131,12 @@ namespace CommonUI
 
             MenuItem3.Text = "上传文件";
             MenuItem3.Click += new System.EventHandler(this.menuUpload_Click);
-            MenuItem3.Icon = new IconResourceHandle("update.ico");
+            MenuItem3.Icon = new IconResourceHandle("update.gif");
             treeContextMenu.MenuItems.Add(MenuItem3);
 
             MenuItem4.Text = "复制";
             MenuItem4.Click += new System.EventHandler(this.menuCopyFolder_Click);
-            MenuItem4.Icon = new IconResourceHandle("copy.ico");
+            MenuItem4.Icon = new IconResourceHandle("copy.gif");
             treeContextMenu.MenuItems.Add(MenuItem4);
 /*
             MenuItem9.Text = "剪切";
@@ -145,17 +145,17 @@ namespace CommonUI
 */
             MenuItem5.Text = "粘贴";
             MenuItem5.Click += new System.EventHandler(this.menuPaste_Click);
-            MenuItem5.Icon = new IconResourceHandle("paste.ico");
+            MenuItem5.Icon = new IconResourceHandle("paste.gif");
             treeContextMenu.MenuItems.Add(MenuItem5);
 
             MenuItem6.Text = "共享设置";
             MenuItem6.Click += new System.EventHandler(this.menuShareFolder_Click);
-            MenuItem6.Icon = new IconResourceHandle("shareFolder.ico");
+            MenuItem6.Icon = new IconResourceHandle("shareFolder.gif");
             treeContextMenu.MenuItems.Add(MenuItem6);
 
             MenuItem7.Text = "申请归档";
             MenuItem7.Click += new System.EventHandler(this.menuApply_Click);
-            MenuItem7.Icon = new IconResourceHandle("apply.ico");
+            MenuItem7.Icon = new IconResourceHandle("apply.gif");
             treeContextMenu.MenuItems.Add(MenuItem7);
 
            // MenuItem8.Text = "我的归档申请";
