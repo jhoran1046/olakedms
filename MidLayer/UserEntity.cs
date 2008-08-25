@@ -1088,6 +1088,8 @@ namespace MidLayer
             string filter = "this.M_Resource ='" + resId + "'";
             filter += "and this.M_Organize ='" + this.Usr_Organize + "'";
             mailList = mail.GetObjectList(filter);
+            if (mailList.Count <= 0)
+                return;
 
             COrganizeEntity org = new COrganizeEntity().Load(this.Usr_Organize);
             string from = org.Org_Mail;
@@ -1096,6 +1098,8 @@ namespace MidLayer
 
             SmtpClient client = new SmtpClient();
             client.Host = org.Org_MailSmtp;
+            if (client.Host == null)
+                return;
             if (org.Org_MailSSL == (int)SSL.CHECKED)
                 client.EnableSsl = true;
             
