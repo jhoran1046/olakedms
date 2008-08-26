@@ -57,9 +57,9 @@
     <Content Include="Resources\Icons\24X24\Controls.gif" />
     <Content Include="Resources\Icons\24X24\Folders.gif" />
     <Content Include="Resources\Icons\24X24\orgAdmin.gif" />
-    <Content Include="Resources\Icons\24X24\sharedspace.gif" />
+    <Content Include="Resources\Icons\24X24\sharedspace.GIF" />
     <Content Include="Resources\Icons\Add.gif" />
-    <Content Include="Resources\Icons\anual.gif" />
+    <Content Include="Resources\Icons\anual.GIF" />
     <Content Include="Resources\Icons\apply.gif" />
     <Content Include="Resources\Icons\AttachedMail.gif" />
     <Content Include="Resources\Icons\Back.gif" />
@@ -70,13 +70,13 @@
     <Content Include="Resources\Icons\Clear.gif" />
     <Content Include="Resources\Icons\ClosedMail.gif" />
     <Content Include="Resources\Icons\Columns.gif" />
-    <Content Include="Resources\Icons\copy.gif" />
+    <Content Include="Resources\Icons\Copy.gif" />
     <Content Include="Resources\Icons\Cut.gif" />
     <Content Include="Resources\Icons\DayView.gif" />
     <Content Include="Resources\Icons\Delete.GIF" />
     <Content Include="Resources\Icons\DetailsView.gif" />
     <Content Include="Resources\Icons\Disable.gif" />
-    <Content Include="Resources\Icons\doc.gif" />
+    <Content Include="Resources\Icons\doc.GIF" />
     <Content Include="Resources\Icons\EnsureVisible.gif" />
     <Content Include="Resources\Icons\Event.gif" />
     <Content Include="Resources\Icons\favicon.gif" />
@@ -88,7 +88,7 @@
     <Content Include="Resources\Icons\ImportantMail.gif" />
     <Content Include="Resources\Icons\Interface.gif" />
     <Content Include="Resources\Icons\keyword.gif" />
-    <Content Include="Resources\Icons\Open.gif" />
+    <Content Include="Resources\Icons\open.GIF" />
     <Content Include="Resources\Icons\password.gif" />
     <Content Include="Resources\Icons\paste.gif" />
     <Content Include="Resources\Icons\people.gif" />
@@ -96,7 +96,7 @@
     <Content Include="Resources\Icons\ppt.gif" />
     <Content Include="Resources\Icons\rar.gif" />
     <Content Include="Resources\Icons\refresh.bmp" />
-    <Content Include="Resources\Icons\shareFolder.gif" />
+    <Content Include="Resources\Icons\shareFolder.GIF" />
     <Content Include="Resources\Icons\txt.gif" />
     <Content Include="Resources\Icons\update.gif" />
     <Content Include="Resources\Icons\User.gif" />
@@ -125,7 +125,7 @@
     <Content Include="Resources\Icons\weekView.gif" />
     <Content Include="Resources\Icons\WorkWeekView.gif" />
     <Content Include="Readme.txt" />
-    <Content Include="Resources\Icons\xls.gif" />
+    <Content Include="Resources\Icons\xls.GIF" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">

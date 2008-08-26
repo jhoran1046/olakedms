@@ -136,7 +136,7 @@ namespace CommonUI
 
             MenuItem4.Text = "∏¥÷∆";
             MenuItem4.Click += new System.EventHandler(this.menuCopyFolder_Click);
-            MenuItem4.Icon = new IconResourceHandle("copy.gif");
+            MenuItem4.Icon = new IconResourceHandle("Copy.gif");
             treeContextMenu.MenuItems.Add(MenuItem4);
 /*
             MenuItem9.Text = "ºÙ«–";
