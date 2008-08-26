@@ -102,7 +102,7 @@ namespace CommonUI
 
             MenuItem10.Text = "∏¥÷∆";
             MenuItem10.Click += new System.EventHandler(this.menuCopyFile_Click);
-            MenuItem10.Icon = new IconResourceHandle("copy.gif");
+            MenuItem10.Icon = new IconResourceHandle("Copy.gif");
             fileContextMenu.MenuItems.Add(MenuItem10);
 /*
             MenuItem11.Text = "ºÙ«–";
@@ -316,10 +316,10 @@ namespace CommonUI
                 ListViewItem.ListViewSubItem lvsi;
 
                 lvi.Text = f.FileName;
-                IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".ico");
-                if(!System.IO.File.Exists(Context.HttpContext.Server.MapPath("/resources/icons/" + f.Ext + ".ico")))
+                IconResourceHandle icoHandle = new IconResourceHandle(f.Ext+".gif");
+                if(!System.IO.File.Exists(Context.HttpContext.Server.MapPath("/resources/icons/" + f.Ext + ".gif")))
                 {
-                    icoHandle = new IconResourceHandle("anual.ico");          
+                    icoHandle = new IconResourceHandle("anual.gif");          
                 }
 
                 lvi.SmallImage = icoHandle;

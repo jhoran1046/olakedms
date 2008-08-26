@@ -37,7 +37,7 @@ namespace CommonUI
             // btnStart
             // 
             this.btnStart.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.btnStart.Location = new System.Drawing.Point(6, 19);
+            this.btnStart.Location = new System.Drawing.Point(5, 16);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
