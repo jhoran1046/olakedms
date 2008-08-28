@@ -14,7 +14,7 @@ namespace install
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InstallDMS());
+            Application.Run(new Complete());
         }
     }
 }

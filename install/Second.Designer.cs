@@ -1,6 +1,6 @@
 ﻿namespace install
 {
-    partial class Complete
+    partial class Second
     {
         /// <summary>
         /// 必需的设计器变量。

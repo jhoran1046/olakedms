@@ -27,7 +27,7 @@ namespace install
             set { _sysPwd = value; }
         }
 
-        Complete complete = new Complete();
+        Second complete = new Second();
 
         public InstallDMS()
         {
