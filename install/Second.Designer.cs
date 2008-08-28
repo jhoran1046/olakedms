@@ -1,6 +1,6 @@
 ﻿namespace install
 {
-    partial class Second
+    partial class Install
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -30,7 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnLast = new System.Windows.Forms.Button();
             this.btnInstall = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMemberName = new System.Windows.Forms.TextBox();
@@ -42,13 +41,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtOrgName = new System.Windows.Forms.TextBox();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.txtInitialCatalog = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.txtServer = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnCancel);
-            this.groupBox1.Controls.Add(this.btnLast);
             this.groupBox1.Controls.Add(this.btnInstall);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.txtMemberName);
@@ -60,17 +72,17 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 253);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 273);
+            this.groupBox1.Size = new System.Drawing.Size(355, 244);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DMS管理员设置";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(229, 215);
+            this.btnCancel.Location = new System.Drawing.Point(202, 209);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
@@ -78,19 +90,9 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnLast
-            // 
-            this.btnLast.Location = new System.Drawing.Point(43, 215);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(75, 23);
-            this.btnLast.TabIndex = 11;
-            this.btnLast.Text = "上一步";
-            this.btnLast.UseVisualStyleBackColor = true;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
-            // 
             // btnInstall
             // 
-            this.btnInstall.Location = new System.Drawing.Point(135, 215);
+            this.btnInstall.Location = new System.Drawing.Point(80, 209);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(75, 23);
             this.btnInstall.TabIndex = 10;
@@ -180,18 +182,140 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "用户账号";
             // 
-            // Complete
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtOrgName);
+            this.groupBox2.Controls.Add(this.txtPath);
+            this.groupBox2.Controls.Add(this.txtInitialCatalog);
+            this.groupBox2.Controls.Add(this.txtPassword);
+            this.groupBox2.Controls.Add(this.txtUserId);
+            this.groupBox2.Controls.Add(this.txtServer);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(355, 243);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "数据库配置";
+            // 
+            // txtOrgName
+            // 
+            this.txtOrgName.Location = new System.Drawing.Point(137, 205);
+            this.txtOrgName.Name = "txtOrgName";
+            this.txtOrgName.Size = new System.Drawing.Size(168, 21);
+            this.txtOrgName.TabIndex = 11;
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(137, 171);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(168, 21);
+            this.txtPath.TabIndex = 10;
+            // 
+            // txtInitialCatalog
+            // 
+            this.txtInitialCatalog.Location = new System.Drawing.Point(137, 135);
+            this.txtInitialCatalog.Name = "txtInitialCatalog";
+            this.txtInitialCatalog.Size = new System.Drawing.Size(168, 21);
+            this.txtInitialCatalog.TabIndex = 9;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(137, 99);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(168, 21);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Location = new System.Drawing.Point(137, 65);
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(168, 21);
+            this.txtUserId.TabIndex = 7;
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(137, 29);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(168, 21);
+            this.txtServer.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 12);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "组织（根目录）名称";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 180);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 12);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "文件存储路径";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(42, 144);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 12);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "数据库名称";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(42, 108);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "密　　　码";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(42, 74);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "用　户　ID";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.SystemColors.Control;
+            this.label11.Location = new System.Drawing.Point(42, 38);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "服务器名称";
+            // 
+            // Second
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 273);
+            this.ClientSize = new System.Drawing.Size(355, 497);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Complete";
+            this.Name = "Second";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Complete";
-            this.Load += new System.EventHandler(this.Complete_Load);
+            this.Text = "AdministratorSetting";
+            this.Load += new System.EventHandler(this.Install_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -204,7 +328,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnInstall;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtMemberName;
@@ -212,5 +335,18 @@
         private System.Windows.Forms.TextBox txtMemberPwd;
         private System.Windows.Forms.TextBox txtMember;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtOrgName;
+        private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.TextBox txtInitialCatalog;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtUserId;
+        private System.Windows.Forms.TextBox txtServer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

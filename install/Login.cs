@@ -10,11 +10,14 @@ namespace install
 {
     public partial class Login : Form
     {
-        InstallDMS insll = new InstallDMS();
-
         public Login()
         {
             InitializeComponent();
+
+            btnOK.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+
+            Complete.CountForm++;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -25,15 +28,12 @@ namespace install
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            insll.SysName = this.txtSysAdmin.Text;
-            insll.SysPwd = this.txtSysPassword.Text;
-
-            this.Close();
+            Install.SystemAdmin = this.txtSysAdmin.Text;
+            Install.SystemPwd = this.txtSysPassword.Text;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
             Application.Exit();
         }
     }
