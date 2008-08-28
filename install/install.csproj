@@ -42,11 +42,11 @@
     <Compile Include="Complete.Designer.cs">
       <DependentUpon>Complete.cs</DependentUpon>
     </Compile>
-    <Compile Include="Second.cs">
+    <Compile Include="Install.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Second.Designer.cs">
-      <DependentUpon>Second.cs</DependentUpon>
+    <Compile Include="Install.Designer.cs">
+      <DependentUpon>Install.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -60,9 +60,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>Complete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Second.resx">
+    <EmbeddedResource Include="Install.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>Second.cs</DependentUpon>
+      <DependentUpon>Install.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <SubType>Designer</SubType>
