@@ -42,6 +42,12 @@
     <Compile Include="Complete.Designer.cs">
       <DependentUpon>Complete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Second.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Second.Designer.cs">
+      <DependentUpon>Second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,10 @@
     <EmbeddedResource Include="Complete.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Complete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Second.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Second.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <SubType>Designer</SubType>

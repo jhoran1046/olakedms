@@ -17,7 +17,7 @@ using Framework.Util;
 
 namespace install
 {
-    public partial class Complete : Form
+    public partial class Second : Form
     {
  #region 成员变量
         String _serverName;
@@ -110,7 +110,7 @@ namespace install
         }
 #endregion
 
-        public Complete()
+        public Second()
         {
             InitializeComponent();
         }
