@@ -17,7 +17,7 @@ using Framework.Util;
 
 namespace install
 {
-    public partial class Second : Form
+    public partial class Install : Form
     {
  #region 成员变量
         String _serverName;
@@ -94,45 +94,52 @@ namespace install
         String _rootPath;//新创建的组织的根目录
         String _originalConnString;//原来的连接字符串
 
-        String _systemAdmin;
+        static String _systemAdmin;
 
-        public String SystemAdmin
+        public static String SystemAdmin
         {
             get { return _systemAdmin; }
             set { _systemAdmin = value; }
         }
-        String _systemPwd;
+        static String _systemPwd;
 
-        public String SystemPwd
+        public static String SystemPwd
         {
             get { return _systemPwd; }
             set { _systemPwd = value; }
         }
 #endregion
 
-        public Second()
+        public Install()
         {
             InitializeComponent();
+            btnInstall.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+
+            Complete.CountForm++;
         }
 
-        private void Complete_Load(object sender, EventArgs e)
+        private void Install_Load(object sender, EventArgs e)
         {
-            this.txtMember.Text = _member;
-            this.txtMemberPwd.Text = "";
-            this.txtSurePwd.Text = "";
-            this.txtMemberName.Text = _memberName;
-            this.txtEmail.Text = _memberEmail;
-        }
-
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            InstallDMS dataCfgForm = new InstallDMS();
-            dataCfgForm.ShowDialog();
-            this.Close();
+            Login login = new Login();
+            if(Complete.CountForm == 2)
+            {
+                login.ShowDialog();
+            }
+            if(login.DialogResult == DialogResult.OK)
+            {
+                login.Close();
+            }
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
+            if (txtServer.Text == "" || txtUserId.Text == "" || txtPassword.Text == "" || txtInitialCatalog.Text == "" || txtPath.Text == "" || txtOrgName.Text == "")
+            {
+                MessageBox.Show("数据库配置有未填写的项目！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if(txtMember.Text == "")
             {
                 MessageBox.Show("用户账号不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -154,6 +161,23 @@ namespace install
             _memberName = txtMemberName.Text;
             _memberEmail = txtEmail.Text;
 
+            _serverName = txtServer.Text;
+            _userId = txtUserId.Text;
+            _password = txtPassword.Text;
+            _initialCatalog = txtInitialCatalog.Text;
+            _orgName = txtOrgName.Text;
+            string pt = txtPath.Text;
+            if (pt[2].ToString() == "/")
+            {
+                MessageBox.Show("文件路径格式不正确！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            else if (pt[pt.Length - 1].ToString() != "\\")
+            {
+                pt += "\\";
+            }
+            _path = pt;
+
             try
             {
                 CreateDataBase();
@@ -174,7 +198,6 @@ namespace install
             result = MessageBox.Show("您确定要取消DMS的安装吗？", "文档管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if(result == DialogResult.Yes)
             {
-                this.Close();
                 Application.Exit();
             }
         }
@@ -259,20 +282,11 @@ namespace install
                 }
                 if(element.Name == "system.web")
                 {
-                    XmlNodeList nodelst = element.ChildNodes;
-                    if (nodelst.Count <= 0)
-                        throw new Exception("系统错误！请重新访问该页！");
-
-                    foreach(XmlElement aNode in nodelst)
+                    XmlNode node = element.LastChild;
+                    if (node.Attributes["impersonate"].Value == "true")
                     {
-                        if(aNode.Name == "identity")
-                        {
-                            if (aNode.Attributes["impersonate"].Value == "true")
-                            {
-                                aNode.Attributes["userName"].Value = this.SystemAdmin;
-                                aNode.Attributes["password"].Value = this.SystemPwd;
-                            }
-                        }
+                        node.Attributes["userName"].Value = _systemAdmin;
+                        node.Attributes["password"].Value = _systemPwd;
                     }
                 }
             }
