@@ -94,16 +94,16 @@ namespace install
         String _rootPath;//新创建的组织的根目录
         String _originalConnString;//原来的连接字符串
 
-        static String _systemAdmin;
+        String _systemAdmin;
 
-        public static String SystemAdmin
+        public String SystemAdmin
         {
             get { return _systemAdmin; }
             set { _systemAdmin = value; }
         }
-        static String _systemPwd;
+        String _systemPwd;
 
-        public static String SystemPwd
+        public String SystemPwd
         {
             get { return _systemPwd; }
             set { _systemPwd = value; }
@@ -115,21 +115,11 @@ namespace install
             InitializeComponent();
             btnInstall.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
-
-            Complete.CountForm++;
         }
 
         private void Install_Load(object sender, EventArgs e)
         {
-            Login login = new Login();
-            if(Complete.CountForm == 2)
-            {
-                login.ShowDialog();
-            }
-            if(login.DialogResult == DialogResult.OK)
-            {
-                login.Close();
-            }
+            
         }
 
         private void btnInstall_Click(object sender, EventArgs e)
@@ -178,6 +168,19 @@ namespace install
             }
             _path = pt;
 
+            if(txtSysPwd.Text == ""||txtSysSurePwd.Text == "")
+            {
+                MessageBox.Show("本机管理员密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            if(txtSysPwd.Text != txtSysSurePwd.Text)
+            {
+                MessageBox.Show("本机管理员密码不正确！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            _systemAdmin = txtSysAdmin.Text;
+            _systemPwd = txtSysPwd.Text;
+
             try
             {
                 CreateDataBase();
@@ -194,12 +197,7 @@ namespace install
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogResult result;
-            result = MessageBox.Show("您确定要取消DMS的安装吗？", "文档管理系统", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if(result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            Application.Exit();
         }
         /// <summary>
         /// 创建数据库
