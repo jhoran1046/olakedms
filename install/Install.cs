@@ -132,19 +132,19 @@ namespace install
 
             if(txtMember.Text == "")
             {
-                MessageBox.Show("用户账号不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("管理员账号不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
             if(txtMemberPwd.Text == ""||txtSurePwd.Text == "")
             {
-                MessageBox.Show("密码或确认密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("管理员密码或确认密码不能为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             _member = txtMember.Text;
             if(txtMemberPwd.Text != txtSurePwd.Text)
             {
-                MessageBox.Show("密码错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("管理员密码错误！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
             _memberPwd = CHelperClass.UserMd5(this.txtMemberPwd.Text);
@@ -188,6 +188,8 @@ namespace install
                 CreateTable(_connString);
                 CreateOrganize(_orgName);
                 CreateAdminlUser();
+
+                MessageBox.Show("成功安装文档管理系统!请将你的安装目录\\DMS\\install\\bin\\Debug\\Web1.config文件改名为Web.config,并替换\\DMS\\UI\\Web.config文件。", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
