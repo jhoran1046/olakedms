@@ -42,6 +42,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnInstall = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.txtOrgName = new System.Windows.Forms.TextBox();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.txtInitialCatalog = new System.Windows.Forms.TextBox();
@@ -61,7 +62,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblMsg = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -175,7 +175,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "退出";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -211,6 +211,15 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "数据库配置";
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMsg.Location = new System.Drawing.Point(371, 29);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(289, 197);
+            this.lblMsg.TabIndex = 12;
+            this.lblMsg.Text = "欢迎使用文档管理系统";
             // 
             // txtOrgName
             // 
@@ -373,15 +382,6 @@
             this.label12.Size = new System.Drawing.Size(65, 12);
             this.label12.TabIndex = 0;
             this.label12.Text = "管理员帐户";
-            // 
-            // lblMsg
-            // 
-            this.lblMsg.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblMsg.Location = new System.Drawing.Point(371, 29);
-            this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(289, 197);
-            this.lblMsg.TabIndex = 12;
-            this.lblMsg.Text = "欢迎使用文档管理系统";
             // 
             // Install
             // 
