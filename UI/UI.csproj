@@ -11,14 +11,10 @@
     <RootNamespace>UI</RootNamespace>
     <AssemblyName>UI</AssemblyName>
     <StartPageUrl>Form1.wgx</StartPageUrl>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="InstallForm.aspx" />
     <Content Include="Resources\Icons\24X24\Applications.gif" />
     <Content Include="Resources\Icons\24X24\Behaviors.gif" />
     <Content Include="Resources\Icons\24X24\Controls.gif" />
@@ -130,13 +125,6 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="InstallForm.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>InstallForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="InstallForm.aspx.designer.cs">
-      <DependentUpon>InstallForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

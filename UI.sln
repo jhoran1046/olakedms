@@ -55,7 +55,47 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "install", "install\install.
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{DC4FBA6C-C393-4651-9095-2D00DC166F38}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 10
+		SccProjectName0 = \u0022$/20080702.ssa/20080618.ssa/DMS/UI.root/UI\u0022,\u0020IKACAAAA
+		SccLocalPath0 = ..
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		SccProjectFilePathRelativizedFromConnection0 = DMS\\
+		SccProjectUniqueName1 = Common\\Common.csproj
+		SccLocalPath1 = ..
+		SccProjectFilePathRelativizedFromConnection1 = DMS\\Common\\
+		SccProjectUniqueName2 = CommonUI\\CommonUI.csproj
+		SccLocalPath2 = ..
+		SccProjectFilePathRelativizedFromConnection2 = DMS\\CommonUI\\
+		SccProjectUniqueName3 = DAL\\DAL.csproj
+		SccLocalPath3 = ..
+		SccProjectFilePathRelativizedFromConnection3 = DMS\\DAL\\
+		SccProjectUniqueName4 = Framework\\Framework.csproj
+		SccLocalPath4 = ..
+		SccProjectFilePathRelativizedFromConnection4 = DMS\\Framework\\
+		SccProjectUniqueName5 = install\\install.csproj
+		SccLocalPath5 = ..
+		SccProjectFilePathRelativizedFromConnection5 = DMS\\install\\
+		SccProjectUniqueName6 = MidLayer\\MidLayer.csproj
+		SccLocalPath6 = ..
+		SccProjectFilePathRelativizedFromConnection6 = DMS\\MidLayer\\
+		SccProjectUniqueName7 = SearchEngine\\SearchEngine.csproj
+		SccLocalPath7 = ..
+		SccProjectFilePathRelativizedFromConnection7 = DMS\\SearchEngine\\
+		SccProjectUniqueName8 = Setup\\Setup.vdproj
+		SccLocalPath8 = ..
+		SccProjectFilePathRelativizedFromConnection8 = DMS\\Setup\\
+		SccProjectUniqueName9 = UI\\UI.csproj
+		SccLocalPath9 = ..
+		SccProjectFilePathRelativizedFromConnection9 = DMS\\UI\\
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -93,6 +133,8 @@ Global
 		{51E8D246-A72E-42E4-A5A0-60F175922C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51E8D246-A72E-42E4-A5A0-60F175922C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51E8D246-A72E-42E4-A5A0-60F175922C6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4FBA6C-C393-4651-9095-2D00DC166F38}.Debug|Any CPU.ActiveCfg = Debug
+		{DC4FBA6C-C393-4651-9095-2D00DC166F38}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

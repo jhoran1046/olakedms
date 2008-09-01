@@ -14,6 +14,8 @@ using System.Web;
 using MidLayer;
 using CommonUI;
 using Framework.Util;
+using Olake.WDS;
+
 
 namespace install
 {
@@ -124,7 +126,7 @@ namespace install
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            if (txtServer.Text == "" || txtUserId.Text == "" || txtPassword.Text == "" || txtInitialCatalog.Text == "" || txtPath.Text == "" || txtOrgName.Text == "")
+            if (txtServer.Text == "" || txtUserId.Text == "" || txtPassword.Text == "" || txtInitialCatalog.Text == "" || txtPath.Text == "" )
             {
                 MessageBox.Show("数据库配置有未填写的项目！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -154,8 +156,8 @@ namespace install
             _serverName = txtServer.Text;
             _userId = txtUserId.Text;
             _password = txtPassword.Text;
-            _initialCatalog = txtInitialCatalog.Text;
-            _orgName = txtOrgName.Text;
+            _initialCatalog =txtInitialCatalog.Text;
+            _orgName = "主目录";// txtOrgName.Text;
             string pt = txtPath.Text;
             if (pt[2].ToString() == "/")
             {
@@ -189,7 +191,10 @@ namespace install
                 CreateOrganize(_orgName);
                 CreateAdminlUser();
 
-                MessageBox.Show("成功安装文档管理系统!请将你的安装目录\\DMS\\install\\bin\\Debug\\Web1.config文件改名为Web.config,并替换\\DMS\\UI\\Web.config文件。", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("成功安装文档管理系统!", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result != DialogResult.OK)
+                    return;
+                Application.Exit();
             }
             catch(Exception ex)
             {
@@ -235,7 +240,9 @@ namespace install
         private void ChangeWebConfig()
         {
             //string fileName = Context.Server.MapPath("~/Web.config");
-            string fileName = System.IO.Path.GetFullPath("Web.config");
+            //默认本文件会安装在web应用的bin目录下，所以需要修改父目录下的web.config
+            string fileName = System.IO.Path.GetFullPath("..");
+            fileName+="\\web.config";
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(fileName);
 
@@ -290,7 +297,7 @@ namespace install
                     }
                 }
             }
-            //string newConfig = Context.Server.MapPath("~/");
+/*            //string newConfig = Context.Server.MapPath("~/");
             //newConfig += "Web1.config";
             string newConfig = System.IO.Path.GetFullPath("Web1.config");
             FileStream webStream = new FileStream(newConfig, FileMode.Create);
@@ -298,6 +305,8 @@ namespace install
             xmltext.Flush();
             xmltext.Close();
             xmlDoc.Save(newConfig);
+*/
+            xmlDoc.Save(fileName);
         }
         /// <summary>
         /// 为新数据库创建数据表：
@@ -385,6 +394,7 @@ namespace install
                 String organizePath = System.IO.Path.Combine(_path, res.Res_Id.ToString() + _orgName);
                 Directory.CreateDirectory(organizePath);
                 _rootPath = organizePath;
+                CSearchDAL.AddSearchFolder(_rootPath);
 
                 // create resource for default folder of organize
                 CResourceEntity folderRes = new CResourceEntity(_connString);
@@ -514,6 +524,17 @@ namespace install
             {
                 throw e;
             }
+
+        }
+
+        private void btnBroswer_Click(object sender, EventArgs e)
+        {
+            this.folderPath.ShowDialog();
+            txtPath.Text = folderPath.SelectedPath;
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
 
         }
 
