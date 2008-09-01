@@ -13,9 +13,10 @@
     <ManifestKeyFile>install_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
-    <PublishUrl>F:\1test\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/dms/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -24,11 +25,13 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://localhost/install/</UpdateUrl>
-    <CreateWebPageOnPublish>false</CreateWebPageOnPublish>
-    <AutorunEnabled>true</AutorunEnabled>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>dms.ico</ApplicationIcon>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,6 +103,10 @@
       <Project>{7DF52D2B-D069-418D-A631-A042C99E0EE6}</Project>
       <Name>MidLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SearchEngine\SearchEngine.csproj">
+      <Project>{EAAED226-0D72-446F-803D-FF940624A988}</Project>
+      <Name>SearchEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -107,6 +114,9 @@
       <ProductName>.NET Framework 2.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dms.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
