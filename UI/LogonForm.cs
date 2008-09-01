@@ -183,6 +183,7 @@ namespace UI
             this.mobjButtonLogon.TabIndex = 5;
             this.mobjButtonLogon.Text = "µÇÂ¼";
             this.mobjButtonLogon.TextImageRelation = Gizmox.WebGUI.Forms.TextImageRelation.Overlay;
+            this.mobjButtonLogon.Click += new System.EventHandler(this.mobjButtonLogon_Click);
             // 
             // mobjLabelPassword
             // 
@@ -400,6 +401,7 @@ namespace UI
 		{
 			mobjButtonLogon_Click(mobjButtonLogon,EventArgs.Empty);
 		}
+
 	}
 	
 	#endregion
