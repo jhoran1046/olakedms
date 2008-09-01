@@ -64,6 +64,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtInitialCatalog = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -83,12 +84,12 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 259);
+            this.groupBox1.Location = new System.Drawing.Point(0, 287);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(508, 127);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DMS管理员设置";
+            this.groupBox1.Text = "DDOC管理员设置";
             // 
             // txtEmail
             // 
@@ -175,7 +176,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(282, 390);
+            this.btnCancel.Location = new System.Drawing.Point(282, 419);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
@@ -185,7 +186,7 @@
             // 
             // btnInstall
             // 
-            this.btnInstall.Location = new System.Drawing.Point(150, 390);
+            this.btnInstall.Location = new System.Drawing.Point(150, 418);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(75, 23);
             this.btnInstall.TabIndex = 10;
@@ -370,12 +371,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.txtPath);
             this.groupBox4.Controls.Add(this.btnBroswer);
-            this.groupBox4.Location = new System.Drawing.Point(0, 197);
+            this.groupBox4.Location = new System.Drawing.Point(0, 195);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(512, 53);
+            this.groupBox4.Size = new System.Drawing.Size(512, 86);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "文档存储位置设定";
@@ -395,13 +397,24 @@
             this.txtInitialCatalog.Name = "txtInitialCatalog";
             this.txtInitialCatalog.Size = new System.Drawing.Size(165, 21);
             this.txtInitialCatalog.TabIndex = 10;
-            this.txtInitialCatalog.Text = "DMS";
+            this.txtInitialCatalog.Text = "DDOC";
+            // 
+            // label8
+            // 
+            this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(3, 56);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(506, 27);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "注意，请不要把文档存储路径设定为本应用程序的安装目录下，否则系统不能正常工作！";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Install
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 413);
+            this.ClientSize = new System.Drawing.Size(512, 443);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.groupBox3);
@@ -413,7 +426,7 @@
             this.MaximizeBox = false;
             this.Name = "Install";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "文档管理系统(DMS)配置";
+            this.Text = "文档管理系统(DDOC)配置";
             this.Load += new System.EventHandler(this.Install_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -464,5 +477,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtInitialCatalog;
+        private System.Windows.Forms.Label label8;
     }
 }

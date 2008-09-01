@@ -46,7 +46,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("登录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("登录失败：", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Context.Session.IsLoggedOn = false;
             }
         }

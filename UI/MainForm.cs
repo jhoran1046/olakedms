@@ -67,7 +67,7 @@ namespace UI
 
         private void MainForm_Load ( object sender , EventArgs e )
         {
-            this.Menu = mainMenu1;
+            //this.Menu = mainMenu1;
             _currentUser = (CUserEntity)Context.Session["CurrentUser"];
 
             try
@@ -797,6 +797,11 @@ namespace UI
 //            MainForm form = new MainForm();
 //            form.Show();
 //            this.Close();
+        }
+
+        private void searchFolder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

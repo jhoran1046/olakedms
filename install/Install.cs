@@ -194,7 +194,7 @@ namespace install
                 DialogResult result = MessageBox.Show("成功安装文档管理系统!", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result != DialogResult.OK)
                     return;
-                Application.Exit();
+                //Application.Exit();
             }
             catch(Exception ex)
             {
