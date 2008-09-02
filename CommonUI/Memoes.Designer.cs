@@ -47,12 +47,11 @@ namespace CommonUI
             // 
             // prgbMemo
             // 
-            this.prgbMemo.Anchor = ((Gizmox.WebGUI.Forms.AnchorStyles)(((Gizmox.WebGUI.Forms.AnchorStyles.Bottom | Gizmox.WebGUI.Forms.AnchorStyles.Left)
-                        | Gizmox.WebGUI.Forms.AnchorStyles.Right)));
+            this.prgbMemo.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.Top;
             this.prgbMemo.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.prgbMemo.Location = new System.Drawing.Point(133, 238);
+            this.prgbMemo.Location = new System.Drawing.Point(96, 19);
             this.prgbMemo.Name = "prgbMemo";
-            this.prgbMemo.Size = new System.Drawing.Size(364, 37);
+            this.prgbMemo.Size = new System.Drawing.Size(364, 20);
             this.prgbMemo.TabIndex = 2;
             // 
             // groupBox1
