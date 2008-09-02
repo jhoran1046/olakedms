@@ -94,7 +94,7 @@ namespace CommonUI
             // 
             // shareDirBox
             // 
-            this.shareDirBox.Checked = true;
+            this.shareDirBox.Checked = false;
             this.shareDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
             this.shareDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.shareDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
@@ -107,7 +107,7 @@ namespace CommonUI
             // 
             // archiveDirBox
             // 
-            this.archiveDirBox.Checked = true;
+            this.archiveDirBox.Checked = false;
             this.archiveDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
             this.archiveDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.archiveDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
@@ -120,7 +120,7 @@ namespace CommonUI
             // 
             // myDirBox
             // 
-            this.myDirBox.Checked = true;
+            this.myDirBox.Checked = false;
             this.myDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
             this.myDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.myDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;
@@ -133,7 +133,7 @@ namespace CommonUI
             // 
             // currentDirBox
             // 
-            this.currentDirBox.Checked = false;
+            this.currentDirBox.Checked = true;
             this.currentDirBox.CheckState = Gizmox.WebGUI.Forms.CheckState.Unchecked;
             this.currentDirBox.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
             this.currentDirBox.FlatStyle = Gizmox.WebGUI.Forms.FlatStyle.Standard;

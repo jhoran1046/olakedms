@@ -162,6 +162,7 @@ namespace CommonUI
 
             MenuItem8.Text = "À—À˜";
             MenuItem8.Click += new System.EventHandler(this.menuSearch_Click);
+            MenuItem8.Icon = new IconResourceHandle("search.gif");
             treeContextMenu.MenuItems.Add(MenuItem8);
 
            // MenuItem10.Text = "∞Ï¿ÌπÈµµ…Í«Î";
