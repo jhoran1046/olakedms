@@ -348,7 +348,7 @@ namespace UI
             catch (Exception ex)
             {
                 mobjLabelMessage.Text = "Invalid username or password.";
-                MessageBox.Show("登录失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("登录失败：" + ex.ToString() , "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Context.Session.IsLoggedOn = false;
             }
             /*
