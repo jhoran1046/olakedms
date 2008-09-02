@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.DirectoryServices;
 using System.Xml;
 using System.IO;
 using System.Collections;
@@ -14,7 +15,7 @@ using MidLayer;
 using CommonUI;
 using Framework.Util;
 using Olake.WDS;
-
+using Framework.Util;
 
 namespace install
 {
@@ -189,6 +190,7 @@ namespace install
                 CreateTable(_connString);
                 CreateOrganize(_orgName);
                 CreateAdminlUser();
+                CreateVisualWebExtensions(txtVirtualDir.Text);
 
                 DialogResult result = MessageBox.Show("成功安装文档管理系统!", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result != DialogResult.OK)
@@ -537,5 +539,20 @@ namespace install
 
         }
 
+        private void CreateVisualWebExtensions(string virtualWebSiteName)
+        {
+            string HostName = "localhost";
+            string newSiteNum = "1";
+            string Path = String.Format("IIS://{0}/w3svc/{1}/root/"+virtualWebSiteName,HostName,newSiteNum);
+            DirectoryEntry root = new DirectoryEntry(Path);
+
+            ArrayList arl = new ArrayList();
+            arl.Add(@".wgx,"+ CHelperClass.GetWindowsDir()+@"\Microsoft.NET\Framework\v2.0.50727\aspnet_isapi.dll,1,GET,HEAD,POST,DEBUG");//1表示不检查文件名是否存在
+            object[] valueList =(object[]) (root.Properties["ScriptMaps"].Value);
+                     arl.AddRange(valueList);
+            root.Properties["ScriptMaps"].Value = arl.ToArray();
+            root.CommitChanges();
+
+        }
     }
 }

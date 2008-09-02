@@ -43,16 +43,18 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnInstall = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnBroswer = new System.Windows.Forms.Button();
-            this.lblMsg = new System.Windows.Forms.Label();
-            this.txtPath = new System.Windows.Forms.TextBox();
+            this.txtInitialCatalog = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserId = new System.Windows.Forms.TextBox();
             this.txtServer = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnBroswer = new System.Windows.Forms.Button();
+            this.lblMsg = new System.Windows.Forms.Label();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtSysSurePwd = new System.Windows.Forms.TextBox();
             this.txtSysPwd = new System.Windows.Forms.TextBox();
@@ -62,9 +64,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.folderPath = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtInitialCatalog = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtVirtualDir = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -74,6 +77,9 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txtVirtualDir);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.txtMemberName);
             this.groupBox1.Controls.Add(this.txtSurePwd);
@@ -84,9 +90,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 287);
+            this.groupBox1.Location = new System.Drawing.Point(1, 297);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(508, 127);
+            this.groupBox1.Size = new System.Drawing.Size(508, 185);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DDOC管理员设置";
@@ -176,7 +182,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(282, 419);
+            this.btnCancel.Location = new System.Drawing.Point(278, 488);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
@@ -186,7 +192,7 @@
             // 
             // btnInstall
             // 
-            this.btnInstall.Location = new System.Drawing.Point(150, 418);
+            this.btnInstall.Location = new System.Drawing.Point(106, 488);
             this.btnInstall.Name = "btnInstall";
             this.btnInstall.Size = new System.Drawing.Size(75, 23);
             this.btnInstall.TabIndex = 10;
@@ -210,6 +216,75 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "数据库配置";
+            // 
+            // txtInitialCatalog
+            // 
+            this.txtInitialCatalog.Location = new System.Drawing.Point(80, 122);
+            this.txtInitialCatalog.Name = "txtInitialCatalog";
+            this.txtInitialCatalog.Size = new System.Drawing.Size(165, 21);
+            this.txtInitialCatalog.TabIndex = 10;
+            this.txtInitialCatalog.Text = "DDOC";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "数据库名称";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(80, 87);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(165, 21);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Location = new System.Drawing.Point(79, 55);
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(165, 21);
+            this.txtUserId.TabIndex = 7;
+            this.txtUserId.Text = "sa";
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(79, 20);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(166, 21);
+            this.txtServer.TabIndex = 6;
+            this.txtServer.Text = "localhost";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 95);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "密　　　码";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(27, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 12);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "用户名";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.SystemColors.Control;
+            this.label11.Location = new System.Drawing.Point(6, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "服务器名称";
             // 
             // btnBroswer
             // 
@@ -241,30 +316,6 @@
             this.txtPath.Size = new System.Drawing.Size(337, 21);
             this.txtPath.TabIndex = 10;
             // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(80, 87);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(165, 21);
-            this.txtPassword.TabIndex = 8;
-            // 
-            // txtUserId
-            // 
-            this.txtUserId.Location = new System.Drawing.Point(79, 55);
-            this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(165, 21);
-            this.txtUserId.TabIndex = 7;
-            this.txtUserId.Text = "sa";
-            // 
-            // txtServer
-            // 
-            this.txtServer.Location = new System.Drawing.Point(79, 20);
-            this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(166, 21);
-            this.txtServer.TabIndex = 6;
-            this.txtServer.Text = "localhost";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -273,34 +324,6 @@
             this.label7.Size = new System.Drawing.Size(77, 12);
             this.label7.TabIndex = 4;
             this.label7.Text = "文档存储路径";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 95);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "密　　　码";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(27, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 12);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "用户名";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.SystemColors.Control;
-            this.label11.Location = new System.Drawing.Point(6, 29);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "服务器名称";
             // 
             // groupBox3
             // 
@@ -382,23 +405,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "文档存储位置设定";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "数据库名称";
-            // 
-            // txtInitialCatalog
-            // 
-            this.txtInitialCatalog.Location = new System.Drawing.Point(80, 122);
-            this.txtInitialCatalog.Name = "txtInitialCatalog";
-            this.txtInitialCatalog.Size = new System.Drawing.Size(165, 21);
-            this.txtInitialCatalog.TabIndex = 10;
-            this.txtInitialCatalog.Text = "DDOC";
-            // 
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -410,11 +416,37 @@
             this.label8.Text = "注意，请不要把文档存储路径设定为本应用程序的安装目录下，否则系统不能正常工作！";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(240, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 12);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "虚拟目录名";
+            // 
+            // txtVirtualDir
+            // 
+            this.txtVirtualDir.Location = new System.Drawing.Point(319, 96);
+            this.txtVirtualDir.Name = "txtVirtualDir";
+            this.txtVirtualDir.Size = new System.Drawing.Size(180, 21);
+            this.txtVirtualDir.TabIndex = 11;
+            this.txtVirtualDir.Text = "DDOC";
+            // 
+            // label16
+            // 
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(13, 133);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(476, 37);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "虚拟目录名应和安装时所选路径，默认为DDOC,一般不需更改,如已更改，则需要手动配置IIS,详情参加安装手册";
+            // 
             // Install
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 443);
+            this.ClientSize = new System.Drawing.Size(512, 523);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.groupBox3);
@@ -478,5 +510,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtInitialCatalog;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtVirtualDir;
     }
 }

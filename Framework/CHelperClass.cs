@@ -7,7 +7,8 @@ using System.Data;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Collections;
-
+using System.Runtime.InteropServices;
+   
 
 namespace Framework.Util
 {
@@ -254,69 +255,23 @@ namespace Framework.Util
 			}
 			return newcode;
 		}
+	
+        [DllImport("kernel32")   ]    
+   
+        private static   extern   void   GetWindowsDirectory(StringBuilder   WinDir,int   count)   ;
 
-		
-		//////////////////////////////////////////////////////////////////////////
-		// Method:    SaveSettings
-		// FullName:  ClassLibrary.CHelperClass.SaveSettings
-		// Access:    public static 
-		// Returns:   bool
-		// Parameter: string path
-		// Parameter: CDBAccessor accessor1
-		// Parameter: CDBAccessor accessor2
-		// 保存设置信息
-		//////////////////////////////////////////////////////////////////////////
-// 		static public  bool SaveSettings(string path,CDBAccessor accessor1,CDBAccessor accessor2)
-// 		{
-// 			try
-// 			{
-// 				XmlDocument doc = new XmlDocument();
-// 				
-// 				doc.LoadXml("<item></item>");
-// 
-// 				// Add a price element.
-// 				XmlElement newElem = doc.CreateElement("DatabaseServer");
-// 				newElem.InnerText = accessor1.DatabaseServer;
-// 				doc.DocumentElement.AppendChild(newElem);
-// 				XmlElement newElem_1=doc.CreateElement("DatabaseName");
-// 				newElem_1.InnerText=accessor1.DatabaseName;
-// 				doc.DocumentElement.AppendChild(newElem_1);
-// 				XmlElement newElem_2=doc.CreateElement("DatabaseID");
-// 				newElem_2.InnerText=accessor1.DatabaseID;
-// 				doc.DocumentElement.AppendChild(newElem_2);
-// 				XmlElement newElem_3=doc.CreateElement("DatabasePassword");
-// 				newElem_3.InnerText=accessor1.DatabasePassword;
-// 				doc.DocumentElement.AppendChild(newElem_3);
-// 			
-// 				XmlElement newElem_4=doc.CreateElement("DatabaseServer2");
-// 				newElem_4.InnerText=accessor2.DatabaseServer;
-// 				doc.DocumentElement.AppendChild(newElem_4);
-// 				XmlElement newElem_5=doc.CreateElement("DatabaseName2");
-// 				newElem_5.InnerText=accessor2.DatabaseName;
-// 				doc.DocumentElement.AppendChild(newElem_5);
-// 				XmlElement newElem_6=doc.CreateElement("DatabaseID2");
-// 				newElem_6.InnerText=accessor2.DatabaseID;
-// 				doc.DocumentElement.AppendChild(newElem_6);
-// 				XmlElement newElem_7=doc.CreateElement("DatabasePassword2");
-// 				newElem_7.InnerText=accessor2.DatabasePassword;
-// 				doc.DocumentElement.AppendChild(newElem_7);
-// 				// Save the document to a file and auto-indent the output.
-// 				XmlTextWriter writer = new XmlTextWriter(path,null);
-// 				writer.Formatting = Formatting.Indented;
-// 				doc.Save(writer);
-// 				writer.Close();
-// 				doc=null;
-// 				return true;
-// 			}
-// 			catch (System.Exception ex)
-// 			{
-// 				string exp = ex.ToString();
-// 				return false;
-// 			}
-// 		
-// 		}
+        /// <summary>
+        /// 返回windows的安装目录，比如c:\windows
+        /// </summary>
+        /// <returns></returns>
+        static public string GetWindowsDir()
+        {
+            const int nChars = 128;
+            StringBuilder Buff = new StringBuilder(nChars);
+            GetWindowsDirectory(Buff, nChars);
+            return Buff.ToString();
 
-
+        }
 
 	}
 }

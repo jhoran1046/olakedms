@@ -38,17 +38,11 @@ namespace UI
             this.mainSplit = new Gizmox.WebGUI.Forms.SplitContainer();
             this.leftNavigationTabs = new Gizmox.WebGUI.Forms.NavigationTabs();
             this.systemPage = new Gizmox.WebGUI.Forms.TabPage();
-            this.sysFunctionTree = new CommonUI.FunctionTree();
             this.myInfoPage = new Gizmox.WebGUI.Forms.TabPage();
-            this.myinfofunctionTree = new CommonUI.FunctionTree();
             this.myDocPage = new Gizmox.WebGUI.Forms.TabPage();
-            this.myDirTree = new CommonUI.DirTree();
             this.shareSpaceTab = new Gizmox.WebGUI.Forms.TabPage();
-            this.shareDirTree = new CommonUI.DirTree();
             this.archiveTab = new Gizmox.WebGUI.Forms.TabPage();
-            this.archiveDirTree = new CommonUI.DirTree();
             this.orgManageTab = new Gizmox.WebGUI.Forms.TabPage();
-            this.orgMgerDirTree = new CommonUI.DirTree();
             this.flowLayoutPanel1 = new Gizmox.WebGUI.Forms.FlowLayoutPanel();
             this.panel1 = new Gizmox.WebGUI.Forms.Panel();
             this.btnLogout = new Gizmox.WebGUI.Forms.Button();
@@ -60,6 +54,12 @@ namespace UI
             this.menuItem7 = new Gizmox.WebGUI.Forms.MenuItem();
             this.listView1 = new Gizmox.WebGUI.Forms.ListView();
             this.chbAllDocument = new Gizmox.WebGUI.Forms.CheckBox();
+            this.sysFunctionTree = new CommonUI.FunctionTree();
+            this.myinfofunctionTree = new CommonUI.FunctionTree();
+            this.myDirTree = new CommonUI.DirTree();
+            this.shareDirTree = new CommonUI.DirTree();
+            this.archiveDirTree = new CommonUI.DirTree();
+            this.orgMgerDirTree = new CommonUI.DirTree();
             this.SuspendLayout();
             // 
             // menuItem8
@@ -154,18 +154,6 @@ namespace UI
             this.systemPage.TabIndex = 0;
             this.systemPage.Text = "系统管理";
             // 
-            // sysFunctionTree
-            // 
-            this.sysFunctionTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.sysFunctionTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.sysFunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.sysFunctionTree.FunctionList = null;
-            this.sysFunctionTree.Location = new System.Drawing.Point(0, 0);
-            this.sysFunctionTree.Name = "sysFunctionTree";
-            this.sysFunctionTree.Size = new System.Drawing.Size(331, 454);
-            this.sysFunctionTree.TabIndex = 0;
-            this.sysFunctionTree.Text = "FunctionTree";
-            // 
             // myInfoPage
             // 
             this.myInfoPage.Controls.Add(this.myinfofunctionTree);
@@ -175,16 +163,6 @@ namespace UI
             this.myInfoPage.Size = new System.Drawing.Size(331, 454);
             this.myInfoPage.TabIndex = 0;
             this.myInfoPage.Text = "我的信息";
-            // 
-            // myinfofunctionTree
-            // 
-            this.myinfofunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.myinfofunctionTree.FunctionList = null;
-            this.myinfofunctionTree.Location = new System.Drawing.Point(0, 0);
-            this.myinfofunctionTree.Name = "myinfofunctionTree";
-            this.myinfofunctionTree.Size = new System.Drawing.Size(391, 306);
-            this.myinfofunctionTree.TabIndex = 0;
-            this.myinfofunctionTree.Text = "FunctionTree";
             // 
             // myDocPage
             // 
@@ -196,21 +174,6 @@ namespace UI
             this.myDocPage.TabIndex = 1;
             this.myDocPage.Text = "我的文档";
             // 
-            // myDirTree
-            // 
-            this.myDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.myDirTree.CurrentUser = null;
-            this.myDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.myDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.myDirTree.FileListUI = null;
-            this.myDirTree.Location = new System.Drawing.Point(0, 0);
-            this.myDirTree.Name = "myDirTree";
-            this.myDirTree.RootDir = null;
-            this.myDirTree.RootResourceId = 0;
-            this.myDirTree.Size = new System.Drawing.Size(331, 454);
-            this.myDirTree.TabIndex = 0;
-            this.myDirTree.Text = "DirTree";
-            // 
             // shareSpaceTab
             // 
             this.shareSpaceTab.Controls.Add(this.shareDirTree);
@@ -220,21 +183,6 @@ namespace UI
             this.shareSpaceTab.Size = new System.Drawing.Size(331, 454);
             this.shareSpaceTab.TabIndex = 0;
             this.shareSpaceTab.Text = "共享空间";
-            // 
-            // shareDirTree
-            // 
-            this.shareDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.shareDirTree.CurrentUser = null;
-            this.shareDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.shareDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.shareDirTree.FileListUI = null;
-            this.shareDirTree.Location = new System.Drawing.Point(0, 0);
-            this.shareDirTree.Name = "shareDirTree";
-            this.shareDirTree.RootDir = null;
-            this.shareDirTree.RootResourceId = 0;
-            this.shareDirTree.Size = new System.Drawing.Size(331, 454);
-            this.shareDirTree.TabIndex = 0;
-            this.shareDirTree.Text = "DirTree";
             // 
             // archiveTab
             // 
@@ -246,21 +194,6 @@ namespace UI
             this.archiveTab.TabIndex = 0;
             this.archiveTab.Text = "归档区";
             // 
-            // archiveDirTree
-            // 
-            this.archiveDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.archiveDirTree.CurrentUser = null;
-            this.archiveDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.archiveDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.archiveDirTree.FileListUI = null;
-            this.archiveDirTree.Location = new System.Drawing.Point(0, 0);
-            this.archiveDirTree.Name = "archiveDirTree";
-            this.archiveDirTree.RootDir = null;
-            this.archiveDirTree.RootResourceId = 0;
-            this.archiveDirTree.Size = new System.Drawing.Size(331, 454);
-            this.archiveDirTree.TabIndex = 0;
-            this.archiveDirTree.Text = "DirTree";
-            // 
             // orgManageTab
             // 
             this.orgManageTab.Controls.Add(this.orgMgerDirTree);
@@ -270,21 +203,6 @@ namespace UI
             this.orgManageTab.Size = new System.Drawing.Size(331, 454);
             this.orgManageTab.TabIndex = 0;
             this.orgManageTab.Text = "全部目录";
-            // 
-            // orgMgerDirTree
-            // 
-            this.orgMgerDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
-            this.orgMgerDirTree.CurrentUser = null;
-            this.orgMgerDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
-            this.orgMgerDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.orgMgerDirTree.FileListUI = null;
-            this.orgMgerDirTree.Location = new System.Drawing.Point(0, 0);
-            this.orgMgerDirTree.Name = "orgMgerDirTree";
-            this.orgMgerDirTree.RootDir = null;
-            this.orgMgerDirTree.RootResourceId = 0;
-            this.orgMgerDirTree.Size = new System.Drawing.Size(331, 454);
-            this.orgMgerDirTree.TabIndex = 0;
-            this.orgMgerDirTree.Text = "DirTree";
             // 
             // flowLayoutPanel1
             // 
@@ -395,10 +313,92 @@ namespace UI
             this.chbAllDocument.Text = "全文检索";
             this.chbAllDocument.ThreeState = false;
             // 
+            // sysFunctionTree
+            // 
+            this.sysFunctionTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.sysFunctionTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.sysFunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.sysFunctionTree.FunctionList = null;
+            this.sysFunctionTree.Location = new System.Drawing.Point(0, 0);
+            this.sysFunctionTree.Name = "sysFunctionTree";
+            this.sysFunctionTree.Size = new System.Drawing.Size(331, 454);
+            this.sysFunctionTree.TabIndex = 0;
+            this.sysFunctionTree.Text = "FunctionTree";
+            // 
+            // myinfofunctionTree
+            // 
+            this.myinfofunctionTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.myinfofunctionTree.FunctionList = null;
+            this.myinfofunctionTree.Location = new System.Drawing.Point(0, 0);
+            this.myinfofunctionTree.Name = "myinfofunctionTree";
+            this.myinfofunctionTree.Size = new System.Drawing.Size(391, 306);
+            this.myinfofunctionTree.TabIndex = 0;
+            this.myinfofunctionTree.Text = "FunctionTree";
+            // 
+            // myDirTree
+            // 
+            this.myDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.myDirTree.CurrentUser = null;
+            this.myDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.myDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.myDirTree.FileListUI = null;
+            this.myDirTree.Location = new System.Drawing.Point(0, 0);
+            this.myDirTree.Name = "myDirTree";
+            this.myDirTree.RootDir = null;
+            this.myDirTree.RootResourceId = 0;
+            this.myDirTree.Size = new System.Drawing.Size(331, 454);
+            this.myDirTree.TabIndex = 0;
+            this.myDirTree.Text = "DirTree";
+            // 
+            // shareDirTree
+            // 
+            this.shareDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.shareDirTree.CurrentUser = null;
+            this.shareDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.shareDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.shareDirTree.FileListUI = null;
+            this.shareDirTree.Location = new System.Drawing.Point(0, 0);
+            this.shareDirTree.Name = "shareDirTree";
+            this.shareDirTree.RootDir = null;
+            this.shareDirTree.RootResourceId = 0;
+            this.shareDirTree.Size = new System.Drawing.Size(331, 454);
+            this.shareDirTree.TabIndex = 0;
+            this.shareDirTree.Text = "DirTree";
+            // 
+            // archiveDirTree
+            // 
+            this.archiveDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.archiveDirTree.CurrentUser = null;
+            this.archiveDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.archiveDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.archiveDirTree.FileListUI = null;
+            this.archiveDirTree.Location = new System.Drawing.Point(0, 0);
+            this.archiveDirTree.Name = "archiveDirTree";
+            this.archiveDirTree.RootDir = null;
+            this.archiveDirTree.RootResourceId = 0;
+            this.archiveDirTree.Size = new System.Drawing.Size(331, 454);
+            this.archiveDirTree.TabIndex = 0;
+            this.archiveDirTree.Text = "DirTree";
+            // 
+            // orgMgerDirTree
+            // 
+            this.orgMgerDirTree.Anchor = Gizmox.WebGUI.Forms.AnchorStyles.None;
+            this.orgMgerDirTree.CurrentUser = null;
+            this.orgMgerDirTree.Dock = Gizmox.WebGUI.Forms.DockStyle.Fill;
+            this.orgMgerDirTree.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
+            this.orgMgerDirTree.FileListUI = null;
+            this.orgMgerDirTree.Location = new System.Drawing.Point(0, 0);
+            this.orgMgerDirTree.Name = "orgMgerDirTree";
+            this.orgMgerDirTree.RootDir = null;
+            this.orgMgerDirTree.RootResourceId = 0;
+            this.orgMgerDirTree.Size = new System.Drawing.Size(331, 454);
+            this.orgMgerDirTree.TabIndex = 0;
+            this.orgMgerDirTree.Text = "DirTree";
+            // 
             // MainForm
             // 
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Location = new System.Drawing.Point(15, -10);
+            this.Location = new System.Drawing.Point(15, -190);
             this.Size = new System.Drawing.Size(1024, 523);
             this.Text = "文档管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);
