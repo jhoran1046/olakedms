@@ -349,7 +349,7 @@ namespace UI
             // 
             this.searchFullText.Checked = true;
             this.searchFullText.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.searchFullText.Location = new System.Drawing.Point(584, 8);
+            this.searchFullText.Location = new System.Drawing.Point(591, 8);
             this.searchFullText.Name = "searchFullText";
             this.searchFullText.Size = new System.Drawing.Size(85, 20);
             this.searchFullText.TabIndex = 0;
@@ -358,7 +358,7 @@ namespace UI
             // searchKeyword
             // 
             this.searchKeyword.DragTargets = new Gizmox.WebGUI.Forms.Component[0];
-            this.searchKeyword.Location = new System.Drawing.Point(489, 6);
+            this.searchKeyword.Location = new System.Drawing.Point(480, 8);
             this.searchKeyword.Name = "searchKeyword";
             this.searchKeyword.Size = new System.Drawing.Size(89, 20);
             this.searchKeyword.TabIndex = 0;
@@ -398,7 +398,7 @@ namespace UI
             // MainForm
             // 
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Location = new System.Drawing.Point(-51, 15);
+            this.Location = new System.Drawing.Point(15, -10);
             this.Size = new System.Drawing.Size(1024, 523);
             this.Text = "文档管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);
