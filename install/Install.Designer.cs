@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Install));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtVirtualDir = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMemberName = new System.Windows.Forms.TextBox();
             this.txtSurePwd = new System.Windows.Forms.TextBox();
@@ -65,9 +68,6 @@
             this.folderPath = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtVirtualDir = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,6 +96,32 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DDOC管理员设置";
+            // 
+            // label16
+            // 
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(13, 133);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(476, 37);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "虚拟目录名应和安装时所选路径，默认为DDOC,一般不需更改,如已更改，则需要手动配置IIS,详情参加安装手册";
+            // 
+            // txtVirtualDir
+            // 
+            this.txtVirtualDir.Location = new System.Drawing.Point(319, 96);
+            this.txtVirtualDir.Name = "txtVirtualDir";
+            this.txtVirtualDir.Size = new System.Drawing.Size(180, 21);
+            this.txtVirtualDir.TabIndex = 11;
+            this.txtVirtualDir.Text = "DDOC";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(240, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 12);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "虚拟目录名";
             // 
             // txtEmail
             // 
@@ -305,7 +331,7 @@
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(512, 25);
             this.lblMsg.TabIndex = 12;
-            this.lblMsg.Text = "文档管理系统初始化";
+            this.lblMsg.Text = "文档管理系统(DDOC)初始化";
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPath
@@ -415,32 +441,6 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "注意，请不要把文档存储路径设定为本应用程序的安装目录下，否则系统不能正常工作！";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(240, 102);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 12);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "虚拟目录名";
-            // 
-            // txtVirtualDir
-            // 
-            this.txtVirtualDir.Location = new System.Drawing.Point(319, 96);
-            this.txtVirtualDir.Name = "txtVirtualDir";
-            this.txtVirtualDir.Size = new System.Drawing.Size(180, 21);
-            this.txtVirtualDir.TabIndex = 11;
-            this.txtVirtualDir.Text = "DDOC";
-            // 
-            // label16
-            // 
-            this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(13, 133);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(476, 37);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "虚拟目录名应和安装时所选路径，默认为DDOC,一般不需更改,如已更改，则需要手动配置IIS,详情参加安装手册";
             // 
             // Install
             // 

@@ -128,16 +128,16 @@ namespace UI
                 this.sysFunctionTree.TreeEvent += FunctionTreeEventHandler;
 
                 //我的信息
-                List<CFunction> myinfoFunctions = new List<CFunction>();
-                function = new CFunction();
-                function.Name = "安全信息";
-                function.Image = new IconResourceHandle("importantmail.gif");
-                myinfoFunctions.Add(function);
+                 List<CFunction> myinfoFunctions = new List<CFunction>();
+//                 function = new CFunction();
+//                 function.Name = "安全信息";
+//                 function.Image = new IconResourceHandle("importantmail.gif");
+//                 myinfoFunctions.Add(function);
 
-                function = new CFunction();
-                function.Name = "其它信息";
-                function.Image = new IconResourceHandle("member.gif");
-                myinfoFunctions.Add(function);
+//                 function = new CFunction();
+//                 function.Name = "其它信息";
+//                 function.Image = new IconResourceHandle("member.gif");
+//                 myinfoFunctions.Add(function);
 
                 function = new CFunction();
                 function.Name = "修改个人资料";
