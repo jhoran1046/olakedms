@@ -12,6 +12,7 @@ using Gizmox.WebGUI.Forms;
 using Gizmox.WebGUI.Common.Resources;
 using MidLayer;
 using Framework.DB;
+using Olake.WDS;
 #endregion
 
 namespace CommonUI
@@ -62,6 +63,7 @@ namespace CommonUI
         Font _defaultFnt = new Font ( "arial" , 9 );
 
         public event DirTreeEventHandler TreeEvent;
+        public event DirTreeSearchHandler SearchEvent;
 
         public DirTree ( )
         {
@@ -158,9 +160,9 @@ namespace CommonUI
             MenuItem7.Icon = new IconResourceHandle("apply.gif");
             treeContextMenu.MenuItems.Add(MenuItem7);
 
-           // MenuItem8.Text = "我的归档申请";
-           // MenuItem8.Click += new System.EventHandler(this.menuMyApplies_Click);
-           // treeContextMenu.MenuItems.Add(MenuItem8);
+            MenuItem8.Text = "搜索";
+            MenuItem8.Click += new System.EventHandler(this.menuSearch_Click);
+            treeContextMenu.MenuItems.Add(MenuItem8);
 
            // MenuItem10.Text = "办理归档申请";
            // MenuItem10.Click += new System.EventHandler(this.menuProcessApplies_Click);
@@ -217,6 +219,54 @@ namespace CommonUI
             if (node == null || node.Tag == null)
                 throw new Exception("没有选中的目录");
             return (int)node.Tag;
+        }
+
+        private void menuSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedResource = 0;
+                TreeNode node = mainTreeView.SelectedNode;
+                if (node != null && node.Tag is int)
+                    selectedResource = (int)node.Tag;
+                SearchForm searchForm = new SearchForm();
+                searchForm.CurrentResource = selectedResource;
+                searchForm.CurrentUser = _currentUser;
+                searchForm.Closed += new EventHandler(SearchFrom_Closed);
+                searchForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统错误: " + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchFrom_Closed(object sender, EventArgs e)
+        {
+            SearchForm searchForm = (SearchForm)sender;
+            if (searchForm.DialogResult != DialogResult.OK)
+                return;
+
+            try
+            {
+                List<CSearchResultItem> result = searchForm.SearchResult;
+                if (result.Count == 0)
+                {
+                    MessageBox.Show("搜索结果为空！", "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (SearchEvent != null)
+                    {
+                        SearchEventArgs args = new SearchEventArgs(result);
+                        SearchEvent(this, args);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("搜索失败：" + ex.Message, "文档管理系统", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mainTreeView_AfterSelect ( object sender , TreeViewEventArgs e )
@@ -543,4 +593,19 @@ namespace CommonUI
     }
 
     public delegate void DirTreeEventHandler(object sender, DirTreeEventArgs e);
+
+    public class SearchEventArgs : EventArgs
+    {
+        List<CSearchResultItem> _searchResult;
+        public SearchEventArgs(List<CSearchResultItem> result)
+        {
+            _searchResult = result;
+        }
+        public List<CSearchResultItem> SearchResult
+        {
+            get { return _searchResult; }
+        }
+    }
+
+    public delegate void DirTreeSearchHandler(object sender, SearchEventArgs e);
 }

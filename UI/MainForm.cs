@@ -173,6 +173,7 @@ namespace UI
                 myDirTree.Init();
                 myDirTree.FileListUI = _myFileList;
                 myDirTree.TreeEvent += DirTreeEventHandler;
+                myDirTree.SearchEvent += DirTreeSearchEventHandler;
 
                 //共享空间
                 /*
@@ -190,6 +191,7 @@ namespace UI
                 shareDirTree.Init();
                 shareDirTree.FileListUI = _shareFileList;
                 shareDirTree.TreeEvent += DirTreeEventHandler;
+                shareDirTree.SearchEvent += DirTreeSearchEventHandler;
 
                 //归档区
                 //archiveDirTree.RootDir = Context.Server.MapPath("~/App_Data");
@@ -197,6 +199,7 @@ namespace UI
                 archiveDirTree.Init();
                 archiveDirTree.FileListUI = _archiveFileLst;
                 archiveDirTree.TreeEvent += DirTreeEventHandler;
+                archiveDirTree.SearchEvent += DirTreeSearchEventHandler;
                 
                 //组织管理——赵英武
                // orgMgerDirTree.RootDir = Context.Server.MapPath("~/App_Data");
@@ -204,6 +207,7 @@ namespace UI
                 orgMgerDirTree.Init();
                 orgMgerDirTree.FileListUI = _orgMgerList;
                 orgMgerDirTree.TreeEvent += DirTreeEventHandler;
+                orgMgerDirTree.SearchEvent += DirTreeSearchEventHandler;
 
                 systemPage.Image = new IconResourceHandle("24X24.applications.gif");
                 myInfoPage.Image = new IconResourceHandle("24X24.behaviors.gif");
@@ -286,6 +290,15 @@ namespace UI
             if (e.UI != null)
             {
                 ActiveRigthPanel(e.UI);
+            }
+        }
+
+        public void DirTreeSearchEventHandler(object sender, SearchEventArgs e)
+        {
+            if (e.SearchResult != null)
+            {
+                this._searchList.Init(e.SearchResult);
+                ActiveRigthPanel(_searchList);
             }
         }
 
